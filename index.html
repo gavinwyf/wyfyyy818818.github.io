@@ -81,6 +81,198 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/08/10/移动版2048/" title="移动版2048" itemprop="url">移动版2048</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-10T12:42:48.000Z" itemprop="datePublished"> 發表於 2015-08-10</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="移动版2048">移动版2048</h1><p>私人订制第一版：<a href="http://7xl0ox.com1.z0.glb.clouddn.com/index.html" title="wyf_2048" target="_blank" rel="external">http://7xl0ox.com1.z0.glb.clouddn.com/index.html</a></p>
+<h1 id="2048移动化并发布过程：">2048移动化并发布过程：</h1><h2 id="一、将2048放在移动端设备：">一、将2048放在移动端设备：</h2><h3 id="1-自适应">1.自适应</h3><p>Viewport 元信息<br>在<head>里  描述的是我们的应用程序与真正运行的应用程序的屏幕尺寸他们二者之间的关系:</head></p>
+<pre><code>&lt;meta  name =<span class="string">"viewport"</span> 
+ content=<span class="string">" </span>
+   width=[pixel_value<span class="string">|device-width],  具体像素|应用程序宽度 </span>
+   height=[pixel_value<span class="string">|device-height],</span>
+   initial-scale=float_value,   应用程序启动时缩放尺度
+   minimum-scale=float_value,   用户可缩放最小的尺度值
+   maximum-scale=float_value,   用户可放大最大的尺度值
+   user-scalable=[yes<span class="string">|no]       用户是否可以通过手势来缩放整个应用程序</span>
+<span class="string">"/&gt; </span>
+</code></pre><p>`</p>
+<pre><code>documentWidth = window.screen.availWidth<span class="comment">;</span>
+gridContainerWidth = 0.92 * documentWidth<span class="comment">;</span>
+cellSideLength = 0.18 * documentWidth<span class="comment">;</span>
+cellSpace = 0.04 * documentWidth<span class="comment">;</span>
+</code></pre><p>获取屏幕大小，利用百分比流动布局（也可以使用弹性布局em）</p>
+<p>宽度都相对于屏幕大小定位</p>
+<h3 id="2-触控方式">2.触控方式</h3><p>JS里恰恰存在有两个事件，分别是touchstart和touchend，用来获取触摸的起始位置和结束位置</p>
+<p>当捕捉到touch事件的时候，会执行一个回调函数，默认传了event的参数，event里有相关坐标的数据。</p>
+<p>首先，触摸开始时，touchstart事件中，event里有一个数组event.touches，之所以是数组是因为在多点触控时，数组中会存储多个手指触控的信息。(2048中单点触控就够了，只需要touches[0]的信息)</p>
+<pre><code>starx=<span class="keyword">event</span>.touches[<span class="number">0</span>].pageX;
+stary=<span class="keyword">event</span>.touches[<span class="number">0</span>].pageY;
+</code></pre><p>event.changeTouches 获取当触摸的状态发生改变时的信息，这里指手指离开手机表面时，也就是触摸结束时的信息</p>
+<pre><code>endx=<span class="keyword">event</span>.changedTouches[<span class="number">0</span>].pageX;
+endy=<span class="keyword">event</span>.changedTouches[<span class="number">0</span>].pageY;    
+</code></pre><p> 向量(endx-startx , endy-starty)或者取为(deltax,deltay) </p>
+<p>判断在哪个方向上的分量大一些，就可以判断为滑动方向了</p>
+<pre><code>Math.<span class="function"><span class="title">abs</span><span class="params">(deltax)</span></span>&gt;=Math.<span class="function"><span class="title">abs</span><span class="params">(deltay)</span></span>为x轴
+且 deltax &gt;<span class="number">0</span>为右滑  &lt;<span class="number">0</span>为左滑
+Math.<span class="function"><span class="title">abs</span><span class="params">(deltax)</span></span>&lt;Math.<span class="function"><span class="title">abs</span><span class="params">(deltay)</span></span>为y轴
+且 deltay &gt;<span class="number">0</span>为下滑  &lt;<span class="number">0</span>为上滑
+</code></pre><p>注意：屏幕中y轴的方向是向下的</p>
+<h3 id="3-有些细节需要注意：">3.有些细节需要注意：</h3><p>1.当我们点击或轻触时就会触发移动效果，我们可以设置一下移动的范围来防止：</p>
+<pre><code>if<span class="list">(<span class="keyword">Math</span>.abs<span class="list">(<span class="keyword">deltax</span>)</span>&lt;0.<span class="number">3</span><span class="variable">*documentWidth &amp;&amp; Math.abs(deltay)&lt;0.3*</span>documentWidth)</span>
+        return<span class="comment">;</span>
+</code></pre><p>2.当屏幕分辨率低的时候会出现滚动条，可以使用：</p>
+<pre><code><span class="keyword">event</span>.preventDefault();可以用来阻挡原本的键盘按下的默认效果
+</code></pre><p>3.处理preventDefault()产生的bug,导致触摸不发生移动，可以加入如下事件：</p>
+<pre><code><span class="built_in">document</span>.addEventListener(<span class="string">'touchmove'</span><span class="function"><span class="keyword">function</span>(<span class="params">event</span>))</span>{
+    event.preventDefault();
+}
+</code></pre><hr>
+<h2 id="二、将Web_apps发布在服务器上">二、将Web apps发布在服务器上</h2><h3 id="1-Web_APP：">1.Web APP：</h3><pre><code>（<span class="number">1</span>）运行在服务器上
+
+（<span class="number">2</span>）通过浏览器执行
+
+（<span class="number">3</span>）使用前端技术：HTML、CSS、<span class="keyword">JS</span>
+</code></pre><h3 id="2-Native_APP：">2.Native APP：</h3><pre><code>（<span class="number">1</span>）通过APP Store下载
+（<span class="number">2</span>）直接运行在移动设备上
+（<span class="number">3</span>）使用技术：
+   <span class="function"><span class="title">Object-C</span><span class="params">(IOS)</span></span>
+   <span class="function"><span class="title">Java</span><span class="params">(Android)</span></span>
+</code></pre><h3 id="3-Hybird_APP:">3.Hybird APP:</h3><pre><code>相比介于前两者之间，优缺点并存的混合模式移动应用，兼具Native <span class="keyword">App</span>良好用户交互体验的优势和Web <span class="keyword">App</span>跨平台开发的优势。
+</code></pre><h3 id="4-使用Dropbox发布自己的Web_Apps">4.使用Dropbox发布自己的Web Apps</h3><p>限制：</p>
+<pre><code>  <span class="number">1</span>.静态网站：所谓静态网站就是指，没有数据库的支持，也没有像PHP、Java、ASP这样的服务器端的程序来支持的网站。这样的网站主要由HTML、CSS、<span class="keyword">JS</span>构成。
+
+  <span class="number">2</span>.速度稍慢 （主服务器在国外）
+
+   <span class="number">3</span>.域名不宜记忆 （自动生成的域名）
+
+Dropbox现在不提供对新用户的一些服务，<span class="preprocessor">public</span>文件不能使用
+可以使用DropPages服务,它是基于Dropbox实现静态网页架设的服务 
+完全免费，域名可以使用二级域名
+坑爹的是国内好像用不了。。。
+</code></pre><h3 id="5-使用七牛云发布自己的Web_Apps">5.使用七牛云发布自己的Web Apps</h3><h4 id="5-1首先介绍一下七牛云存储：">5.1首先介绍一下七牛云存储：</h4><pre><code>七牛云存储主要托管企业的静态资源，为企业提供一站式在线数据托管、上传下载全网加速、以及数据云端处理服务。主要做静态文件，包括富媒体一体化解决方案，解决富媒体存储、上传下载加速、数据处理，包括图片处理、音视频处理，比如说做缩略图，打水印。
+此外，七牛还提供了镜像存储、客户端直传以及断点续上传等功能，方便开发者的使用。
+</code></pre><h4 id="5-2具体步骤：">5.2具体步骤：</h4><h5 id="1）首先注册一个七牛账号">1）首先注册一个七牛账号</h5><h5 id="2）注册后如果绑定了手机有10G的空间和10G的流量，未绑定有1G的空间，如果流量超支则按需计算（PS：如果没有托管大型网站的数据一般不会超支，所以可以放开了使用）">2）注册后如果绑定了手机有10G的空间和10G的流量，未绑定有1G的空间，如果流量超支则按需计算（PS：如果没有托管大型网站的数据一般不会超支，所以可以放开了使用）</h5><h5 id="3）注册成功后，进入管理页面&gt;&gt;新建一个空间&gt;&gt;设置空间名字（访问控制设为公开空间）">3）注册成功后，进入管理页面&gt;&gt;新建一个空间&gt;&gt;设置空间名字（访问控制设为公开空间）</h5><h5 id="4）创建好之后配置空间，接下来我们就需要用到七牛的http://developer-qiniu-com/docs/v6/tools/qrsbox-html">4）创建好之后配置空间，接下来我们就需要用到七牛的<a href="http://developer.qiniu.com/docs/v6/tools/qrsbox.html" title="上传工具qrsbox" target="_blank" rel="external">http://developer.qiniu.com/docs/v6/tools/qrsbox.html</a></h5><h5 id="5）下载之后，双击启动QRSBox-exe进行相关配置，配置可以查看http://developer-qiniu-com/docs/v6/tools/qrsbox-html">5）下载之后，双击启动QRSBox.exe进行相关配置，配置可以查看<a href="http://developer.qiniu.com/docs/v6/tools/qrsbox.html" title="官方文档" target="_blank" rel="external">http://developer.qiniu.com/docs/v6/tools/qrsbox.html</a></h5><h5 id="6）等待上传完毕后会显示_Sync_done，打开空间内容管理获取地址,直接点击你的首页文件，就可以获取首页链接地址了。直接可以在浏览器上打开试试。">6）等待上传完毕后会显示 Sync done，打开空间内容管理获取地址,直接点击你的首页文件，就可以获取首页链接地址了。直接可以在浏览器上打开试试。</h5><h5 id="7）哈哈，是不是很容易啊！">7）哈哈，是不是很容易啊！</h5><h3 id="我的第一篇博客就这样开始了，以后我会坚持多看书，多发博客。之前完全放下了DirectX做3D游戏引擎的开发，但有机会还是想捡起来发发东西，毕竟受到了http://blog-csdn-net/poem_qianmo的教诲，并且把他的那本《windows游戏编程值从零开始》很快就读完了，然后又看了《红龙书》，《windows游戏编程大师技巧》只看了一部分，挺多过时已久了，又买了《3D游戏编程大师技巧》上下册，很可惜没有看完，现在全都忘记了。愧对那些依旧奋进在复兴国产3D大作的兄弟们，你们加油吧，我默默地为你们加油！">我的第一篇博客就这样开始了，以后我会坚持多看书，多发博客。之前完全放下了DirectX做3D游戏引擎的开发，但有机会还是想捡起来发发东西，毕竟受到了<a href="http://blog.csdn.net/poem_qianmo" title="浅墨哥" target="_blank" rel="external">http://blog.csdn.net/poem_qianmo</a>的教诲，并且把他的那本《windows游戏编程值从零开始》很快就读完了，然后又看了《红龙书》，《windows游戏编程大师技巧》只看了一部分，挺多过时已久了，又买了《3D游戏编程大师技巧》上下册，很可惜没有看完，现在全都忘记了。愧对那些依旧奋进在复兴国产3D大作的兄弟们，你们加油吧，我默默地为你们加油！</h3><h3 id="现在的我正在奋进在前端或者是全端的道路上，虽然从零开始学起已经很晚了，有可能找不到更好的工作了，但是我不会轻易的就放弃，哈哈，我职业生涯规划的第一大步就是全栈工程师，是不是定的有点偏高。没关系，从前端开始入手，以后大部分还是发前端的学习和分享帖吧，看书看书再看书。悲催的是我现在都没有把百度前端学院第一期的任务都没做完，当时发任务的时候，我连JS干嘛的都不清楚，现在起码清楚了，有时间的把作业补上。">现在的我正在奋进在前端或者是全端的道路上，虽然从零开始学起已经很晚了，有可能找不到更好的工作了，但是我不会轻易的就放弃，哈哈，我职业生涯规划的第一大步就是全栈工程师，是不是定的有点偏高。没关系，从前端开始入手，以后大部分还是发前端的学习和分享帖吧，看书看书再看书。悲催的是我现在都没有把百度前端学院第一期的任务都没做完，当时发任务的时候，我连JS干嘛的都不清楚，现在起码清楚了，有时间的把作业补上。</h3><h3 id="希望有前端或者搞游戏开发的朋友能有空一起交流交流！">希望有前端或者搞游戏开发的朋友能有空一起交流交流！</h3><h3 id="希望不要错过秋季校招，希望能签到心仪的公司（PS:稍微大一些的互联网公司啦，BAT什么的啦。。。）">希望不要错过秋季校招，希望能签到心仪的公司（PS:稍微大一些的互联网公司啦，BAT什么的啦。。。）</h3><h3 id="哈哈哈_（PS:如此豪放的笑声）">哈哈哈 （PS:如此豪放的笑声）</h3>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/WebApp/">WebApp</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/WebApp/">WebApp</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/10/移动版2048/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/10/移动版2048/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/08/02/hello-world/" title="Hello World" itemprop="url">Hello World</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-02T06:15:11.706Z" itemprop="datePublished"> 發表於 2015-08-02</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/02/hello-world/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/02/hello-world/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/07/18/新的开始/" title="新的开始" itemprop="url">新的开始</a>
   </h1>
   <p class="article-author">By
@@ -139,68 +331,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/07/14/hello-world/" title="Hello World" itemprop="url">Hello World</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
-		
-  <p class="article-time">
-    <time datetime="2015-07-14T14:01:38.948Z" itemprop="datePublished"> 發表於 2015-07-14</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/07/14/hello-world/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/07/14/hello-world/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-
 
 </div>
       <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
@@ -218,6 +348,10 @@
 			<li><a href="/categories/Leaf/" title="Leaf">Leaf<sup>1</sup></a></li>
 		  
 		
+		  
+			<li><a href="/categories/WebApp/" title="WebApp">WebApp<sup>1</sup></a></li>
+		  
+		
 		</ul>
 </div>
 
@@ -226,6 +360,10 @@
 <div class="tagslist">
 	<p class="asidetitle">標簽</p>
 		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/WebApp/" title="WebApp">WebApp<sup>1</sup></a></li>
+			
 		
 			
 				<li><a href="/tags/new/" title="new">new<sup>1</sup></a></li>
