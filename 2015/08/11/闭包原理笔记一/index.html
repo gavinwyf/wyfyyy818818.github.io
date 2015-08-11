@@ -4,22 +4,59 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>YunFeng`s blog</title>
+    <title>闭包原理笔记一 | YunFeng`s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Yunfeng">
     
 
     
-    <meta name="description" content="Web DirectX WebGL">
-<meta property="og:type" content="website">
-<meta property="og:title" content="YunFeng`s blog">
-<meta property="og:url" content="http://yunfengwang.com.cn/index.html">
+    <meta name="description" content="闭包原理（一）一.闭包简述1.变量作用域：1.全局作用域
+
+  全局变量: 好处;可共享
+           缺点;牵一发而动全身
+
+2.函数作用域(局部作用域)
+
+   局部变量: 好处:安全，私有
+            缺点：不可共享
+2.作用域链:  是1个对象:1.每个函数都有一个
+2.封装了一个函数可用的变量所在的位置
+3.查找顺序是从局部到全局
+qu   方法定义时：  创建2个对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="闭包原理笔记一">
+<meta property="og:url" content="http://yunfengwang.com.cn/2015/08/11/闭包原理笔记一/index.html">
 <meta property="og:site_name" content="YunFeng`s blog">
-<meta property="og:description" content="Web DirectX WebGL">
+<meta property="og:description" content="闭包原理（一）一.闭包简述1.变量作用域：1.全局作用域
+
+  全局变量: 好处;可共享
+           缺点;牵一发而动全身
+
+2.函数作用域(局部作用域)
+
+   局部变量: 好处:安全，私有
+            缺点：不可共享
+2.作用域链:  是1个对象:1.每个函数都有一个
+2.封装了一个函数可用的变量所在的位置
+3.查找顺序是从局部到全局
+qu   方法定义时：  创建2个对">
+<meta property="og:updated_time" content="2015-08-11T14:30:32.674Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="YunFeng`s blog">
-<meta name="twitter:description" content="Web DirectX WebGL">
+<meta name="twitter:title" content="闭包原理笔记一">
+<meta name="twitter:description" content="闭包原理（一）一.闭包简述1.变量作用域：1.全局作用域
+
+  全局变量: 好处;可共享
+           缺点;牵一发而动全身
+
+2.函数作用域(局部作用域)
+
+   局部变量: 好处:安全，私有
+            缺点：不可共享
+2.作用域链:  是1个对象:1.每个函数都有一个
+2.封装了一个函数可用的变量所在的位置
+3.查找顺序是从局部到全局
+qu   方法定义时：  创建2个对">
 
     
     <link rel="alternative" href="/atom.xml" title="YunFeng`s blog" type="application/atom+xml">
@@ -73,12 +110,10 @@
 </div>
     </header>
     <div id="container">
-      <div id="main">
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
   <h1 itemprop="name">
     
       <a href="/2015/08/11/闭包原理笔记一/" title="闭包原理笔记一" itemprop="url">闭包原理笔记一</a>
@@ -92,9 +127,16 @@
     
   </p>
 </header>
-    <div class="article-content">
-        
-        <h1 id="闭包原理（一）">闭包原理（一）</h1><h2 id="一-闭包简述">一.闭包简述</h2><h3 id="1-变量作用域：">1.变量作用域：</h3><pre><code>1.全局作用域
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#闭包原理（一）"><span class="toc-number">1.</span> <span class="toc-text">闭包原理（一）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-闭包简述"><span class="toc-number">1.1.</span> <span class="toc-text">一.闭包简述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-变量作用域："><span class="toc-number">1.1.1.</span> <span class="toc-text">1.变量作用域：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-作用域链:_是1个对象:"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.作用域链:  是1个对象:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-闭包:"><span class="toc-number">1.1.3.</span> <span class="toc-text">3.闭包:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、红宝书"><span class="toc-number">1.2.</span> <span class="toc-text">二、红宝书</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_作用域"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#(1)_执行环境"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">(1) 执行环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#(2)_ECMA执行流机制："><span class="toc-number">1.2.1.2.</span> <span class="toc-text">(2) ECMA执行流机制：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#(3)_作用域链："><span class="toc-number">1.2.1.3.</span> <span class="toc-text">(3) 作用域链：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#(4)_标识符解析："><span class="toc-number">1.2.1.4.</span> <span class="toc-text">(4) 标识符解析：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#(5)延长作用域链："><span class="toc-number">1.2.1.5.</span> <span class="toc-text">(5)延长作用域链：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#(6)没有块级作用域"><span class="toc-number">1.2.1.6.</span> <span class="toc-text">(6)没有块级作用域</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_闭包：_指有权访问另一个函数作用域中的变量的函数"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 闭包： 指有权访问另一个函数作用域中的变量的函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#(1)作用域链："><span class="toc-number">1.2.2.1.</span> <span class="toc-text">(1)作用域链：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#（2）闭包与变量"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">（2）闭包与变量</span></a></li></ol></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="闭包原理（一）">闭包原理（一）</h1><h2 id="一-闭包简述">一.闭包简述</h2><h3 id="1-变量作用域：">1.变量作用域：</h3><pre><code>1.全局作用域
 
   全局变量: 好处<span class="comment">;可共享</span>
            缺点<span class="comment">;牵一发而动全身</span>
@@ -185,14 +227,9 @@ function <span class="function"><span class="title">fun</span><span class="param
 <h4 id="（2）闭包与变量">（2）闭包与变量</h4><p>   作用域链机制引出了一个副作用：</p>
 <p> 闭包只能取得包含函数中任何变量的最后一个值，闭包所保存的是整个变量对象，而不是某个特殊的变量</p>
 <p> 闭包内，很可能引用保存某变量的同一个变量对象，正是返回的那个局部变量，我们可以通过创建另一个匿名函数强制让闭包的行为符合预期。</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
+  
+	</div>
+		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 <div class="article-categories">
@@ -210,300 +247,47 @@ function <span class="function"><span class="title">fun</span><span class="param
 
 
 
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yunfengwang.com.cn/2015/08/11/闭包原理笔记一/" data-title="闭包原理笔记一 | YunFeng`s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
 
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/11/闭包原理笔记一/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/11/闭包原理笔记一/" data-count-type="comments">&nbsp;</a>
-	
-</div>
 
 </footer>
 
-
-    </article>
-
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/10/移动版2048/" title="移动版2048" itemprop="url">移动版2048</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-10T12:42:48.000Z" itemprop="datePublished"> 發表於 2015-08-10</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="移动版2048">移动版2048</h1><p>私人订制第一版：<a href="http://7xl0ox.com1.z0.glb.clouddn.com/index.html" title="wyf_2048" target="_blank" rel="external">wyf_2048</a></p>
-<h1 id="2048移动化并发布过程：">2048移动化并发布过程：</h1><h2 id="一、将2048放在移动端设备：">一、将2048放在移动端设备：</h2><h3 id="1-自适应">1.自适应</h3><p>Viewport 元信息<br>在<head>里  描述的是我们的应用程序与真正运行的应用程序的屏幕尺寸他们二者之间的关系:</head></p>
-<pre><code>&lt;meta  name =<span class="string">"viewport"</span> 
- content=<span class="string">" </span>
-   width=[pixel_value<span class="string">|device-width],  具体像素|应用程序宽度 </span>
-   height=[pixel_value<span class="string">|device-height],</span>
-   initial-scale=float_value,   应用程序启动时缩放尺度
-   minimum-scale=float_value,   用户可缩放最小的尺度值
-   maximum-scale=float_value,   用户可放大最大的尺度值
-   user-scalable=[yes<span class="string">|no]       用户是否可以通过手势来缩放整个应用程序</span>
-<span class="string">"/&gt; </span>
-</code></pre><p>`</p>
-<pre><code>documentWidth = window.screen.availWidth<span class="comment">;</span>
-gridContainerWidth = 0.92 * documentWidth<span class="comment">;</span>
-cellSideLength = 0.18 * documentWidth<span class="comment">;</span>
-cellSpace = 0.04 * documentWidth<span class="comment">;</span>
-</code></pre><p>获取屏幕大小，利用百分比流动布局（也可以使用弹性布局em）</p>
-<p>宽度都相对于屏幕大小定位</p>
-<h3 id="2-触控方式">2.触控方式</h3><p>JS里恰恰存在有两个事件，分别是touchstart和touchend，用来获取触摸的起始位置和结束位置</p>
-<p>当捕捉到touch事件的时候，会执行一个回调函数，默认传了event的参数，event里有相关坐标的数据。</p>
-<p>首先，触摸开始时，touchstart事件中，event里有一个数组event.touches，之所以是数组是因为在多点触控时，数组中会存储多个手指触控的信息。(2048中单点触控就够了，只需要touches[0]的信息)</p>
-<pre><code>starx=<span class="keyword">event</span>.touches[<span class="number">0</span>].pageX;
-stary=<span class="keyword">event</span>.touches[<span class="number">0</span>].pageY;
-</code></pre><p>event.changeTouches 获取当触摸的状态发生改变时的信息，这里指手指离开手机表面时，也就是触摸结束时的信息</p>
-<pre><code>endx=<span class="keyword">event</span>.changedTouches[<span class="number">0</span>].pageX;
-endy=<span class="keyword">event</span>.changedTouches[<span class="number">0</span>].pageY;    
-</code></pre><p> 向量(endx-startx , endy-starty)或者取为(deltax,deltay) </p>
-<p>判断在哪个方向上的分量大一些，就可以判断为滑动方向了</p>
-<pre><code>Math.<span class="function"><span class="title">abs</span><span class="params">(deltax)</span></span>&gt;=Math.<span class="function"><span class="title">abs</span><span class="params">(deltay)</span></span>为x轴
-且 deltax &gt;<span class="number">0</span>为右滑  &lt;<span class="number">0</span>为左滑
-Math.<span class="function"><span class="title">abs</span><span class="params">(deltax)</span></span>&lt;Math.<span class="function"><span class="title">abs</span><span class="params">(deltay)</span></span>为y轴
-且 deltay &gt;<span class="number">0</span>为下滑  &lt;<span class="number">0</span>为上滑
-</code></pre><p>注意：屏幕中y轴的方向是向下的</p>
-<h3 id="3-有些细节需要注意：">3.有些细节需要注意：</h3><p>1.当我们点击或轻触时就会触发移动效果，我们可以设置一下移动的范围来防止：</p>
-<pre><code>if<span class="list">(<span class="keyword">Math</span>.abs<span class="list">(<span class="keyword">deltax</span>)</span>&lt;0.<span class="number">3</span><span class="variable">*documentWidth &amp;&amp; Math.abs(deltay)&lt;0.3*</span>documentWidth)</span>
-        return<span class="comment">;</span>
-</code></pre><p>2.当屏幕分辨率低的时候会出现滚动条，可以使用：</p>
-<pre><code><span class="keyword">event</span>.preventDefault();可以用来阻挡原本的键盘按下的默认效果
-</code></pre><p>3.处理preventDefault()产生的bug,导致触摸不发生移动，可以加入如下事件：</p>
-<pre><code><span class="built_in">document</span>.addEventListener(<span class="string">'touchmove'</span><span class="function"><span class="keyword">function</span>(<span class="params">event</span>))</span>{
-    event.preventDefault();
-}
-</code></pre><hr>
-<h2 id="二、将Web_apps发布在服务器上">二、将Web apps发布在服务器上</h2><h3 id="1-Web_APP：">1.Web APP：</h3><pre><code>（<span class="number">1</span>）运行在服务器上
-
-（<span class="number">2</span>）通过浏览器执行
-
-（<span class="number">3</span>）使用前端技术：HTML、CSS、<span class="keyword">JS</span>
-</code></pre><h3 id="2-Native_APP：">2.Native APP：</h3><pre><code>（<span class="number">1</span>）通过APP Store下载
-（<span class="number">2</span>）直接运行在移动设备上
-（<span class="number">3</span>）使用技术：
-   <span class="function"><span class="title">Object-C</span><span class="params">(IOS)</span></span>
-   <span class="function"><span class="title">Java</span><span class="params">(Android)</span></span>
-</code></pre><h3 id="3-Hybird_APP:">3.Hybird APP:</h3><pre><code>相比介于前两者之间，优缺点并存的混合模式移动应用，兼具Native <span class="keyword">App</span>良好用户交互体验的优势和Web <span class="keyword">App</span>跨平台开发的优势。
-</code></pre><h3 id="4-使用Dropbox发布自己的Web_Apps">4.使用Dropbox发布自己的Web Apps</h3><p>限制：</p>
-<pre><code>  <span class="number">1</span>.静态网站：所谓静态网站就是指，没有数据库的支持，也没有像PHP、Java、ASP这样的服务器端的程序来支持的网站。这样的网站主要由HTML、CSS、<span class="keyword">JS</span>构成。
-
-  <span class="number">2</span>.速度稍慢 （主服务器在国外）
-
-   <span class="number">3</span>.域名不宜记忆 （自动生成的域名）
-
-Dropbox现在不提供对新用户的一些服务，<span class="preprocessor">public</span>文件不能使用
-可以使用DropPages服务,它是基于Dropbox实现静态网页架设的服务 
-完全免费，域名可以使用二级域名
-坑爹的是国内好像用不了。。。
-</code></pre><h3 id="5-使用七牛云发布自己的Web_Apps">5.使用七牛云发布自己的Web Apps</h3><h4 id="5-1首先介绍一下七牛云存储：">5.1首先介绍一下七牛云存储：</h4><pre><code>七牛云存储主要托管企业的静态资源，为企业提供一站式在线数据托管、上传下载全网加速、以及数据云端处理服务。主要做静态文件，包括富媒体一体化解决方案，解决富媒体存储、上传下载加速、数据处理，包括图片处理、音视频处理，比如说做缩略图，打水印。
-此外，七牛还提供了镜像存储、客户端直传以及断点续上传等功能，方便开发者的使用。
-</code></pre><h4 id="5-2具体步骤：">5.2具体步骤：</h4><blockquote>
-<p>.</p>
-<p>1）首先注册一个七牛账号</p>
-<p>2）注册后如果绑定了手机有10G的空间和10G的流量，未绑定有1G的空间，如果流量超支则按需计算（PS：如果没有托管大型网站的数据一般不会超支，所以可以放开了使用）</p>
-<p>3）注册成功后，进入管理页面&gt;&gt;新建一个空间&gt;&gt;设置空间名字（访问控制设为公开空间）</p>
-<p>4）创建好之后配置空间，接下来我们就需要用到七牛的<a href="http://developer.qiniu.com/docs/v6/tools/qrsbox.html" title="上传工具qrsbox" target="_blank" rel="external">上传工具qrsbox</a></p>
-<p>5）下载之后，双击启动QRSBox.exe进行相关配置，配置可以查看<a href="http://developer.qiniu.com/docs/v6/tools/qrsbox.html" title="官方文档" target="_blank" rel="external">官方文档</a></p>
-<p>6）等待上传完毕后会显示 Sync done，打开空间内容管理获取地址,直接点击你的首页文件，就可以获取首页链接地址了。直接可以在浏览器上打开试试。</p>
-<p>7）哈哈，是不是很容易啊！</p>
-<p>.</p>
-</blockquote>
-<p>  <strong>我的第一篇博客就这样开始了，以后我会坚持多看书，多发博客。之前完全放下了DirectX做3D游戏引擎的开发，但有机会还是想捡起来发发东西，毕竟受到了<a href="http://blog.csdn.net/poem_qianmo" title="浅墨哥" target="_blank" rel="external">浅墨哥</a>的教诲，并且把他的那本《windows游戏编程值从零开始》很快就读完了，然后又看了《红龙书》，《windows游戏编程大师技巧》只看了一部分，挺多过时已久了，又买了《3D游戏编程大师技巧》上下册，很可惜没有看完，现在全都忘记了。愧对那些依旧奋进在复兴国产3D大作的兄弟们，你们加油吧，我默默地为你们加油！</strong></p>
-<p>  <strong>现在的我正在奋进在前端或者是全端的道路上，虽然从零开始学起已经很晚了，有可能找不到更好的工作了，但是我不会轻易的就放弃，哈哈，我职业生涯规划的第一大步就是全栈工程师，是不是定的有点偏高。没关系，从前端开始入手，以后大部分还是发前端的学习和分享帖吧，看书看书再看书。悲催的是我现在都没有把百度前端学院第一期的任务都没做完，当时发任务的时候，我连JS干嘛的都不清楚，现在起码清楚了，有时间的把作业补上。</strong></p>
-<p>  <strong>希望有前端或者搞游戏开发的朋友能有空一起交流交流！</strong></p>
-<p>  <strong>希望不要错过秋季校招，希望能签到心仪的公司（PS:稍微大一些的互联网公司啦，BAT什么的啦。。。）</strong></p>
-<p>  <strong>哈哈哈 （PS:如此豪放的笑声）</strong></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/WebApp/">WebApp</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/WebApp/">WebApp</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
+   	       
+	</article>
 	
-	  	<span></span>
-		<a href="/2015/08/10/移动版2048/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/10/移动版2048/" data-count-type="comments">&nbsp;</a>
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/08/10/移动版2048/"  title="移动版2048">
+ <strong>下一篇：</strong><br/> 
+ <span>移动版2048
+</span>
+</a>
+</div>
+
+</nav>
+
 	
-</div>
-
-</footer>
-
-
-    </article>
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/08/11/闭包原理笔记一/" data-title="闭包原理笔记一" data-url="http://yunfengwang.com.cn/2015/08/11/闭包原理笔记一/"></div>
+</section>
 
 
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/02/hello-world/" title="Hello World" itemprop="url">Hello World</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-02T06:15:11.706Z" itemprop="datePublished"> 發表於 2015-08-02</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/02/hello-world/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/02/hello-world/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/07/18/新的开始/" title="新的开始" itemprop="url">新的开始</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
-		
-  <p class="article-time">
-    <time datetime="2015-07-18T09:06:14.000Z" itemprop="datePublished"> 發表於 2015-07-18</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>这是我新的开始，我用hexo创建了第一篇文章</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Leaf/">Leaf</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/new/">new</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/07/18/新的开始/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/07/18/新的开始/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-
-
-</div>
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#闭包原理（一）"><span class="toc-number">1.</span> <span class="toc-text">闭包原理（一）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-闭包简述"><span class="toc-number">1.1.</span> <span class="toc-text">一.闭包简述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-变量作用域："><span class="toc-number">1.1.1.</span> <span class="toc-text">1.变量作用域：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-作用域链:_是1个对象:"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.作用域链:  是1个对象:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-闭包:"><span class="toc-number">1.1.3.</span> <span class="toc-text">3.闭包:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、红宝书"><span class="toc-number">1.2.</span> <span class="toc-text">二、红宝书</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_作用域"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#(1)_执行环境"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">(1) 执行环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#(2)_ECMA执行流机制："><span class="toc-number">1.2.1.2.</span> <span class="toc-text">(2) ECMA执行流机制：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#(3)_作用域链："><span class="toc-number">1.2.1.3.</span> <span class="toc-text">(3) 作用域链：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#(4)_标识符解析："><span class="toc-number">1.2.1.4.</span> <span class="toc-text">(4) 标识符解析：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#(5)延长作用域链："><span class="toc-number">1.2.1.5.</span> <span class="toc-text">(5)延长作用域链：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#(6)没有块级作用域"><span class="toc-number">1.2.1.6.</span> <span class="toc-text">(6)没有块级作用域</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_闭包：_指有权访问另一个函数作用域中的变量的函数"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 闭包： 指有权访问另一个函数作用域中的变量的函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#(1)作用域链："><span class="toc-number">1.2.2.1.</span> <span class="toc-text">(1)作用域链：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#（2）闭包与变量"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">（2）闭包与变量</span></a></li></ol></li></ol></li></ol></li></ol>
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
@@ -726,12 +510,89 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
 
 
 
@@ -804,4 +665,4 @@ $(document).ready(function(){
 <!-- Tiny_search End -->
 
   </body>
- </html>
+</html>
