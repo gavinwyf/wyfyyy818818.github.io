@@ -81,6 +81,157 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/08/15/SASS/" title="SASS与Compass（一）" itemprop="url">SASS与Compass（一）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-15T11:11:24.000Z" itemprop="datePublished"> 發表於 2015-08-15</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="SASS与Compass基础">SASS与Compass基础</h1><p>  听一些大神都说，LESS和SASS很简单，根本不用看书，敲敲就明白了。我是不行啊，虽然东西不多，但是感觉不看点书，不踏实。</p>
+<h2 id="概述：">概述：</h2><p> CSS开发是基于渲染原理和W3C标准来设计规则的，无算法，无数据结构，没有逻辑控制。</p>
+<p> Sass在2007年，诞生于“工具控”的Ruby社区，开始服务的对象自然是Ruby工程师，是为了让他们能像写Ruby那样写CSS。</p>
+<p> 直到推出SCSS这种语法风格，Sass变得更像是CSS的扩展和增强，可以跟原生CSS混写。</p>
+<p> Sass不能让你写出更好的CSS，但是却可以让你更高效的写出高可维护性的CSS。</p>
+<p> QQ查找受益颇深的几点：</p>
+<pre><code> 1<span class="class">.Sass</span>对原生<span class="tag">CSS</span> <span class="at_rule">@<span class="keyword">import指令的扩展，让我可以在不同文件中的样式最后合并到一起。</span>
+<span class="number">2</span>.变量机制，使得标准的颜色值、行高、列宽再也不用“东一榔头西一棒槌”的分散各处，有了一个统一的地方归纳整理。
+<span class="number">3</span>.标准样式的抽离，向调用函数一样，轻松将统一的样式抽离出来，避免了复制，一旦交互变动，只需修改抽离出来的混合器一处。
+ <span class="number">4</span>.样式继承的概念，使得我们对于查找中各种btn的修饰变得清晰，无论何种btn，统一从父级btn继承基础样式。
+<span class="number">5</span>.自动合图实在是太方便了，直接把切图扔到图片目录，对应的合图和CSS就全部自动生成了。</span>
+</code></pre><h2 id="第一章、_Sass和Compass让样式表重焕青春">第一章、 Sass和Compass让样式表重焕青春</h2><h3 id="1-_Sass支持两种语法。">1. Sass支持两种语法。</h3><p>   (1)最初的缩进式语法 使用.sass为文件扩展名，对空格敏感，属性通过换行来分割。 </p>
+<pre><code><span class="tag">h1</span>
+  <span class="attribute">color</span>:<span class="hexcolor">#000</span>
+  <span class="attribute">background</span>:<span class="hexcolor">#fff</span>
+</code></pre><p>   (2)SCSS即Sassy CSS在Sass3.0中被引入，它是CSS3的超集。SCSS文件使用.scss为扩展名，使用花括号和分号。</p>
+<pre><code><span class="tag">h1</span>{<span class="attribute">color</span>:<span class="hexcolor">#000</span>;<span class="attribute">background</span>:<span class="hexcolor">#fff</span>}
+注意：这两种语法可以在同一个项目中混合使用，只要不在同一个文件使用即可。
+</code></pre><p>   DRY(Don`t Repeat Yourself)</p>
+<h3 id="2-消除样式表的冗余">2.消除样式表的冗余</h3><p>   (1)通过变量来复用属性值</p>
+<pre><code><span class="variable">$company-blue</span><span class="value">: <span class="hexcolor">#1875e7</span>;</span>
+<span class="tag">h1</span><span class="id">#brand</span>{<span class="attribute">color</span><span class="value">:<span class="variable">$company-blue</span>;</span>}
+</code></pre><p>   (2)使用嵌套来快速写出多层级的选择器</p>
+<pre><code><span class="tag">ul</span><span class="class">.nav</span>{<span class="tag">float</span><span class="pseudo">:right</span>}
+<span class="tag">ul</span><span class="class">.nav</span> <span class="tag">li</span>{<span class="attribute">float</span>:left;}
+<span class="tag">ul</span><span class="class">.nav</span> <span class="tag">li</span> <span class="tag">a</span>{<span class="tag">color</span>:<span class="id">#111</span>}
+<span class="tag">ul</span><span class="class">.nav</span> <span class="tag">li</span><span class="class">.current</span>{<span class="attribute">font-weight</span>:bold;}
+
+<span class="tag">ul</span><span class="class">.nav</span>{
+  <span class="attribute">float</span>:right;
+  <span class="tag">li</span>{
+    <span class="attribute">float</span>:left;
+    <span class="tag">a</span>{
+      <span class="attribute">color</span>:<span class="hexcolor">#111</span>;
+    }
+    <span class="keyword">&amp;</span><span class="class">.current</span>{
+     <span class="attribute">font-weight</span>:bold;
+    }
+  }
+}
+</code></pre><p>   (3)使用混合器来复用一段样式</p>
+<pre><code> <span class="variable">@mixin</span> horizontal-list{
+  <span class="tag">li</span>{
+    <span class="attribute">float</span>:left;
+    <span class="attribute">margin-right</span>:<span class="number">10px</span>;
+   }
+ }
+<span class="id">#header</span> <span class="tag">ul</span><span class="class">.nav</span>{
+  <span class="variable">@include</span> horizontal-list;
+  <span class="attribute">float</span>:right;
+}
+<span class="id">#footer</span> <span class="tag">ul</span><span class="class">.nav</span>{
+  <span class="variable">@include</span> horizontal-list;
+  <span class="attribute">margin-top</span>:<span class="number">1em</span>;
+}
+使用 <span class="variable">@mixin</span>命令，可以将水平列表的规则抽取出来放到一个合适的混合器中。
+然后调用 <span class="variable">@include</span>命令，将规则引入。因此，不再需要.horizontal-list类。
+</code></pre><p>混合器可以和变量结合，能够根据参数来决定使用的样式。</p>
+<pre><code><span class="variable">@mixin</span> <span class="function">horizontal-list</span>($<span class="attribute">spacing</span>:<span class="number">10px</span>){
+   <span class="tag">li</span>{<span class="attribute">float</span>:left;}
+}
+<span class="id">#footer</span> <span class="tag">ul</span><span class="class">.nav</span>{
+  <span class="variable">@include</span> <span class="function">horizontal-list</span>(<span class="number">20px</span>);
+  <span class="attribute">margin-top</span>:<span class="number">1em</span>;
+}
+</code></pre><p> (4) 使用选择器继承来避免重复属性</p>
+<p>   选择器继承的意思就是让一个选择器能够复用另一个选择器的所有样式，但又不重复输出这些样式属性。</p>
+<pre><code><span class="class">.error</span>{<span class="attribute">border</span>:<span class="number">1px</span> <span class="hexcolor">#f00</span>; <span class="attribute">background</span>:<span class="hexcolor">#fdd</span>;}
+<span class="class">.error</span> <span class="class">.intrusion</span>{<span class="attribute">font-size</span>:<span class="number">1.2em</span>; <span class="attribute">font-weight</span>:bold;}
+<span class="class">.badError</span>{ <span class="variable">@extend</span> .error; <span class="attribute">border-width</span>:<span class="number">3px</span>;}
+
+<span class="class">.badError</span>继承父类<span class="class">.error</span>，也就是复用父类的所有样式。
+
+编译后：
+<span class="class">.error</span>,<span class="class">.badError</span>{<span class="attribute">border</span>:<span class="number">1px</span> <span class="hexcolor">#f00</span>; <span class="attribute">background</span>:<span class="hexcolor">#fdd</span>;}
+<span class="class">.error</span> <span class="class">.intrusion</span>,<span class="class">.badError</span> <span class="class">.intrusion</span>{<span class="attribute">font-size</span>:<span class="number">1.2em</span>; <span class="attribute">font-weight</span>:bold;}
+<span class="class">.badError</span>{<span class="attribute">border-width</span>:<span class="number">3px</span>;}
+</code></pre><p>有时父类不需要在HTML中使用时，Sass3.2中引入占位选择器，它支持使用选择器继承的同时，不编译输出HTML中不使用的父类。</p>
+<pre><code>%<span class="tag">button-reset</span>{ ... }
+<span class="class">.save</span>{ <span class="variable">@extend</span> %button-reset;<span class="attribute">color</span>:white;...}
+<span class="class">.delete</span>{ <span class="variable">@extent</span> %button-reset;<span class="attribute">color</span>:white;...}
+</code></pre><h3 id="3-Compass">3.Compass</h3><p>  Compass是面向Sass的一个框架。</p>
+<pre><code>三个主要部分： 
+      <span class="number">1</span>）混合器
+      <span class="number">2</span>）实用工具的类库<span class="comment">(能够集成到应用开发环境中的开发系统)</span>
+      <span class="number">3</span>）一个用于构建框架和扩展的平台
+</code></pre><p>  使用Compass可以解决很多CSS问题<br>     1）重置样式<br>     2）不用计算创建布局<br>     3）添加更专业样式<br>     4）CSS3属性无需再写厂商前缀</p>
+<p>详细的语法我看完一起精简整理，哈哈。  </p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/SASS/">SASS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/SASS/">SASS</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/15/SASS/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/15/SASS/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/08/13/作用域一/" title="作用域（一）" itemprop="url">作用域（一）</a>
   </h1>
   <p class="article-author">By
@@ -666,6 +817,10 @@ Dropbox现在不提供对新用户的一些服务，<span class="preprocessor">p
 		  
 		
 		  
+			<li><a href="/categories/SASS/" title="SASS">SASS<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/WebApp/" title="WebApp">WebApp<sup>1</sup></a></li>
 		  
 		
@@ -688,6 +843,10 @@ Dropbox现在不提供对新用户的一些服务，<span class="preprocessor">p
 		
 			
 				<li><a href="/tags/new/" title="new">new<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SASS/" title="SASS">SASS<sup>1</sup></a></li>
 			
 		
 		</ul>

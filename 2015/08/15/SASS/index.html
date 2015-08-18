@@ -1,0 +1,646 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>SASS与Compass（一） | YunFeng`s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yunfeng">
+    
+
+    
+    <meta name="description" content="SASS与Compass基础  听一些大神都说，LESS和SASS很简单，根本不用看书，敲敲就明白了。我是不行啊，虽然东西不多，但是感觉不看点书，不踏实。
+概述： CSS开发是基于渲染原理和W3C标准来设计规则的，无算法，无数据结构，没有逻辑控制。
+ Sass在2007年，诞生于“工具控”的Ruby社区，开始服务的对象自然是Ruby工程师，是为了让他们能像写Ruby那样写CSS。
+ 直到推出SCS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SASS与Compass（一）">
+<meta property="og:url" content="http://yunfengwang.com.cn/2015/08/15/SASS/index.html">
+<meta property="og:site_name" content="YunFeng`s blog">
+<meta property="og:description" content="SASS与Compass基础  听一些大神都说，LESS和SASS很简单，根本不用看书，敲敲就明白了。我是不行啊，虽然东西不多，但是感觉不看点书，不踏实。
+概述： CSS开发是基于渲染原理和W3C标准来设计规则的，无算法，无数据结构，没有逻辑控制。
+ Sass在2007年，诞生于“工具控”的Ruby社区，开始服务的对象自然是Ruby工程师，是为了让他们能像写Ruby那样写CSS。
+ 直到推出SCS">
+<meta property="og:updated_time" content="2015-08-18T14:27:40.143Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SASS与Compass（一）">
+<meta name="twitter:description" content="SASS与Compass基础  听一些大神都说，LESS和SASS很简单，根本不用看书，敲敲就明白了。我是不行啊，虽然东西不多，但是感觉不看点书，不踏实。
+概述： CSS开发是基于渲染原理和W3C标准来设计规则的，无算法，无数据结构，没有逻辑控制。
+ Sass在2007年，诞生于“工具控”的Ruby社区，开始服务的对象自然是Ruby工程师，是为了让他们能像写Ruby那样写CSS。
+ 直到推出SCS">
+
+    
+    <link rel="alternative" href="/atom.xml" title="YunFeng`s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="YunFeng`s blog" title="YunFeng`s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="YunFeng`s blog">YunFeng`s blog</a></h1>
+				<h2 class="blog-motto">My Life! Dream is on the way</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yunfengwang.com.cn">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/08/15/SASS/" title="SASS与Compass（一）" itemprop="url">SASS与Compass（一）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-15T11:11:24.000Z" itemprop="datePublished"> 發表於 2015-08-15</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SASS与Compass基础"><span class="toc-number">1.</span> <span class="toc-text">SASS与Compass基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述："><span class="toc-number">1.1.</span> <span class="toc-text">概述：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第一章、_Sass和Compass让样式表重焕青春"><span class="toc-number">1.2.</span> <span class="toc-text">第一章、 Sass和Compass让样式表重焕青春</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_Sass支持两种语法。"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. Sass支持两种语法。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-消除样式表的冗余"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.消除样式表的冗余</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Compass"><span class="toc-number">1.2.3.</span> <span class="toc-text">3.Compass</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="SASS与Compass基础">SASS与Compass基础</h1><p>  听一些大神都说，LESS和SASS很简单，根本不用看书，敲敲就明白了。我是不行啊，虽然东西不多，但是感觉不看点书，不踏实。</p>
+<h2 id="概述：">概述：</h2><p> CSS开发是基于渲染原理和W3C标准来设计规则的，无算法，无数据结构，没有逻辑控制。</p>
+<p> Sass在2007年，诞生于“工具控”的Ruby社区，开始服务的对象自然是Ruby工程师，是为了让他们能像写Ruby那样写CSS。</p>
+<p> 直到推出SCSS这种语法风格，Sass变得更像是CSS的扩展和增强，可以跟原生CSS混写。</p>
+<p> Sass不能让你写出更好的CSS，但是却可以让你更高效的写出高可维护性的CSS。</p>
+<p> QQ查找受益颇深的几点：</p>
+<pre><code> 1<span class="class">.Sass</span>对原生<span class="tag">CSS</span> <span class="at_rule">@<span class="keyword">import指令的扩展，让我可以在不同文件中的样式最后合并到一起。</span>
+<span class="number">2</span>.变量机制，使得标准的颜色值、行高、列宽再也不用“东一榔头西一棒槌”的分散各处，有了一个统一的地方归纳整理。
+<span class="number">3</span>.标准样式的抽离，向调用函数一样，轻松将统一的样式抽离出来，避免了复制，一旦交互变动，只需修改抽离出来的混合器一处。
+ <span class="number">4</span>.样式继承的概念，使得我们对于查找中各种btn的修饰变得清晰，无论何种btn，统一从父级btn继承基础样式。
+<span class="number">5</span>.自动合图实在是太方便了，直接把切图扔到图片目录，对应的合图和CSS就全部自动生成了。</span>
+</code></pre><h2 id="第一章、_Sass和Compass让样式表重焕青春">第一章、 Sass和Compass让样式表重焕青春</h2><h3 id="1-_Sass支持两种语法。">1. Sass支持两种语法。</h3><p>   (1)最初的缩进式语法 使用.sass为文件扩展名，对空格敏感，属性通过换行来分割。 </p>
+<pre><code><span class="tag">h1</span>
+  <span class="attribute">color</span>:<span class="hexcolor">#000</span>
+  <span class="attribute">background</span>:<span class="hexcolor">#fff</span>
+</code></pre><p>   (2)SCSS即Sassy CSS在Sass3.0中被引入，它是CSS3的超集。SCSS文件使用.scss为扩展名，使用花括号和分号。</p>
+<pre><code><span class="tag">h1</span>{<span class="attribute">color</span>:<span class="hexcolor">#000</span>;<span class="attribute">background</span>:<span class="hexcolor">#fff</span>}
+注意：这两种语法可以在同一个项目中混合使用，只要不在同一个文件使用即可。
+</code></pre><p>   DRY(Don`t Repeat Yourself)</p>
+<h3 id="2-消除样式表的冗余">2.消除样式表的冗余</h3><p>   (1)通过变量来复用属性值</p>
+<pre><code><span class="variable">$company-blue</span><span class="value">: <span class="hexcolor">#1875e7</span>;</span>
+<span class="tag">h1</span><span class="id">#brand</span>{<span class="attribute">color</span><span class="value">:<span class="variable">$company-blue</span>;</span>}
+</code></pre><p>   (2)使用嵌套来快速写出多层级的选择器</p>
+<pre><code><span class="tag">ul</span><span class="class">.nav</span>{<span class="tag">float</span><span class="pseudo">:right</span>}
+<span class="tag">ul</span><span class="class">.nav</span> <span class="tag">li</span>{<span class="attribute">float</span>:left;}
+<span class="tag">ul</span><span class="class">.nav</span> <span class="tag">li</span> <span class="tag">a</span>{<span class="tag">color</span>:<span class="id">#111</span>}
+<span class="tag">ul</span><span class="class">.nav</span> <span class="tag">li</span><span class="class">.current</span>{<span class="attribute">font-weight</span>:bold;}
+
+<span class="tag">ul</span><span class="class">.nav</span>{
+  <span class="attribute">float</span>:right;
+  <span class="tag">li</span>{
+    <span class="attribute">float</span>:left;
+    <span class="tag">a</span>{
+      <span class="attribute">color</span>:<span class="hexcolor">#111</span>;
+    }
+    <span class="keyword">&amp;</span><span class="class">.current</span>{
+     <span class="attribute">font-weight</span>:bold;
+    }
+  }
+}
+</code></pre><p>   (3)使用混合器来复用一段样式</p>
+<pre><code> <span class="variable">@mixin</span> horizontal-list{
+  <span class="tag">li</span>{
+    <span class="attribute">float</span>:left;
+    <span class="attribute">margin-right</span>:<span class="number">10px</span>;
+   }
+ }
+<span class="id">#header</span> <span class="tag">ul</span><span class="class">.nav</span>{
+  <span class="variable">@include</span> horizontal-list;
+  <span class="attribute">float</span>:right;
+}
+<span class="id">#footer</span> <span class="tag">ul</span><span class="class">.nav</span>{
+  <span class="variable">@include</span> horizontal-list;
+  <span class="attribute">margin-top</span>:<span class="number">1em</span>;
+}
+使用 <span class="variable">@mixin</span>命令，可以将水平列表的规则抽取出来放到一个合适的混合器中。
+然后调用 <span class="variable">@include</span>命令，将规则引入。因此，不再需要.horizontal-list类。
+</code></pre><p>混合器可以和变量结合，能够根据参数来决定使用的样式。</p>
+<pre><code><span class="variable">@mixin</span> <span class="function">horizontal-list</span>($<span class="attribute">spacing</span>:<span class="number">10px</span>){
+   <span class="tag">li</span>{<span class="attribute">float</span>:left;}
+}
+<span class="id">#footer</span> <span class="tag">ul</span><span class="class">.nav</span>{
+  <span class="variable">@include</span> <span class="function">horizontal-list</span>(<span class="number">20px</span>);
+  <span class="attribute">margin-top</span>:<span class="number">1em</span>;
+}
+</code></pre><p> (4) 使用选择器继承来避免重复属性</p>
+<p>   选择器继承的意思就是让一个选择器能够复用另一个选择器的所有样式，但又不重复输出这些样式属性。</p>
+<pre><code><span class="class">.error</span>{<span class="attribute">border</span>:<span class="number">1px</span> <span class="hexcolor">#f00</span>; <span class="attribute">background</span>:<span class="hexcolor">#fdd</span>;}
+<span class="class">.error</span> <span class="class">.intrusion</span>{<span class="attribute">font-size</span>:<span class="number">1.2em</span>; <span class="attribute">font-weight</span>:bold;}
+<span class="class">.badError</span>{ <span class="variable">@extend</span> .error; <span class="attribute">border-width</span>:<span class="number">3px</span>;}
+
+<span class="class">.badError</span>继承父类<span class="class">.error</span>，也就是复用父类的所有样式。
+
+编译后：
+<span class="class">.error</span>,<span class="class">.badError</span>{<span class="attribute">border</span>:<span class="number">1px</span> <span class="hexcolor">#f00</span>; <span class="attribute">background</span>:<span class="hexcolor">#fdd</span>;}
+<span class="class">.error</span> <span class="class">.intrusion</span>,<span class="class">.badError</span> <span class="class">.intrusion</span>{<span class="attribute">font-size</span>:<span class="number">1.2em</span>; <span class="attribute">font-weight</span>:bold;}
+<span class="class">.badError</span>{<span class="attribute">border-width</span>:<span class="number">3px</span>;}
+</code></pre><p>有时父类不需要在HTML中使用时，Sass3.2中引入占位选择器，它支持使用选择器继承的同时，不编译输出HTML中不使用的父类。</p>
+<pre><code>%<span class="tag">button-reset</span>{ ... }
+<span class="class">.save</span>{ <span class="variable">@extend</span> %button-reset;<span class="attribute">color</span>:white;...}
+<span class="class">.delete</span>{ <span class="variable">@extent</span> %button-reset;<span class="attribute">color</span>:white;...}
+</code></pre><h3 id="3-Compass">3.Compass</h3><p>  Compass是面向Sass的一个框架。</p>
+<pre><code>三个主要部分： 
+      <span class="number">1</span>）混合器
+      <span class="number">2</span>）实用工具的类库<span class="comment">(能够集成到应用开发环境中的开发系统)</span>
+      <span class="number">3</span>）一个用于构建框架和扩展的平台
+</code></pre><p>  使用Compass可以解决很多CSS问题<br>     1）重置样式<br>     2）不用计算创建布局<br>     3）添加更专业样式<br>     4）CSS3属性无需再写厂商前缀</p>
+<p>详细的语法我看完一起精简整理，哈哈。  </p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/SASS/">SASS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/SASS/">SASS</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yunfengwang.com.cn/2015/08/15/SASS/" data-title="SASS与Compass（一） | YunFeng`s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/08/13/作用域一/"  title="作用域（一）">
+ <strong>下一篇：</strong><br/> 
+ <span>作用域（一）
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/08/15/SASS/" data-title="SASS与Compass（一）" data-url="http://yunfengwang.com.cn/2015/08/15/SASS/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SASS与Compass基础"><span class="toc-number">1.</span> <span class="toc-text">SASS与Compass基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述："><span class="toc-number">1.1.</span> <span class="toc-text">概述：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第一章、_Sass和Compass让样式表重焕青春"><span class="toc-number">1.2.</span> <span class="toc-text">第一章、 Sass和Compass让样式表重焕青春</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_Sass支持两种语法。"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. Sass支持两种语法。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-消除样式表的冗余"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.消除样式表的冗余</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Compass"><span class="toc-number">1.2.3.</span> <span class="toc-text">3.Compass</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Javascript/" title="Javascript">Javascript<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Leaf/" title="Leaf">Leaf<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SASS/" title="SASS">SASS<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/WebApp/" title="WebApp">WebApp<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WebApp/" title="WebApp">WebApp<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/new/" title="new">new<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SASS/" title="SASS">SASS<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.w3.org/" target="_blank" title="W3C">W3C</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ecmascript.org/" target="_blank" title="ECMA">ECMA</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://developer.mozilla.org/zh-CN/" target="_blank" title="Mozilla">Mozilla</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://html5labs.interoperabilitybridges.com/" target="_blank" title="微软H5实验室">微软H5实验室</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.w3cfuns.com/portal.php" target="_blank" title="前端网">前端网</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://efe.baidu.com/" target="_blank" title="EFE">EFE</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ued.taobao.org/blog/" target="_blank" title="淘宝">淘宝</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://it-ebooks.info/" target="_blank" title="IT eBooks">IT eBooks</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wwsun.me/posts/creating-javascript-modules-loader.html" target="_blank" title="模块加速器">模块加速器</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+<div class="doubanshow">
+<p class="asidetitle">豆瓣秀</p>
+<div>
+<script type="text/javascript" src="http://www.douban.com/service/badge/CaesarFeng/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie" ></script>
+</div>
+</div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> One bboy, One Jser, YunFeng. <br/>
+			The beginning of my blog life</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/u/3181646571" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/wyfyyy818818" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/CaesarFeng" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/wang-yun-feng-52" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:384360465@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Yunfeng">Yunfeng</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"CaesarWyf"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
