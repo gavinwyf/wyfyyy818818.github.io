@@ -81,6 +81,307 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/08/17/同步一个fork/" title="fork同步" itemprop="url">fork同步</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-17T12:22:57.000Z" itemprop="datePublished"> 發表於 2015-08-17</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="fork同步相关问题：">fork同步相关问题：</h1><p>Github现在越来越火了，这也说明了Github这个平台太有参与价值了，虽然我现在还只是个旁观者。<br>没事我会看看几个大神有没有更新什么新的作品或者小项目展示（嘿嘿，还可以偷偷的下载下来玩玩）。</p>
+<p>Git方面教程有很多好的博客，比如 <a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">廖雪峰的Git教程</a>非常好，本人很受益。</p>
+<p>之前，刚用Github的时候，最头疼的就是同步fork，推送自己的文件或者分支合并到别人的上游目录中。刚开始我也是似懂非懂，有时候OK，有时候就报错。报错就开始翻译报的什么错，有时候真的就直接看报错提示就知道了，不要以为是一堆没用的English。其实，最简单的找错办法就是看报错提示了。看不懂查一下不就得了，又不费事，还锻炼英语水平。</p>
+<p>废话不多说了，我们把我觉得有意思的部分整理一下，都是从网上前辈那里学的。</p>
+<h2 id="1-_fork别人项目后如何与源项目保持同步：">1. fork别人项目后如何与源项目保持同步：</h2><p>(ps: 最直接简单暴力的办法，直接删除重新fork)</p>
+<p>我们有时看到一些比较好的项目，我们都会fork一下，然后在本地操作，但是fork之后，项目是不会跟<br>源项目保持同步的，需要我们自己进行一些操作让其同步。</p>
+<p>  1） 打开git bash，进入要同步的仓库目录</p>
+<p>  2） 实现本地和远程同步，先将原项目pull到本地：</p>
+<pre><code>git remote add <span class="keyword">project</span> http:<span class="comment">//github.com/源项目文件目录      //给源项目添加个别名</span>
+git pull <span class="keyword">project</span> master      <span class="comment">//pull project 下面的master分支</span>
+</code></pre><p>  3)  将pull下来的更新 push到自己项目上面<br>       git push</p>
+<pre><code>第一次push会报错，添加一个publickey就可以了。设置一下<span class="constant">SSH就OK了</span>，很简单。
+
+<span class="constant">SSH设</span>置<span class="symbol">:</span>
+
+<span class="variable">$ </span>cd ~<span class="regexp">/.ssh/</span>
+<span class="variable">$ </span>ssh-keygen -t rsa -<span class="constant">C </span><span class="string">"email@example.com"</span>
+或者
+<span class="variable">$ </span>ssh-keygen 查看一下
+<span class="variable">$ </span>cd .ssh
+  修改id_rsa.pub(我用的是win8,linux直接vim修改就可以了 vim id_rsa.pub)
+  修改内容就是你 <span class="constant">Github </span>的 <span class="constant">Deloy Keys里Add </span>deloy key的内容
+  重新git push就ok了
+</code></pre><h2 id="2-同步fork：">2.同步fork：</h2><p> （1）给fork配置一个remote</p>
+<pre><code><span class="number">1</span>) git remote -v 查看远程状态
+
+  eg.
+   <span class="preprocessor"># origin  https:<span class="comment">//github.com/YOUR_USERNAME/YOUR_FORK.git (fetch)</span></span>
+   <span class="preprocessor"># origin  https:<span class="comment">//github.com/YOUR_USERNAME/YOUR_FORK.git (push)</span></span>
+</code></pre><p>   ‘</p>
+<pre><code><span class="number">2</span>) 添加一个将被同步给 fork 远程的上游仓库
+
+  git remote <span class="built_in">add</span> upstream http<span class="variable">s:</span>//github.<span class="keyword">com</span>/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git
+</code></pre><p>  ‘</p>
+<pre><code><span class="number">3</span>) 再次查看状态确认是否配置成功。
+
+git remote -v
+  <span class="preprocessor"># origin    https:<span class="comment">//github.com/YOUR_USERNAME/YOUR_FORK.git (fetch)</span></span>
+  <span class="preprocessor"># origin    https:<span class="comment">//github.com/YOUR_USERNAME/YOUR_FORK.git (push)</span></span>
+  <span class="preprocessor"># upstream  https:<span class="comment">//github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git (fetch)</span></span>
+  <span class="preprocessor"># upstream  https:<span class="comment">//github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git (push)</span></span>
+</code></pre><p>  (2) 从上游仓库 fetch 分支和提交点，传送到本地，并会被存储在一个本地分支 upstream/master</p>
+<pre><code>git fetch upstream
+  # <span class="string">remote:</span> Counting <span class="string">objects:</span> <span class="number">75</span>, done.
+  # <span class="string">remote:</span> Compressing <span class="string">objects:</span> <span class="number">100</span>% (<span class="number">53</span>/<span class="number">53</span>), done.
+  # <span class="string">remote:</span> Total <span class="number">62</span> (delta <span class="number">27</span>), reused <span class="number">44</span> (delta <span class="number">9</span>)
+  # Unpacking <span class="string">objects:</span> <span class="number">100</span>% (<span class="number">62</span>/<span class="number">62</span>), done.
+  # From <span class="string">https:</span><span class="comment">//github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY</span>
+  #  * [<span class="keyword">new</span> branch]      master     -&gt; upstream/master
+</code></pre><p>  (3)  切换到本地主分支(如果不在的话)</p>
+<pre><code><span class="label">git</span> checkout master
+ # <span class="keyword">Switched </span>to <span class="keyword">branch </span><span class="string">'master'</span>
+</code></pre><p>  (4) 把 upstream/master 分支合并到本地 master 上，这样就完成了同步，并且不会丢掉本地修改的内容。</p>
+<pre><code>git <span class="operator"><span class="keyword">merge</span> upstream/<span class="keyword">master</span>
+ # Updating a422352..<span class="number">5</span>fdff0f
+ # <span class="keyword">Fast</span>-forward
+ #  README                    |    <span class="number">9</span> <span class="comment">-------</span>
+ #  README.md                 |    <span class="number">7</span> ++++++
+ #  <span class="number">2</span> files <span class="keyword">changed</span>, <span class="number">7</span> insertions(+), <span class="number">9</span> deletions(-)
+ #  <span class="keyword">delete</span> <span class="keyword">mode</span> <span class="number">100644</span> README
+ #  <span class="keyword">create</span> <span class="keyword">mode</span> <span class="number">100644</span> README.md</span>
+</code></pre><p>  (5) 如果想更新到 GitHub 的 fork 上，直接 git push origin master 就OK了。</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Github/">Github</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Github/">Github</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/17/同步一个fork/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/17/同步一个fork/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/08/16/精通CSS（一）/" title="精通CSS（一）" itemprop="url">精通CSS（一）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-16T12:01:23.000Z" itemprop="datePublished"> 發表於 2015-08-16</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="精通CSS整理（一）：">精通CSS整理（一）：</h1><p> 这本书看完挺长时间了，但是记住的好像很少，一开始感觉这本书都是基础的东西，看一遍就可以，但是前一阵做响应式<br> 布局的时候，发现有一些重要的东西在这本书中提到过。例如有关流式布局，弹性布局，弹性图片等，还有后面的一些<br> 兼容性相关的东西，都挺重要的，我把这本书简要的整理一下。就当是复习一下CSS了。</p>
+<h2 id="第一章_基础知识">第一章 基础知识</h2><p> 1.语义化命名约定  “它们是什么”来命名  微格式</p>
+<p>  2.有意义的标记  <strong>Web语义化</strong></p>
+<pre><code>1）有意义的页面更容易处理
+2）程序和其他设备也可以理解有意义的标签（也称语义标签）
+3) 可以简便的将元素调整为你所需的样式。
+</code></pre><p> 3.ID和类名选择器的差异和适用场合</p>
+<pre><code>类： 应用于概念上相似的元素
+<span class="label">ID:</span>  应用于不同的唯一的元素
+</code></pre><p> 4.CSS、HTML版本</p>
+<pre><code><span class="label">DTD</span>（文档类型定义）   严格<span class="keyword">strict </span>过渡transitional
+</code></pre><p> 5.浏览器对不同版本的解析差异</p>
+<pre><code>浏览器模式：标准模式和混杂模式(quirks <span class="built_in">mode</span>)
+</code></pre><h2 id="第二章_为样式找到应用目标">第二章 为样式找到应用目标</h2><h3 id="1-常用选择器">1.常用选择器</h3><p>   标签/元素   后代   ID   类   通用* </p>
+<p>   CSS3中： </p>
+<pre><code>子选择器   &gt;   
+相邻同胞<span class="comment">(兄弟)</span>选择器   +  
+通用兄弟选择器    ~   
+ 属性选择器    []   
+ 伪类/伪元素选择器
+</code></pre><p>   ’</p>
+<pre><code><span class="label">IE7</span>和更高版本支持子选择器  IE7中有个小<span class="keyword">bug，若父元素和子元素之间有HTML注释，会出问题
+</span><span class="label">IE6</span>和更低版本，可用通用选择器模拟
+</code></pre><p>   伪类：（当然伪类还有很多，CSS3中有很多好用的伪类，等以后专门整理，伪类真的能做很多事）</p>
+<pre><code>动态伪类：(理论上应用于所有元素)
+   <span class="symbol">:hover</span> 鼠标悬停               <span class="constant">IE6 </span>只注意active和hover，完全忽略focus
+   <span class="symbol">:active</span> 激活的                <span class="constant">IE7 </span>在任何元素支持hover，但忽略active和focus
+   <span class="symbol">:focus</span> 选中时
+链接伪类：(只用于锚元素)
+    <span class="symbol">:link</span> 未访问过
+    <span class="symbol">:visited</span> 访问过的
+</code></pre><h3 id="2-特殊性（优先级/权重）">2.特殊性（优先级/权重）</h3><pre><code>  行间  &gt;  ID  &gt;  类  &gt;  标签/元素   !important  
+  <span class="number">1000</span>     <span class="number">100</span>    <span class="number">10</span>        <span class="number">1</span>          <span class="number">10000</span>
+
+层叠：  简化CSS
+继承:   应用样式的元素后代会继承样式的某些属性，eg. <span class="attribute">color</span> <span class="attribute">font</span> 
+        减少代码中选择器的数量和复杂  
+</code></pre><h3 id="3-规划、组织、维护样式表">3.规划、组织、维护样式表</h3><pre><code>单一CSS文件
+注释
+样式表结构
+样式指南
+</code></pre><h2 id="第三章_可视化格式模型">第三章 可视化格式模型</h2><h3 id="1-_标准W3C盒模型：_内容、内边距、边框、外边距">1. 标准W3C盒模型：  内容、内边距、边框、外边距</h3><pre><code>使用全局<span class="keyword">reset</span>把内边距和外边距显式的设置为零可能更安全
+</code></pre><h3 id="2-_IE(混杂模式)盒模型：_width_=_内容_+_内边距_+边框">2. IE(混杂模式)盒模型： width = 内容 + 内边距 +边框</h3><pre><code><span class="label">IE</span>早期版本，包括IE6，在混杂模式中使用自己的非标准盒模型。
+
+<span class="label">CSS3</span>中，<span class="keyword">box-sizing </span>定义盒模型类型
+</code></pre><h3 id="3-_外边距叠加_垂直外边距取较大的">3. 外边距叠加  垂直外边距取较大的</h3><pre><code><span class="comment">(前提是普通文档流中的块元素的垂直外边距)</span> 
+
+行内元素、浮动元素或绝对定位元素之间不会叠加
+</code></pre><h3 id="4-_定位_三种基本定位机制：普通流、浮动、绝对定位">4. 定位   三种基本定位机制：普通流、浮动、绝对定位</h3><pre><code><span class="label">relative:</span> 相对于文档流中初始位置
+<span class="label">absolute:</span> 相对于最近已定位父元素               可用<span class="built_in">z</span>-index 控制叠放次序
+fixed：   相对于视口（固定定位是绝对定位的一种，IE6不支持，IE7部分支持有bug）
+<span class="label">static:</span>   默认
+<span class="label">inherit:</span>  从父元素继承
+</code></pre><h3 id="5-_浮动：_使元素脱离文档流">5. 浮动： 使元素脱离文档流</h3><pre><code>清理浮动： 实际上为之前浮动元素留出了垂直空间
+
+   (1) <span class="rule"><span class="attribute">clear</span>:<span class="value">both</span></span>;
+   (2) <span class="rule"><span class="attribute">overflow</span>:<span class="value">hidden或auto  （有可能影响元素表现，如产生滚动条或截断内容）
+
+ **常用这种方式**： 
+
+   .clear:after{
+         content:<span class="string">"."</span></span></span>;
+           <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">0</span></span></span>;
+         <span class="rule"><span class="attribute">visibility</span>:<span class="value">hidden</span></span>;
+         <span class="rule"><span class="attribute">display</span>:<span class="value">block</span></span>;
+         <span class="rule"><span class="attribute">clear</span>:<span class="value">both</span></span>;
+    }
+</code></pre><h2 id="第四章_背景图像效果">第四章 背景图像效果</h2><p>   1.背景图片</p>
+<pre><code><span class="rule"><span class="attribute">background-position</span>:<span class="value">left center</span></span>; 左侧中间
+<span class="rule"><span class="attribute">background-position</span>:<span class="value"><span class="number">0</span> <span class="number">50%</span></span></span>; 垂直居中
+</code></pre><p>   2.圆角框</p>
+<pre><code><span class="comment">(1)</span>定宽圆角：  顶+底
+
+<span class="comment">(2)</span>灵活圆角：  四个角  滑动门技术<span class="comment">(需定义两个额外的无语义元素)</span>
+
+<span class="comment">(3)</span>山顶角：  多个背景图像，拼成圆角
+            border-radius<span class="comment">(-moz- -webkit)</span> 
+            border-image <span class="comment">(九分法缩放)</span>
+</code></pre><p>   3.投影</p>
+<pre><code>(1)简单的<span class="tag">CSS</span>投影(负外边距)
+
+(2)<span class="tag">Clagnut</span>投影(相对定位)   <span class="rule"><span class="attribute">left</span>:<span class="value">-<span class="number">5px</span></span></span>;<span class="rule"><span class="attribute">top</span>:<span class="value">-<span class="number">5px</span></span></span>;
+
+(3)<span class="tag">CSS3</span>: <span class="rule"><span class="attribute">Box-shadow</span>:<span class="value"> <span class="number">3px</span> <span class="number">3px</span> <span class="number">6px</span> <span class="hexcolor">#666</span></span></span>
+</code></pre><p>   4.不透明度</p>
+<pre><code><span class="params">(<span class="number">1</span>)</span>三种方式： opacity  RGBa   PNG透明度<span class="params">(IE6不直接支持PNG透明度，IE7/IE8支持)</span>
+
+<span class="params">(<span class="number">2</span>)</span>CSS视差效果: <span class="params">( background-color:transparent; )</span>
+</code></pre><p>   5  图像替换：   </p>
+<pre><code>FIR <span class="list">( <span class="keyword">display</span><span class="keyword">:none</span> )</span>
+Phark <span class="list">(  <span class="keyword">text-indent</span>: <span class="number">-5000</span>px<span class="comment">; )</span>
+sFIR <span class="list">(可伸缩Inman Flash替换)</span>   过时已久了，就不想多说了</span>
+</code></pre><h2 id="第五章_对链接应用样式">第五章 对链接应用样式</h2><p>  1.链接选择器（层叠顺序）</p>
+<pre><code>link , visited 将覆盖之前的 hover , active
+
+最好按照次序使用： <span class="tag">a</span><span class="pseudo">:link,</span><span class="tag">a</span><span class="pseudo">:visited,</span><span class="tag">a</span><span class="pseudo">:hover,</span><span class="tag">a</span><span class="pseudo">:focus,</span><span class="tag">a</span>:active
+</code></pre><p>  2.链接修饰：  主要使用background属性</p>
+<p>  3.链接目标设置样式： :target伪类(唯一可以不用JS使其他元素产生样式变化的方法)</p>
+<p>  4.突显不同链接(属性选择器)：  a[att^=val] 标识外部链接</p>
+<pre><code>eg:   <span class="tag">a</span>[href^=<span class="string">"http:"</span>]  <span class="string">"mailto:"</span> <span class="string">"aim:"</span>
+      <span class="tag">a</span>[href^=<span class="string">".pdf"</span>]   <span class="tag">a</span>[href$=<span class="string">".rss"</span>]RSS提要(feed)  <span class="string">".doc"</span>  <span class="string">".rdf"</span>
+
+IE6不支持属性选择器。
+</code></pre><p>  5.链接应只用于get请求，决不要用于post</p>
+<p>  6.图像翻转：  background-image  background-position</p>
+<pre><code>CSS精灵： 图标，按钮，图形，集中在一个地方  使用<span class="attribute">background-position</span>
+
+CSS3中： <span class="attribute">text-shadow</span>,<span class="attribute">box-shadow</span>,<span class="attribute">border-radius</span>
+
+渐变 <span class="function">-webkit-gradient</span>(linear,   <span class="attribute">left</span> <span class="attribute">top</span>,<span class="attribute">left</span> <span class="attribute">bottom</span>,  <span class="function">from</span>(<span class="id">#abe142</span>),<span class="function">to</span>(<span class="id">#67a400</span>));
+                      渐变类型        渐变方向              初始结束过渡颜色   
+倒影 -webkit-box-reflect<span class="value">: below <span class="number">2px</span> <span class="function">-wekit-gradient</span>(linear,left top,left bottom,
+     <span class="function">from</span>(transparent),<span class="function">color-stop</span>(<span class="number">0.52</span>,transparent),<span class="function">to</span>(white));</span>
+</code></pre>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/CSS/">CSS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/CSS/">CSS</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/16/精通CSS（一）/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/16/精通CSS（一）/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/08/15/SASS/" title="SASS与Compass（一）" itemprop="url">SASS与Compass（一）</a>
   </h1>
   <p class="article-author">By
@@ -194,13 +495,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/SASS/">SASS</a>
+  <a class="article-category-link" href="/categories/CSS/">CSS</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/SASS/">SASS</a>
+  <span></span> <a href="/tags/CSS/">CSS</a>
   </div>
 
 </div>
@@ -809,15 +1110,19 @@ Dropbox现在不提供对新用户的一些服务，<span class="preprocessor">p
 		<ul>
 		
 		  
+			<li><a href="/categories/CSS/" title="CSS">CSS<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Github/" title="Github">Github<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/Javascript/" title="Javascript">Javascript<sup>2</sup></a></li>
 		  
 		
 		  
 			<li><a href="/categories/Leaf/" title="Leaf">Leaf<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/SASS/" title="SASS">SASS<sup>1</sup></a></li>
 		  
 		
 		  
@@ -838,6 +1143,10 @@ Dropbox现在不提供对新用户的一些服务，<span class="preprocessor">p
 			
 		
 			
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/WebApp/" title="WebApp">WebApp<sup>1</sup></a></li>
 			
 		
@@ -846,7 +1155,7 @@ Dropbox现在不提供对新用户的一些服务，<span class="preprocessor">p
 			
 		
 			
-				<li><a href="/tags/SASS/" title="SASS">SASS<sup>1</sup></a></li>
+				<li><a href="/tags/Github/" title="Github">Github<sup>1</sup></a></li>
 			
 		
 		</ul>

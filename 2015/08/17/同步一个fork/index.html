@@ -4,26 +4,29 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Hello World | YunFeng`s blog</title>
+    <title>fork同步 | YunFeng`s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Yunfeng">
     
 
     
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+    <meta name="description" content="fork同步相关问题：Github现在越来越火了，这也说明了Github这个平台太有参与价值了，虽然我现在还只是个旁观者。没事我会看看几个大神有没有更新什么新的作品或者小项目展示（嘿嘿，还可以偷偷的下载下来玩玩）。
+Git方面教程有很多好的博客，比如 廖雪峰的Git教程非常好，本人很受益。
+之前，刚用Github的时候，最头疼的就是同步fork，推送自己的文件或者分支合并到别人的上游目录中。刚开始">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yunfengwang.com.cn/2015/08/02/hello-world/index.html">
+<meta property="og:title" content="fork同步">
+<meta property="og:url" content="http://yunfengwang.com.cn/2015/08/17/同步一个fork/index.html">
 <meta property="og:site_name" content="YunFeng`s blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2015-07-14T14:01:38.948Z">
+<meta property="og:description" content="fork同步相关问题：Github现在越来越火了，这也说明了Github这个平台太有参与价值了，虽然我现在还只是个旁观者。没事我会看看几个大神有没有更新什么新的作品或者小项目展示（嘿嘿，还可以偷偷的下载下来玩玩）。
+Git方面教程有很多好的博客，比如 廖雪峰的Git教程非常好，本人很受益。
+之前，刚用Github的时候，最头疼的就是同步fork，推送自己的文件或者分支合并到别人的上游目录中。刚开始">
+<meta property="og:updated_time" content="2015-08-19T14:50:06.595Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="fork同步">
+<meta name="twitter:description" content="fork同步相关问题：Github现在越来越火了，这也说明了Github这个平台太有参与价值了，虽然我现在还只是个旁观者。没事我会看看几个大神有没有更新什么新的作品或者小项目展示（嘿嘿，还可以偷偷的下载下来玩玩）。
+Git方面教程有很多好的博客，比如 廖雪峰的Git教程非常好，本人很受益。
+之前，刚用Github的时候，最头疼的就是同步fork，推送自己的文件或者分支合并到别人的上游目录中。刚开始">
 
     
     <link rel="alternative" href="/atom.xml" title="YunFeng`s blog" type="application/atom+xml">
@@ -83,14 +86,14 @@ Quick">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/08/02/hello-world/" title="Hello World" itemprop="url">Hello World</a>
+      <a href="/2015/08/17/同步一个fork/" title="fork同步" itemprop="url">fork同步</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-02T06:15:11.706Z" itemprop="datePublished"> 發表於 2015-08-02</time>
+    <time datetime="2015-08-17T12:22:57.000Z" itemprop="datePublished"> 發表於 2015-08-17</time>
     
   </p>
 </header>
@@ -99,24 +102,87 @@ Quick">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick_Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_a_new_post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate_static_files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_to_remote_sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#fork同步相关问题："><span class="toc-number">1.</span> <span class="toc-text">fork同步相关问题：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-_fork别人项目后如何与源项目保持同步："><span class="toc-number">1.1.</span> <span class="toc-text">1. fork别人项目后如何与源项目保持同步：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-同步fork："><span class="toc-number">1.2.</span> <span class="toc-text">2.同步fork：</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+		<h1 id="fork同步相关问题：">fork同步相关问题：</h1><p>Github现在越来越火了，这也说明了Github这个平台太有参与价值了，虽然我现在还只是个旁观者。<br>没事我会看看几个大神有没有更新什么新的作品或者小项目展示（嘿嘿，还可以偷偷的下载下来玩玩）。</p>
+<p>Git方面教程有很多好的博客，比如 <a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">廖雪峰的Git教程</a>非常好，本人很受益。</p>
+<p>之前，刚用Github的时候，最头疼的就是同步fork，推送自己的文件或者分支合并到别人的上游目录中。刚开始我也是似懂非懂，有时候OK，有时候就报错。报错就开始翻译报的什么错，有时候真的就直接看报错提示就知道了，不要以为是一堆没用的English。其实，最简单的找错办法就是看报错提示了。看不懂查一下不就得了，又不费事，还锻炼英语水平。</p>
+<p>废话不多说了，我们把我觉得有意思的部分整理一下，都是从网上前辈那里学的。</p>
+<h2 id="1-_fork别人项目后如何与源项目保持同步：">1. fork别人项目后如何与源项目保持同步：</h2><p>(ps: 最直接简单暴力的办法，直接删除重新fork)</p>
+<p>我们有时看到一些比较好的项目，我们都会fork一下，然后在本地操作，但是fork之后，项目是不会跟<br>源项目保持同步的，需要我们自己进行一些操作让其同步。</p>
+<p>  1） 打开git bash，进入要同步的仓库目录</p>
+<p>  2） 实现本地和远程同步，先将原项目pull到本地：</p>
+<pre><code>git remote add <span class="keyword">project</span> http:<span class="comment">//github.com/源项目文件目录      //给源项目添加个别名</span>
+git pull <span class="keyword">project</span> master      <span class="comment">//pull project 下面的master分支</span>
+</code></pre><p>  3)  将pull下来的更新 push到自己项目上面<br>       git push</p>
+<pre><code>第一次push会报错，添加一个publickey就可以了。设置一下<span class="constant">SSH就OK了</span>，很简单。
+
+<span class="constant">SSH设</span>置<span class="symbol">:</span>
+
+<span class="variable">$ </span>cd ~<span class="regexp">/.ssh/</span>
+<span class="variable">$ </span>ssh-keygen -t rsa -<span class="constant">C </span><span class="string">"email@example.com"</span>
+或者
+<span class="variable">$ </span>ssh-keygen 查看一下
+<span class="variable">$ </span>cd .ssh
+  修改id_rsa.pub(我用的是win8,linux直接vim修改就可以了 vim id_rsa.pub)
+  修改内容就是你 <span class="constant">Github </span>的 <span class="constant">Deloy Keys里Add </span>deloy key的内容
+  重新git push就ok了
+</code></pre><h2 id="2-同步fork：">2.同步fork：</h2><p> （1）给fork配置一个remote</p>
+<pre><code><span class="number">1</span>) git remote -v 查看远程状态
+
+  eg.
+   <span class="preprocessor"># origin  https:<span class="comment">//github.com/YOUR_USERNAME/YOUR_FORK.git (fetch)</span></span>
+   <span class="preprocessor"># origin  https:<span class="comment">//github.com/YOUR_USERNAME/YOUR_FORK.git (push)</span></span>
+</code></pre><p>   ‘</p>
+<pre><code><span class="number">2</span>) 添加一个将被同步给 fork 远程的上游仓库
+
+  git remote <span class="built_in">add</span> upstream http<span class="variable">s:</span>//github.<span class="keyword">com</span>/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git
+</code></pre><p>  ‘</p>
+<pre><code><span class="number">3</span>) 再次查看状态确认是否配置成功。
+
+git remote -v
+  <span class="preprocessor"># origin    https:<span class="comment">//github.com/YOUR_USERNAME/YOUR_FORK.git (fetch)</span></span>
+  <span class="preprocessor"># origin    https:<span class="comment">//github.com/YOUR_USERNAME/YOUR_FORK.git (push)</span></span>
+  <span class="preprocessor"># upstream  https:<span class="comment">//github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git (fetch)</span></span>
+  <span class="preprocessor"># upstream  https:<span class="comment">//github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git (push)</span></span>
+</code></pre><p>  (2) 从上游仓库 fetch 分支和提交点，传送到本地，并会被存储在一个本地分支 upstream/master</p>
+<pre><code>git fetch upstream
+  # <span class="string">remote:</span> Counting <span class="string">objects:</span> <span class="number">75</span>, done.
+  # <span class="string">remote:</span> Compressing <span class="string">objects:</span> <span class="number">100</span>% (<span class="number">53</span>/<span class="number">53</span>), done.
+  # <span class="string">remote:</span> Total <span class="number">62</span> (delta <span class="number">27</span>), reused <span class="number">44</span> (delta <span class="number">9</span>)
+  # Unpacking <span class="string">objects:</span> <span class="number">100</span>% (<span class="number">62</span>/<span class="number">62</span>), done.
+  # From <span class="string">https:</span><span class="comment">//github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY</span>
+  #  * [<span class="keyword">new</span> branch]      master     -&gt; upstream/master
+</code></pre><p>  (3)  切换到本地主分支(如果不在的话)</p>
+<pre><code><span class="label">git</span> checkout master
+ # <span class="keyword">Switched </span>to <span class="keyword">branch </span><span class="string">'master'</span>
+</code></pre><p>  (4) 把 upstream/master 分支合并到本地 master 上，这样就完成了同步，并且不会丢掉本地修改的内容。</p>
+<pre><code>git <span class="operator"><span class="keyword">merge</span> upstream/<span class="keyword">master</span>
+ # Updating a422352..<span class="number">5</span>fdff0f
+ # <span class="keyword">Fast</span>-forward
+ #  README                    |    <span class="number">9</span> <span class="comment">-------</span>
+ #  README.md                 |    <span class="number">7</span> ++++++
+ #  <span class="number">2</span> files <span class="keyword">changed</span>, <span class="number">7</span> insertions(+), <span class="number">9</span> deletions(-)
+ #  <span class="keyword">delete</span> <span class="keyword">mode</span> <span class="number">100644</span> README
+ #  <span class="keyword">create</span> <span class="keyword">mode</span> <span class="number">100644</span> README.md</span>
+</code></pre><p>  (5) 如果想更新到 GitHub 的 fork 上，直接 git push origin master 就OK了。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Github/">Github</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Github/">Github</a>
+  </div>
 
 </div>
 
@@ -124,7 +190,7 @@ Quick">
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yunfengwang.com.cn/2015/08/02/hello-world/" data-title="Hello World | YunFeng`s blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yunfengwang.com.cn/2015/08/17/同步一个fork/" data-title="fork同步 | YunFeng`s blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -137,19 +203,11 @@ Quick">
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/08/10/移动版2048/" title="移动版2048">
-  <strong>上一篇：</strong><br/>
-  <span>
-  移动版2048</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/07/18/新的开始/"  title="新的开始">
+<a href="/2015/08/16/精通CSS（一）/"  title="精通CSS（一）">
  <strong>下一篇：</strong><br/> 
- <span>新的开始
+ <span>精通CSS（一）
 </span>
 </a>
 </div>
@@ -158,7 +216,7 @@ Quick">
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/08/02/hello-world/" data-title="Hello World" data-url="http://yunfengwang.com.cn/2015/08/02/hello-world/"></div>
+	<div class="ds-thread" data-thread-key="2015/08/17/同步一个fork/" data-title="fork同步" data-url="http://yunfengwang.com.cn/2015/08/17/同步一个fork/"></div>
 </section>
 
 
@@ -168,7 +226,7 @@ Quick">
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick_Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_a_new_post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate_static_files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_to_remote_sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#fork同步相关问题："><span class="toc-number">1.</span> <span class="toc-text">fork同步相关问题：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-_fork别人项目后如何与源项目保持同步："><span class="toc-number">1.1.</span> <span class="toc-text">1. fork别人项目后如何与源项目保持同步：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-同步fork："><span class="toc-number">1.2.</span> <span class="toc-text">2.同步fork：</span></a></li></ol></li></ol>
  
   </div>
 

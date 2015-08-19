@@ -1,0 +1,684 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>精通CSS（一） | YunFeng`s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yunfeng">
+    
+
+    
+    <meta name="description" content="精通CSS整理（一）： 这本书看完挺长时间了，但是记住的好像很少，一开始感觉这本书都是基础的东西，看一遍就可以，但是前一阵做响应式 布局的时候，发现有一些重要的东西在这本书中提到过。例如有关流式布局，弹性布局，弹性图片等，还有后面的一些 兼容性相关的东西，都挺重要的，我把这本书简要的整理一下。就当是复习一下CSS了。
+第一章 基础知识 1.语义化命名约定  “它们是什么”来命名  微格式
+  2.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="精通CSS（一）">
+<meta property="og:url" content="http://yunfengwang.com.cn/2015/08/16/精通CSS（一）/index.html">
+<meta property="og:site_name" content="YunFeng`s blog">
+<meta property="og:description" content="精通CSS整理（一）： 这本书看完挺长时间了，但是记住的好像很少，一开始感觉这本书都是基础的东西，看一遍就可以，但是前一阵做响应式 布局的时候，发现有一些重要的东西在这本书中提到过。例如有关流式布局，弹性布局，弹性图片等，还有后面的一些 兼容性相关的东西，都挺重要的，我把这本书简要的整理一下。就当是复习一下CSS了。
+第一章 基础知识 1.语义化命名约定  “它们是什么”来命名  微格式
+  2.">
+<meta property="og:updated_time" content="2015-08-19T15:09:07.432Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="精通CSS（一）">
+<meta name="twitter:description" content="精通CSS整理（一）： 这本书看完挺长时间了，但是记住的好像很少，一开始感觉这本书都是基础的东西，看一遍就可以，但是前一阵做响应式 布局的时候，发现有一些重要的东西在这本书中提到过。例如有关流式布局，弹性布局，弹性图片等，还有后面的一些 兼容性相关的东西，都挺重要的，我把这本书简要的整理一下。就当是复习一下CSS了。
+第一章 基础知识 1.语义化命名约定  “它们是什么”来命名  微格式
+  2.">
+
+    
+    <link rel="alternative" href="/atom.xml" title="YunFeng`s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="YunFeng`s blog" title="YunFeng`s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="YunFeng`s blog">YunFeng`s blog</a></h1>
+				<h2 class="blog-motto">My Life! Dream is on the way</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yunfengwang.com.cn">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/08/16/精通CSS（一）/" title="精通CSS（一）" itemprop="url">精通CSS（一）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-16T12:01:23.000Z" itemprop="datePublished"> 發表於 2015-08-16</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#精通CSS整理（一）："><span class="toc-number">1.</span> <span class="toc-text">精通CSS整理（一）：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一章_基础知识"><span class="toc-number">1.1.</span> <span class="toc-text">第一章 基础知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二章_为样式找到应用目标"><span class="toc-number">1.2.</span> <span class="toc-text">第二章 为样式找到应用目标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-常用选择器"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.常用选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-特殊性（优先级/权重）"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.特殊性（优先级/权重）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-规划、组织、维护样式表"><span class="toc-number">1.2.3.</span> <span class="toc-text">3.规划、组织、维护样式表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三章_可视化格式模型"><span class="toc-number">1.3.</span> <span class="toc-text">第三章 可视化格式模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_标准W3C盒模型：_内容、内边距、边框、外边距"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. 标准W3C盒模型：  内容、内边距、边框、外边距</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_IE(混杂模式)盒模型：_width_=_内容_+_内边距_+边框"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. IE(混杂模式)盒模型： width = 内容 + 内边距 +边框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-_外边距叠加_垂直外边距取较大的"><span class="toc-number">1.3.3.</span> <span class="toc-text">3. 外边距叠加  垂直外边距取较大的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-_定位_三种基本定位机制：普通流、浮动、绝对定位"><span class="toc-number">1.3.4.</span> <span class="toc-text">4. 定位   三种基本定位机制：普通流、浮动、绝对定位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-_浮动：_使元素脱离文档流"><span class="toc-number">1.3.5.</span> <span class="toc-text">5. 浮动： 使元素脱离文档流</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第四章_背景图像效果"><span class="toc-number">1.4.</span> <span class="toc-text">第四章 背景图像效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第五章_对链接应用样式"><span class="toc-number">1.5.</span> <span class="toc-text">第五章 对链接应用样式</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="精通CSS整理（一）：">精通CSS整理（一）：</h1><p> 这本书看完挺长时间了，但是记住的好像很少，一开始感觉这本书都是基础的东西，看一遍就可以，但是前一阵做响应式<br> 布局的时候，发现有一些重要的东西在这本书中提到过。例如有关流式布局，弹性布局，弹性图片等，还有后面的一些<br> 兼容性相关的东西，都挺重要的，我把这本书简要的整理一下。就当是复习一下CSS了。</p>
+<h2 id="第一章_基础知识">第一章 基础知识</h2><p> 1.语义化命名约定  “它们是什么”来命名  微格式</p>
+<p>  2.有意义的标记  <strong>Web语义化</strong></p>
+<pre><code>1）有意义的页面更容易处理
+2）程序和其他设备也可以理解有意义的标签（也称语义标签）
+3) 可以简便的将元素调整为你所需的样式。
+</code></pre><p> 3.ID和类名选择器的差异和适用场合</p>
+<pre><code>类： 应用于概念上相似的元素
+<span class="label">ID:</span>  应用于不同的唯一的元素
+</code></pre><p> 4.CSS、HTML版本</p>
+<pre><code><span class="label">DTD</span>（文档类型定义）   严格<span class="keyword">strict </span>过渡transitional
+</code></pre><p> 5.浏览器对不同版本的解析差异</p>
+<pre><code>浏览器模式：标准模式和混杂模式(quirks <span class="built_in">mode</span>)
+</code></pre><h2 id="第二章_为样式找到应用目标">第二章 为样式找到应用目标</h2><h3 id="1-常用选择器">1.常用选择器</h3><p>   标签/元素   后代   ID   类   通用* </p>
+<p>   CSS3中： </p>
+<pre><code>子选择器   &gt;   
+相邻同胞<span class="comment">(兄弟)</span>选择器   +  
+通用兄弟选择器    ~   
+ 属性选择器    []   
+ 伪类/伪元素选择器
+</code></pre><p>   ’</p>
+<pre><code><span class="label">IE7</span>和更高版本支持子选择器  IE7中有个小<span class="keyword">bug，若父元素和子元素之间有HTML注释，会出问题
+</span><span class="label">IE6</span>和更低版本，可用通用选择器模拟
+</code></pre><p>   伪类：（当然伪类还有很多，CSS3中有很多好用的伪类，等以后专门整理，伪类真的能做很多事）</p>
+<pre><code>动态伪类：(理论上应用于所有元素)
+   <span class="symbol">:hover</span> 鼠标悬停               <span class="constant">IE6 </span>只注意active和hover，完全忽略focus
+   <span class="symbol">:active</span> 激活的                <span class="constant">IE7 </span>在任何元素支持hover，但忽略active和focus
+   <span class="symbol">:focus</span> 选中时
+链接伪类：(只用于锚元素)
+    <span class="symbol">:link</span> 未访问过
+    <span class="symbol">:visited</span> 访问过的
+</code></pre><h3 id="2-特殊性（优先级/权重）">2.特殊性（优先级/权重）</h3><pre><code>  行间  &gt;  ID  &gt;  类  &gt;  标签/元素   !important  
+  <span class="number">1000</span>     <span class="number">100</span>    <span class="number">10</span>        <span class="number">1</span>          <span class="number">10000</span>
+
+层叠：  简化CSS
+继承:   应用样式的元素后代会继承样式的某些属性，eg. <span class="attribute">color</span> <span class="attribute">font</span> 
+        减少代码中选择器的数量和复杂  
+</code></pre><h3 id="3-规划、组织、维护样式表">3.规划、组织、维护样式表</h3><pre><code>单一CSS文件
+注释
+样式表结构
+样式指南
+</code></pre><h2 id="第三章_可视化格式模型">第三章 可视化格式模型</h2><h3 id="1-_标准W3C盒模型：_内容、内边距、边框、外边距">1. 标准W3C盒模型：  内容、内边距、边框、外边距</h3><pre><code>使用全局<span class="keyword">reset</span>把内边距和外边距显式的设置为零可能更安全
+</code></pre><h3 id="2-_IE(混杂模式)盒模型：_width_=_内容_+_内边距_+边框">2. IE(混杂模式)盒模型： width = 内容 + 内边距 +边框</h3><pre><code><span class="label">IE</span>早期版本，包括IE6，在混杂模式中使用自己的非标准盒模型。
+
+<span class="label">CSS3</span>中，<span class="keyword">box-sizing </span>定义盒模型类型
+</code></pre><h3 id="3-_外边距叠加_垂直外边距取较大的">3. 外边距叠加  垂直外边距取较大的</h3><pre><code><span class="comment">(前提是普通文档流中的块元素的垂直外边距)</span> 
+
+行内元素、浮动元素或绝对定位元素之间不会叠加
+</code></pre><h3 id="4-_定位_三种基本定位机制：普通流、浮动、绝对定位">4. 定位   三种基本定位机制：普通流、浮动、绝对定位</h3><pre><code><span class="label">relative:</span> 相对于文档流中初始位置
+<span class="label">absolute:</span> 相对于最近已定位父元素               可用<span class="built_in">z</span>-index 控制叠放次序
+fixed：   相对于视口（固定定位是绝对定位的一种，IE6不支持，IE7部分支持有bug）
+<span class="label">static:</span>   默认
+<span class="label">inherit:</span>  从父元素继承
+</code></pre><h3 id="5-_浮动：_使元素脱离文档流">5. 浮动： 使元素脱离文档流</h3><pre><code>清理浮动： 实际上为之前浮动元素留出了垂直空间
+
+   (1) <span class="rule"><span class="attribute">clear</span>:<span class="value">both</span></span>;
+   (2) <span class="rule"><span class="attribute">overflow</span>:<span class="value">hidden或auto  （有可能影响元素表现，如产生滚动条或截断内容）
+
+ **常用这种方式**： 
+
+   .clear:after{
+         content:<span class="string">"."</span></span></span>;
+           <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">0</span></span></span>;
+         <span class="rule"><span class="attribute">visibility</span>:<span class="value">hidden</span></span>;
+         <span class="rule"><span class="attribute">display</span>:<span class="value">block</span></span>;
+         <span class="rule"><span class="attribute">clear</span>:<span class="value">both</span></span>;
+    }
+</code></pre><h2 id="第四章_背景图像效果">第四章 背景图像效果</h2><p>   1.背景图片</p>
+<pre><code><span class="rule"><span class="attribute">background-position</span>:<span class="value">left center</span></span>; 左侧中间
+<span class="rule"><span class="attribute">background-position</span>:<span class="value"><span class="number">0</span> <span class="number">50%</span></span></span>; 垂直居中
+</code></pre><p>   2.圆角框</p>
+<pre><code><span class="comment">(1)</span>定宽圆角：  顶+底
+
+<span class="comment">(2)</span>灵活圆角：  四个角  滑动门技术<span class="comment">(需定义两个额外的无语义元素)</span>
+
+<span class="comment">(3)</span>山顶角：  多个背景图像，拼成圆角
+            border-radius<span class="comment">(-moz- -webkit)</span> 
+            border-image <span class="comment">(九分法缩放)</span>
+</code></pre><p>   3.投影</p>
+<pre><code>(1)简单的<span class="tag">CSS</span>投影(负外边距)
+
+(2)<span class="tag">Clagnut</span>投影(相对定位)   <span class="rule"><span class="attribute">left</span>:<span class="value">-<span class="number">5px</span></span></span>;<span class="rule"><span class="attribute">top</span>:<span class="value">-<span class="number">5px</span></span></span>;
+
+(3)<span class="tag">CSS3</span>: <span class="rule"><span class="attribute">Box-shadow</span>:<span class="value"> <span class="number">3px</span> <span class="number">3px</span> <span class="number">6px</span> <span class="hexcolor">#666</span></span></span>
+</code></pre><p>   4.不透明度</p>
+<pre><code><span class="params">(<span class="number">1</span>)</span>三种方式： opacity  RGBa   PNG透明度<span class="params">(IE6不直接支持PNG透明度，IE7/IE8支持)</span>
+
+<span class="params">(<span class="number">2</span>)</span>CSS视差效果: <span class="params">( background-color:transparent; )</span>
+</code></pre><p>   5  图像替换：   </p>
+<pre><code>FIR <span class="list">( <span class="keyword">display</span><span class="keyword">:none</span> )</span>
+Phark <span class="list">(  <span class="keyword">text-indent</span>: <span class="number">-5000</span>px<span class="comment">; )</span>
+sFIR <span class="list">(可伸缩Inman Flash替换)</span>   过时已久了，就不想多说了</span>
+</code></pre><h2 id="第五章_对链接应用样式">第五章 对链接应用样式</h2><p>  1.链接选择器（层叠顺序）</p>
+<pre><code>link , visited 将覆盖之前的 hover , active
+
+最好按照次序使用： <span class="tag">a</span><span class="pseudo">:link,</span><span class="tag">a</span><span class="pseudo">:visited,</span><span class="tag">a</span><span class="pseudo">:hover,</span><span class="tag">a</span><span class="pseudo">:focus,</span><span class="tag">a</span>:active
+</code></pre><p>  2.链接修饰：  主要使用background属性</p>
+<p>  3.链接目标设置样式： :target伪类(唯一可以不用JS使其他元素产生样式变化的方法)</p>
+<p>  4.突显不同链接(属性选择器)：  a[att^=val] 标识外部链接</p>
+<pre><code>eg:   <span class="tag">a</span>[href^=<span class="string">"http:"</span>]  <span class="string">"mailto:"</span> <span class="string">"aim:"</span>
+      <span class="tag">a</span>[href^=<span class="string">".pdf"</span>]   <span class="tag">a</span>[href$=<span class="string">".rss"</span>]RSS提要(feed)  <span class="string">".doc"</span>  <span class="string">".rdf"</span>
+
+IE6不支持属性选择器。
+</code></pre><p>  5.链接应只用于get请求，决不要用于post</p>
+<p>  6.图像翻转：  background-image  background-position</p>
+<pre><code>CSS精灵： 图标，按钮，图形，集中在一个地方  使用<span class="attribute">background-position</span>
+
+CSS3中： <span class="attribute">text-shadow</span>,<span class="attribute">box-shadow</span>,<span class="attribute">border-radius</span>
+
+渐变 <span class="function">-webkit-gradient</span>(linear,   <span class="attribute">left</span> <span class="attribute">top</span>,<span class="attribute">left</span> <span class="attribute">bottom</span>,  <span class="function">from</span>(<span class="id">#abe142</span>),<span class="function">to</span>(<span class="id">#67a400</span>));
+                      渐变类型        渐变方向              初始结束过渡颜色   
+倒影 -webkit-box-reflect<span class="value">: below <span class="number">2px</span> <span class="function">-wekit-gradient</span>(linear,left top,left bottom,
+     <span class="function">from</span>(transparent),<span class="function">color-stop</span>(<span class="number">0.52</span>,transparent),<span class="function">to</span>(white));</span>
+</code></pre>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/CSS/">CSS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/CSS/">CSS</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yunfengwang.com.cn/2015/08/16/精通CSS（一）/" data-title="精通CSS（一） | YunFeng`s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/08/17/同步一个fork/" title="fork同步">
+  <strong>上一篇：</strong><br/>
+  <span>
+  fork同步</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/08/15/SASS/"  title="SASS与Compass（一）">
+ <strong>下一篇：</strong><br/> 
+ <span>SASS与Compass（一）
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/08/16/精通CSS（一）/" data-title="精通CSS（一）" data-url="http://yunfengwang.com.cn/2015/08/16/精通CSS（一）/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#精通CSS整理（一）："><span class="toc-number">1.</span> <span class="toc-text">精通CSS整理（一）：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一章_基础知识"><span class="toc-number">1.1.</span> <span class="toc-text">第一章 基础知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二章_为样式找到应用目标"><span class="toc-number">1.2.</span> <span class="toc-text">第二章 为样式找到应用目标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-常用选择器"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.常用选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-特殊性（优先级/权重）"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.特殊性（优先级/权重）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-规划、组织、维护样式表"><span class="toc-number">1.2.3.</span> <span class="toc-text">3.规划、组织、维护样式表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三章_可视化格式模型"><span class="toc-number">1.3.</span> <span class="toc-text">第三章 可视化格式模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_标准W3C盒模型：_内容、内边距、边框、外边距"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. 标准W3C盒模型：  内容、内边距、边框、外边距</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_IE(混杂模式)盒模型：_width_=_内容_+_内边距_+边框"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. IE(混杂模式)盒模型： width = 内容 + 内边距 +边框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-_外边距叠加_垂直外边距取较大的"><span class="toc-number">1.3.3.</span> <span class="toc-text">3. 外边距叠加  垂直外边距取较大的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-_定位_三种基本定位机制：普通流、浮动、绝对定位"><span class="toc-number">1.3.4.</span> <span class="toc-text">4. 定位   三种基本定位机制：普通流、浮动、绝对定位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-_浮动：_使元素脱离文档流"><span class="toc-number">1.3.5.</span> <span class="toc-text">5. 浮动： 使元素脱离文档流</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第四章_背景图像效果"><span class="toc-number">1.4.</span> <span class="toc-text">第四章 背景图像效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第五章_对链接应用样式"><span class="toc-number">1.5.</span> <span class="toc-text">第五章 对链接应用样式</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/CSS/" title="CSS">CSS<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Github/" title="Github">Github<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Javascript/" title="Javascript">Javascript<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Leaf/" title="Leaf">Leaf<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/WebApp/" title="WebApp">WebApp<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WebApp/" title="WebApp">WebApp<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/new/" title="new">new<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Github/" title="Github">Github<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.w3.org/" target="_blank" title="W3C">W3C</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ecmascript.org/" target="_blank" title="ECMA">ECMA</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://developer.mozilla.org/zh-CN/" target="_blank" title="Mozilla">Mozilla</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://html5labs.interoperabilitybridges.com/" target="_blank" title="微软H5实验室">微软H5实验室</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.w3cfuns.com/portal.php" target="_blank" title="前端网">前端网</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://efe.baidu.com/" target="_blank" title="EFE">EFE</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ued.taobao.org/blog/" target="_blank" title="淘宝">淘宝</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://it-ebooks.info/" target="_blank" title="IT eBooks">IT eBooks</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wwsun.me/posts/creating-javascript-modules-loader.html" target="_blank" title="模块加速器">模块加速器</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+<div class="doubanshow">
+<p class="asidetitle">豆瓣秀</p>
+<div>
+<script type="text/javascript" src="http://www.douban.com/service/badge/CaesarFeng/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie" ></script>
+</div>
+</div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> One bboy, One Jser, YunFeng. <br/>
+			The beginning of my blog life</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/u/3181646571" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/wyfyyy818818" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/CaesarFeng" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/wang-yun-feng-52" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:384360465@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Yunfeng">Yunfeng</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"CaesarWyf"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
