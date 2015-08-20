@@ -1,0 +1,736 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>SASS、LESS和Stylus（上） | YunFeng`s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yunfeng">
+    
+
+    
+    <meta name="description" content="CSS预处理器—SASS、LESS和Stylus（上） 这篇文章是W3Cplus上非常全的CSS预处理器教程，我把我需要的部分整理一下，以后就不用全都重看了。
+一、什么是CSS预处器CSS预处理器定义了一种新的语言，基本思想是，用一种专门的编程语言，为CSS增加了一些编程的特性，将CSS作为目标生成文件，然后开发者就只要使用这种语言进行编码工作。
+通俗的说，CSS预处理器用一种专门的编程语言，进行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SASS、LESS和Stylus（上）">
+<meta property="og:url" content="http://yunfengwang.com.cn/2015/08/17/SASS、LESS和Stylus/index.html">
+<meta property="og:site_name" content="YunFeng`s blog">
+<meta property="og:description" content="CSS预处理器—SASS、LESS和Stylus（上） 这篇文章是W3Cplus上非常全的CSS预处理器教程，我把我需要的部分整理一下，以后就不用全都重看了。
+一、什么是CSS预处器CSS预处理器定义了一种新的语言，基本思想是，用一种专门的编程语言，为CSS增加了一些编程的特性，将CSS作为目标生成文件，然后开发者就只要使用这种语言进行编码工作。
+通俗的说，CSS预处理器用一种专门的编程语言，进行">
+<meta property="og:updated_time" content="2015-08-20T12:22:52.280Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SASS、LESS和Stylus（上）">
+<meta name="twitter:description" content="CSS预处理器—SASS、LESS和Stylus（上） 这篇文章是W3Cplus上非常全的CSS预处理器教程，我把我需要的部分整理一下，以后就不用全都重看了。
+一、什么是CSS预处器CSS预处理器定义了一种新的语言，基本思想是，用一种专门的编程语言，为CSS增加了一些编程的特性，将CSS作为目标生成文件，然后开发者就只要使用这种语言进行编码工作。
+通俗的说，CSS预处理器用一种专门的编程语言，进行">
+
+    
+    <link rel="alternative" href="/atom.xml" title="YunFeng`s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="YunFeng`s blog" title="YunFeng`s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="YunFeng`s blog">YunFeng`s blog</a></h1>
+				<h2 class="blog-motto">My Life! Dream is on the way</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yunfengwang.com.cn">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/08/17/SASS、LESS和Stylus/" title="SASS、LESS和Stylus（上）" itemprop="url">SASS、LESS和Stylus（上）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-17T10:06:44.000Z" itemprop="datePublished"> 發表於 2015-08-17</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CSS预处理器—SASS、LESS和Stylus（上）"><span class="toc-number">1.</span> <span class="toc-text">CSS预处理器—SASS、LESS和Stylus（上）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、什么是CSS预处器"><span class="toc-number">1.1.</span> <span class="toc-text">一、什么是CSS预处器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、Sass、LESS和Stylus背景介绍"><span class="toc-number">1.2.</span> <span class="toc-text">二、Sass、LESS和Stylus背景介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、Sass、LESS和Stylus的安装"><span class="toc-number">1.3.</span> <span class="toc-text">三、Sass、LESS和Stylus的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、Sass、LESS和Stylus转译成CSS"><span class="toc-number">1.4.</span> <span class="toc-text">四、Sass、LESS和Stylus转译成CSS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Sass源文件转译成CSS文件"><span class="toc-number">1.4.1.</span> <span class="toc-text">1.Sass源文件转译成CSS文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-LESS文件的转译成CSS文件"><span class="toc-number">1.4.2.</span> <span class="toc-text">2.LESS文件的转译成CSS文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Stylus源文件转译成CSS文件"><span class="toc-number">1.4.3.</span> <span class="toc-text">3.Stylus源文件转译成CSS文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、Sass、LESS和Stylus的语法"><span class="toc-number">1.5.</span> <span class="toc-text">五、Sass、LESS和Stylus的语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Sass语法"><span class="toc-number">1.5.1.</span> <span class="toc-text">1.Sass语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-LESS语法"><span class="toc-number">1.5.2.</span> <span class="toc-text">2.LESS语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Stylus语法"><span class="toc-number">1.5.3.</span> <span class="toc-text">3.Stylus语法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六、Sass、LESS和Stylus特性"><span class="toc-number">1.6.</span> <span class="toc-text">六、Sass、LESS和Stylus特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-变量"><span class="toc-number">1.6.1.</span> <span class="toc-text">1.变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-作用域（Scope）"><span class="toc-number">1.6.2.</span> <span class="toc-text">2.作用域（Scope）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a)Sass的作用域"><span class="toc-number">1.6.2.1.</span> <span class="toc-text">a)Sass的作用域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#b)LESS的作用域"><span class="toc-number">1.6.2.2.</span> <span class="toc-text">b)LESS的作用域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#c)Stylus的作用域"><span class="toc-number">1.6.2.3.</span> <span class="toc-text">c)Stylus的作用域</span></a></li></ol></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="CSS预处理器—SASS、LESS和Stylus（上）">CSS预处理器—SASS、LESS和Stylus（上）</h1><p> 这篇文章是W3Cplus上非常全的<a href="http://www.w3cplus.com/css/css-preprocessor-sass-vs-less-stylus-2.html" target="_blank" rel="external">CSS预处理器教程</a>，我把我需要的部分整理一下，以后就不用全都重看了。</p>
+<h2 id="一、什么是CSS预处器">一、什么是CSS预处器</h2><p>CSS预处理器定义了一种新的语言，基本思想是，用一种专门的编程语言，为CSS增加了一些编程的特性，将CSS作为目标生成文件，然后开发者就只要使用这种语言进行编码工作。</p>
+<p>通俗的说，CSS预处理器用一种专门的编程语言，进行Web页面样式设计，然后再编译成正常的CSS文件，以供项目使用。CSS预处理器为CSS增加一些编程的特性，无需考虑浏览器的兼容性问题，例如你可以在CSS中使用变量、简单的逻辑程序、函数等等在编程语言中的一些基本特性，可以让你的CSS更加简洁、适应性更强、可读性更佳，更易于代码的维护等诸多好处。</p>
+<p>CSS预处理器技术已经非常的成熟，而且也涌现出了很多种不同的CSS预处理器语言，比如说：Sass（SCSS）、LESS、Stylus、Turbine、Swithch CSS、CSS Cacheer、DT CSS等。如此之多的CSS预处理器，那么“我应该选择哪种CSS预处理器？”也相应成了最近网上的一大热门话题，在Linkedin、Twitter、CSS-Trick、知呼以及各大技术论坛上，很多人为此争论不休。相比过计我们对是否应该使用CSS预处理器的话题而言，这已经是很大的进步了。</p>
+<p>到目前为止，在众多优秀的CSS预处理器语言中就属Sass、LESS和Stylus最优秀，讨论的也多，对比的也多。<br>本文将分别从他们产生的背景、安装、使用语法、异同等几个对比之处向你介绍这三款CSS预处理器语言。相信前端开发工程师会做出自己的选择——我要选择哪款CSS预处理器。</p>
+<h2 id="二、Sass、LESS和Stylus背景介绍">二、Sass、LESS和Stylus背景介绍</h2><p> 1.Sass背景介绍</p>
+<p>Sass是对CSS（层叠样式表）的语法的一种扩充，诞生于2007年，最早也是最成熟的一款CSS预处理器语言，它可以使用变量、常量、嵌套、混入、函数等功能，可以更有效有弹性的写出CSS。Sass最后还是会编译出合法的CSS让浏览器使用，也就是说它本身的语法并不太容易让浏览器识别，因为它不是标准的CSS格式，在它的语法内部可以使用动态变量等，所以它更像一种极简单的动态语言。</p>
+<p>现在的Sass已经有了两套语法规则：<br>  （1）依旧是用缩进作为分隔符来区分代码块的；<br>  （2）规则和CSS一样采用了大括号（｛｝）作为分隔符。<br>  后一种语法规则又名SCSS，在Sass3之后的版本都支持这种语法规则。</p>
+<p>  <a href="http://sass-lang.com" target="_blank" rel="external">Sass官网地址</a></p>
+<p> 2.LESS的背景介绍</p>
+<p>2009年开源的一个项目，受Sass的影响较大，但又使用CSS的语法，让大部分开发者和设计师更容易上手。<br>LESS提供了多种方式能平滑的将写好的代码转化成标准的CSS代码，在很多流行的框架和工具中已经能经常<br>看到LESS的身影了（例如Twitter的<a href="http://www.bootcss.com/" target="_blank" rel="external">Bootstrap框架</a>就使用了LESS）。</p>
+<p>根据维基百科上的介绍，其实LESS是Alexis Sellier受Sass的影响创建的一个开源项目。当时SASS采用了<br>缩进作为分隔符来区分代码块，而不是CSS中广为使用的大括号（｛｝）。为了让CSS现有的用户使用起来<br>更佳方便，Alexis开发了LESS并提供了类似CSS的书写功能。</p>
+<p>  <a href="http://lesscss.org" target="_blank" rel="external">LESS的官网</a></p>
+<p>  3.Stylus背景介绍</p>
+<p>Stylus，2010年产生，来自于<a href="http://www.nodejs.net/" target="_blank" rel="external">Node.js社区</a>，主要用来给Node项目进行CSS预处理支持，在此社区之内<br>有一定支持者，在广泛的意义上人气还完全不如Sass和LESS。</p>
+<p>Stylus被称为是一种革命性的新语言，提供一个高效、动态、和使用表达方式来生成CSS，以供浏览器使用。<br>Stylus同时支持缩进和CSS常规样式书写规则。</p>
+<p>  <a href="http://learnboost.github.com/stylus" target="_blank" rel="external">Stylus官网</a></p>
+<h2 id="三、Sass、LESS和Stylus的安装">三、Sass、LESS和Stylus的安装</h2><p>   1.Sass的安装</p>
+<p>   （1）安装<a href="https://www.ruby-lang.org/en/" target="_blank" rel="external">Ruby</a>(建议安在C盘，安装选择Add Ruby executables to your PATH)</p>
+<p>   （2）Ruby命令控制面板中输入：gem install sass</p>
+<p>   2.LESS的安装</p>
+<p>  (1)客户端安装：</p>
+<p>   在官网载一个Javascript脚本文件“less.js”，然后在我们需要引入LESS源文件的HTML的<head>中加入：</head></p>
+<pre><code><span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet/less"</span> <span class="attribute">type</span>=<span class="value">"text/css"</span> <span class="attribute">href</span>=<span class="value">"文件路径/styles.less"</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"文件路径/less.js"</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</code></pre><p>   <strong>注意：</strong></p>
+<pre><code><span class="number">1</span>）在引入“.<span class="operator">less</span>”文件中，“link”的“rel”属性要设置为“stylesheet/<span class="operator">less</span>”。
+
+<span class="number">2</span>）<span class="operator">LESS</span>源文件一定要在“<span class="operator">less</span>.js”引入之前引入，这样才能保证<span class="operator">LESS</span>源文件正确编译解析。
+</code></pre><p>   （2）服务器端安装：</p>
+<p>   LESS在服务器端的使用主要是借助于LESS的编译器，将LESS源文件编译生成最终的CSS文件，目前常用的方式是利用node的包管理器（npm）安装LESS，安装成功后就可以在Node环境中对LESS文件进行编译。</p>
+<p>   如此一来，LESS在服务器的安装和Sass的安装有点相似，不同之处是他们需依赖的环境不一样，LESS需要的是Node JS环境，而Sass需要的是Ruby环境。<br>‘</p>
+<p>   1）安装<a href="http://nodejs.cn/" target="_blank" rel="external">Node JS</a>  </p>
+<p>   2）Node Js的Command控制面板直接输入：npm install less (NodeJS里安装使用npm命令，<a href="https://www.npmjs.com/" target="_blank" rel="external">npm社区</a>)</p>
+<pre><code>下载最新稳定版本的<span class="operator">LESS</span>，可以输入npm <span class="keyword">install</span> <span class="operator">less</span>@latest
+</code></pre><p>  3.Stylus的安装</p>
+<pre><code>同样依赖于Node <span class="keyword">JS</span>的环境，也要先安装Node <span class="keyword">Js</span>（同上）。在Node <span class="keyword">JS</span>的Command控制面板输入：
+
+npm install stylus
+</code></pre><h2 id="四、Sass、LESS和Stylus转译成CSS">四、Sass、LESS和Stylus转译成CSS</h2><p>   Sass、LESS和Stylus源文件（除了LESS源文件在客户端下运行之外）都不能直接被浏览器直接识别，<br>   这样一来，要正常的使用这些源文件，就需要将其源文件转译成浏览器可以识别的CSS样式文件，<br>   这也是使用CSS预处理器很关键的一步，如果这一步不知道如何操作，那么意味着写出来的代码不可用。</p>
+<p>   三者如何将其源文件转译成所需要的CSS样式文件?</p>
+<h3 id="1-Sass源文件转译成CSS文件">1.Sass源文件转译成CSS文件</h3><p>   “.sass”是Sass语言文件的扩展后缀名，而”.scss”是SCSS语言文件的扩展后缀名两者都是CSS预处理器语言，而且两者功能特性都一样，只是书写规则不同.</p>
+<p>   (1)创建一个Sass文件，可以命名为“style.scss”，并且将其放在对应的项目样式中，</p>
+<pre><code>如<span class="variable">D</span>盘的“www/workspace/<span class="variable">Sass</span>/css”目录下.
+</code></pre><p>   (2)启动Ruby的Command控制面板，找到需要转译的Sass文件，此例文件放置在D盘“www/workspace/Sass/css”</p>
+<p>   (3)如果仅针对于单文件的转译，需要将“style.scss”转译成“style.css”，只需要在对应的目录下输入：</p>
+<pre><code>$ sass style<span class="class">.scss</span> style<span class="class">.css</span>    
+目录下增加了一个“style.css”文件，这个CSS文件可以用来调用，他就是“style.scss”转译出来的样式文件。
+</code></pre><p>   (4)我们不可能每保存一次这个Sass文件就来执行一回这个转译命令，可以通过下面的监听命令实现。</p>
+<pre><code>$ sass --watch style<span class="class">.scss</span>:style<span class="class">.css</span>    
+</code></pre><p>   如果有多个Sass文件需要监听时，就很有必要的组织一下。默认情况之下，我喜欢把所有的Sass文件放在“/css/sass”目录中，而生成的CSS文件则直接放在“/css”目录下。</p>
+<p>   现在我们修改一下项目文件目录结构，在“/css”目录中再创建一个“sass”目录，并找刚才创建的“style.scss”文件移至“/css/sass”目录下。此时监听“css/sass”下的所有Sass文件时，可以在命令面板中输入：</p>
+<pre><code>$ sass --watch <span class="string">sassFileDirectory:</span>cssFileDirectory    
+冒号前面的“sassFileDirectory”是指“<span class="regexp">/css/</span>sass”下的“sass”目录，
+冒号后面的“cssFileDirectory”是指“css”目录，对应的命令就是：
+$ sass --watch css/<span class="string">sass:</span>css    
+</code></pre><p>   除了使用Ruby的Command控制面板转译Sass之外还可以考虑第三方工具，比如说有名的Compass.app和fire.app。</p>
+<h3 id="2-LESS文件的转译成CSS文件">2.LESS文件的转译成CSS文件</h3><p>   LESS文件和Sass文件转译可以说是大同小异，不同之处是LESS在安装的Node JS环境下通过其自己的命令来进行转译。</p>
+<pre><code>$ lessc style<span class="class">.less</span>    
+</code></pre><p>   上面的命令会将编译的CSS传递给stdout，你可以将它保存到一个文件中：</p>
+<pre><code>$ lessc style<span class="class">.less</span> &gt; style<span class="class">.css</span>    
+</code></pre><p>   除了上面的命令转译LESS源文件之外，现在还有很多第三方开发的工具，比较常见的有：SimpleLess、Less.app、LESS编译辅助脚本-LESS2CSS、WinLess和CodeKit.app等，我个人现在常用的是WinLess工具，简单易用，不过在IOS系统下LESS.app和CodeKit.app很好用。(我在慕客网LESS教程上使用的是Koala工具)</p>
+<h3 id="3-Stylus源文件转译成CSS文件">3.Stylus源文件转译成CSS文件</h3><p>   Stylus具有可执行性，因此Stylus能将自身转换成CSS。Stylus可以读取自“stdin”输出到“stdout”，<br>   因此Stylus可以像下面转译源文件：</p>
+<pre><code>$ stylus –compress  &lt;<span class="keyword">some</span>.styl&gt; <span class="keyword">some</span>.css    
+</code></pre><p>   Stylus也像Sass一样，同时接受单个文件和整个目录的转译。<br>   例如，一个目录名为“css”将在同一个目录编译并输出“.css”文件。</p>
+<pre><code><span class="variable">$ </span>stylus css    
+</code></pre><p>   下面的命令将输出到“./public/stylesheets”：</p>
+<pre><code>$ stylus css –<span class="keyword">out</span> <span class="keyword">public</span>/stylesheets
+</code></pre><p>   还可以同时转译多个文件：</p>
+<pre><code>$ stylus <span class="constant">one</span>.styl <span class="constant">two</span>.styl
+</code></pre><p>   如果你的浏览器安装了Firebug，那么可以使用FireStylus扩展。</p>
+<pre><code>$ stylus –firebug  <span class="tag">&lt;<span class="title">path</span>&gt;</span>
+</code></pre><h2 id="五、Sass、LESS和Stylus的语法">五、Sass、LESS和Stylus的语法</h2><h3 id="1-Sass语法">1.Sass语法</h3><p>  Sass3.0版本开始使用的是标准的CSS语法，和SCSS可以说是一样的。这样Sass代码转换成CSS代码变得更容易。</p>
+<p>  默认Sass使用“.scss”扩展名。Sass语法规则可以像CSS那样书写：</p>
+<pre><code><span class="tag">h1</span><span class="rules">{
+<span class="rule"><span class="attribute">color</span>:<span class="value"><span class="hexcolor">#936</span></span></span>;
+<span class="rule"><span class="attribute">background-color</span>:<span class="value"><span class="hexcolor">#333</span></span></span>;
+}</span>
+</code></pre><p>  Sass也同时支持老的语法，老的语法和常规的CSS语法略有不同，他需要严格的语法，任何的缩进和字符的错误都会造成样式的编译错误。Sass可以省略大括号（｛｝）和分号（；），完全依靠严格的缩进和格式化代码，而且文件使用“.sass”扩展名，他的语法类似于：</p>
+<pre><code><span class="tag">h1</span>
+  <span class="attribute">color</span>:<span class="hexcolor">#936</span>
+  <span class="attribute">background-color</span>: <span class="hexcolor">#333</span>
+</code></pre><h3 id="2-LESS语法">2.LESS语法</h3><p>   LESS是CSS的一种扩展形式，它并没有阉割CSS的功能，而是在现有的CSS语法上，添加了很多额外的功能。<br>   就语法规则而言，LESS和Sass一样，都是使用CSS的标准语法，只是LESS的源文件的扩展名是“.less”.</p>
+<pre><code><span class="tag">h1</span><span class="rules">{
+<span class="rule"><span class="attribute">color</span>:<span class="value"><span class="hexcolor">#936</span></span></span>;
+<span class="rule"><span class="attribute">background-color</span>:<span class="value"><span class="hexcolor">#333</span></span></span>;
+}</span>
+</code></pre><h3 id="3-Stylus语法">3.Stylus语法</h3><p>Stylus的语法花样多一些，它的文件扩展名是“.styl”，Stylus也接受标准的CSS语法，但是他也像Sass老的语法规则，使用缩进控制，同时Stylus也接受不带大括号（｛｝）和分号的语法.可以省略大括号（｛｝）</p>
+<pre><code><span class="tag">h1</span> 
+  <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#963</span></span></span>;
+  <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#333</span></span></span>;
+</code></pre><p>   也可以省略大括号（｛｝）和分号（;）</p>
+<pre><code><span class="tag">h1</span>
+  <span class="attribute">color</span>:<span class="hexcolor">#963</span>
+  <span class="attribute">background-color</span>:<span class="hexcolor">#333</span>
+</code></pre><p>   在Stylus样式中，你也可以在同一个样式文件中使用不同的语法规则，下面这样的写法也不会报错</p>
+<pre><code><span class="title">h1</span> {
+  <span class="title">color</span>  <span class="comment">#963</span>
+}
+
+h2 
+  font-size:<span class="number">1</span>.2em
+</code></pre><h2 id="六、Sass、LESS和Stylus特性">六、Sass、LESS和Stylus特性</h2><p>   这三款CSS预处理器语言具有一些相同的特性，例如：变量、混入、嵌套、函数等。</p>
+<h3 id="1-变量">1.变量</h3><p>   a)Sass的变量  $</p>
+<p>  Sass声明变量必须是“$”开头，后面紧跟变量名和变量值，而且变量名和变量值需要使用冒号（：）分隔开。就像CSS属性设置一样：</p>
+<pre><code><span class="comment">/*声明变量*/</span>
+<span class="variable">$mainColor</span>: <span class="variable">#963</span>;
+<span class="variable">$siteWidth</span>: <span class="number">1024</span>px;
+<span class="variable">$borderStyle</span>: dotted;
+
+<span class="comment">/*调用变量*/</span>                               <span class="comment">/*转译出来的CSS*/</span>
+
+body {                                   <span class="subst">|</span>  body {
+   color: <span class="variable">$mainColor</span>;                    <span class="subst">|</span>    color: <span class="variable">#963</span>;
+   border:<span class="number">1</span>px <span class="variable">$borderStyle</span> <span class="variable">$mainColor</span>;   <span class="subst">|</span>    border:<span class="number">1</span>px dotted <span class="variable">#963</span>;
+   <span class="keyword">max</span><span class="attribute">-width</span>: <span class="variable">$siteWidth</span>;                <span class="subst">|</span>    <span class="keyword">max</span><span class="attribute">-width</span>: <span class="number">1024</span>px;
+}                                        <span class="subst">|</span>  }    
+</code></pre><p>   b)LESS的变量 @</p>
+<p>   LESS样式中声明变量和调用变量和Sass一样，唯一的区别就是变量名前面使用的是“ @ ”字符</p>
+<p>   c)Stylus的变量</p>
+<p>   Stylus样式中声明变量没有任何限定，你可以使用“$”符号开始。结尾的分号（;）可有可无，但变量名和变量值之间的等号（=）是需要的。</p>
+<p>   注意：</p>
+<p>   (1)如果我们使用“ @ ”符号开头来声明（0.22.4）变量，Stylus会进行编译，但其对应的值并不会赋值给变量。</p>
+<p>   (2)在Stylus中不要使用“ @ ”符号开头声明变量。Stylus中调用变量的方法和LESS、Sass是完全相同的。</p>
+<p>   Stylus还有一个独特功能，不需要分配值给变量就可以定义引用属性：</p>
+<pre><code>    /<span class="keyword">*</span>水平垂直居中<span class="keyword">*</span>/                    /<span class="keyword">*</span>转译出来的CSS<span class="keyword">*</span>/
+------------------------------------+------------------------------------
+<span class="comment">#logo                               |   #logo {</span>
+  position  absolute                |<span class="string">     position:absolute;
+  top  50%                          </span>|<span class="string">     top:50%;
+  left  50%                         </span>|<span class="string">     left:50%;
+  width  w = 150px                  </span>|<span class="string">     width:150px;
+  height  h = 80px                  </span>|<span class="string">     height:80px;
+  margin-left  -(w / 2)             </span>|<span class="string">     margin-left:-75px;
+  margin-top  -(h / 2)              </span>|<span class="string">     margin-top:-40px;
+                    </span>|<span class="string">   } </span>
+</code></pre><p>   从上面的代码中我们可以看出，CSS预处理器语言中的变量是值级别的重复使用，可以将相同的值定义成变量统一管理起来.</p>
+<p>   CSS预处理器语言中变量的特性适用于定义主题（也就是我们常说的换肤），我们可以将背景颜色、字体颜色、边框属性等常规样式统一定义，这样不同的主题只需要定义不同的变量文件就可以。</p>
+<h3 id="2-作用域（Scope）">2.作用域（Scope）</h3><p>  CSS预处理器语言中的变量和其他程序语言一样，可以实现值的复用，同样它也存在生命周期，也就是Scope（变量范围，开发人员习惯称之为作用域）简单说，就是局部变量和全局变量的概念</p>
+<p>  查找变量的顺序是先在局部定义中找，如果找不到，则查找上级定义，直至全局。</p>
+<h4 id="a)Sass的作用域">a)Sass的作用域</h4><p>  Sass中作用域在这三款预处理器是最差的，可以说在Sass中是不存在什么全局变量。</p>
+<pre><code> <span class="variable">$color</span><span class="value">: black;</span>                           转义出来的样式：
+<span class="class">.scoped</span> {                            <span class="class">.scoped</span> {
+  <span class="variable">$bg</span><span class="value">: blue;</span>                            <span class="attribute">color</span><span class="value">:white;</span> <span class="comment">/*是白色*/</span>
+  <span class="variable">$color</span><span class="value">: white;</span>                         <span class="attribute">background-color</span><span class="value">:blue;</span>
+  <span class="attribute">color</span><span class="value">: <span class="variable">$color</span>;</span>                     }
+  <span class="attribute">background-color</span><span class="value">:<span class="variable">$bg</span>;</span>              <span class="class">.unscoped</span> {
+}                                         <span class="attribute">color</span><span class="value">:white;</span><span class="comment">/*白色（无全局变量概念）*/</span>
+<span class="class">.unscoped</span> {                         }
+  <span class="attribute">color</span><span class="value">:<span class="variable">$color</span>;</span>
+}    
+</code></pre><p>  <strong>注意:</strong> </p>
+<p>  在Sass样式中定义变量，调用变量是没有全局变量一个概念存在，因此在Sass中定义了相同变量名时，在调用之时千万要多加小心，不然会给你的样式带来错误。</p>
+<h4 id="b)LESS的作用域">b)LESS的作用域</h4><p>  LESS中的作用域和其他程序语言中的作用域非常的相同，他首先会查找局部定义的变量，<br>  如果没有找到，会像冒泡一样，一级一级往下查找，直到根为止，同样上面的例子，<br>  我们来看看他在LESS下所起的变化。</p>
+<pre><code><span class="variable">@color:</span> black;                               转译出来：
+<span class="class">.scoped</span> {                              <span class="class">.scoped</span> {
+  <span class="variable">@bg:</span> blue;                              <span class="attribute">color</span>:white;<span class="comment">/*白色（调用了局部变量）*/</span>
+  <span class="variable">@color:</span> white;                          <span class="attribute">background-color</span>:blue;
+  <span class="attribute">color</span>: <span class="variable">@color</span>;                       }
+  <span class="attribute">background-color</span>: <span class="variable">@bg</span>;               <span class="class">.unscoped</span> {
+}                                           <span class="attribute">color</span>:black;<span class="comment">/*黑色（调用了全局变量）*/</span>
+<span class="class">.unscoped</span> {                               }
+  <span class="attribute">color</span>: <span class="variable">@color</span>;
+}
+</code></pre><h4 id="c)Stylus的作用域">c)Stylus的作用域</h4><p>  Stylus虽然起步比较晚，但其作用域的特性和LESS一样，可以支持全局变量和局变量。会向上冒泡查找，直到根为止。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/CSS/">CSS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/CSS/">CSS</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yunfengwang.com.cn/2015/08/17/SASS、LESS和Stylus/" data-title="SASS、LESS和Stylus（上） | YunFeng`s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/08/17/同步一个fork/" title="fork同步">
+  <strong>上一篇：</strong><br/>
+  <span>
+  fork同步</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/08/16/精通CSS（一）/"  title="精通CSS（一）">
+ <strong>下一篇：</strong><br/> 
+ <span>精通CSS（一）
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/08/17/SASS、LESS和Stylus/" data-title="SASS、LESS和Stylus（上）" data-url="http://yunfengwang.com.cn/2015/08/17/SASS、LESS和Stylus/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CSS预处理器—SASS、LESS和Stylus（上）"><span class="toc-number">1.</span> <span class="toc-text">CSS预处理器—SASS、LESS和Stylus（上）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、什么是CSS预处器"><span class="toc-number">1.1.</span> <span class="toc-text">一、什么是CSS预处器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、Sass、LESS和Stylus背景介绍"><span class="toc-number">1.2.</span> <span class="toc-text">二、Sass、LESS和Stylus背景介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、Sass、LESS和Stylus的安装"><span class="toc-number">1.3.</span> <span class="toc-text">三、Sass、LESS和Stylus的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、Sass、LESS和Stylus转译成CSS"><span class="toc-number">1.4.</span> <span class="toc-text">四、Sass、LESS和Stylus转译成CSS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Sass源文件转译成CSS文件"><span class="toc-number">1.4.1.</span> <span class="toc-text">1.Sass源文件转译成CSS文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-LESS文件的转译成CSS文件"><span class="toc-number">1.4.2.</span> <span class="toc-text">2.LESS文件的转译成CSS文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Stylus源文件转译成CSS文件"><span class="toc-number">1.4.3.</span> <span class="toc-text">3.Stylus源文件转译成CSS文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、Sass、LESS和Stylus的语法"><span class="toc-number">1.5.</span> <span class="toc-text">五、Sass、LESS和Stylus的语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Sass语法"><span class="toc-number">1.5.1.</span> <span class="toc-text">1.Sass语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-LESS语法"><span class="toc-number">1.5.2.</span> <span class="toc-text">2.LESS语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Stylus语法"><span class="toc-number">1.5.3.</span> <span class="toc-text">3.Stylus语法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六、Sass、LESS和Stylus特性"><span class="toc-number">1.6.</span> <span class="toc-text">六、Sass、LESS和Stylus特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-变量"><span class="toc-number">1.6.1.</span> <span class="toc-text">1.变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-作用域（Scope）"><span class="toc-number">1.6.2.</span> <span class="toc-text">2.作用域（Scope）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a)Sass的作用域"><span class="toc-number">1.6.2.1.</span> <span class="toc-text">a)Sass的作用域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#b)LESS的作用域"><span class="toc-number">1.6.2.2.</span> <span class="toc-text">b)LESS的作用域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#c)Stylus的作用域"><span class="toc-number">1.6.2.3.</span> <span class="toc-text">c)Stylus的作用域</span></a></li></ol></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/CSS/" title="CSS">CSS<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Github/" title="Github">Github<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Javascript/" title="Javascript">Javascript<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Leaf/" title="Leaf">Leaf<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/WebApp/" title="WebApp">WebApp<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WebApp/" title="WebApp">WebApp<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/new/" title="new">new<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Github/" title="Github">Github<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.w3.org/" target="_blank" title="W3C">W3C</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ecmascript.org/" target="_blank" title="ECMA">ECMA</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://developer.mozilla.org/zh-CN/" target="_blank" title="Mozilla">Mozilla</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://html5labs.interoperabilitybridges.com/" target="_blank" title="微软H5实验室">微软H5实验室</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.w3cfuns.com/portal.php" target="_blank" title="前端网">前端网</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://efe.baidu.com/" target="_blank" title="EFE">EFE</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ued.taobao.org/blog/" target="_blank" title="淘宝">淘宝</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://it-ebooks.info/" target="_blank" title="IT eBooks">IT eBooks</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wwsun.me/posts/creating-javascript-modules-loader.html" target="_blank" title="模块加速器">模块加速器</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+<div class="doubanshow">
+<p class="asidetitle">豆瓣秀</p>
+<div>
+<script type="text/javascript" src="http://www.douban.com/service/badge/CaesarFeng/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie" ></script>
+</div>
+</div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> One bboy, One Jser, YunFeng. <br/>
+			The beginning of my blog life</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/u/3181646571" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/wyfyyy818818" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/CaesarFeng" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/wang-yun-feng-52" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:384360465@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Yunfeng">Yunfeng</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"CaesarWyf"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
