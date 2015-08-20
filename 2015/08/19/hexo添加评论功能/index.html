@@ -4,29 +4,32 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>fork同步 | YunFeng`s blog</title>
+    <title>Hexo添加评论功能--多说 | YunFeng`s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Yunfeng">
     
 
     
-    <meta name="description" content="fork同步相关问题：Github现在越来越火了，这也说明了Github这个平台太有参与价值了，虽然我现在还只是个旁观者。没事我会看看几个大神有没有更新什么新的作品或者小项目展示（嘿嘿，还可以偷偷的下载下来玩玩）。
-Git方面教程有很多好的博客，比如 廖雪峰的Git教程非常好，本人很受益。
-之前，刚用Github的时候，最头疼的就是同步fork，推送自己的文件或者分支合并到别人的上游目录中。刚开始">
+    <meta name="description" content="Hexo 使用多说添加评论Hexo是使用node.js技术开发的一个纯静态博客系统，Hexo默认使用的评论插件是Disqus。
+我们可以使用多说来替换Disqus。多说还是不错的，很多朋友的博客都用的多说。
+添加多说1.在_config.yml中添加多说的配置：duoshuo_shortname: 你站点的short_name
+2.修改themes\landscape(你当前的主题)\layout">
 <meta property="og:type" content="article">
-<meta property="og:title" content="fork同步">
-<meta property="og:url" content="http://yunfengwang.com.cn/2015/08/17/同步一个fork/index.html">
+<meta property="og:title" content="Hexo添加评论功能--多说">
+<meta property="og:url" content="http://yunfengwang.com.cn/2015/08/19/hexo添加评论功能/index.html">
 <meta property="og:site_name" content="YunFeng`s blog">
-<meta property="og:description" content="fork同步相关问题：Github现在越来越火了，这也说明了Github这个平台太有参与价值了，虽然我现在还只是个旁观者。没事我会看看几个大神有没有更新什么新的作品或者小项目展示（嘿嘿，还可以偷偷的下载下来玩玩）。
-Git方面教程有很多好的博客，比如 廖雪峰的Git教程非常好，本人很受益。
-之前，刚用Github的时候，最头疼的就是同步fork，推送自己的文件或者分支合并到别人的上游目录中。刚开始">
-<meta property="og:updated_time" content="2015-08-19T14:50:06.595Z">
+<meta property="og:description" content="Hexo 使用多说添加评论Hexo是使用node.js技术开发的一个纯静态博客系统，Hexo默认使用的评论插件是Disqus。
+我们可以使用多说来替换Disqus。多说还是不错的，很多朋友的博客都用的多说。
+添加多说1.在_config.yml中添加多说的配置：duoshuo_shortname: 你站点的short_name
+2.修改themes\landscape(你当前的主题)\layout">
+<meta property="og:updated_time" content="2015-08-20T14:31:50.021Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="fork同步">
-<meta name="twitter:description" content="fork同步相关问题：Github现在越来越火了，这也说明了Github这个平台太有参与价值了，虽然我现在还只是个旁观者。没事我会看看几个大神有没有更新什么新的作品或者小项目展示（嘿嘿，还可以偷偷的下载下来玩玩）。
-Git方面教程有很多好的博客，比如 廖雪峰的Git教程非常好，本人很受益。
-之前，刚用Github的时候，最头疼的就是同步fork，推送自己的文件或者分支合并到别人的上游目录中。刚开始">
+<meta name="twitter:title" content="Hexo添加评论功能--多说">
+<meta name="twitter:description" content="Hexo 使用多说添加评论Hexo是使用node.js技术开发的一个纯静态博客系统，Hexo默认使用的评论插件是Disqus。
+我们可以使用多说来替换Disqus。多说还是不错的，很多朋友的博客都用的多说。
+添加多说1.在_config.yml中添加多说的配置：duoshuo_shortname: 你站点的short_name
+2.修改themes\landscape(你当前的主题)\layout">
 
     
     <link rel="alternative" href="/atom.xml" title="YunFeng`s blog" type="application/atom+xml">
@@ -86,14 +89,14 @@ Git方面教程有很多好的博客，比如 廖雪峰的Git教程非常好，�
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/08/17/同步一个fork/" title="fork同步" itemprop="url">fork同步</a>
+      <a href="/2015/08/19/hexo添加评论功能/" title="Hexo添加评论功能--多说" itemprop="url">Hexo添加评论功能--多说</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-17T12:22:57.000Z" itemprop="datePublished"> 發表於 2015-08-17</time>
+    <time datetime="2015-08-19T14:12:51.000Z" itemprop="datePublished"> 發表於 2015-08-19</time>
     
   </p>
 </header>
@@ -102,72 +105,59 @@ Git方面教程有很多好的博客，比如 廖雪峰的Git教程非常好，�
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#fork同步相关问题："><span class="toc-number">1.</span> <span class="toc-text">fork同步相关问题：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-_fork别人项目后如何与源项目保持同步："><span class="toc-number">1.1.</span> <span class="toc-text">1. fork别人项目后如何与源项目保持同步：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-同步fork："><span class="toc-number">1.2.</span> <span class="toc-text">2.同步fork：</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hexo_使用多说添加评论"><span class="toc-number">1.</span> <span class="toc-text">Hexo 使用多说添加评论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#添加多说"><span class="toc-number">1.1.</span> <span class="toc-text">添加多说</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-在_config-yml中添加多说的配置："><span class="toc-number">1.1.1.</span> <span class="toc-text">1.在_config.yml中添加多说的配置：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-修改themes\landscape(你当前的主题)\layout_partial\article-ejs模板把下面"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.修改themes\landscape(你当前的主题)\layout_partial\article.ejs模板把下面</span></a></li></ol></li></ol></li></ol>
 		
 		</div>
 		
-		<h1 id="fork同步相关问题：">fork同步相关问题：</h1><p>Github现在越来越火了，这也说明了Github这个平台太有参与价值了，虽然我现在还只是个旁观者。<br>没事我会看看几个大神有没有更新什么新的作品或者小项目展示（嘿嘿，还可以偷偷的下载下来玩玩）。</p>
-<p>Git方面教程有很多好的博客，比如 <a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">廖雪峰的Git教程</a>非常好，本人很受益。</p>
-<p>之前，刚用Github的时候，最头疼的就是同步fork，推送自己的文件或者分支合并到别人的上游目录中。刚开始我也是似懂非懂，有时候OK，有时候就报错。报错就开始翻译报的什么错，有时候真的就直接看报错提示就知道了，不要以为是一堆没用的English。其实，最简单的找错办法就是看报错提示了。看不懂查一下不就得了，又不费事，还锻炼英语水平。</p>
-<p>废话不多说了，我们把我觉得有意思的部分整理一下，都是从网上前辈那里学的。</p>
-<h2 id="1-_fork别人项目后如何与源项目保持同步：">1. fork别人项目后如何与源项目保持同步：</h2><p>(ps: 最直接简单暴力的办法，直接删除重新fork)</p>
-<p>我们有时看到一些比较好的项目，我们都会fork一下，然后在本地操作，但是fork之后，项目是不会跟<br>源项目保持同步的，需要我们自己进行一些操作让其同步。</p>
-<p>  1） 打开git bash，进入要同步的仓库目录</p>
-<p>  2） 实现本地和远程同步，先将原项目pull到本地：</p>
-<pre><code>git remote add <span class="keyword">project</span> http:<span class="comment">//github.com/源项目文件目录      //给源项目添加个别名</span>
-git pull <span class="keyword">project</span> master      <span class="comment">//pull project 下面的master分支</span>
-</code></pre><p>  3)  将pull下来的更新 push到自己项目上面<br>       git push</p>
-<pre><code>第一次push会报错，添加一个publickey就可以了。设置一下<span class="constant">SSH就OK了</span>，很简单。
-
-<span class="constant">SSH设</span>置<span class="symbol">:</span>
-
-<span class="variable">$ </span>cd ~<span class="regexp">/.ssh/</span>
-<span class="variable">$ </span>ssh-keygen -t rsa -<span class="constant">C </span><span class="string">"email@example.com"</span>
-或者
-<span class="variable">$ </span>ssh-keygen 查看一下
-<span class="variable">$ </span>cd .ssh
-  修改id_rsa.pub(我用的是win8,linux直接vim修改就可以了 vim id_rsa.pub)
-  修改内容就是你 <span class="constant">Github </span>的 <span class="constant">Deloy Keys里Add </span>deloy key的内容
-  重新git push就ok了
-</code></pre><h2 id="2-同步fork：">2.同步fork：</h2><p> （1）给fork配置一个remote</p>
-<pre><code><span class="number">1</span>) git remote -v 查看远程状态
-
-  eg.
-   <span class="preprocessor"># origin  https:<span class="comment">//github.com/YOUR_USERNAME/YOUR_FORK.git (fetch)</span></span>
-   <span class="preprocessor"># origin  https:<span class="comment">//github.com/YOUR_USERNAME/YOUR_FORK.git (push)</span></span>
-</code></pre><p>   ‘</p>
-<pre><code><span class="number">2</span>) 添加一个将被同步给 fork 远程的上游仓库
-
-  git remote <span class="built_in">add</span> upstream http<span class="variable">s:</span>//github.<span class="keyword">com</span>/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git
-</code></pre><p>  ‘</p>
-<pre><code><span class="number">3</span>) 再次查看状态确认是否配置成功。
-
-git remote -v
-  <span class="preprocessor"># origin    https:<span class="comment">//github.com/YOUR_USERNAME/YOUR_FORK.git (fetch)</span></span>
-  <span class="preprocessor"># origin    https:<span class="comment">//github.com/YOUR_USERNAME/YOUR_FORK.git (push)</span></span>
-  <span class="preprocessor"># upstream  https:<span class="comment">//github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git (fetch)</span></span>
-  <span class="preprocessor"># upstream  https:<span class="comment">//github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git (push)</span></span>
-</code></pre><p>  (2) 从上游仓库 fetch 分支和提交点，传送到本地，并会被存储在一个本地分支 upstream/master</p>
-<pre><code>git fetch upstream
-  # <span class="string">remote:</span> Counting <span class="string">objects:</span> <span class="number">75</span>, done.
-  # <span class="string">remote:</span> Compressing <span class="string">objects:</span> <span class="number">100</span>% (<span class="number">53</span>/<span class="number">53</span>), done.
-  # <span class="string">remote:</span> Total <span class="number">62</span> (delta <span class="number">27</span>), reused <span class="number">44</span> (delta <span class="number">9</span>)
-  # Unpacking <span class="string">objects:</span> <span class="number">100</span>% (<span class="number">62</span>/<span class="number">62</span>), done.
-  # From <span class="string">https:</span><span class="comment">//github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY</span>
-  #  * [<span class="keyword">new</span> branch]      master     -&gt; upstream/master
-</code></pre><p>  (3)  切换到本地主分支(如果不在的话)</p>
-<pre><code><span class="label">git</span> checkout master
- # <span class="keyword">Switched </span>to <span class="keyword">branch </span><span class="string">'master'</span>
-</code></pre><p>  (4) 把 upstream/master 分支合并到本地 master 上，这样就完成了同步，并且不会丢掉本地修改的内容。</p>
-<pre><code>git <span class="operator"><span class="keyword">merge</span> upstream/<span class="keyword">master</span>
- # Updating a422352..<span class="number">5</span>fdff0f
- # <span class="keyword">Fast</span>-forward
- #  README                    |    <span class="number">9</span> <span class="comment">-------</span>
- #  README.md                 |    <span class="number">7</span> ++++++
- #  <span class="number">2</span> files <span class="keyword">changed</span>, <span class="number">7</span> insertions(+), <span class="number">9</span> deletions(-)
- #  <span class="keyword">delete</span> <span class="keyword">mode</span> <span class="number">100644</span> README
- #  <span class="keyword">create</span> <span class="keyword">mode</span> <span class="number">100644</span> README.md</span>
-</code></pre><p>  (5) 如果想更新到 GitHub 的 fork 上，直接 git push origin master 就OK了。</p>
+		<h1 id="Hexo_使用多说添加评论">Hexo 使用多说添加评论</h1><p>Hexo是使用node.js技术开发的一个纯静态博客系统，Hexo默认使用的评论插件是Disqus。</p>
+<p>我们可以使用<a href="http://duoshuo.com/" target="_blank" rel="external">多说</a>来替换Disqus。多说还是不错的，很多朋友的博客都用的多说。</p>
+<h2 id="添加多说">添加多说</h2><h3 id="1-在_config-yml中添加多说的配置：">1.在_config.yml中添加多说的配置：</h3><pre><code><span class="attribute">duoshuo_shortname</span>: <span class="string">你站点的short_name</span>
+</code></pre><h3 id="2-修改themes\landscape(你当前的主题)\layout_partial\article-ejs模板把下面">2.修改themes\landscape(你当前的主题)\layout_partial\article.ejs模板把下面</h3><pre><code><span class="xml">   </span>&lt;%<span class="ruby"> <span class="keyword">if</span> (!index &amp;&amp; post.comments &amp;&amp; config.disqus_shortname){ </span>%&gt;<span class="xml">
+    <span class="tag">&lt;<span class="title">section</span> <span class="attribute">id</span>=<span class="value">"comments"</span>&gt;</span>
+     <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"disqus_thread"</span>&gt;</span>
+       <span class="tag">&lt;<span class="title">noscript</span>&gt;</span>Please enable JavaScript to view the <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"//disqus.com/?ref_noscript"</span>&gt;</span>comments powered by Disqus.<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">noscript</span>&gt;</span>
+     <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">section</span>&gt;</span>
+   </span>&lt;%<span class="ruby"> } </span>%&gt;<span class="xml">
+（若没有此部分，放到模板内容下面即可，我用的就是别人的模板，没有这块代码，就粘到下面了，也是OK的）</span>
+</code></pre><p>  部分替换为：</p>
+<p>  （1）稳定版(久经考验，稳定运行，但功能更新较慢)</p>
+<pre><code>  <span class="comment">&lt;!-- 多说评论框 start --&gt;</span>
+    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"ds-thread"</span> <span class="attribute">data-thread-key</span>=<span class="value">"请将此处替换成文章在你的站点中的ID"</span> <span class="attribute">data-title</span>=<span class="value">"请替换成文章的标题"</span> <span class="attribute">data-url</span>=<span class="value">"请替换成文章的网址"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="comment">&lt;!-- 多说评论框 end --&gt;</span>
+<span class="comment">&lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript">
+<span class="keyword">var</span> duoshuoQuery = {short_name:<span class="string">"caesarwyf"</span>};
+    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
+        <span class="keyword">var</span> ds = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);
+        ds.type = <span class="string">'text/javascript'</span>;ds.async = <span class="literal">true</span>;
+        ds.src = (<span class="built_in">document</span>.location.protocol == <span class="string">'https:'</span> ? <span class="string">'https:'</span> : <span class="string">'http:'</span>) + <span class="string">'//static.duoshuo.com/embed.js'</span>;
+        ds.charset = <span class="string">'UTF-8'</span>;
+        (<span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>] 
+         || <span class="built_in">document</span>.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>]).appendChild(ds);
+    })();
+    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="comment">&lt;!-- 多说公共JS代码 end --&gt;</span>
+</code></pre><p>‘</p>
+<p>   （2）开发版(最新功能抢先体验，但偶尔可能会出现bug)</p>
+<pre><code>    <span class="comment">&lt;!-- 多说评论框 start --&gt;</span>
+    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"ds-thread"</span> <span class="attribute">data-thread-key</span>=<span class="value">"请将此处替换成文章在你的站点中的ID"</span> <span class="attribute">data-title</span>=<span class="value">"请替换成文章的标题"</span> <span class="attribute">data-url</span>=<span class="value">"请替换成文章的网址"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="comment">&lt;!-- 多说评论框 end --&gt;</span>
+<span class="comment">&lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript">
+<span class="keyword">var</span> duoshuoQuery = {short_name:<span class="string">"caesarwyf"</span>};
+    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
+        <span class="keyword">var</span> ds = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);
+        ds.type = <span class="string">'text/javascript'</span>;ds.async = <span class="literal">true</span>;
+        ds.src = (<span class="built_in">document</span>.location.protocol == <span class="string">'https:'</span> ? <span class="string">'https:'</span> : <span class="string">'http:'</span>) + <span class="string">'//static.duoshuo.com/embed.unstable.js'</span>;
+        ds.charset = <span class="string">'UTF-8'</span>;
+        (<span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>] 
+         || <span class="built_in">document</span>.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>]).appendChild(ds);
+    })();
+    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="comment">&lt;!-- 多说公共JS代码 end --&gt;</span>
+</code></pre><p>’</p>
+<p>  <strong>配置代码来自于<a href="http://dev.duoshuo.com/docs" target="_blank" rel="external">多说开发者文档</a></strong></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -175,13 +165,13 @@ git remote -v
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Github/">Github</a>
+  <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Github/">Github</a>
+  <span></span> <a href="/tags/Hexo/">Hexo</a>
   </div>
 
 </div>
@@ -190,7 +180,7 @@ git remote -v
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yunfengwang.com.cn/2015/08/17/同步一个fork/" data-title="fork同步 | YunFeng`s blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yunfengwang.com.cn/2015/08/19/hexo添加评论功能/" data-title="Hexo添加评论功能--多说 | YunFeng`s blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -203,19 +193,11 @@ git remote -v
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/08/18/SASS、LESS和Stylus/" title="SASS、LESS和Stylus（上）">
-  <strong>上一篇：</strong><br/>
-  <span>
-  SASS、LESS和Stylus（上）</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/08/16/精通CSS（一）/"  title="精通CSS（一）">
+<a href="/2015/08/18/SASS、LESS和Stylus/"  title="SASS、LESS和Stylus（上）">
  <strong>下一篇：</strong><br/> 
- <span>精通CSS（一）
+ <span>SASS、LESS和Stylus（上）
 </span>
 </a>
 </div>
@@ -224,7 +206,7 @@ git remote -v
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/08/17/同步一个fork/" data-title="fork同步" data-url="http://yunfengwang.com.cn/2015/08/17/同步一个fork/"></div>
+	<div class="ds-thread" data-thread-key="2015/08/19/hexo添加评论功能/" data-title="Hexo添加评论功能--多说" data-url="http://yunfengwang.com.cn/2015/08/19/hexo添加评论功能/"></div>
 </section>
 
 
@@ -234,7 +216,7 @@ git remote -v
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#fork同步相关问题："><span class="toc-number">1.</span> <span class="toc-text">fork同步相关问题：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-_fork别人项目后如何与源项目保持同步："><span class="toc-number">1.1.</span> <span class="toc-text">1. fork别人项目后如何与源项目保持同步：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-同步fork："><span class="toc-number">1.2.</span> <span class="toc-text">2.同步fork：</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hexo_使用多说添加评论"><span class="toc-number">1.</span> <span class="toc-text">Hexo 使用多说添加评论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#添加多说"><span class="toc-number">1.1.</span> <span class="toc-text">添加多说</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-在_config-yml中添加多说的配置："><span class="toc-number">1.1.1.</span> <span class="toc-text">1.在_config.yml中添加多说的配置：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-修改themes\landscape(你当前的主题)\layout_partial\article-ejs模板把下面"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.修改themes\landscape(你当前的主题)\layout_partial\article.ejs模板把下面</span></a></li></ol></li></ol></li></ol>
  
   </div>
 

@@ -81,6 +81,118 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/08/19/hexo添加评论功能/" title="Hexo添加评论功能--多说" itemprop="url">Hexo添加评论功能--多说</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-19T14:12:51.000Z" itemprop="datePublished"> 發表於 2015-08-19</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="Hexo_使用多说添加评论">Hexo 使用多说添加评论</h1><p>Hexo是使用node.js技术开发的一个纯静态博客系统，Hexo默认使用的评论插件是Disqus。</p>
+<p>我们可以使用<a href="http://duoshuo.com/" target="_blank" rel="external">多说</a>来替换Disqus。多说还是不错的，很多朋友的博客都用的多说。</p>
+<h2 id="添加多说">添加多说</h2><h3 id="1-在_config-yml中添加多说的配置：">1.在_config.yml中添加多说的配置：</h3><pre><code><span class="attribute">duoshuo_shortname</span>: <span class="string">你站点的short_name</span>
+</code></pre><h3 id="2-修改themes\landscape(你当前的主题)\layout_partial\article-ejs模板把下面">2.修改themes\landscape(你当前的主题)\layout_partial\article.ejs模板把下面</h3><pre><code><span class="xml">   </span>&lt;%<span class="ruby"> <span class="keyword">if</span> (!index &amp;&amp; post.comments &amp;&amp; config.disqus_shortname){ </span>%&gt;<span class="xml">
+    <span class="tag">&lt;<span class="title">section</span> <span class="attribute">id</span>=<span class="value">"comments"</span>&gt;</span>
+     <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"disqus_thread"</span>&gt;</span>
+       <span class="tag">&lt;<span class="title">noscript</span>&gt;</span>Please enable JavaScript to view the <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"//disqus.com/?ref_noscript"</span>&gt;</span>comments powered by Disqus.<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">noscript</span>&gt;</span>
+     <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">section</span>&gt;</span>
+   </span>&lt;%<span class="ruby"> } </span>%&gt;<span class="xml">
+（若没有此部分，放到模板内容下面即可，我用的就是别人的模板，没有这块代码，就粘到下面了，也是OK的）</span>
+</code></pre><p>  部分替换为：</p>
+<p>  （1）稳定版(久经考验，稳定运行，但功能更新较慢)</p>
+<pre><code>  <span class="comment">&lt;!-- 多说评论框 start --&gt;</span>
+    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"ds-thread"</span> <span class="attribute">data-thread-key</span>=<span class="value">"请将此处替换成文章在你的站点中的ID"</span> <span class="attribute">data-title</span>=<span class="value">"请替换成文章的标题"</span> <span class="attribute">data-url</span>=<span class="value">"请替换成文章的网址"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="comment">&lt;!-- 多说评论框 end --&gt;</span>
+<span class="comment">&lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript">
+<span class="keyword">var</span> duoshuoQuery = {short_name:<span class="string">"caesarwyf"</span>};
+    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
+        <span class="keyword">var</span> ds = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);
+        ds.type = <span class="string">'text/javascript'</span>;ds.async = <span class="literal">true</span>;
+        ds.src = (<span class="built_in">document</span>.location.protocol == <span class="string">'https:'</span> ? <span class="string">'https:'</span> : <span class="string">'http:'</span>) + <span class="string">'//static.duoshuo.com/embed.js'</span>;
+        ds.charset = <span class="string">'UTF-8'</span>;
+        (<span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>] 
+         || <span class="built_in">document</span>.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>]).appendChild(ds);
+    })();
+    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="comment">&lt;!-- 多说公共JS代码 end --&gt;</span>
+</code></pre><p>‘</p>
+<p>   （2）开发版(最新功能抢先体验，但偶尔可能会出现bug)</p>
+<pre><code>    <span class="comment">&lt;!-- 多说评论框 start --&gt;</span>
+    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"ds-thread"</span> <span class="attribute">data-thread-key</span>=<span class="value">"请将此处替换成文章在你的站点中的ID"</span> <span class="attribute">data-title</span>=<span class="value">"请替换成文章的标题"</span> <span class="attribute">data-url</span>=<span class="value">"请替换成文章的网址"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="comment">&lt;!-- 多说评论框 end --&gt;</span>
+<span class="comment">&lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript">
+<span class="keyword">var</span> duoshuoQuery = {short_name:<span class="string">"caesarwyf"</span>};
+    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
+        <span class="keyword">var</span> ds = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);
+        ds.type = <span class="string">'text/javascript'</span>;ds.async = <span class="literal">true</span>;
+        ds.src = (<span class="built_in">document</span>.location.protocol == <span class="string">'https:'</span> ? <span class="string">'https:'</span> : <span class="string">'http:'</span>) + <span class="string">'//static.duoshuo.com/embed.unstable.js'</span>;
+        ds.charset = <span class="string">'UTF-8'</span>;
+        (<span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>] 
+         || <span class="built_in">document</span>.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>]).appendChild(ds);
+    })();
+    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="comment">&lt;!-- 多说公共JS代码 end --&gt;</span>
+</code></pre><p>’</p>
+<p>  <strong>配置代码来自于<a href="http://dev.duoshuo.com/docs" target="_blank" rel="external">多说开发者文档</a></strong></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Hexo/">Hexo</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/19/hexo添加评论功能/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/19/hexo添加评论功能/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/08/18/SASS、LESS和Stylus/" title="SASS、LESS和Stylus（上）" itemprop="url">SASS、LESS和Stylus（上）</a>
   </h1>
   <p class="article-author">By
@@ -1346,6 +1458,10 @@ Dropbox现在不提供对新用户的一些服务，<span class="preprocessor">p
 		  
 		
 		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/Javascript/" title="Javascript">Javascript<sup>2</sup></a></li>
 		  
 		
@@ -1384,6 +1500,10 @@ Dropbox现在不提供对新用户的一些服务，<span class="preprocessor">p
 		
 			
 				<li><a href="/tags/Github/" title="Github">Github<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
 			
 		
 		</ul>
