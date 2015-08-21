@@ -144,14 +144,12 @@
 </li>
 <li><p>表单反馈</p>
 <p>5.标签关联：</p>
-<p>隐式：<br>‘</p>
-<pre><code>//    <span class="tag">&lt;<span class="title">label</span>&gt;</span>email <span class="tag">&lt;<span class="title">input</span> <span class="attribute">...</span>/&gt;</span> <span class="tag">&lt;/<span class="title">label</span>&gt;</span>
-</code></pre><p>显式：<br>‘</p>
-<pre><code>//      &lt;<span class="keyword">label</span> <span class="keyword">for</span>=<span class="string">"email"</span>&gt; email &lt;/<span class="keyword">label</span>&gt; 
-</code></pre><p>   //      <input name="email" id="email" ...=""></p>
-</li>
+<p>隐式：’</p>
+<pre><code><span class="tag">&lt;<span class="title">label</span>&gt;</span>email <span class="tag">&lt;<span class="title">input</span> <span class="attribute">...</span>/&gt;</span> <span class="tag">&lt;/<span class="title">label</span>&gt;</span>
+</code></pre><p>显式：’</p>
+<pre><code>&lt;<span class="tag">label</span> <span class="keyword">for</span>=<span class="string">"email"</span>&gt; email &lt;/label&gt;   &lt;<span class="tag">input</span> name=<span class="string">"email"</span> id=<span class="string">"email"</span> ...&gt;
+</code></pre></li>
 </ul>
-<p>‘</p>
 <h2 id="第八章_布局">第八章 布局</h2><p>   所有CSS布局技术的根本都是3个概念：定位、浮动、外边框操纵</p>
 <p>  1.计划布局：</p>
 <pre><code>（1） 检查设计、寻找<span class="keyword">*</span><span class="keyword">*</span>重复模式<span class="keyword">*</span><span class="keyword">*</span>（包括结构中的模式或站点中反复出现的方式）
