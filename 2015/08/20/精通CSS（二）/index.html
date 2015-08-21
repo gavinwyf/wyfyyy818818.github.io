@@ -4,32 +4,71 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Hexo添加评论功能--多说 | YunFeng`s blog</title>
+    <title>精通CSS（二） | YunFeng`s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Yunfeng">
     
 
     
-    <meta name="description" content="Hexo 使用多说添加评论Hexo是使用node.js技术开发的一个纯静态博客系统，Hexo默认使用的评论插件是Disqus。
-我们可以使用多说来替换Disqus。多说还是不错的，很多朋友的博客都用的多说。
-添加多说1.在_config.yml中添加多说的配置：duoshuo_shortname: 你站点的short_name
-2.修改themes\landscape(你当前的主题)\layout">
+    <meta name="description" content="精通CSS 整理（二）第六章 对列表应用样式和创建导航条
+垂直导航条
+水平导航条  :before :after content属性
+
+图形化导航条
+
+“滑动门”标签页式导航
+  （1）用em单位来撑起
+  （2）元素框
+
+Suckerfish下拉菜单
+纯CSS下拉菜单  
+绝对定位   left:-999em;隐藏菜单
+left:auto; 出现
+
+CSS图像映射
+ （1）text-indent">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo添加评论功能--多说">
-<meta property="og:url" content="http://yunfengwang.com.cn/2015/08/19/hexo添加评论功能/index.html">
+<meta property="og:title" content="精通CSS（二）">
+<meta property="og:url" content="http://yunfengwang.com.cn/2015/08/20/精通CSS（二）/index.html">
 <meta property="og:site_name" content="YunFeng`s blog">
-<meta property="og:description" content="Hexo 使用多说添加评论Hexo是使用node.js技术开发的一个纯静态博客系统，Hexo默认使用的评论插件是Disqus。
-我们可以使用多说来替换Disqus。多说还是不错的，很多朋友的博客都用的多说。
-添加多说1.在_config.yml中添加多说的配置：duoshuo_shortname: 你站点的short_name
-2.修改themes\landscape(你当前的主题)\layout">
-<meta property="og:updated_time" content="2015-08-20T14:31:50.021Z">
+<meta property="og:description" content="精通CSS 整理（二）第六章 对列表应用样式和创建导航条
+垂直导航条
+水平导航条  :before :after content属性
+
+图形化导航条
+
+“滑动门”标签页式导航
+  （1）用em单位来撑起
+  （2）元素框
+
+Suckerfish下拉菜单
+纯CSS下拉菜单  
+绝对定位   left:-999em;隐藏菜单
+left:auto; 出现
+
+CSS图像映射
+ （1）text-indent">
+<meta property="og:updated_time" content="2015-08-21T13:24:05.320Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo添加评论功能--多说">
-<meta name="twitter:description" content="Hexo 使用多说添加评论Hexo是使用node.js技术开发的一个纯静态博客系统，Hexo默认使用的评论插件是Disqus。
-我们可以使用多说来替换Disqus。多说还是不错的，很多朋友的博客都用的多说。
-添加多说1.在_config.yml中添加多说的配置：duoshuo_shortname: 你站点的short_name
-2.修改themes\landscape(你当前的主题)\layout">
+<meta name="twitter:title" content="精通CSS（二）">
+<meta name="twitter:description" content="精通CSS 整理（二）第六章 对列表应用样式和创建导航条
+垂直导航条
+水平导航条  :before :after content属性
+
+图形化导航条
+
+“滑动门”标签页式导航
+  （1）用em单位来撑起
+  （2）元素框
+
+Suckerfish下拉菜单
+纯CSS下拉菜单  
+绝对定位   left:-999em;隐藏菜单
+left:auto; 出现
+
+CSS图像映射
+ （1）text-indent">
 
     
     <link rel="alternative" href="/atom.xml" title="YunFeng`s blog" type="application/atom+xml">
@@ -89,14 +128,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/08/19/hexo添加评论功能/" title="Hexo添加评论功能--多说" itemprop="url">Hexo添加评论功能--多说</a>
+      <a href="/2015/08/20/精通CSS（二）/" title="精通CSS（二）" itemprop="url">精通CSS（二）</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-19T14:12:51.000Z" itemprop="datePublished"> 發表於 2015-08-19</time>
+    <time datetime="2015-08-20T14:21:02.000Z" itemprop="datePublished"> 發表於 2015-08-20</time>
     
   </p>
 </header>
@@ -105,59 +144,143 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hexo_使用多说添加评论"><span class="toc-number">1.</span> <span class="toc-text">Hexo 使用多说添加评论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#添加多说"><span class="toc-number">1.1.</span> <span class="toc-text">添加多说</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-在_config-yml中添加多说的配置："><span class="toc-number">1.1.1.</span> <span class="toc-text">1.在_config.yml中添加多说的配置：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-修改themes\landscape(你当前的主题)\layout_partial\article-ejs模板把下面"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.修改themes\landscape(你当前的主题)\layout_partial\article.ejs模板把下面</span></a></li></ol></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#精通CSS_整理（二）"><span class="toc-number">1.</span> <span class="toc-text">精通CSS 整理（二）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第六章_对列表应用样式和创建导航条"><span class="toc-number">1.1.</span> <span class="toc-text">第六章 对列表应用样式和创建导航条</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第七章_对表单和数据表格应用样式"><span class="toc-number">1.2.</span> <span class="toc-text">第七章 对表单和数据表格应用样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第八章_布局"><span class="toc-number">1.3.</span> <span class="toc-text">第八章 布局</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第九章_bug和修复bug"><span class="toc-number">1.3.1.</span> <span class="toc-text">第九章 bug和修复bug</span></a></li></ol></li></ol></li></ol>
 		
 		</div>
 		
-		<h1 id="Hexo_使用多说添加评论">Hexo 使用多说添加评论</h1><p>Hexo是使用node.js技术开发的一个纯静态博客系统，Hexo默认使用的评论插件是Disqus。</p>
-<p>我们可以使用<a href="http://duoshuo.com/" target="_blank" rel="external">多说</a>来替换Disqus。多说还是不错的，很多朋友的博客都用的多说。</p>
-<h2 id="添加多说">添加多说</h2><h3 id="1-在_config-yml中添加多说的配置：">1.在_config.yml中添加多说的配置：</h3><pre><code><span class="attribute">duoshuo_shortname</span>: <span class="string">你站点的short_name</span>
-</code></pre><h3 id="2-修改themes\landscape(你当前的主题)\layout_partial\article-ejs模板把下面">2.修改themes\landscape(你当前的主题)\layout_partial\article.ejs模板把下面</h3><pre><code><span class="xml">   </span>&lt;%<span class="ruby"> <span class="keyword">if</span> (!index &amp;&amp; post.comments &amp;&amp; config.disqus_shortname){ </span>%&gt;<span class="xml">
-    <span class="tag">&lt;<span class="title">section</span> <span class="attribute">id</span>=<span class="value">"comments"</span>&gt;</span>
-     <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"disqus_thread"</span>&gt;</span>
-       <span class="tag">&lt;<span class="title">noscript</span>&gt;</span>Please enable JavaScript to view the <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"//disqus.com/?ref_noscript"</span>&gt;</span>comments powered by Disqus.<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">noscript</span>&gt;</span>
-     <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-    <span class="tag">&lt;/<span class="title">section</span>&gt;</span>
-   </span>&lt;%<span class="ruby"> } </span>%&gt;<span class="xml">
-（若没有此部分，放到模板内容下面即可，我用的就是别人的模板，没有这块代码，就粘到下面了，也是OK的）</span>
-</code></pre><p>  部分替换为：</p>
-<p>  （1）稳定版(久经考验，稳定运行，但功能更新较慢)</p>
-<pre><code>  <span class="comment">&lt;!-- 多说评论框 start --&gt;</span>
-    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"ds-thread"</span> <span class="attribute">data-thread-key</span>=<span class="value">"请将此处替换成文章在你的站点中的ID"</span> <span class="attribute">data-title</span>=<span class="value">"请替换成文章的标题"</span> <span class="attribute">data-url</span>=<span class="value">"请替换成文章的网址"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-<span class="comment">&lt;!-- 多说评论框 end --&gt;</span>
-<span class="comment">&lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;</span>
-<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript">
-<span class="keyword">var</span> duoshuoQuery = {short_name:<span class="string">"caesarwyf"</span>};
-    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
-        <span class="keyword">var</span> ds = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);
-        ds.type = <span class="string">'text/javascript'</span>;ds.async = <span class="literal">true</span>;
-        ds.src = (<span class="built_in">document</span>.location.protocol == <span class="string">'https:'</span> ? <span class="string">'https:'</span> : <span class="string">'http:'</span>) + <span class="string">'//static.duoshuo.com/embed.js'</span>;
-        ds.charset = <span class="string">'UTF-8'</span>;
-        (<span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>] 
-         || <span class="built_in">document</span>.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>]).appendChild(ds);
-    })();
-    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-<span class="comment">&lt;!-- 多说公共JS代码 end --&gt;</span>
-</code></pre><p>‘</p>
-<p>   （2）开发版(最新功能抢先体验，但偶尔可能会出现bug)</p>
-<pre><code>    <span class="comment">&lt;!-- 多说评论框 start --&gt;</span>
-    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"ds-thread"</span> <span class="attribute">data-thread-key</span>=<span class="value">"请将此处替换成文章在你的站点中的ID"</span> <span class="attribute">data-title</span>=<span class="value">"请替换成文章的标题"</span> <span class="attribute">data-url</span>=<span class="value">"请替换成文章的网址"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-<span class="comment">&lt;!-- 多说评论框 end --&gt;</span>
-<span class="comment">&lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;</span>
-<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript">
-<span class="keyword">var</span> duoshuoQuery = {short_name:<span class="string">"caesarwyf"</span>};
-    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
-        <span class="keyword">var</span> ds = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);
-        ds.type = <span class="string">'text/javascript'</span>;ds.async = <span class="literal">true</span>;
-        ds.src = (<span class="built_in">document</span>.location.protocol == <span class="string">'https:'</span> ? <span class="string">'https:'</span> : <span class="string">'http:'</span>) + <span class="string">'//static.duoshuo.com/embed.unstable.js'</span>;
-        ds.charset = <span class="string">'UTF-8'</span>;
-        (<span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>] 
-         || <span class="built_in">document</span>.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>]).appendChild(ds);
-    })();
-    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-<span class="comment">&lt;!-- 多说公共JS代码 end --&gt;</span>
-</code></pre><p>’</p>
-<p>  <strong>配置代码来自于<a href="http://dev.duoshuo.com/docs" target="_blank" rel="external">多说开发者文档</a></strong></p>
+		<h1 id="精通CSS_整理（二）">精通CSS 整理（二）</h1><h2 id="第六章_对列表应用样式和创建导航条">第六章 对列表应用样式和创建导航条</h2><ol>
+<li><p>垂直导航条</p>
+<p>水平导航条  :before :after content属性</p>
+</li>
+<li><p>图形化导航条</p>
+</li>
+<li><p>“滑动门”标签页式导航</p>
+<p>  （1）用em单位来撑起</p>
+<p>  （2）元素框</p>
+</li>
+<li><p>Suckerfish下拉菜单</p>
+<p>纯CSS下拉菜单  </p>
+<p>绝对定位   left:-999em;隐藏菜单</p>
+<pre><code><span class="rule"><span class="attribute">left</span>:<span class="value">auto</span></span>; 出现
+</code></pre></li>
+<li><p>CSS图像映射</p>
+<p> （1）text-indent:-1000em; 隐藏框</p>
+<p> （2）flicker风格图像映射</p>
+<p> （3）远距离翻转：不同元素放在同一个a标签中，分别定位将</p>
+</li>
+<li><p>处理浮动</p>
+<p>（1）添加一个进行清理的元素</p>
+<p>（2）让父元素浮动，使某元素对它清理</p>
+<p>（3）overflow：hidden（通常）</p>
+</li>
+<li><p>定义列表  （组成“定义”）</p>
+<pre><code><span class="tag">&lt;dl&gt;</span>
+  <span class="tag">&lt;dt&gt;</span><span class="tag">&lt;/dt&gt;</span>
+  <span class="tag">&lt;dd&gt;</span><span class="tag">&lt;/dd&gt;</span>
+  <span class="tag">&lt;dt&gt;</span><span class="tag">&lt;/dt&gt;</span>
+  <span class="tag">&lt;dd&gt;</span><span class="tag">&lt;/dd&gt;</span> 
+<span class="tag">&lt;/dl&gt;</span>
+</code></pre></li>
+</ol>
+<h2 id="第七章_对表单和数据表格应用样式">第七章 对表单和数据表格应用样式</h2><p> 1.表格持有元素：</p>
+<p>   （1）summary和caption</p>
+<p>   （2）thead,tbody,tfoot</p>
+<p>   （3）col,colgroup(支持的浏览器不多)</p>
+<p> 2.两个表格边盒模型：单独的、叠加的</p>
+<p>   border-collapsed：seperate/collapse;</p>
+<p>   在非锚元素使用hover，IE6是无效的。若需要IE6中使用，需要在连接中添加边框。</p>
+<p> 3.简单表单布局：  <fieldset> <legend></legend></fieldset></p>
+<p> 4.复杂表单布局： </p>
+<ul>
+<li><p>多列复选框</p>
+</li>
+<li><p>提交按钮</p>
+</li>
+<li><p>表单反馈</p>
+<p>5.标签关联：</p>
+<p>隐式：</p>
+<label>email<input ...=""></label>
+
+<p>显式：</p>
+<p><label for="email">email</label> </p>
+<input name="email" id="email" ...="">
+
+
+</li>
+</ul>
+<h2 id="第八章_布局">第八章 布局</h2><p>   所有CSS布局技术的根本都是3个概念：定位、浮动、外边框操纵</p>
+<p>  1.计划布局：</p>
+<pre><code>（1） 检查设计、寻找<span class="keyword">*</span><span class="keyword">*</span>重复模式<span class="keyword">*</span><span class="keyword">*</span>（包括结构中的模式或站点中反复出现的方式）
+
+（2） 把页面划分为大的结构性区域 eg.容器、页眉、内容区域和页脚
+
+（3） 内容区域本身，开始建立网格结构
+
+（4） 在各内容区域中寻找不同的布局结构 （分为几列，开始详细设计结构和尺寸）
+
+（5） 关注不同类型的内容 (是新闻稿、文章还是公告，每块内容起一个有意义的名字)
+
+（6） 查看每个内容块的结构，看不同类型中是否有相同模式（应尽量采用一般的类名，然后根据上下文应用样式）
+
+（7） 找出模式并确定命名约定后，定义将使用的元素
+</code></pre><p>  2.水平居中： </p>
+<pre><code><span class="attribute">margin</span>： 0 <span class="attribute">auto</span>;  
+
+IE6及以下(混杂模式)：<span class="attribute">text-align</span><span class="value">:center;</span> 误解为让所有东西居中，而不只是文本
+这种方式使用<span class="attribute">text-align</span>属性为一种hack，但是无害的。
+</code></pre><p>  3.浮动布局  （相对于绝对定位，浮动最容易使用，也是最可靠的）</p>
+<pre><code><span class="comment">* 两列浮动  （两列都向左浮动，或者一左一右浮动（可建立视觉隔离带）） </span>
+
+     浮动元素中添加<span class="keyword">display</span>：inline,防止IE中双边距浮动bug
+
+<span class="comment">* 三列浮动  （与双列布局类似，可在右列中再嵌入双列布局）      </span>
+</code></pre><p>  4.<strong>布局</strong></p>
+<pre><code>* 固定宽度布局： px     (<span class="built_in">max</span>-<span class="variable">width</span> <span class="built_in">min</span>-<span class="variable">width</span> 控制宽度，避免失真或影响布局)
+
+* 流失布局： 百分数
+
+* 弹性布局： em（字号）
+</code></pre><p>  5.流式和弹性图像</p>
+<p>  6.faux列 （伪列用于背景）</p>
+<p>  7.等高列</p>
+<p>  8.CSS3列：</p>
+<pre><code>column-count、column-width、column-gap、column-<span class="keyword">rule</span>
+</code></pre><p>  9.CSS框架CSS系统</p>
+<pre><code>框架：是为了在特定的站点上使用而创建，而不是作为适合任何设计的灵活的布局系统从头设计的。
+
+系统：实际上是一个工具箱，其中包含可重用的样式和标记模式，可以用他们开发站点专用的框架。
+</code></pre><h3 id="第九章_bug和修复bug">第九章 bug和修复bug</h3><p> 1.常见的CSS问题：</p>
+<p>  （1）打字、语法错误<br>  （2）优先级<br>  （3）外边距叠加</p>
+<p> 2.捕捉bug基本知识</p>
+<p>  （1）一开始注意避免<br>  （2）隔离问题: 外加边框<br>  （3）创建测试案例：去掉变量、部分代码或注释删掉</p>
+<p>3.<strong>拥有布局</strong></p>
+<p>  布局元素</p>
+<p>  布局问题</p>
+<p>4.解决方法：</p>
+<ul>
+<li><p>IE注释(条件) </p>
+<!--[ if IE 6]>
+<link rel="" type="" href="" ...>
+<![endif]-->
+</li>
+<li><p>hack和过滤器</p>
+<p> 星号HTML hack : *html</p>
+<p> 自选择器 hack : HTML&gt;</p>
+</li>
+</ul>
+<p>5.常见bug及修复方法</p>
+<ul>
+<li><p>双边距浮动bug</p>
+</li>
+<li><p>3像素文本偏移bug</p>
+</li>
+<li><p>IE6的重复字符bug</p>
+</li>
+<li><p>IE6的“藏猫猫”bug</p>
+</li>
+<li><p>相对容器中的绝对定位</p>
+</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -165,13 +288,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
+  <a class="article-category-link" href="/categories/CSS/">CSS</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Hexo/">Hexo</a>
+  <span></span> <a href="/tags/CSS/">CSS</a>
   </div>
 
 </div>
@@ -180,7 +303,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yunfengwang.com.cn/2015/08/19/hexo添加评论功能/" data-title="Hexo添加评论功能--多说 | YunFeng`s blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yunfengwang.com.cn/2015/08/20/精通CSS（二）/" data-title="精通CSS（二） | YunFeng`s blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -193,19 +316,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/08/20/精通CSS（二）/" title="精通CSS（二）">
-  <strong>上一篇：</strong><br/>
-  <span>
-  精通CSS（二）</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/08/18/SASS、LESS和Stylus/"  title="SASS、LESS和Stylus（上）">
+<a href="/2015/08/19/hexo添加评论功能/"  title="Hexo添加评论功能--多说">
  <strong>下一篇：</strong><br/> 
- <span>SASS、LESS和Stylus（上）
+ <span>Hexo添加评论功能--多说
 </span>
 </a>
 </div>
@@ -214,7 +329,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/08/19/hexo添加评论功能/" data-title="Hexo添加评论功能--多说" data-url="http://yunfengwang.com.cn/2015/08/19/hexo添加评论功能/"></div>
+	<div class="ds-thread" data-thread-key="2015/08/20/精通CSS（二）/" data-title="精通CSS（二）" data-url="http://yunfengwang.com.cn/2015/08/20/精通CSS（二）/"></div>
 </section>
 
 
@@ -224,7 +339,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hexo_使用多说添加评论"><span class="toc-number">1.</span> <span class="toc-text">Hexo 使用多说添加评论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#添加多说"><span class="toc-number">1.1.</span> <span class="toc-text">添加多说</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-在_config-yml中添加多说的配置："><span class="toc-number">1.1.1.</span> <span class="toc-text">1.在_config.yml中添加多说的配置：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-修改themes\landscape(你当前的主题)\layout_partial\article-ejs模板把下面"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.修改themes\landscape(你当前的主题)\layout_partial\article.ejs模板把下面</span></a></li></ol></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#精通CSS_整理（二）"><span class="toc-number">1.</span> <span class="toc-text">精通CSS 整理（二）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第六章_对列表应用样式和创建导航条"><span class="toc-number">1.1.</span> <span class="toc-text">第六章 对列表应用样式和创建导航条</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第七章_对表单和数据表格应用样式"><span class="toc-number">1.2.</span> <span class="toc-text">第七章 对表单和数据表格应用样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第八章_布局"><span class="toc-number">1.3.</span> <span class="toc-text">第八章 布局</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第九章_bug和修复bug"><span class="toc-number">1.3.1.</span> <span class="toc-text">第九章 bug和修复bug</span></a></li></ol></li></ol></li></ol>
  
   </div>
 
