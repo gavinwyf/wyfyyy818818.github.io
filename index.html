@@ -164,7 +164,8 @@ checkscope()(); <span class="comment">//local scope</span>
 <li>嵌套的函数可访问作用域内的变量，也可以访问外部函数中定义的counter变量。</li>
 <li>当外部函数返回后，其他任何代码都无法访问counter变量，只有内部的函数才能访问。</li>
 </ul>
-<h2 id="6-_同一个外部函数内定义多个嵌套函数也可以访问像counter一样的私有变量，多个嵌套函数共享一个作用域链">6. 同一个外部函数内定义多个嵌套函数也可以访问像counter一样的私有变量，多个嵌套函数共享一个作用域链</h2><pre><code>例如：
+<h2 id="6-_多个嵌套函数">6. 多个嵌套函数</h2><p>   同一个外部函数内定义多个嵌套函数也可以访问像counter一样的私有变量，多个嵌套函数共享一个作用域链</p>
+<pre><code>例如：
 <span class="function"><span class="keyword">function</span> <span class="title">counter</span><span class="params">()</span>{</span>                       var c = counter<span class="params">()</span>,d = counter<span class="params">()</span>;
    var n=<span class="number">0</span>;                               c.count<span class="params">()</span>   <span class="comment">//0</span>
    return {                               d.count<span class="params">()</span>   <span class="comment">//0  互不干扰</span>
