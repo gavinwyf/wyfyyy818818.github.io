@@ -1,0 +1,752 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>BOM基础整理 | YunFeng`s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yunfeng">
+    
+
+    
+    <meta name="description" content="BOM基础知识整理 BOM里面我觉得最重要的还是计时器和事件处理这两个部分。简单整理一下，有许多平时不太常用。 我就整理一下我想复习的东西。
+
+BOM：浏览器对象模型 专门访问浏览器窗口的对象模型
+ BOM提供了一些访问窗口对象的一些方法，我们可以用它来移动窗口位置，改变窗口大小，打开新窗口和关闭窗口，弹出对话框，进行导航以及获取客户的一些信息如：浏览器品牌版本，屏幕分辨率。
+
+DHTML对象模型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BOM基础整理">
+<meta property="og:url" content="http://yunfengwang.com.cn/2015/08/22/BOM整理/index.html">
+<meta property="og:site_name" content="YunFeng`s blog">
+<meta property="og:description" content="BOM基础知识整理 BOM里面我觉得最重要的还是计时器和事件处理这两个部分。简单整理一下，有许多平时不太常用。 我就整理一下我想复习的东西。
+
+BOM：浏览器对象模型 专门访问浏览器窗口的对象模型
+ BOM提供了一些访问窗口对象的一些方法，我们可以用它来移动窗口位置，改变窗口大小，打开新窗口和关闭窗口，弹出对话框，进行导航以及获取客户的一些信息如：浏览器品牌版本，屏幕分辨率。
+
+DHTML对象模型">
+<meta property="og:updated_time" content="2015-08-24T13:36:06.615Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BOM基础整理">
+<meta name="twitter:description" content="BOM基础知识整理 BOM里面我觉得最重要的还是计时器和事件处理这两个部分。简单整理一下，有许多平时不太常用。 我就整理一下我想复习的东西。
+
+BOM：浏览器对象模型 专门访问浏览器窗口的对象模型
+ BOM提供了一些访问窗口对象的一些方法，我们可以用它来移动窗口位置，改变窗口大小，打开新窗口和关闭窗口，弹出对话框，进行导航以及获取客户的一些信息如：浏览器品牌版本，屏幕分辨率。
+
+DHTML对象模型">
+
+    
+    <link rel="alternative" href="/atom.xml" title="YunFeng`s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="YunFeng`s blog" title="YunFeng`s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="YunFeng`s blog">YunFeng`s blog</a></h1>
+				<h2 class="blog-motto">My Life! Dream is on the way</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yunfengwang.com.cn">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/08/22/BOM整理/" title="BOM基础整理" itemprop="url">BOM基础整理</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-22T10:56:33.000Z" itemprop="datePublished"> 發表於 2015-08-22</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#BOM基础知识整理"><span class="toc-number">1.</span> <span class="toc-text">BOM基础知识整理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-window:_代表当前打开的浏览器窗口"><span class="toc-number">1.1.</span> <span class="toc-text">1.window: 代表当前打开的浏览器窗口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-navigator:_封装客户端浏览器和操作系统的信息"><span class="toc-number">1.2.</span> <span class="toc-text">2.navigator: 封装客户端浏览器和操作系统的信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-_location:_封装了当前浏览器窗口正在打开的url"><span class="toc-number">1.3.</span> <span class="toc-text">3. location: 封装了当前浏览器窗口正在打开的url</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-_history:_当前窗口本次打开后的历史记录栈"><span class="toc-number">1.4.</span> <span class="toc-text">4. history: 当前窗口本次打开后的历史记录栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-_screen：封装了当前窗口所在屏幕的属性"><span class="toc-number">1.5.</span> <span class="toc-text">5. screen：封装了当前窗口所在屏幕的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-_event对象：当事件发生时，自动创建的，封装事件属性的对象"><span class="toc-number">1.6.</span> <span class="toc-text">6. event对象：当事件发生时，自动创建的，封装事件属性的对象</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="BOM基础知识整理">BOM基础知识整理</h1><p> BOM里面我觉得最重要的还是计时器和事件处理这两个部分。简单整理一下，有许多平时不太常用。 我就整理一下我想复习的东西。</p>
+<blockquote>
+<p>BOM：浏览器对象模型 专门访问浏览器窗口的对象模型</p>
+<p> BOM提供了一些访问窗口对象的一些方法，我们可以用它来移动窗口位置，改变窗口大小，打开新窗口和关闭窗口，弹出对话框，进行导航以及获取客户的一些信息如：浏览器品牌版本，屏幕分辨率。</p>
+</blockquote>
+<p>DHTML对象模型(7种)：</p>
+<pre><code><span class="label">Window:</span> 代表当前打开的浏览器窗口
+history：当前窗口本次打开后的历史记录
+<span class="label">navigator:</span> 封装浏览器软件的版本和信息
+document对象：当前浏览器窗口正在加载的网页文件（网页一加载，就会自动创建）
+<span class="label">location:</span> 封装了当前窗口正在打开的url地址
+<span class="label">screen:</span> 封装了当前窗口所在屏幕的信息
+event：当事件发生时，用来封装事件的信息
+</code></pre><ol>
+<li><p><strong>打开/关闭窗口</strong></p>
+<p> (1) 打开窗口：3种：</p>
+<pre><code><span class="number">1</span>. 替换当前窗口：
+      HTML： &lt;<span class="tag">a</span> href=<span class="string">""</span> target=<span class="string">"_self"</span>&gt;&lt;/a&gt;
+      BOM：  window.<span class="function"><span class="title">open</span><span class="params">(<span class="string">"url"</span>,<span class="string">"_self"</span>)</span></span>
+<span class="number">2</span>. 在新窗口打开，可重复打开
+      HTML：&lt;<span class="tag">a</span> href=<span class="string">""</span> target=<span class="string">"_blank"</span>&gt;&lt;/a&gt;
+      BOM: window.<span class="function"><span class="title">open</span><span class="params">(<span class="string">"url"</span>)</span></span>     <span class="comment">//默认_blank</span>
+<span class="number">3</span>. 在新窗口打开，不可重复打开
+      HTML： &lt;<span class="tag">a</span> href=<span class="string">""</span> target=<span class="string">"新窗口名"</span>&gt;&lt;/a&gt;
+      BOM: window.<span class="function"><span class="title">open</span><span class="params">(<span class="string">"url"</span>,<span class="string">"窗口名"</span>)</span></span>
+*浏览器规定相同名称的窗口，只能打开一个*
+</code></pre><p> (2) 程序自动关闭窗口：window.close()  关闭当前窗口</p>
+</li>
+<li><p><strong>对话框：</strong></p>
+<pre><code><span class="number">1.</span> 警告框：alert(<span class="string">"提示信息"</span>);   ——只有确定按钮
+
+<span class="number">2.</span> 输入框：<span class="variable"><span class="keyword">var</span> str</span>=prompt(<span class="string">"提示信息"</span>);
+
+<span class="number">3.</span> 确认框：<span class="variable"><span class="keyword">var</span> bool</span>=confirm(<span class="string">"提示信息"</span>);——确定和取消  <span class="literal">true</span>   <span class="literal">false</span>
+</code></pre></li>
+<li><p><strong>定时器</strong>：不用用户触发，也能自动执行的效果</p>
+<ol>
+<li><p>周期性定时器setInterval：按固定时间间隔，反复执行相同操作</p>
+<pre><code>step1. 使用一个全局变量保存定时器唯一编号   var <span class="built_in">timer</span>=<span class="literal">null</span>;
+       停止定时器，只能使用定时器的编号  
+
+step2. 任务：一个函数：每次“循环”要执行的任务(任务结尾可设置结束条件)
+
+step3. 何时启动、停止定时器：
+        启动：<span class="built_in">timer</span>=setInterval(任务函数 , 间隔毫秒数);
+        停止：clearInterval(<span class="built_in">timer</span>);  <span class="built_in">timer</span>=<span class="literal">null</span>;
+</code></pre></li>
+<li><p>一次性定时器setTimeout：先等待一段时间，再执行一次任务，自动停止</p>
+</li>
+</ol>
+</li>
+</ol>
+<pre><code>step1. 全局  var <span class="variable">timer=</span><span class="constant">null</span>;
+
+step2. 任务：只执行一次     //好的习惯：任务结尾，<span class="variable">timer=</span><span class="constant">null</span>;
+
+step3. 何时启动/停止:
+        启动：<span class="variable">timer=</span>setTimeout(任务 , 等待毫秒数);
+        停止：clearTimeout(timer); <span class="variable">timer=</span><span class="constant">null</span>;
+</code></pre><hr>
+<h2 id="1-window:_代表当前打开的浏览器窗口">1.window: 代表当前打开的浏览器窗口</h2><p>   window对象是BOM的根对象</p>
+<pre><code>window 对象属性：innerwidth,innerheight,pageXOffset,pageYOffset
+       对象方法：<span class="function"><span class="title">alert</span><span class="params">()</span></span>,<span class="function"><span class="title">confirm</span><span class="params">()</span></span>,<span class="function"><span class="title">prompt</span><span class="params">()</span></span> 三种对话框
+                <span class="function"><span class="title">open</span><span class="params">()</span></span>,<span class="function"><span class="title">close</span><span class="params">()</span></span>，<span class="function"><span class="title">print</span><span class="params">()</span></span>   <span class="function"><span class="title">blur</span><span class="params">()</span></span>,<span class="function"><span class="title">focus</span><span class="params">()</span></span> 失去、获取焦点
+                <span class="function"><span class="title">setInterval</span><span class="params">()</span></span>,<span class="function"><span class="title">setTimeout</span><span class="params">()</span></span>  
+                <span class="function"><span class="title">clearInterval</span><span class="params">()</span></span>,<span class="function"><span class="title">clearTimeout</span><span class="params">()</span></span>
+</code></pre><h2 id="2-navigator:_封装客户端浏览器和操作系统的信息">2.navigator: 封装客户端浏览器和操作系统的信息</h2><pre><code><span class="label">cookieEnabled:</span> 判断当前浏览器是否启用了cookie
+cookie：客户端存储个人信息的文件
+<span class="label">userAgent:</span> 客户端浏览器的名称和版本,判断浏览器的名称和版本
+<span class="label">appName:</span> 浏览器名称     
+<span class="label">appVersion:</span> 浏览器平台和版本信息
+</code></pre><h2 id="3-_location:_封装了当前浏览器窗口正在打开的url">3. location: 封装了当前浏览器窗口正在打开的url</h2><pre><code>修改location.href属性，可替换当前窗口，打开新页面
+
+属性：host,hostname,herf,pathname,port，protocol
+
+方法：<span class="function"><span class="title">assign</span><span class="params">()</span></span>加载新的  <span class="function"><span class="title">reload</span><span class="params">()</span></span>重新加载  <span class="function"><span class="title">replace</span><span class="params">()</span></span>替换当前文档
+</code></pre><h2 id="4-_history:_当前窗口本次打开后的历史记录栈">4. history: 当前窗口本次打开后的历史记录栈</h2><pre><code>前进：<span class="keyword">history</span>.<span class="keyword">go</span>(<span class="number">1</span>) 等效于 <span class="keyword">history</span>.forward()
+刷新：<span class="keyword">history</span>.<span class="keyword">go</span>(<span class="number">0</span>) 
+后退：<span class="keyword">history</span>.<span class="keyword">go</span>(-<span class="number">1</span>) 等效于 <span class="keyword">history</span>.back()
+     <span class="keyword">history</span>的内容，禁止读写。
+禁用后退：location.replace(<span class="string">"新url"</span>);
+      在<span class="keyword">history</span>中，用新url，代替原url的位置。
+      不会增加<span class="keyword">history</span>中的历史记录数。
+</code></pre><h2 id="5-_screen：封装了当前窗口所在屏幕的属性">5. screen：封装了当前窗口所在屏幕的属性</h2><pre><code>width,height： 屏幕的实际分辨率
+availWidth,<span class="string">availHeight:</span>  去掉任务栏后的屏幕分辨率
+window.innerHeight/<span class="string">Width:</span>  浏览器窗口中文档显示区域的宽高
+</code></pre><h2 id="6-_event对象：当事件发生时，自动创建的，封装事件属性的对象">6. event对象：当事件发生时，自动创建的，封装事件属性的对象</h2><p>  <strong>(1) 获得event对象：</strong></p>
+<pre><code><span class="number">1</span>.html: on事件名=<span class="string">"事件处理函数(event)"</span>;       &lt;<span class="keyword">div</span> onclick=<span class="string">"func(event);"</span>&gt;<span class="keyword">div</span>&lt;/<span class="keyword">div</span>&gt;  
+    缺： 内容和脚本混合   优： 所有浏览器通用    
+
+<span class="number">2</span>.js:  <span class="keyword">var</span> e=window.event||arguments[<span class="number">0</span>];    
+   <span class="type">IE</span>: window.event 可直接使用event  无需传入参入
+   <span class="type">FF</span>: 使用event关键字将事件对象作为参数传入  function func(e)<span class="decorator">{...}</span>
+   其他：arguments[<span class="number">0</span>]
+</code></pre><p>  <strong>(2) event对象属性：</strong></p>
+<pre><code> 1.获得目标对象： <span class="keyword">var</span> src=<span class="keyword">e</span>.srcElement(IE)||<span class="keyword">e</span>.target(FF);   
+
+         解决兼容性：function func(<span class="keyword">e</span>){
+              <span class="keyword">var</span> obj = <span class="keyword">e</span>.srcElement||<span class="keyword">e</span>.target;
+              alert(obj.nodeName);
+             }
+
+ 2.事件发生时的鼠标位置：
+    相对于浏览器显示区： <span class="keyword">e</span>.x||<span class="keyword">e</span>.clientX; <span class="keyword">e</span>.y||<span class="keyword">e</span>.clientY;
+    相对于页面原点坐标： <span class="keyword">e</span>.pageX;  <span class="keyword">e</span>.pageY;
+    相对于显示屏原点坐标：<span class="keyword">e</span>.screenX; <span class="keyword">e</span>.screenY;
+    相对于事件源对象原点的坐标：<span class="keyword">e</span>.offsetX; <span class="keyword">e</span>.offsetY;
+
+ 3. keyCode/<span class="keyword">which</span>/charCode : 键盘事件中按下的按键
+    eventPhase :事件所处的传播阶段
+    button : 鼠标哪个键被按下了
+    cancelBubble : 是否取消事件冒泡
+returnValue : 是否阻止事件默认行为
+</code></pre><p>  <strong>(3) 事件：</strong></p>
+<pre><code>鼠标： <span class="attribute">onmouseover</span>: 仅在跨入边界时触发一次
+      <span class="attribute">onmousemove</span>: 在范围内移动鼠标时，反复触发
+      <span class="attribute">onmouseout</span>: 仅在跨出边界时触发一次      
+      <span class="attribute">onmouseup</span>: 鼠标按下
+      <span class="attribute">onmousedown</span>: 鼠标抬起
+      <span class="attribute">onclick</span>: 鼠标点击后
+
+键盘： onkeydown onkeyup onkeypress
+
+状态： onload onunload
+      onfocus onblur onchange          
+      onsumbit onreset
+      onresize onerror
+</code></pre><p>  <strong>(4) 定义事件：3种</strong></p>
+<pre><code><span class="number">1.</span> 在元素开始标签中使用on事件名=<span class="string">"事件处理函数"</span>  &lt;button onclick=<span class="string">"calc()"</span>&gt;&lt;/button&gt; 
+
+<span class="number">2.</span> js中，对象.on事件名=事件处理函数对象  btn.onclick=calc;       btn.onclick=<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{}
+   (一个事件定义只能绑定一个处理函数对象)
+
+<span class="number">3.</span> btnObj.attachEvent(<span class="string">'onclick'</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{});   <span class="comment">//IE</span>
+   btnObj.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{});  <span class="comment">//DOM</span>
+
+      处理兼容性：
+          <span class="keyword">if</span>(elem.attachEvent){
+           IE:elem.attachEvent(<span class="string">"on事件名"</span>,处理函数对象);
+      }<span class="keyword">else</span>{
+          DOM: elem.addEventListener(<span class="string">"事件名"</span>，处理函数对象,是否在捕获阶段触发);
+      }
+</code></pre><p>  <strong>(5) 事件周期：事件从发生到触发的全过程</strong></p>
+<pre><code>IE事件周期：   <span class="number">2</span>个阶段:目标触发<span class="comment">--&gt;冒泡</span>
+其它事件周期:   <span class="number">3</span>个阶段：捕获<span class="comment">--&gt;目标触发--&gt;冒泡  </span>
+
+        (<span class="number">1</span>)捕获：最外层元素，向内，仅到目标元素，记录每个元素是否定义该事件     
+              html 没有  body 没有                       
+                    <span class="keyword">div</span> d1 onclick=<span class="string">"show()"</span>
+                <span class="keyword">div</span> d2 onclick=<span class="string">"show()"</span>
+            <span class="keyword">div</span> d3 onclick=<span class="string">"show()"</span>
+        (<span class="number">2</span>)目标触发：触发d3的onclick，执行show方法
+        (<span class="number">3</span>)冒泡：由内向外，依次触发记录的事件
+                执行<span class="keyword">div</span> d2 onclick=<span class="string">"show()"</span>
+                 执行<span class="keyword">div</span> d1 onclick=<span class="string">"show()"</span>;
+</code></pre><p>  <strong>(6) 取消冒泡：</strong></p>
+<pre><code><span class="literal">e</span>.cancelButtle=<span class="literal">true</span>;  //在事件处理函数末尾加，只执行一次，不冒泡
+备用： <span class="literal">e</span>.stopPropegation();
+
+利用冒泡：*如果多个子元素定义了相同的事件，只需要将相同的事件定义在父元素一次即可*
+</code></pre><p>  <strong>(7) 取消事件：2种</strong></p>
+<pre><code><span class="number">1</span>.html： on事件名=<span class="string">"return 处理函数()"</span>
+        <span class="function"><span class="keyword">function</span> 处理函数<span class="params">()</span>{</span>...return <span class="literal">true</span>/<span class="literal">false</span>;}
+          <span class="comment">//*2个return必不可少 自己控制*      </span>
+
+<span class="number">2</span>.js:  elem.on事件名=处理函数对象；  <span class="comment">//处理函数的结尾，增加：e.returnValue=false;</span>
+
+          <span class="keyword">if</span><span class="params">(e.preventDefault)</span>{ 
+            e.preventDefault<span class="params">()</span>; 
+          }<span class="keyword">else</span>{
+            e.returnValue=<span class="literal">false</span>; 
+          }
+</code></pre>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Javascript/">Javascript</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yunfengwang.com.cn/2015/08/22/BOM整理/" data-title="BOM基础整理 | YunFeng`s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/08/22/DOM整理/"  title="DOM基础整理">
+ <strong>下一篇：</strong><br/> 
+ <span>DOM基础整理
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/08/22/BOM整理/" data-title="BOM基础整理" data-url="http://yunfengwang.com.cn/2015/08/22/BOM整理/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#BOM基础知识整理"><span class="toc-number">1.</span> <span class="toc-text">BOM基础知识整理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-window:_代表当前打开的浏览器窗口"><span class="toc-number">1.1.</span> <span class="toc-text">1.window: 代表当前打开的浏览器窗口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-navigator:_封装客户端浏览器和操作系统的信息"><span class="toc-number">1.2.</span> <span class="toc-text">2.navigator: 封装客户端浏览器和操作系统的信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-_location:_封装了当前浏览器窗口正在打开的url"><span class="toc-number">1.3.</span> <span class="toc-text">3. location: 封装了当前浏览器窗口正在打开的url</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-_history:_当前窗口本次打开后的历史记录栈"><span class="toc-number">1.4.</span> <span class="toc-text">4. history: 当前窗口本次打开后的历史记录栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-_screen：封装了当前窗口所在屏幕的属性"><span class="toc-number">1.5.</span> <span class="toc-text">5. screen：封装了当前窗口所在屏幕的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-_event对象：当事件发生时，自动创建的，封装事件属性的对象"><span class="toc-number">1.6.</span> <span class="toc-text">6. event对象：当事件发生时，自动创建的，封装事件属性的对象</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/CSS/" title="CSS">CSS<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Github/" title="Github">Github<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Javascript/" title="Javascript">Javascript<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Leaf/" title="Leaf">Leaf<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/WebApp/" title="WebApp">WebApp<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WebApp/" title="WebApp">WebApp<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/new/" title="new">new<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Github/" title="Github">Github<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.w3.org/" target="_blank" title="W3C">W3C</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ecmascript.org/" target="_blank" title="ECMA">ECMA</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://developer.mozilla.org/zh-CN/" target="_blank" title="Mozilla">Mozilla</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://html5labs.interoperabilitybridges.com/" target="_blank" title="微软H5实验室">微软H5实验室</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.w3cfuns.com/portal.php" target="_blank" title="前端网">前端网</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://efe.baidu.com/" target="_blank" title="EFE">EFE</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ued.taobao.org/blog/" target="_blank" title="淘宝">淘宝</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://it-ebooks.info/" target="_blank" title="IT eBooks">IT eBooks</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wwsun.me/posts/creating-javascript-modules-loader.html" target="_blank" title="模块加速器">模块加速器</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+<div class="doubanshow">
+<p class="asidetitle">豆瓣秀</p>
+<div>
+<script type="text/javascript" src="http://www.douban.com/service/badge/CaesarFeng/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie" ></script>
+</div>
+</div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> One bboy, One Jser, YunFeng. <br/>
+			The beginning of my blog life</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/u/3181646571" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/wyfyyy818818" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/CaesarFeng" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/wang-yun-feng-52" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:384360465@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Yunfeng">Yunfeng</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"CaesarWyf"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
