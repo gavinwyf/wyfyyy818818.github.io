@@ -1,0 +1,702 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>BOM基础整理 | YunFeng`s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yunfeng">
+    
+
+    
+    <meta name="description" content="瀑布流布局一、瀑布流布局：
+它的特点是视觉表现的参差不齐的多栏布局，随着页面滚动条向下滚动不断加载数据到当前尾部。
+最早采用瀑布流布局的是国外的pinterest网站，现在国内也相当很多。例如蘑菇街、美丽说。
+
+二、实现方法：
+JavaScript原生方法
+JQuery 方法
+CSS3的多栏布局
+
+1.Javascript原生方法   采用 定位、浮动
+   图片外包裹两层盒子，大盒子处理盒子之间">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BOM基础整理">
+<meta property="og:url" content="http://yunfengwang.com.cn/2015/08/25/瀑布流布局/index.html">
+<meta property="og:site_name" content="YunFeng`s blog">
+<meta property="og:description" content="瀑布流布局一、瀑布流布局：
+它的特点是视觉表现的参差不齐的多栏布局，随着页面滚动条向下滚动不断加载数据到当前尾部。
+最早采用瀑布流布局的是国外的pinterest网站，现在国内也相当很多。例如蘑菇街、美丽说。
+
+二、实现方法：
+JavaScript原生方法
+JQuery 方法
+CSS3的多栏布局
+
+1.Javascript原生方法   采用 定位、浮动
+   图片外包裹两层盒子，大盒子处理盒子之间">
+<meta property="og:updated_time" content="2015-09-03T08:01:40.819Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BOM基础整理">
+<meta name="twitter:description" content="瀑布流布局一、瀑布流布局：
+它的特点是视觉表现的参差不齐的多栏布局，随着页面滚动条向下滚动不断加载数据到当前尾部。
+最早采用瀑布流布局的是国外的pinterest网站，现在国内也相当很多。例如蘑菇街、美丽说。
+
+二、实现方法：
+JavaScript原生方法
+JQuery 方法
+CSS3的多栏布局
+
+1.Javascript原生方法   采用 定位、浮动
+   图片外包裹两层盒子，大盒子处理盒子之间">
+
+    
+    <link rel="alternative" href="/atom.xml" title="YunFeng`s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="YunFeng`s blog" title="YunFeng`s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="YunFeng`s blog">YunFeng`s blog</a></h1>
+				<h2 class="blog-motto">My Life! Dream is on the way</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yunfengwang.com.cn">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/08/25/瀑布流布局/" title="BOM基础整理" itemprop="url">BOM基础整理</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-24T16:00:00.000Z" itemprop="datePublished"> 發表於 2015-08-25</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#瀑布流布局"><span class="toc-number">1.</span> <span class="toc-text">瀑布流布局</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、瀑布流布局："><span class="toc-number">1.1.</span> <span class="toc-text">一、瀑布流布局：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、实现方法："><span class="toc-number">1.2.</span> <span class="toc-text">二、实现方法：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Javascript原生方法"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.Javascript原生方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#第一阶段：瀑布流的布局定位"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">第一阶段：瀑布流的布局定位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第二阶段：瀑布流随滚动条动态添加"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">第二阶段：瀑布流随滚动条动态添加</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-JQuery方法"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.JQuery方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#第一阶段：瀑布流的布局定位-1"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">第一阶段：瀑布流的布局定位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第二阶段：瀑布流随滚动条动态添加-1"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">第二阶段：瀑布流随滚动条动态添加</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-_CSS3_方法"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">3. CSS3 方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、瀑布流三种方法比较"><span class="toc-number">1.3.</span> <span class="toc-text">三、瀑布流三种方法比较</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="瀑布流布局">瀑布流布局</h1><h2 id="一、瀑布流布局：">一、瀑布流布局：</h2><blockquote>
+<p>它的特点是视觉表现的参差不齐的多栏布局，随着页面滚动条向下滚动不断加载数据到当前尾部。</p>
+<p>最早采用瀑布流布局的是国外的pinterest网站，现在国内也相当很多。例如蘑菇街、美丽说。</p>
+</blockquote>
+<h2 id="二、实现方法：">二、实现方法：</h2><blockquote>
+<p>JavaScript原生方法</p>
+<p>JQuery 方法</p>
+<p>CSS3的多栏布局</p>
+</blockquote>
+<h3 id="1-Javascript原生方法">1.Javascript原生方法</h3><p>   采用 定位、浮动</p>
+<p>   图片外包裹两层盒子，大盒子处理盒子之间的布局关系，小盒子是图片的相框。</p>
+<p>   原理：</p>
+<h4 id="第一阶段：瀑布流的布局定位">第一阶段：瀑布流的布局定位</h4><p>   1、计算列数=浏览器窗口宽度/图片宽度    图片定位使根据每一列数据库的高度计算接下来图片的位置</p>
+<p>   2、获取第一行图片的高度放到数组中，判断第二行第一张图片应出现的位置并做定位</p>
+<p>   3、第二行第一张图片要加在第一行最矮的图片下面<br>    (第二行第一张的top值应该是第一行最矮的图片的高，left就是最矮图片的距最左边的距离）</p>
+<p>   4、获取最矮图片的索引值和高度值 getMinhIndex minH，设置第二行第一张位置</p>
+<p>   5、改变放第一行高度的数组，使最矮的图片高度改变为加上下面图片的高度和，使后面每一个图片都进行定位并改变高度。</p>
+<h4 id="第二阶段：瀑布流随滚动条动态添加">第二阶段：瀑布流随滚动条动态添加</h4><p>   1、添加滚动条事件，监听滚动条</p>
+<p>   2、滚动条向下移动，页面向下移动，若最后一张图片加载一半时加载数据</p>
+<p>   3、获取最后一张图片加载一半时相对页面的高度，获取页面滚走高度和浏览器窗口可视区高度，判断是否加载图片</p>
+<pre><code>lastBoxH &lt; scrollTop+height时，加载图片
+<span class="comment">//图片加载一半时页面高度</span>
+lastBoxH=oBoxs[oBoxs.length-<span class="number">1</span>].offsetTop+<span class="built_in">Math</span>.floor(oBoxs[oBoxs.length-<span class="number">1</span>].offsetHeight/<span class="number">2</span>);
+<span class="comment">//页面滚走的距离</span>
+scrollTop=<span class="built_in">document</span>.body.scrollTop||<span class="built_in">document</span>.documentElement.scrollTop;
+<span class="comment">//浏览器窗口可视区域的高度</span>
+height=<span class="built_in">document</span>.body.clientHeight||<span class="built_in">document</span>.documentElement.clientHeight;  
+</code></pre><p>   4、自定义一个JSON对象，提供加载图片信息，动态添加图片到页面</p>
+<pre><code>for<span class="list">(<span class="keyword">var</span> i=0<span class="comment">;i&lt;dataInt.data.length;i++){</span>
+          var oBox = document.createElement<span class="list">(<span class="string">"div"</span>)</span><span class="comment">;</span>
+          oBox.className=<span class="quoted">'box</span>'<span class="comment">;</span>
+         oParent.appendChild<span class="list">(<span class="keyword">oBox</span>)</span><span class="comment">;</span>
+         var oPic = document.createElement<span class="list">(<span class="string">"div"</span>)</span><span class="comment">;</span>
+         oPic.className=<span class="quoted">'pic</span>'<span class="comment">;</span>
+         oBox.appendChild<span class="list">(<span class="keyword">oPic</span>)</span><span class="comment">;</span>
+         var oImg = document.createElement<span class="list">(<span class="quoted">'img</span>')</span><span class="comment">;</span>
+         oImg.src=<span class="string">"img/"</span>+dataInt.data[i].src<span class="comment">;</span>
+         oPic.appendChild<span class="list">(<span class="keyword">oImg</span>)</span><span class="comment">;</span>
+}</span>
+</code></pre><h3 id="2-JQuery方法">2.JQuery方法</h3><h4 id="第一阶段：瀑布流的布局定位-1">第一阶段：瀑布流的布局定位</h4><p>   原生JS方法中很多方法都可以省略掉，比如 获取对应类名的div方法，获取最矮图片索引方法。</p>
+<p>   具体代码如下：</p>
+<pre><code>$(<span class="built_in">window</span>).on(<span class="string">'load'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{    waterfall();    })
+<span class="function"><span class="keyword">function</span> <span class="title">waterfall</span>(<span class="params"></span>)</span>{
+  <span class="keyword">var</span> $boxs=$(<span class="string">'#main&gt;div'</span>);
+  <span class="keyword">var</span> w=$boxs.eq(<span class="number">0</span>).outerWidth();  <span class="comment">//outerWidth()把padding、border都包含在内，width()则不会</span>
+  <span class="keyword">var</span> cols=<span class="built_in">Math</span>.floor($(<span class="built_in">window</span>).width()/w);
+  $(<span class="string">'#main'</span>).width(w*cols).css(<span class="string">'margin'</span>,<span class="string">'0 auto'</span>);
+  <span class="keyword">var</span> hArr=[];
+  $boxs.each(<span class="function"><span class="keyword">function</span>(<span class="params">index,value</span>)</span>{
+      <span class="keyword">var</span> h=$boxs.eq(index).outerHeight();
+      <span class="keyword">if</span>(index&lt;cols){
+          hArr[index]=h;
+      }<span class="keyword">else</span>{
+          <span class="keyword">var</span> minH=<span class="built_in">Math</span>.min.apply(<span class="literal">null</span>,hArr);
+          <span class="keyword">var</span> minHIndex=$.inArray(minH,hArr);
+          $(value).css({
+            <span class="string">'position'</span>:<span class="string">'absolute'</span>,
+            <span class="string">'top'</span>:minH+<span class="string">'px'</span>,
+            <span class="string">'left'</span>:minHIndex*w+<span class="string">'px'</span>
+          })
+          hArr[minHIndex]+=$boxs.eq(index).outerHeight();
+      }
+  })
+}
+</code></pre><h4 id="第二阶段：瀑布流随滚动条动态添加-1">第二阶段：瀑布流随滚动条动态添加</h4><p>   两大特点：链式操作，隐式迭代   (连续使用方法作用在同一个对象)</p>
+<pre><code>lastBoxDis = $lastBox.<span class="built_in">offset</span><span class="params">()</span>.top+Math.<span class="built_in">floor</span><span class="params">($lastBox.outerHeight<span class="params">()</span>/<span class="number">2</span>)</span>;
+scrollTop = $<span class="params">(window)</span>.scrollTop<span class="params">()</span>;
+documentH = $<span class="params">(window)</span>.height<span class="params">()</span>;
+
+lastBoxDis &lt; scrollTop+documentH时，动态添加图片
+
+$.each<span class="params">(dataInt.data,function<span class="params">(key,value)</span>{       //dataInt是JS原生对象，不能直接使用value
+      var oBox = $<span class="params">(<span class="string">"&lt;div&gt;"</span>)</span>.addClass<span class="params">(<span class="string">"box"</span>)</span>.appendTo<span class="params">($<span class="params">(<span class="string">"#main"</span>)</span>)</span>;
+      var oPic = $<span class="params">(<span class="string">"&lt;div&gt;"</span>)</span>.addClass<span class="params">(<span class="string">"pic"</span>)</span>.appendTo<span class="params">($<span class="params">(oBox)</span>)</span>;
+      $<span class="params">('&lt;img&gt;')</span>.attr<span class="params">('src',<span class="string">"img/"</span>+$<span class="params">(value)</span>.attr<span class="params">('src')</span>)</span>.appendTo<span class="params">($<span class="params">(oPic)</span>)</span>;
+})</span>
+</code></pre><h4 id="3-_CSS3_方法">3. CSS3 方法</h4><p>   前两种都是用到了绝对定位实现的。</p>
+<p>   CSS3使用多栏布局方法实现，column….</p>
+<pre><code>column-width : 设置每一列的宽度
+column-count : 设置列数
+column-<span class="keyword">rule</span>:2px dashed #f00;  设置列分割线
+column-gap : 5px; 设置列之间的间距(不一定会按照数值设置，会按照列数平均分配间距)
+</code></pre><p>   注意浏览器支持问题： </p>
+<pre><code><span class="rule"><span class="attribute">-webkit-column-width</span>:<span class="value"><span class="number">202px</span></span></span>;
+<span class="rule"><span class="attribute">-moz-column-width</span>:<span class="value"><span class="number">202px</span></span></span>;
+<span class="rule"><span class="attribute">-o-column-width</span>:<span class="value"><span class="number">202px</span></span></span>;
+<span class="rule"><span class="attribute">-ms-column-width</span>:<span class="value"><span class="number">202px</span></span></span>;
+<span class="rule"><span class="attribute">-webkit-column-count</span>:<span class="value"><span class="number">6</span></span></span>;
+<span class="rule"><span class="attribute">-moz-column-count</span>:<span class="value"><span class="number">6</span></span></span>;
+<span class="rule"><span class="attribute">-o-column-count</span>:<span class="value"><span class="number">6</span></span></span>;
+<span class="rule"><span class="attribute">-ms-column-count</span>:<span class="value"><span class="number">6</span></span></span>;
+<span class="rule"><span class="attribute">-webkit-column-rule</span>:<span class="value"><span class="number">2px</span> dashed <span class="hexcolor">#f00</span></span></span>;
+<span class="rule"><span class="attribute">-moz-column-rule</span>:<span class="value"><span class="number">2px</span> dashed <span class="hexcolor">#f00</span></span></span>;
+<span class="rule"><span class="attribute">-o-column-rule</span>:<span class="value"><span class="number">2px</span> dashed <span class="hexcolor">#f00</span></span></span>;
+<span class="rule"><span class="attribute">-ms-column-rule</span>:<span class="value"><span class="number">2px</span> dashed <span class="hexcolor">#f00</span></span></span>;
+<span class="rule"><span class="attribute">-webkit-column-gap</span>:<span class="value"><span class="number">5px</span></span></span>;
+<span class="rule"><span class="attribute">-moz-column-gap</span>:<span class="value"><span class="number">5px</span></span></span>;
+<span class="rule"><span class="attribute">-o-column-gap</span>:<span class="value"><span class="number">5px</span></span></span>;
+<span class="rule"><span class="attribute">-ms-column-gap</span>:<span class="value"><span class="number">5px</span></span></span>;
+</code></pre><h2 id="三、瀑布流三种方法比较">三、瀑布流三种方法比较</h2><p>   JS: </p>
+<p>   1、需要计算    计算列数=浏览器窗口宽度/图片宽度        图片定位使根据每一列数据库的高度计算接下来图片的位置     </p>
+<p>   2、图片排序是按照图片计算的位置横向排列，位置是计算出来的，比较规范</p>
+<p>   CSS:</p>
+<p>   1、不需要计算，浏览器自动计算，只需要设置列宽，性能高</p>
+<p>   2、列宽随着浏览器窗口大小进行改变，用户体验不好</p>
+<p>   3、图片排序按照垂直顺序排列，打乱图片显示顺序</p>
+<p>   4、图片加载还是依靠Javascript实现</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/CSS/">CSS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/CSS/">CSS</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yunfengwang.com.cn/2015/08/25/瀑布流布局/" data-title="BOM基础整理 | YunFeng`s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/08/22/BOM整理/"  title="BOM基础整理">
+ <strong>下一篇：</strong><br/> 
+ <span>BOM基础整理
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/08/25/瀑布流布局/" data-title="BOM基础整理" data-url="http://yunfengwang.com.cn/2015/08/25/瀑布流布局/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#瀑布流布局"><span class="toc-number">1.</span> <span class="toc-text">瀑布流布局</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、瀑布流布局："><span class="toc-number">1.1.</span> <span class="toc-text">一、瀑布流布局：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、实现方法："><span class="toc-number">1.2.</span> <span class="toc-text">二、实现方法：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Javascript原生方法"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.Javascript原生方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#第一阶段：瀑布流的布局定位"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">第一阶段：瀑布流的布局定位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第二阶段：瀑布流随滚动条动态添加"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">第二阶段：瀑布流随滚动条动态添加</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-JQuery方法"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.JQuery方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#第一阶段：瀑布流的布局定位-1"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">第一阶段：瀑布流的布局定位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第二阶段：瀑布流随滚动条动态添加-1"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">第二阶段：瀑布流随滚动条动态添加</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-_CSS3_方法"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">3. CSS3 方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、瀑布流三种方法比较"><span class="toc-number">1.3.</span> <span class="toc-text">三、瀑布流三种方法比较</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/CSS/" title="CSS">CSS<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Github/" title="Github">Github<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Javascript/" title="Javascript">Javascript<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Leaf/" title="Leaf">Leaf<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/WebApp/" title="WebApp">WebApp<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WebApp/" title="WebApp">WebApp<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/new/" title="new">new<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Github/" title="Github">Github<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.w3.org/" target="_blank" title="W3C">W3C</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ecmascript.org/" target="_blank" title="ECMA">ECMA</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://developer.mozilla.org/zh-CN/" target="_blank" title="Mozilla">Mozilla</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://html5labs.interoperabilitybridges.com/" target="_blank" title="微软H5实验室">微软H5实验室</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.w3cfuns.com/portal.php" target="_blank" title="前端网">前端网</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://efe.baidu.com/" target="_blank" title="EFE">EFE</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ued.taobao.org/blog/" target="_blank" title="淘宝">淘宝</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://it-ebooks.info/" target="_blank" title="IT eBooks">IT eBooks</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wwsun.me/posts/creating-javascript-modules-loader.html" target="_blank" title="模块加速器">模块加速器</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+<div class="doubanshow">
+<p class="asidetitle">豆瓣秀</p>
+<div>
+<script type="text/javascript" src="http://www.douban.com/service/badge/CaesarFeng/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie" ></script>
+</div>
+</div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> One bboy, One Jser, YunFeng. <br/>
+			The beginning of my blog life</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/u/3181646571" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/wyfyyy818818" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/CaesarFeng" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/wang-yun-feng-52" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:384360465@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Yunfeng">Yunfeng</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"CaesarWyf"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

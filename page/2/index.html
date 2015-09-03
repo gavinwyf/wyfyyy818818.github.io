@@ -81,6 +81,149 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/08/13/作用域一/" title="作用域（一）" itemprop="url">作用域（一）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-13T13:11:44.000Z" itemprop="datePublished"> 發表於 2015-08-13</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="作用域原理（一）">作用域原理（一）</h1><p> 犀牛书：</p>
+<h2 id="1-_变量作用域">1. 变量作用域</h2><p> 一个变量的作用域： 程序源代码中定义这个变量的区域</p>
+<pre><code> 函数体内，局部变量的优先级高于同名的全局变量（局部变量会覆盖全局同名变量）
+
+局部变量声明如果不用<span class="keyword">var</span>，若存在同名全局变量，则发生全局污染
+                      若不存在，则新建一个全局变量
+</code></pre><h2 id="2-函数作用域">2.函数作用域</h2><pre><code>块级作用域：类<span class="keyword">C</span>语言中，花括号内的每一段代码都具有各自的作用域，且变量在声明代码段外是不可见的。
+</code></pre><p>`</p>
+<pre><code>  <span class="keyword">JS</span>中没有块级作用域，取而代之的是：  函数作用域
+（变量在声明它们的函数体以及这个函数体嵌套的任意函数体内都是有定义的）
+</code></pre><p>`</p>
+<pre><code>  <span class="keyword">JS</span>的函数作用域：指在函数内声明的所有变量在函数体内始终是可见的。
+             （意味着变量在声明之前甚至已经可用）
+
+<span class="keyword">JS</span>的这个特性被非正式的成为<span class="string">"声明提前"</span>:
+</code></pre><blockquote>
+<p><strong>声明提升</strong></p>
+<p>函数里声明的所有变量(但不涉及赋值)都被”提前”至函数体的顶部</p>
+</blockquote>
+<p>  <strong>实例</strong>：</p>
+<pre><code><span class="keyword">var</span> scope=<span class="string">"global"</span>;
+<span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>{
+  <span class="built_in">console</span>.log(scope);  <span class="comment">//undefined</span>
+     <span class="keyword">var</span> scope=<span class="string">"local"</span>;   <span class="comment">//赋初始值，变量本身在函数体内任何地方均是有定义的</span>
+     <span class="built_in">console</span>.log(scope);  <span class="comment">//local</span>
+}
+</code></pre><p>  等价于：</p>
+<pre><code><span class="keyword">var</span> scope=<span class="string">"global"</span>;
+    <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>{
+      <span class="keyword">var</span> scope;    <span class="comment">//函数声明被提前</span>
+      <span class="built_in">console</span>.log(scope);  
+      scope=<span class="string">"local"</span>;   
+      <span class="built_in">console</span>.log(scope);  
+}
+</code></pre><h2 id="3-作为属性的变量">3.作为属性的变量</h2><pre><code>声明全局变量时，实际上是定义了全局对象的一个属性。
+当<span class="keyword">var</span>声明一个变量，创建的这个属性是不可配置的，也就是说这个变量无法通过<span class="keyword">delete</span>删除。
+</code></pre><p>`</p>
+<pre><code>若没有使用严格模式，给一个未声明的变量赋值的话，JS会自动创建一个全局变量。
+这种变量是全局对象正常的可配置属性，可以<span class="keyword">delete</span>。
+</code></pre><p>`</p>
+<pre><code><span class="type">JS</span>全局变量 是全局对象的属性，这是<span class="type">ECMAScript</span>规范中强制规定的。
+
+  局部变量 则没有规定，局部变量当作跟函数调用相关的某个对象的属性。
+
+  <span class="type">ECMA3</span>中称该对象为<span class="string">"调用对象"</span>  call <span class="class"><span class="keyword">object</span>
+</span>  <span class="type">ECMA5</span>中成为<span class="string">"声明上下文对象"</span>  declarative environment record
+</code></pre><p>`</p>
+<pre><code>JS中可使用<span class="keyword">this</span>引用全局对象，却没有方法可以引用局部变量中存放的对象。
+</code></pre><h2 id="4-作用域链">4.作用域链</h2><pre><code>   <span class="keyword">JS</span>是基于词法作用域的语言：
+
+ 通过阅读包含变量定义在内的数行源码就能知道变量的作用域。
+
+全局变量在程序中始终都是有定义的。
+
+ 局部变量在声明它的函数体内以及其所嵌套的函数内始终是有定义的。
+</code></pre><p>`   </p>
+<pre><code>每一段JS代码<span class="comment">(全局代码或函数)</span>都有一个与之关联的作用域链<span class="comment">(scope chain)</span>.
+</code></pre><blockquote>
+<p><strong>作用域链</strong>：</p>
+<p>一个对象列表或链表，这组对象定义了这段代码”作用域中”的变量</p>
+</blockquote>
+<pre><code> JS中需要查找变量的值时(此过程称作<span class="string">"变量解析"</span><span class="annotation">variable</span> resolution)
+
+从链中第一个对象开始找，若作用域链中没有对象含有此属性，则认为不存在，
+ 并抛出一个引用错误ReferenceError异常
+</code></pre><p>`</p>
+<pre><code>JS最顶层代码中<span class="comment">(不包含任何函数定义内的代码)</span>：   作用域链由一个全局对象组成。
+
+ 在不包含嵌套的函数体内：  有两个对象：
+                <span class="comment">(1)</span>定义函数参数和局部变量的对象 
+                <span class="comment">(2)</span>全局对象
+
+ 嵌套函数体内： 
+
+ 定义一个函数时，它实际上保存一个作用域链
+
+ 调用这个函数时，它创建一个新对象来存储它的局部变量，并将对象添加至保存的那个作用域链上，
+            同时创建一个新的更长的表示函数调用作用域的<span class="string">"链"</span>
+
+ 嵌套函数，每次调用外部函数时，内部函数又会重新定义一遍。
+</code></pre>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Javascript/">Javascript</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/13/作用域一/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/13/作用域一/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/08/11/闭包原理笔记一/" title="闭包原理笔记一" itemprop="url">闭包原理笔记一</a>
   </h1>
   <p class="article-author">By
@@ -514,7 +657,7 @@ Dropbox现在不提供对新用户的一些服务，<span class="preprocessor">p
 		<ul>
 		
 		  
-			<li><a href="/categories/CSS/" title="CSS">CSS<sup>4</sup></a></li>
+			<li><a href="/categories/CSS/" title="CSS">CSS<sup>5</sup></a></li>
 		  
 		
 		  
@@ -551,7 +694,7 @@ Dropbox现在不提供对新用户的一些服务，<span class="preprocessor">p
 			
 		
 			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>4</sup></a></li>
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>5</sup></a></li>
 			
 		
 			

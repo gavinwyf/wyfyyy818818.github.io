@@ -81,6 +81,176 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/08/25/瀑布流布局/" title="BOM基础整理" itemprop="url">BOM基础整理</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-24T16:00:00.000Z" itemprop="datePublished"> 發表於 2015-08-25</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="瀑布流布局">瀑布流布局</h1><h2 id="一、瀑布流布局：">一、瀑布流布局：</h2><blockquote>
+<p>它的特点是视觉表现的参差不齐的多栏布局，随着页面滚动条向下滚动不断加载数据到当前尾部。</p>
+<p>最早采用瀑布流布局的是国外的pinterest网站，现在国内也相当很多。例如蘑菇街、美丽说。</p>
+</blockquote>
+<h2 id="二、实现方法：">二、实现方法：</h2><blockquote>
+<p>JavaScript原生方法</p>
+<p>JQuery 方法</p>
+<p>CSS3的多栏布局</p>
+</blockquote>
+<h3 id="1-Javascript原生方法">1.Javascript原生方法</h3><p>   采用 定位、浮动</p>
+<p>   图片外包裹两层盒子，大盒子处理盒子之间的布局关系，小盒子是图片的相框。</p>
+<p>   原理：</p>
+<h4 id="第一阶段：瀑布流的布局定位">第一阶段：瀑布流的布局定位</h4><p>   1、计算列数=浏览器窗口宽度/图片宽度    图片定位使根据每一列数据库的高度计算接下来图片的位置</p>
+<p>   2、获取第一行图片的高度放到数组中，判断第二行第一张图片应出现的位置并做定位</p>
+<p>   3、第二行第一张图片要加在第一行最矮的图片下面<br>    (第二行第一张的top值应该是第一行最矮的图片的高，left就是最矮图片的距最左边的距离）</p>
+<p>   4、获取最矮图片的索引值和高度值 getMinhIndex minH，设置第二行第一张位置</p>
+<p>   5、改变放第一行高度的数组，使最矮的图片高度改变为加上下面图片的高度和，使后面每一个图片都进行定位并改变高度。</p>
+<h4 id="第二阶段：瀑布流随滚动条动态添加">第二阶段：瀑布流随滚动条动态添加</h4><p>   1、添加滚动条事件，监听滚动条</p>
+<p>   2、滚动条向下移动，页面向下移动，若最后一张图片加载一半时加载数据</p>
+<p>   3、获取最后一张图片加载一半时相对页面的高度，获取页面滚走高度和浏览器窗口可视区高度，判断是否加载图片</p>
+<pre><code>lastBoxH &lt; scrollTop+height时，加载图片
+<span class="comment">//图片加载一半时页面高度</span>
+lastBoxH=oBoxs[oBoxs.length-<span class="number">1</span>].offsetTop+<span class="built_in">Math</span>.floor(oBoxs[oBoxs.length-<span class="number">1</span>].offsetHeight/<span class="number">2</span>);
+<span class="comment">//页面滚走的距离</span>
+scrollTop=<span class="built_in">document</span>.body.scrollTop||<span class="built_in">document</span>.documentElement.scrollTop;
+<span class="comment">//浏览器窗口可视区域的高度</span>
+height=<span class="built_in">document</span>.body.clientHeight||<span class="built_in">document</span>.documentElement.clientHeight;  
+</code></pre><p>   4、自定义一个JSON对象，提供加载图片信息，动态添加图片到页面</p>
+<pre><code>for<span class="list">(<span class="keyword">var</span> i=0<span class="comment">;i&lt;dataInt.data.length;i++){</span>
+          var oBox = document.createElement<span class="list">(<span class="string">"div"</span>)</span><span class="comment">;</span>
+          oBox.className=<span class="quoted">'box</span>'<span class="comment">;</span>
+         oParent.appendChild<span class="list">(<span class="keyword">oBox</span>)</span><span class="comment">;</span>
+         var oPic = document.createElement<span class="list">(<span class="string">"div"</span>)</span><span class="comment">;</span>
+         oPic.className=<span class="quoted">'pic</span>'<span class="comment">;</span>
+         oBox.appendChild<span class="list">(<span class="keyword">oPic</span>)</span><span class="comment">;</span>
+         var oImg = document.createElement<span class="list">(<span class="quoted">'img</span>')</span><span class="comment">;</span>
+         oImg.src=<span class="string">"img/"</span>+dataInt.data[i].src<span class="comment">;</span>
+         oPic.appendChild<span class="list">(<span class="keyword">oImg</span>)</span><span class="comment">;</span>
+}</span>
+</code></pre><h3 id="2-JQuery方法">2.JQuery方法</h3><h4 id="第一阶段：瀑布流的布局定位-1">第一阶段：瀑布流的布局定位</h4><p>   原生JS方法中很多方法都可以省略掉，比如 获取对应类名的div方法，获取最矮图片索引方法。</p>
+<p>   具体代码如下：</p>
+<pre><code>$(<span class="built_in">window</span>).on(<span class="string">'load'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{    waterfall();    })
+<span class="function"><span class="keyword">function</span> <span class="title">waterfall</span>(<span class="params"></span>)</span>{
+  <span class="keyword">var</span> $boxs=$(<span class="string">'#main&gt;div'</span>);
+  <span class="keyword">var</span> w=$boxs.eq(<span class="number">0</span>).outerWidth();  <span class="comment">//outerWidth()把padding、border都包含在内，width()则不会</span>
+  <span class="keyword">var</span> cols=<span class="built_in">Math</span>.floor($(<span class="built_in">window</span>).width()/w);
+  $(<span class="string">'#main'</span>).width(w*cols).css(<span class="string">'margin'</span>,<span class="string">'0 auto'</span>);
+  <span class="keyword">var</span> hArr=[];
+  $boxs.each(<span class="function"><span class="keyword">function</span>(<span class="params">index,value</span>)</span>{
+      <span class="keyword">var</span> h=$boxs.eq(index).outerHeight();
+      <span class="keyword">if</span>(index&lt;cols){
+          hArr[index]=h;
+      }<span class="keyword">else</span>{
+          <span class="keyword">var</span> minH=<span class="built_in">Math</span>.min.apply(<span class="literal">null</span>,hArr);
+          <span class="keyword">var</span> minHIndex=$.inArray(minH,hArr);
+          $(value).css({
+            <span class="string">'position'</span>:<span class="string">'absolute'</span>,
+            <span class="string">'top'</span>:minH+<span class="string">'px'</span>,
+            <span class="string">'left'</span>:minHIndex*w+<span class="string">'px'</span>
+          })
+          hArr[minHIndex]+=$boxs.eq(index).outerHeight();
+      }
+  })
+}
+</code></pre><h4 id="第二阶段：瀑布流随滚动条动态添加-1">第二阶段：瀑布流随滚动条动态添加</h4><p>   两大特点：链式操作，隐式迭代   (连续使用方法作用在同一个对象)</p>
+<pre><code>lastBoxDis = $lastBox.<span class="built_in">offset</span><span class="params">()</span>.top+Math.<span class="built_in">floor</span><span class="params">($lastBox.outerHeight<span class="params">()</span>/<span class="number">2</span>)</span>;
+scrollTop = $<span class="params">(window)</span>.scrollTop<span class="params">()</span>;
+documentH = $<span class="params">(window)</span>.height<span class="params">()</span>;
+
+lastBoxDis &lt; scrollTop+documentH时，动态添加图片
+
+$.each<span class="params">(dataInt.data,function<span class="params">(key,value)</span>{       //dataInt是JS原生对象，不能直接使用value
+      var oBox = $<span class="params">(<span class="string">"&lt;div&gt;"</span>)</span>.addClass<span class="params">(<span class="string">"box"</span>)</span>.appendTo<span class="params">($<span class="params">(<span class="string">"#main"</span>)</span>)</span>;
+      var oPic = $<span class="params">(<span class="string">"&lt;div&gt;"</span>)</span>.addClass<span class="params">(<span class="string">"pic"</span>)</span>.appendTo<span class="params">($<span class="params">(oBox)</span>)</span>;
+      $<span class="params">('&lt;img&gt;')</span>.attr<span class="params">('src',<span class="string">"img/"</span>+$<span class="params">(value)</span>.attr<span class="params">('src')</span>)</span>.appendTo<span class="params">($<span class="params">(oPic)</span>)</span>;
+})</span>
+</code></pre><h4 id="3-_CSS3_方法">3. CSS3 方法</h4><p>   前两种都是用到了绝对定位实现的。</p>
+<p>   CSS3使用多栏布局方法实现，column….</p>
+<pre><code>column-width : 设置每一列的宽度
+column-count : 设置列数
+column-<span class="keyword">rule</span>:2px dashed #f00;  设置列分割线
+column-gap : 5px; 设置列之间的间距(不一定会按照数值设置，会按照列数平均分配间距)
+</code></pre><p>   注意浏览器支持问题： </p>
+<pre><code><span class="rule"><span class="attribute">-webkit-column-width</span>:<span class="value"><span class="number">202px</span></span></span>;
+<span class="rule"><span class="attribute">-moz-column-width</span>:<span class="value"><span class="number">202px</span></span></span>;
+<span class="rule"><span class="attribute">-o-column-width</span>:<span class="value"><span class="number">202px</span></span></span>;
+<span class="rule"><span class="attribute">-ms-column-width</span>:<span class="value"><span class="number">202px</span></span></span>;
+<span class="rule"><span class="attribute">-webkit-column-count</span>:<span class="value"><span class="number">6</span></span></span>;
+<span class="rule"><span class="attribute">-moz-column-count</span>:<span class="value"><span class="number">6</span></span></span>;
+<span class="rule"><span class="attribute">-o-column-count</span>:<span class="value"><span class="number">6</span></span></span>;
+<span class="rule"><span class="attribute">-ms-column-count</span>:<span class="value"><span class="number">6</span></span></span>;
+<span class="rule"><span class="attribute">-webkit-column-rule</span>:<span class="value"><span class="number">2px</span> dashed <span class="hexcolor">#f00</span></span></span>;
+<span class="rule"><span class="attribute">-moz-column-rule</span>:<span class="value"><span class="number">2px</span> dashed <span class="hexcolor">#f00</span></span></span>;
+<span class="rule"><span class="attribute">-o-column-rule</span>:<span class="value"><span class="number">2px</span> dashed <span class="hexcolor">#f00</span></span></span>;
+<span class="rule"><span class="attribute">-ms-column-rule</span>:<span class="value"><span class="number">2px</span> dashed <span class="hexcolor">#f00</span></span></span>;
+<span class="rule"><span class="attribute">-webkit-column-gap</span>:<span class="value"><span class="number">5px</span></span></span>;
+<span class="rule"><span class="attribute">-moz-column-gap</span>:<span class="value"><span class="number">5px</span></span></span>;
+<span class="rule"><span class="attribute">-o-column-gap</span>:<span class="value"><span class="number">5px</span></span></span>;
+<span class="rule"><span class="attribute">-ms-column-gap</span>:<span class="value"><span class="number">5px</span></span></span>;
+</code></pre><h2 id="三、瀑布流三种方法比较">三、瀑布流三种方法比较</h2><p>   JS: </p>
+<p>   1、需要计算    计算列数=浏览器窗口宽度/图片宽度        图片定位使根据每一列数据库的高度计算接下来图片的位置     </p>
+<p>   2、图片排序是按照图片计算的位置横向排列，位置是计算出来的，比较规范</p>
+<p>   CSS:</p>
+<p>   1、不需要计算，浏览器自动计算，只需要设置列宽，性能高</p>
+<p>   2、列宽随着浏览器窗口大小进行改变，用户体验不好</p>
+<p>   3、图片排序按照垂直顺序排列，打乱图片显示顺序</p>
+<p>   4、图片加载还是依靠Javascript实现</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/CSS/">CSS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/CSS/">CSS</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/25/瀑布流布局/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/25/瀑布流布局/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/08/22/BOM整理/" title="BOM基础整理" itemprop="url">BOM基础整理</a>
   </h1>
   <p class="article-author">By
@@ -1670,149 +1840,6 @@ CSS3中： <span class="attribute">text-shadow</span>,<span class="attribute">bo
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/13/作用域一/" title="作用域（一）" itemprop="url">作用域（一）</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-13T13:11:44.000Z" itemprop="datePublished"> 發表於 2015-08-13</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="作用域原理（一）">作用域原理（一）</h1><p> 犀牛书：</p>
-<h2 id="1-_变量作用域">1. 变量作用域</h2><p> 一个变量的作用域： 程序源代码中定义这个变量的区域</p>
-<pre><code> 函数体内，局部变量的优先级高于同名的全局变量（局部变量会覆盖全局同名变量）
-
-局部变量声明如果不用<span class="keyword">var</span>，若存在同名全局变量，则发生全局污染
-                      若不存在，则新建一个全局变量
-</code></pre><h2 id="2-函数作用域">2.函数作用域</h2><pre><code>块级作用域：类<span class="keyword">C</span>语言中，花括号内的每一段代码都具有各自的作用域，且变量在声明代码段外是不可见的。
-</code></pre><p>`</p>
-<pre><code>  <span class="keyword">JS</span>中没有块级作用域，取而代之的是：  函数作用域
-（变量在声明它们的函数体以及这个函数体嵌套的任意函数体内都是有定义的）
-</code></pre><p>`</p>
-<pre><code>  <span class="keyword">JS</span>的函数作用域：指在函数内声明的所有变量在函数体内始终是可见的。
-             （意味着变量在声明之前甚至已经可用）
-
-<span class="keyword">JS</span>的这个特性被非正式的成为<span class="string">"声明提前"</span>:
-</code></pre><blockquote>
-<p><strong>声明提升</strong></p>
-<p>函数里声明的所有变量(但不涉及赋值)都被”提前”至函数体的顶部</p>
-</blockquote>
-<p>  <strong>实例</strong>：</p>
-<pre><code><span class="keyword">var</span> scope=<span class="string">"global"</span>;
-<span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>{
-  <span class="built_in">console</span>.log(scope);  <span class="comment">//undefined</span>
-     <span class="keyword">var</span> scope=<span class="string">"local"</span>;   <span class="comment">//赋初始值，变量本身在函数体内任何地方均是有定义的</span>
-     <span class="built_in">console</span>.log(scope);  <span class="comment">//local</span>
-}
-</code></pre><p>  等价于：</p>
-<pre><code><span class="keyword">var</span> scope=<span class="string">"global"</span>;
-    <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>{
-      <span class="keyword">var</span> scope;    <span class="comment">//函数声明被提前</span>
-      <span class="built_in">console</span>.log(scope);  
-      scope=<span class="string">"local"</span>;   
-      <span class="built_in">console</span>.log(scope);  
-}
-</code></pre><h2 id="3-作为属性的变量">3.作为属性的变量</h2><pre><code>声明全局变量时，实际上是定义了全局对象的一个属性。
-当<span class="keyword">var</span>声明一个变量，创建的这个属性是不可配置的，也就是说这个变量无法通过<span class="keyword">delete</span>删除。
-</code></pre><p>`</p>
-<pre><code>若没有使用严格模式，给一个未声明的变量赋值的话，JS会自动创建一个全局变量。
-这种变量是全局对象正常的可配置属性，可以<span class="keyword">delete</span>。
-</code></pre><p>`</p>
-<pre><code><span class="type">JS</span>全局变量 是全局对象的属性，这是<span class="type">ECMAScript</span>规范中强制规定的。
-
-  局部变量 则没有规定，局部变量当作跟函数调用相关的某个对象的属性。
-
-  <span class="type">ECMA3</span>中称该对象为<span class="string">"调用对象"</span>  call <span class="class"><span class="keyword">object</span>
-</span>  <span class="type">ECMA5</span>中成为<span class="string">"声明上下文对象"</span>  declarative environment record
-</code></pre><p>`</p>
-<pre><code>JS中可使用<span class="keyword">this</span>引用全局对象，却没有方法可以引用局部变量中存放的对象。
-</code></pre><h2 id="4-作用域链">4.作用域链</h2><pre><code>   <span class="keyword">JS</span>是基于词法作用域的语言：
-
- 通过阅读包含变量定义在内的数行源码就能知道变量的作用域。
-
-全局变量在程序中始终都是有定义的。
-
- 局部变量在声明它的函数体内以及其所嵌套的函数内始终是有定义的。
-</code></pre><p>`   </p>
-<pre><code>每一段JS代码<span class="comment">(全局代码或函数)</span>都有一个与之关联的作用域链<span class="comment">(scope chain)</span>.
-</code></pre><blockquote>
-<p><strong>作用域链</strong>：</p>
-<p>一个对象列表或链表，这组对象定义了这段代码”作用域中”的变量</p>
-</blockquote>
-<pre><code> JS中需要查找变量的值时(此过程称作<span class="string">"变量解析"</span><span class="annotation">variable</span> resolution)
-
-从链中第一个对象开始找，若作用域链中没有对象含有此属性，则认为不存在，
- 并抛出一个引用错误ReferenceError异常
-</code></pre><p>`</p>
-<pre><code>JS最顶层代码中<span class="comment">(不包含任何函数定义内的代码)</span>：   作用域链由一个全局对象组成。
-
- 在不包含嵌套的函数体内：  有两个对象：
-                <span class="comment">(1)</span>定义函数参数和局部变量的对象 
-                <span class="comment">(2)</span>全局对象
-
- 嵌套函数体内： 
-
- 定义一个函数时，它实际上保存一个作用域链
-
- 调用这个函数时，它创建一个新对象来存储它的局部变量，并将对象添加至保存的那个作用域链上，
-            同时创建一个新的更长的表示函数调用作用域的<span class="string">"链"</span>
-
- 嵌套函数，每次调用外部函数时，内部函数又会重新定义一遍。
-</code></pre>
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Javascript/">Javascript</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/13/作用域一/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/13/作用域一/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -1831,7 +1858,7 @@ CSS3中： <span class="attribute">text-shadow</span>,<span class="attribute">bo
 		<ul>
 		
 		  
-			<li><a href="/categories/CSS/" title="CSS">CSS<sup>4</sup></a></li>
+			<li><a href="/categories/CSS/" title="CSS">CSS<sup>5</sup></a></li>
 		  
 		
 		  
@@ -1868,7 +1895,7 @@ CSS3中： <span class="attribute">text-shadow</span>,<span class="attribute">bo
 			
 		
 			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>4</sup></a></li>
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>5</sup></a></li>
 			
 		
 			
