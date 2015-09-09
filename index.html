@@ -81,6 +81,994 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/09/02/18. Bootstrap（四）/" title="Bootstrap知识点(四)" itemprop="url">Bootstrap知识点(四)</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-01T16:00:00.000Z" itemprop="datePublished"> 發表於 2015-09-02</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="Bootstrap知识点（四）">Bootstrap知识点（四）</h1><h2 id="四、Bootstrap提供的jQuery插件">四、Bootstrap提供的jQuery插件</h2><p>   这些插件基本上都可以有两种使用方法：</p>
+<pre><code><span class="params">(<span class="number">1</span>)</span>调用js函数：  $<span class="params">(...)</span>.yyy<span class="params">( )</span>;
+<span class="params">(<span class="number">2</span>)</span>声明扩展属性：    &lt;button  data-xxx=<span class="string">"yyy"</span>&gt;
+</code></pre><h3 id="1-_下拉列表">1. 下拉列表</h3><pre><code><span class="number">1</span>)data-toggle=<span class="string">"dropdown"</span>
+<span class="number">2</span>)$(....).<span class="function"><span class="title">dropdown</span><span class="params">( )</span></span>
+</code></pre><h3 id="2-_警告框">2. 警告框</h3><pre><code><span class="number">1</span>)<span class="preprocessor">data</span>-dismiss=<span class="string">"alert"</span>
+</code></pre><h3 id="3-_工具提示框">3. 工具提示框</h3><p>  使用工具提示框必需两步：</p>
+<pre><code><span class="number">1</span>)&lt;xx title=<span class="string">"工具提示的内容"</span> <span class="typedef"><span class="keyword">data</span>-toggle="tooltip"&gt;</span>
+<span class="number">2</span>)$('[<span class="typedef"><span class="keyword">data</span>-toggle=tooltip]').tooltip<span class="container">( )</span></span>
+</code></pre><h3 id="4-_弹出框">4. 弹出框</h3><p>  使用弹出框必需两步：</p>
+<pre><code><span class="number">1</span>)&lt;xx title=<span class="string">"标题"</span> data-<span class="attribute">content</span>=<span class="string">"内容"</span> data-toggle=<span class="string">"popover"</span>&gt;
+<span class="number">2</span>)$(<span class="string">'[data-toggle=popover]'</span>).<span class="function"><span class="title">popover</span><span class="params">( )</span></span>
+</code></pre><h3 id="5-_模态对话框——小重点&amp;小难点">5. 模态对话框——小重点&amp;小难点</h3><p>  模态：一个父窗口中打开了一个子窗口，若子窗口不关闭，则父窗口无法获得焦点，且父子窗口间可以传递数据——这样的子窗口称为模态（modal）窗口。</p>
+<p>  模态框必需满足如下的层级结构：</p>
+<pre><code><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"modal fade"</span>&gt;</span>    <span class="comment">&lt;!--全屏半透明遮罩层--&gt;</span>
+      <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"modal-dialog"</span>&gt;</span>    <span class="comment">&lt;!--定位、宽高设置的容器--&gt;</span>
+              <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"modal-content"</span>&gt;</span>    <span class="comment">&lt;!--对话框窗口的边框、背景、阴影、倒角--&gt;</span>
+
+                  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"modal-header"</span>&gt;</span>
+                      <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"close"</span> <span class="attribute">data-dismiss</span>=<span class="value">"modal"</span>&gt;</span>&amp;times;<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+                      <span class="tag">&lt;<span class="title">h3</span> <span class="attribute">class</span>=<span class="value">"modal-title"</span>&gt;</span>Modal title<span class="tag">&lt;/<span class="title">h3</span>&gt;</span>
+                  <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+
+                  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"modal-body"</span>&gt;</span>对话框的主体<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+
+                  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"modal-footer"</span>&gt;</span>对话框的尾部<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+
+              <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+      <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</code></pre><h3 id="6-_标签页">6. 标签页</h3><p>  必需的结构：</p>
+<pre><code><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"nav  nav-tabs"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">li</span> <span class="attribute">class</span>=<span class="value">"active"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">data-toggle</span>=<span class="value">"tab"</span> <span class="attribute">href</span>=<span class="value">"#id1"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> &gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> &gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
+<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"tab-content"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"id1"</span> <span class="attribute">class</span>=<span class="value">"tab-pane active"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">div</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">div</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</code></pre><h3 id="7-_Bootstrap提供的JS插件——折叠效果(_Collapse_)">7. Bootstrap提供的JS插件——折叠效果( Collapse )</h3><pre><code>触发元素：
+<span class="tag">&lt;<span class="title">a</span> <span class="attribute">data-toggle</span>=<span class="value">"collapse"</span> <span class="attribute">href</span>=<span class="value">"#id2"</span>&gt;</span>触发元素<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
+<span class="tag">&lt;<span class="title">button</span> <span class="attribute">data-toggle</span>=<span class="value">"collapse"</span> <span class="attribute">data-target</span>=<span class="value">"#id2"</span>&gt;</span>触发元素<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+
+目标元素：
+<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"id2"</span> <span class="attribute">class</span>=<span class="value">"collapse in"</span>&gt;</span>目标元素<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+  ------------------------------------------------------------
+</code></pre><p>  应用：      </p>
+<p>(1)使用Collapse插件实现Accordion(手风琴)组件</p>
+<p>(2)使用Collapse插件实现可以折叠收起的响应式导航栏——重点！</p>
+<h3 id="8-_Bootstrap提供的JS插件——轮播广告(Carousel)">8. Bootstrap提供的JS插件——轮播广告(Carousel)</h3><p>  最基本的轮播广告：</p>
+<pre><code>&lt;<span class="tag">div</span> id=<span class="string">"id-XX"</span> class=<span class="string">"carousel"</span>  data-ride=<span class="string">"carousel"</span>&gt;
+
+    &lt;<span class="tag">ol</span> class=<span class="string">"carousel-indicators"</span>&gt;   滚动小圆圈
+        &lt;<span class="tag">li</span> data-target=<span class="string">"#id-XX"</span> data-slide-to=<span class="string">"0"</span> class=<span class="string">"active"</span>&gt;&lt;/li&gt;
+        &lt;<span class="tag">li</span> data-target=<span class="string">"#id-XX"</span> data-slide-to=<span class="string">"1"</span>&gt;&lt;/li&gt;
+        &lt;<span class="tag">li</span> data-target=<span class="string">"#id-XX"</span> data-slide-to=<span class="string">"2"</span>&gt;&lt;/li&gt;
+     &lt;/ol&gt;
+
+    &lt;<span class="tag">div</span> class=<span class="string">"carousel-inner"</span>&gt;   内容
+
+        &lt;<span class="tag">div</span> class=<span class="string">"item active"</span>&gt;
+               &lt;<span class="tag">img</span> src=<span class="string">""</span>&gt;  
+               &lt;<span class="tag">div</span> class=<span class="string">"carousel-caption"</span>&gt;  图片描述信息
+                ...
+               &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;<span class="tag">div</span> class=<span class="string">"item"</span>&gt;
+               &lt;<span class="tag">img</span> src=<span class="string">""</span>&gt;  
+               &lt;<span class="tag">div</span> class=<span class="string">"carousel-caption"</span>&gt;  图片描述信息
+                ...
+               &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+  前翻按钮
+  &lt;<span class="tag">a</span> class=<span class="string">"left carousel-control"</span> href=<span class="string">"#id-XX"</span> data-slide=<span class="string">"prev"</span>&gt;
+    &lt;<span class="tag">span</span> class=<span class="string">"glyphicon glyphicon-chevron-left"</span>&gt;&lt;/span&gt;
+  &lt;/a&gt;
+
+  后翻按钮
+  &lt;<span class="tag">a</span> class=<span class="string">"right carousel-control"</span> href=<span class="string">"#id-XX"</span> data-slide=<span class="string">"next"</span>&gt;
+    &lt;<span class="tag">span</span> class=<span class="string">"glyphicon glyphicon-chevron-right"</span>&gt;&lt;/span&gt;
+  &lt;/a&gt;
+
+&lt;/div&gt;
+</code></pre><p>  参数：  interval  pause  wrap  keyboard</p>
+<p>   设置轮播时间 data-interval=”2000” (默认为5000)</p>
+<h3 id="9-_附加导航(Affix)">9. 附加导航(Affix)</h3><pre><code>&lt;<span class="keyword">div</span> data-spy=<span class="string">"affix"</span> data-<span class="command">offset</span>-top=<span class="string">"60"</span> data-<span class="command">offset</span>-bottom=<span class="string">"200"</span>&gt;
+  ...
+&lt;/<span class="keyword">div</span>&gt;
+</code></pre><p>  JS: </p>
+<pre><code>$(<span class="string">'#myAffix'</span>).affix({
+  offset: {
+    top: <span class="number">100</span>,
+    bottom: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>{
+      <span class="keyword">return</span> (<span class="keyword">this</span>.bottom = $(<span class="string">'.footer'</span>).outerHeight(<span class="literal">true</span>))
+    }
+  }
+})
+</code></pre>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Bootstrap/">Bootstrap</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Bootstrap/">Bootstrap</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/09/02/18. Bootstrap（四）/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/09/02/18. Bootstrap（四）/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/08/30/17. Bootstrap（三）/" title="Bootstrap知识点(三)" itemprop="url">Bootstrap知识点(三)</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-29T16:00:00.000Z" itemprop="datePublished"> 發表於 2015-08-30</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="Bootstrap知识点（三）">Bootstrap知识点（三）</h1><h2 id="三、_Bootstrap组件">三、 Bootstrap组件</h2><h3 id="1-Bootstrap组件——Glyphicon图标字体">1.Bootstrap组件——Glyphicon图标字体</h3><p>  Glyphicon Halflings  字体是第三方提供的，Bootstrap项目可以作为服务器端字体免费使用。</p>
+<pre><code><span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"glyphicon glyphicon-XXX"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span>  可以出现在任何使用文字的地方
+</code></pre><h3 id="2-按钮组">2.按钮组</h3><p>  水平排布的按钮组</p>
+<pre><code>&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"btn-group"</span>&gt;...&lt;/<span class="keyword">div</span>&gt;
+</code></pre><p>  两端对齐的按钮组</p>
+<pre><code><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"btn-group btn-group-justified"</span>&gt;</span>
+<span class="tag">&lt;<span class="title">a</span> &gt;</span>...<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</code></pre><p> 竖直排布的按钮组</p>
+<pre><code>&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"btn-group-vertical"</span>&gt;...&lt;/<span class="keyword">div</span>&gt;
+</code></pre><p> 大号按钮组gl、小号按钮组sm、超小号按钮组xs….</p>
+<h3 id="3-下拉菜单">3.下拉菜单</h3><p>  下拉菜单必需三级结构：</p>
+<pre><code><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"dropdown"</span>&gt;</span>
+
+<span class="tag">&lt; <span class="attribute">button</span> <span class="attribute">data-toggle2</span>=<span class="value">"dropdown3"</span>&gt;</span>
+      触发元素
+<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+
+<span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"dropdown-menu"</span>&gt;</span>
+      下拉菜单(隐藏元素)
+    <span class="tag">&lt; <span class="attribute">li</span> <span class="attribute">class</span>=<span class="value">"divider"</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>    
+    <span class="tag">&lt; <span class="attribute">li</span> <span class="attribute">class</span>=<span class="value">"dropdown-header"</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</code></pre><h3 id="4-输入框组">4.输入框组</h3><pre><code> 输入框前后加提示文本： 
+ <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"input-group"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"input-group-addon"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">input</span> <span class="attribute">class</span>=<span class="value">"form-control"</span>&gt;</span>
+ <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+
+输入框前后加按钮：
+ <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"input-group"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">input</span> <span class="attribute">class</span>=<span class="value">"form-control"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"input-group-btn"</span>&gt;</span>    注意！！！
+        <span class="tag">&lt;<span class="title">button</span>&gt;</span>...<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+ <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</code></pre><h3 id="5-导航">5.导航</h3><pre><code>  标签页式导航：
+<span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"nav  nav-tabs  nav-justified"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">li</span> <span class="attribute">class</span>=<span class="value">"active"</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
+
+  胶囊式导航：
+<span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"nav  nav-pills  nav-justified"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">li</span> <span class="attribute">class</span>=<span class="value">"active"</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
+
+  竖直放置的导航
+<span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"nav  nav-pills  nav-stacked"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">li</span> <span class="attribute">class</span>=<span class="value">"active"</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
+</code></pre><h3 id="6-进度条">6.进度条</h3><p>  进度条必需2级结构</p>
+<pre><code>&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"progress"</span>&gt;
+    &lt; <span class="keyword">div</span> <span class="type">class</span>=<span class="string">"progress-bar"</span> style=<span class="string">"width:40%"</span>&gt;
+           <span class="number">40</span>%
+    &lt;/<span class="keyword">div</span>&gt;
+&lt;/<span class="keyword">div</span>&gt;
+</code></pre><h3 id="7-缩略图——常用于“商品列表”">7.缩略图——常用于“商品列表”</h3><pre><code>&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"thumbnail"</span>&gt;
+    &lt;img &gt;
+    &lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"caption"</span>&gt;
+    &lt;/<span class="keyword">div</span>&gt;
+&lt;/<span class="keyword">div</span>&gt;
+</code></pre><p> 注意：展示多个商品时，往往和栅格系统组合应用</p>
+<h3 id="8-警告框">8.警告框</h3><pre><code>&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"alert  alert-danger...."</span>&gt;&lt;/<span class="keyword">div</span>&gt;
+  可以关闭的警告框（需要使用Bootstrap提供的jQ插件）
+
+&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"alert  alert-danger  alert-dismissible"</span>&gt;
+    &lt;a <span class="type">class</span>=<span class="string">"close"</span>  data-dismiss=<span class="string">"alert"</span>&gt;
+    &amp;<span class="keyword">times</span>;
+    &lt;/a&gt;
+&lt;/<span class="keyword">div</span>&gt;
+</code></pre><h3 id="9-导航条——难点&amp;重点">9.导航条——难点&amp;重点</h3><p>一个网站的导航条中，可能包含：商标/LOGO、菜单、搜索框、登录注册等按钮/超链接——响应式网页的导航条在手机中显示时，应该只有一个LOGO、下拉菜单按钮</p>
+<p>  导航条按颜色可以分为两种：</p>
+<pre><code>navbar-<span class="keyword">default</span>：灰底黑字
+navbar-<span class="built_in">inverse</span>：黑底灰色
+</code></pre><p>  导航条按位置可以分为两种：</p>
+<pre><code>随内容滚动的导航条
+固定在顶部/底部的导航条
+</code></pre><p> 例如：</p>
+<pre><code><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"navbar navbar-default"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"container"</span>&gt;</span>
+
+        <span class="comment">&lt;!--导航条头部：LOGO+下拉菜单按钮--&gt;</span>
+        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"navbar-header"</span>&gt;</span>
+        LOGO + BUTTON
+        <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+
+        <span class="comment">&lt;!--导航条主体部分：菜单+搜索框+链接...--&gt;</span>
+        <span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"navbar-nav"</span>&gt;</span>菜单<span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">form</span> <span class="attribute">class</span>=<span class="value">"navbar-form"</span>&gt;</span><span class="tag">&lt;/<span class="title">form</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">class</span>=<span class="value">"navbar-link"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</code></pre><h3 id="10-路径导航（面包屑）">10.路径导航（面包屑）</h3><pre><code> <span class="tag">&lt;<span class="title">ol</span> <span class="attribute">class</span>=<span class="value">"breadcrumb"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>首页<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>产品大全<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>大家电<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>冰箱<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>三门冰箱<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">ol</span>&gt;</span>
+</code></pre><h3 id="11-_分页">11. 分页</h3><pre><code><span class="tag">&lt;<span class="title">ol</span> <span class="attribute">class</span>=<span class="value">"pagination"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>&amp;laquo;<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>1<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>2<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">class</span>=<span class="value">"active"</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>3<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>4<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>5<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>&amp;raquo;<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">ol</span>&gt;</span>  
+</code></pre><h3 id="12-_标签">12. 标签</h3><pre><code>&lt; <span class="tag">span</span> class=”<span class="tag">label</span>  label-default”&gt;New&lt;/span&gt;
+</code></pre><h3 id="13-_徽章——_提示消息的数量">13. 徽章—— 提示消息的数量</h3><pre><code><span class="tag">&lt; <span class="attribute">span</span> <span class="attribute">class</span>=<span class="value">"badge"</span>&gt;</span>123<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+</code></pre><h3 id="14-_巨幕（宽大的屏幕）、——可用于中上部的大型广告">14. 巨幕（宽大的屏幕）、——可用于中上部的大型广告</h3><pre><code><span class="tag">&lt; <span class="attribute">div</span> <span class="attribute">class</span>=<span class="value">"jumbotron"</span>&gt;</span>
+  <span class="tag">&lt; <span class="attribute">h1</span>&gt;</span>Hello, world!<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+  <span class="tag">&lt; <span class="attribute">p</span>&gt;</span>...<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+  <span class="tag">&lt; <span class="attribute">p</span>&gt;</span><span class="tag">&lt; <span class="attribute">a</span> <span class="attribute">class</span>=<span class="value">"btn btn-primary btn-lg"</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Learn<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</code></pre><h3 id="15-_井(Well)——可用于“文章导读/摘要”">15. 井(Well)——可用于“文章导读/摘要”</h3><pre><code>&lt; <span class="keyword">div</span> <span class="type">class</span>=<span class="string">"well"</span>&gt;&lt;/<span class="keyword">div</span>&gt;
+&lt; <span class="keyword">div</span> <span class="type">class</span>=<span class="string">"well-lg"</span>&gt;&lt;/<span class="keyword">div</span>&gt;
+&lt; <span class="keyword">div</span> <span class="type">class</span>=<span class="string">"well-sm"</span>&gt;&lt;/<span class="keyword">div</span>&gt;
+&lt; <span class="keyword">div</span> <span class="type">class</span>=<span class="string">"well-xs"</span>&gt;&lt;/<span class="keyword">div</span>&gt;
+</code></pre><h3 id="16-媒体对象——可用于”评论”、”产品列表”">16.媒体对象——可用于”评论”、”产品列表”</h3><pre><code> &lt;<span class="tag">div</span> class=<span class="string">"media"</span>&gt;
+
+      &lt;<span class="tag">div</span> class=<span class="string">"media-left"</span>&gt;
+        &lt;<span class="tag">a</span> href=<span class="string">"#"</span>&gt;
+          &lt;<span class="tag">img</span> class=<span class="string">"media-object"</span> src=<span class="string">"..."</span> alt=<span class="string">"..."</span>&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+
+      &lt;<span class="tag">div</span> class=<span class="string">"media-body"</span>&gt;
+        &lt;<span class="tag">h4</span> class=<span class="string">"media-heading"</span>&gt;Media heading&lt;/h4&gt;
+        ...
+      &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><h3 id="17-面板——可用于面板组">17.面板——可用于面板组</h3><p>   带标题：</p>
+<pre><code>  &lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"panel panel-default"</span>&gt;
+  &lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"panel-heading"</span>&gt;
+    &lt;h3 <span class="type">class</span>=<span class="string">"panel-title"</span>&gt;Panel title&lt;/h3&gt;
+  &lt;/<span class="keyword">div</span>&gt;
+  &lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"panel-body"</span>&gt;
+    Panel content
+  &lt;/<span class="keyword">div</span>&gt;
+&lt;/<span class="keyword">div</span>&gt;
+</code></pre><p>   带注脚：</p>
+<pre><code>&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"panel panel-default"</span>&gt;
+  &lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"panel-body"</span>&gt;
+    Panel content
+  &lt;/<span class="keyword">div</span>&gt;
+  &lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"panel-footer"</span>&gt;Panel footer&lt;/<span class="keyword">div</span>&gt;
+&lt;/<span class="keyword">div</span>&gt;
+</code></pre><p>不同颜色：</p>
+<pre><code>&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"panel panel-primary"</span>&gt;...&lt;/<span class="keyword">div</span>&gt;
+&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"panel panel-success"</span>&gt;...&lt;/<span class="keyword">div</span>&gt;
+&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"panel panel-info"</span>&gt;...&lt;/<span class="keyword">div</span>&gt;
+&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"panel panel-warning"</span>&gt;...&lt;/<span class="keyword">div</span>&gt;
+&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"panel panel-danger"</span>&gt;...&lt;/<span class="keyword">div</span>&gt;
+</code></pre><p>带表格：</p>
+<pre><code><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"panel panel-default"</span>&gt;</span>
+
+      <span class="comment">&lt;!-- Default panel contents --&gt;</span>
+      <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"panel-heading"</span>&gt;</span>Panel heading<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"panel-body"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">p</span>&gt;</span>...<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+      <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+
+      <span class="comment">&lt;!-- Table --&gt;</span>
+      <span class="tag">&lt;<span class="title">table</span> <span class="attribute">class</span>=<span class="value">"table"</span>&gt;</span>
+        ...
+      <span class="tag">&lt;/<span class="title">table</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</code></pre><p>带列表组的面板：</p>
+<pre><code><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"panel panel-default"</span>&gt;</span>
+
+      <span class="comment">&lt;!-- Default panel contents --&gt;</span>
+      <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"panel-heading"</span>&gt;</span>Panel heading<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"panel-body"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">p</span>&gt;</span>...<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+      <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+
+      <span class="comment">&lt;!-- List group --&gt;</span>
+      <span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"list-group"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">li</span> <span class="attribute">class</span>=<span class="value">"list-group-item"</span>&gt;</span>Cras justo odio<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">li</span> <span class="attribute">class</span>=<span class="value">"list-group-item"</span>&gt;</span>Dapibus ac facilisis in<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">li</span> <span class="attribute">class</span>=<span class="value">"list-group-item"</span>&gt;</span>Morbi leo risus<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">li</span> <span class="attribute">class</span>=<span class="value">"list-group-item"</span>&gt;</span>Porta ac consectetur ac<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">li</span> <span class="attribute">class</span>=<span class="value">"list-group-item"</span>&gt;</span>Vestibulum at eros<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+      <span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</code></pre><h3 id="18-列表组">18.列表组</h3><pre><code>&lt;ul <span class="keyword">class</span>=<span class="string">"list-group"</span>&gt;
+  &lt;<span class="keyword">li</span> <span class="keyword">class</span>=<span class="string">"list-group-item"</span>&gt;Cras justo odio&lt;/<span class="keyword">li</span>&gt;
+  &lt;<span class="keyword">li</span> <span class="keyword">class</span>=<span class="string">"list-group-item"</span>&gt;Dapibus <span class="keyword">ac</span> facilisis <span class="keyword">in</span>&lt;/<span class="keyword">li</span>&gt;
+  &lt;<span class="keyword">li</span> <span class="keyword">class</span>=<span class="string">"list-group-item"</span>&gt;Morbi leo risus&lt;/<span class="keyword">li</span>&gt;
+  &lt;<span class="keyword">li</span> <span class="keyword">class</span>=<span class="string">"list-group-item"</span>&gt;Porta <span class="keyword">ac</span> consectetur <span class="keyword">ac</span>&lt;/<span class="keyword">li</span>&gt;
+  &lt;<span class="keyword">li</span> <span class="keyword">class</span>=<span class="string">"list-group-item"</span>&gt;Vestibulum at eros&lt;/<span class="keyword">li</span>&gt;
+&lt;/ul&gt;
+</code></pre>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Bootstrap/">Bootstrap</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Bootstrap/">Bootstrap</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/30/17. Bootstrap（三）/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/30/17. Bootstrap（三）/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/08/29/16. Bootstrap（二）/" title="Bootstrap知识点(二)" itemprop="url">Bootstrap知识点(二)</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-28T16:00:00.000Z" itemprop="datePublished"> 發表於 2015-08-29</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="Bootstrap知识点（二）">Bootstrap知识点（二）</h1><h2 id="二、全局CSS样式————几百个class">二、全局CSS样式————几百个class</h2><h3 id="1-容器">1.容器</h3><p>  (1)container</p>
+<pre><code><span class="class">.container</span> <span class="rules">{
+    <span class="rule"><span class="attribute">width</span>:<span class="value">   <span class="number">1170px</span>  或者 <span class="number">970px</span> 或者 <span class="number">750px</span></span></span>; 
+    <span class="rule"><span class="attribute">padding-left</span>:<span class="value">  <span class="number">15px</span></span></span>;
+    <span class="rule"><span class="attribute">padding-right</span>:<span class="value">  <span class="number">15px</span></span></span>; 
+    <span class="rule"><span class="attribute">margin-left</span>:<span class="value"> auto</span></span>;
+    <span class="rule"><span class="attribute">margin-right</span>:<span class="value"> auto</span></span>;
+    <span class="rule"><span class="attribute">box-sizing</span>:<span class="value"> border-box</span></span>;
+}</span>
+
+<span class="rule"><span class="attribute">.container</span>:<span class="value">before {        <span class="comment">/*防止子元素的margin-top超出父元素边界*/</span>
+    content: <span class="string">" "</span></span></span>;
+    <span class="rule"><span class="attribute">display</span>:<span class="value"> table</span></span>;
+}
+
+<span class="rule"><span class="attribute">.container</span>:<span class="value">after {        <span class="comment">/*防止子元素浮动对后续元素造成影响*/</span>
+    content: <span class="string">" "</span></span></span>;
+    <span class="rule"><span class="attribute">display</span>:<span class="value"> table</span></span>;
+    <span class="rule"><span class="attribute">clear</span>:<span class="value"> both</span></span>;
+}
+</code></pre><p>  (2)container-fluid</p>
+<pre><code><span class="class">.container-fluid</span> {    流式容器
+    <span class="attribute">width</span>:  auto; 
+    <span class="attribute">padding-left</span>:  <span class="number">15px</span>;
+    <span class="attribute">padding-right</span>:  <span class="number">15px</span>; 
+    <span class="attribute">margin-left</span>: auto;
+    <span class="attribute">margin-right</span>: auto;
+    <span class="attribute">box-sizing</span>: border-box;
+    }
+    <span class="class">.container-fluid</span><span class="pseudo">:before</span> {
+    ....
+    }
+    <span class="class">.container-fluid</span><span class="pseudo">:after</span> {
+    ....
+}
+</code></pre><h3 id="2-图片相关">2.图片相关</h3><pre><code>(1)<span class="class">.img-responsive</span> <span class="rules">{
+        <span class="rule"><span class="attribute">max-width</span>:<span class="value"> <span class="number">100%</span></span></span>;
+    }</span>
+
+(2)<span class="class">.img-circle</span> <span class="rules">{
+      <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">50%</span></span></span>;
+    }</span>
+
+(3)<span class="class">.img-rounded</span><span class="rules">{
+      <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">6px</span></span></span>;
+    }</span>
+
+(4)<span class="class">.img-thumbnail</span><span class="rules">{
+      <span class="rule"><span class="attribute">max-width</span>:<span class="value"> <span class="number">100%</span></span></span>;
+      <span class="rule"><span class="attribute">border</span>:<span class="value"> ...</span></span>;
+      <span class="rule"><span class="attribute">padding</span>:<span class="value"> ...</span></span>;
+    }</span>
+</code></pre><h3 id="3-文本相关class">3.文本相关class</h3><pre><code><span class="class">.text-left</span>
+<span class="class">.text-center</span>
+<span class="class">.text-right</span>        文本右对齐
+<span class="class">.text-justify</span>    两端调整对齐
+<span class="class">.text-danger</span>
+<span class="class">.text-warning</span>
+<span class="class">.text-info</span>
+<span class="class">.text-success</span>
+<span class="class">.text-primary</span>
+&lt;<span class="tag">blockquote</span>  class=<span class="string">"blockquote-reverse"</span>&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;footer&gt;&lt;/footer&gt;
+&lt;/blockquote&gt;
+<span class="class">.list-unstyled</span>
+.list-inline
+</code></pre><h3 id="4-表格相关样式——小重点">4.表格相关样式——小重点</h3><pre><code><span class="class">.table</span>    设定表格的宽度和空白
+<span class="class">.table-bordered</span>   添加最外层的边框
+<span class="class">.table-responsive</span>    响应式表格，添加在&lt;table&gt;的父元素&lt;div&gt;上！
+<span class="class">.table-striped</span>    隔行变色
+<span class="class">.table-hover</span>  悬停变色
+<span class="class">.table-condensed</span>  紧凑些的表格
+还可以使用下述class用于tr和td，添加背景色：
+<span class="class">.active</span>
+<span class="class">.danger</span>
+<span class="class">.success</span>
+<span class="class">.info</span>
+.warning
+</code></pre><h3 id="5-栅格布局系统——重点">5.栅格布局系统——重点</h3><p> 页面布局的方式：</p>
+<pre><code><span class="comment">(1)</span> TABLE布局
+
+<span class="comment">(2)</span> DIV+CSS布局
+
+<span class="comment">(3)</span> Bootstrap提供的布局：<span class="comment">(1)</span>+<span class="comment">(2)</span>的优势！
+</code></pre><p> Bootstrap栅格布局系统：</p>
+<pre><code><span class="params">(<span class="number">1</span>)</span> 有行的概念：  .row        有列的概念：   .col
+
+<span class="params">(<span class="number">2</span>)</span> 行必须处于.container/.container-fluid中，一行平均分为<span class="number">12</span>列
+
+<span class="params">(<span class="number">3</span>)</span> 行中只能放置列，内容只能放在列中
+
+<span class="params">(<span class="number">4</span>)</span> 列中还可以继续嵌套行，嵌套的行又可以分为<span class="number">12</span>列
+</code></pre><p>相关class：</p>
+<pre><code> <span class="class">.row</span>        新换一行
+ <span class="class">.col-lg-1</span>  ~  <span class="class">.col-lg-12</span>      在大屏下(&gt;=<span class="number">1200</span>)有效
+ <span class="class">.col-md-1</span>  ~  <span class="class">.col-md-12</span>  在中屏/大屏下(&gt;=<span class="number">992</span>)有效
+ <span class="class">.col-sm-1</span>  ~  <span class="class">.col-sm-12</span>   在小屏/中屏/大屏下(&gt;=<span class="number">768</span>)有效
+ <span class="class">.col-xs-1</span>  ~  <span class="class">.col-xs-12</span>  在超小/小屏/中屏/大屏下有效
+ ------------------------------
+ <span class="class">.col-lg-offset-0</span>  ~  <span class="class">.col-lg-offset-12</span>     偏移n个单元格
+ <span class="class">.col-md-offset-1</span>  ~  <span class="class">.col-md-offset-12</span>
+ <span class="class">.col-sm-offset-1</span>  ~  <span class="class">.col-sm-offset-12</span>
+ <span class="class">.col-xs-offset-1</span>  ~  <span class="class">.col-xs-offset-12</span>  
+--------------------------------
+ <span class="class">.hidden-lg</span>        仅在大屏下隐藏     
+ <span class="class">.hidden-md</span>        仅在中屏下隐藏
+ <span class="class">.hidden-sm</span>        仅在小屏下隐藏
+ <span class="class">.hidden-xs</span>        仅在超小屏下隐藏
+</code></pre><h3 id="6-表单相关样式——小重点">6.表单相关样式——小重点</h3><p>  容器元素可以使用的class：</p>
+<pre><code><span class="title">.form-group    用于包裹label和输入框</span>
+<span class="title">.checkbox    用于包裹 label和复选框</span>
+<span class="title">.radio        用于包裹lable和单选框</span>
+<span class="code">---------------------------
+.form-control    指定输入框的样式(input)
+---------------------------</span>
+</code></pre><p>三种表单：</p>
+<pre><code>普通表单：      &lt;<span class="keyword">form</span>&gt;
+行内表单：    &lt;<span class="keyword">form</span> <span class="keyword">class</span>=<span class="string">"form-inline"</span>&gt;
+水平表单：    &lt;<span class="keyword">form</span> <span class="keyword">class</span>=<span class="string">"form-horizontal"</span>&gt;
+</code></pre><p>  注意：水平表单需要对label和input做单元格宽度分配！</p>
+<h3 id="7、_辅助类">7、 辅助类</h3><p>  文本颜色：</p>
+<pre><code><span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"text-muted"</span>&gt;</span>...<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"text-primary"</span>&gt;</span>...<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"text-success"</span>&gt;</span>...<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"text-info"</span>&gt;</span>...<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"text-warning"</span>&gt;</span>...<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"text-danger"</span>&gt;</span>...<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+</code></pre><p> 背景颜色：</p>
+<pre><code><span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"bg-primary"</span>&gt;</span>...<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"bg-success"</span>&gt;</span>...<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"bg-info"</span>&gt;</span>...<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"bg-warning"</span>&gt;</span>...<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"bg-danger"</span>&gt;</span>...<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+</code></pre><p> 关闭按钮：</p>
+<pre><code><span class="tag">&lt;<span class="title">button</span> <span class="attribute">type</span>=<span class="value">"button"</span> <span class="attribute">class</span>=<span class="value">"close"</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">aria-hidden</span>=<span class="value">"true"</span>&gt;</span>&amp;times;<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+</code></pre><p> 三角符号：</p>
+<pre><code><span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"caret"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+</code></pre><p> 快速浮动：</p>
+<pre><code>&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"pull-left"</span>&gt;...&lt;/<span class="keyword">div</span>&gt;
+&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"pull-right"</span>&gt;...&lt;/<span class="keyword">div</span>&gt;
+
+ .pull-left {
+   float: left !important;
+ }
+ .pull-right {
+   float: right !important;
+ }
+</code></pre><p> 内容居中：</p>
+<pre><code>  &lt;<span class="keyword">div</span> class=<span class="string">"center-block"</span>&gt;...&lt;/<span class="keyword">div</span>&gt;
+
+.center-<span class="keyword">block</span> {
+  display: <span class="keyword">block</span>;
+  margin-left: <span class="type">auto</span>;
+  margin-right: <span class="type">auto</span>;
+}
+</code></pre><p>显示与隐藏：</p>
+<pre><code> &lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"show"</span>&gt;...&lt;/<span class="keyword">div</span>&gt;
+ &lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"hidden"</span>&gt;...&lt;/<span class="keyword">div</span>&gt;
+
+
+.show {
+  display: block !important;
+}
+.hidden {
+  display: none !important;
+  visibility: hidden !important;
+}
+.invisible {
+  visibility: hidden;
+}
+</code></pre>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Bootstrap/">Bootstrap</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Bootstrap/">Bootstrap</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/29/16. Bootstrap（二）/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/29/16. Bootstrap（二）/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/08/28/15. Bootstrap（一）/" title="Bootstrap知识点(一)" itemprop="url">Bootstrap知识点(一)</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-27T16:00:00.000Z" itemprop="datePublished"> 發表於 2015-08-28</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="Bootstrap知识点（一）">Bootstrap知识点（一）</h1><ol>
+<li><p>Bootstrap是一个HTML/CSS/JS框架，简化移动设备优先的响应式Web开发。</p>
+</li>
+<li><p>Bootstrap的内容涉及到如下三个方面：</p>
+<p>  <strong>(1) HTML：  为已有的H5标签新添了很多自定义属性  data-xxx</strong></p>
+<p>  <strong>(2)CSS：  CSS Reset + 几百个class  -&gt; bootstrap.css</strong></p>
+<p>  <strong>(3)JS：  基于jQuery提供了几十个插件</strong></p>
+</li>
+<li><p>知识点划分为五个部分：</p>
+<pre><code>(<span class="number">1</span>) 起步：      bootlint<span class="class">.js</span>   html5shiv<span class="class">.js</span>    respond<span class="class">.js</span>
+
+(<span class="number">2</span>) 全局CSS样式：    容器、按钮、图片、表格、表单、栅格、排版、辅助类
+
+(<span class="number">3</span>) 组件：   字体图标、按钮组、下拉菜单、输入框组、导航、导航条、路径导航(面包屑)、分页、标签、徽章、巨幕、缩略图、警告框、进度条、媒体对象、列表组、面板、Well  
+
+(<span class="number">4</span>) jQ插件：  下拉菜单、按钮、模态框、标签页、工具提示、弹出框、警告框、<span class="function"><span class="title">Collapse</span><span class="params">(折叠框)</span></span>、<span class="function"><span class="title">Carousel</span><span class="params">(轮播图)</span></span>、<span class="function"><span class="title">Affix</span><span class="params">(附加侧边菜单)</span></span>
+
+(<span class="number">5</span>) 定制：  LESS
+</code></pre></li>
+</ol>
+<h2 id="一、_Bootstrap起步">一、 Bootstrap起步</h2><h3 id="1-_使用Bootstrap时涉及到几个文件：">1. 使用Bootstrap时涉及到几个文件：</h3><pre><code>(<span class="number">1</span>) bootstrap<span class="class">.css</span>  核心CSS文件，其中进行了CSSReset + 几百个class
+
+(<span class="number">2</span>) bootstrap<span class="class">.js</span>   核心JS文件，基于jQuery提供了几十个插件
+
+(<span class="number">3</span>) html5shiv<span class="class">.js</span>  由第三方提供，让老IE可以支持HTML5新标签
+
+(<span class="number">4</span>) respond<span class="class">.js</span>  由第三方提供，让老IE可以支持CSS3新特性（媒体查询）
+</code></pre><h3 id="2-_基本模版">2. 基本模版</h3><pre><code>声明   <span class="doctype">&lt;!DOCTYPE html&gt;</span>
+元数据  <span class="tag">&lt;<span class="title">media</span> <span class="attribute">name</span>=<span class="value">”viewport”....</span>&gt;</span>
+样式   <span class="tag">&lt;<span class="title">link</span>  <span class="attribute">rel</span>=<span class="value">”stylesheet”</span> <span class="attribute">href</span>=<span class="value">”...</span> ”&gt;</span>
+脚本    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">”...</span> ”&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+兼容性   IE渲染： <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">”X-UA-Compatible”</span> <span class="attribute">content</span>=<span class="value">”IE=edge</span> ”&gt;</span>
+         高速模式： <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">”renderer</span> ” <span class="attribute">content</span>=<span class="value">”webkit</span> ”&gt;</span>
+         兼容IE：
+           <span class="comment">&lt;!--[if lt IE 9]&gt;
+             &lt;script src="js/html5shiv.min.js"&gt;&lt;/script&gt;   IE支持HTML5
+             &lt;script src="js/respond.min.js"&gt;&lt;/script&gt;     IE支持CSS3（尤其是媒体查询）
+              &lt;![endif]--&gt;</span>
+</code></pre><h3 id="3-_Bootstrap模版：">3. Bootstrap模版：</h3><pre><code>DOCTYPE声明   父路径   元数据   样式引用   脚本引用   兼容性注释   容器
+</code></pre><h3 id="4-_禁用响应式布局">4. 禁用响应式布局</h3><pre><code><span class="params">(<span class="number">1</span>)</span> 移除CSS文档中<span class="params">(viewport)</span>的标签： &lt;meta&gt;
+
+<span class="params">(<span class="number">2</span>)</span> 通过 .container类设置一个固定width值
+
+<span class="params">(<span class="number">3</span>)</span> 需要移除所有导航条的折叠和展开行为
+
+<span class="params">(<span class="number">4</span>)</span> 增加 .col-xs-<span class="built_in">*</span> 类 或 替换掉 .col-md-<span class="built_in">*</span>和.col-lg-<span class="built_in">*</span>
+</code></pre><h3 id="5-_Bootstrap中的CSS_Reset">5. Bootstrap中的CSS Reset</h3><pre><code>   *{  <span class="attribute">box-sizing</span>: border-box;   <span class="comment">//content-box、padding-box、border-box  }</span>
+
+<span class="tag">html</span> {  <span class="attribute">font-size</span>: <span class="number">10px</span>;  }
+
+<span class="tag">body</span> {
+  <span class="attribute">font-family</span>: <span class="string">"Helvetica Neue"</span>;
+  <span class="attribute">font-size</span>: <span class="number">14px</span>;
+  <span class="attribute">line-height</span>: <span class="number">1.428</span>;
+  <span class="attribute">color</span>: <span class="hexcolor">#333</span>;
+  <span class="attribute">background-color</span>: <span class="hexcolor">#fff</span>;
+  <span class="attribute">margin</span>: <span class="number">0</span>;  
+ }
+
+  <span class="tag">h1</span> {
+  <span class="attribute">font-size</span>: <span class="number">36px</span>;
+  <span class="attribute">margin-top</span>: <span class="number">20px</span>;
+  <span class="attribute">margin-bottom</span>: <span class="number">10px</span>;
+  }
+
+  <span class="tag">a</span> {    
+  <span class="attribute">color</span>: <span class="hexcolor">#337ab7</span>;
+  <span class="attribute">text-decoration</span>: none;
+  <span class="attribute">background-color</span>: transparent;  
+  }
+
+  <span class="tag">button</span> {
+  <span class="attribute">cursor</span>: pointer;  
+  }
+
+  <span class="tag">img</span> {    
+  <span class="attribute">vertical-align</span>: middle;
+  <span class="attribute">border</span>: <span class="number">0</span>;  
+  }
+  ....
+</code></pre><h3 id="6、box-sizing属性，定义如何计算盒子的总宽度：">6、box-sizing属性，定义如何计算盒子的总宽度：</h3><p> 一个盒子的总宽： </p>
+<pre><code><span class="attribute">content</span>-box:      <span class="attribute">margin</span> + <span class="attribute">border</span> + <span class="attribute">padding</span> + <span class="attribute">width</span>
+<span class="attribute">padding</span>-box:     <span class="attribute">margin</span> + <span class="attribute">border</span> + <span class="attribute">width</span>
+<span class="attribute">border</span>-box:       <span class="attribute">margin</span> + <span class="attribute">width</span>
+</code></pre><h3 id="7、_与按钮相关的的class：">7、 与按钮相关的的class：</h3><pre><code>基础按钮：       <span class="class">.btn</span>
+五种基础色：  <span class="class">.btn-danger</span>                 四种基本大小：        <span class="class">.btn-lg</span>
+            <span class="class">.btn-success</span>                                <span class="class">.btn-sm</span>
+            <span class="class">.btn-warning</span>                                <span class="class">.btn-xs</span>
+            <span class="class">.btn-info</span>
+            .btn-primary
+</code></pre><h3 id="8、_Bootlint">8、 Bootlint</h3><p>Bootstrap官方提供的一个js工具，可以用于检测Bootstrap class使用时是否正确。</p>
+<p>使用方法：</p>
+<pre><code><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="clojure">
+<span class="list">(<span class="keyword">function</span> <span class="list">()</span> <span class="collection">{
+    var s = document.createElement<span class="list">(<span class="string">"script"</span>)</span><span class="comment">;</span>
+    s.onload = function <span class="list">()</span> <span class="collection">{
+      bootlint.showLintReportForCurrentDocument<span class="list">(<span class="collection">[]</span>)</span><span class="comment">;</span>
+    }</span><span class="comment">;</span>
+    s.src = <span class="string">"js/bootlint.js"</span><span class="comment">;</span>
+    document.body.appendChild<span class="list">(<span class="keyword">s</span>)</span>
+  }</span>)</span><span class="list">()</span><span class="comment">;</span>
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</code></pre>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Bootstrap/">Bootstrap</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Bootstrap/">Bootstrap</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/28/15. Bootstrap（一）/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/28/15. Bootstrap（一）/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/08/27/14. 响应式布局/" title="响应式布局" itemprop="url">响应式布局</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-26T16:00:00.000Z" itemprop="datePublished"> 發表於 2015-08-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="响应式布局">响应式布局</h1><h2 id="一、响应式布局">一、响应式布局</h2><p>  Ethan Marcotte在2010年5月提出，简言之，是一个网站能够兼容多个终端—而不是为每个终端做一个特定版本。这个概念是为解决移动互联网浏览而诞生的。</p>
+<h2 id="二、响应式布局的优缺点">二、响应式布局的优缺点</h2><p>   优点：</p>
+<pre><code>1.面对不同分辨率设备灵活性强
+2.能够快捷解决多设备显示适应问题
+</code></pre><p>   缺点：</p>
+<pre><code>1.兼容各种设备工作量大，效率低下
+2.代码累赘，会出现隐藏无用的元素，加载时间加长
+3.其实这是一种折中性质的解决方案，多方面因素影响而达不到最佳效果
+4.一定程度上改变了网站原有的布局结构，会出现用户混淆的情况
+</code></pre><h2 id="三、响应式布局怎么设计">三、响应式布局怎么设计</h2><h3 id="1-CSS中的Media_Query(媒体查询)">1.CSS中的Media Query(媒体查询)</h3><ul>
+<li><p>通过不同的媒体类型和条件定义样式表规则。</p>
+</li>
+<li><p>媒体查询让CSS可以更精确作用于不同的媒体类型和同一媒体的不同条件。</p>
+</li>
+</ul>
+<h3 id="2-media_query能获取到：">2.media query能获取到：</h3><pre><code><span class="number">1</span>）设备宽和高device-<span class="attribute">width</span>，device-<span class="attribute">height</span> 显示屏幕/触觉设备
+
+<span class="number">2</span>）渲染窗口的宽和高<span class="attribute">width</span>，<span class="attribute">height</span> 显示屏幕/触觉设备
+
+<span class="number">3</span>）设备手持方向，横向和竖向<span class="function"><span class="title">orientation</span><span class="params">(portrait|landscape)</span></span>和打印机等。
+
+<span class="number">4</span>）画面比例aspect-ratio点阵打印机等
+
+<span class="number">5</span>）设备比例device-aspect-ratio-点阵打印机等
+
+<span class="number">6</span>）对象颜色或颜色列表<span class="attribute">color</span>,<span class="attribute">color</span>-index显示屏幕
+
+<span class="number">7</span>）设备的分辨率resolution
+</code></pre><h3 id="3-语法结构及用法">3.语法结构及用法</h3><p>   @media 设备名 only (选取条件) not (选取条件) and (设备选取条件)，设备二｛sRules｝</p>
+<p>   第一种： 在link中使用 @media</p>
+<pre><code>&lt;link <span class="variable">rel=</span><span class="string">"stylesheet"</span> <span class="variable">type=</span><span class="string">"text/css"</span> <span class="variable">media=</span><span class="string">"only screen and (max-width:480px),
+      only screen and (max-device-width:480px)"</span> <span class="variable">href=</span><span class="string">"link.css"</span> <span class="variable">rel=</span><span class="string">"external nofollow"</span>/&gt;
+only可省略，限定于计算机显示器
+</code></pre><p>   第二种： 在样式表中内嵌 @media</p>
+<pre><code>@media (<span class="built_in">min</span>-device-<span class="variable">width</span>:<span class="number">1024</span>px)and(<span class="built_in">max</span>-<span class="variable">width</span>:<span class="number">989</span>px),       电脑显示器宽度&gt;=<span class="number">1024</span>(最大可见宽度为<span class="number">989</span>)
+        screen and (<span class="built_in">max</span>-device-<span class="variable">width</span>:<span class="number">480</span>px),                屏宽&lt;=<span class="number">480</span>手持设备
+       (<span class="built_in">max</span>-device-<span class="variable">width</span>:<span class="number">480</span>px)and(orientation:landscape),  屏宽&lt;=<span class="number">480</span>的横向放置的手持设备
+   (<span class="built_in">min</span>-device-<span class="variable">width</span>:<span class="number">480</span>px)and(<span class="built_in">max</span>-device-<span class="variable">width</span>:<span class="number">1024</span>px)and(orientation:portrait){srules}
+                                                           屏宽&gt;=<span class="number">480</span> &lt;=<span class="number">1024</span> 的垂直放置设备
+ srules 为兼容设置的样式表   only(限定设备，可省略) 
+</code></pre><h3 id="4-可用设备参数">4.可用设备参数</h3><pre><code>all  <span class="function"><span class="title">handheld</span><span class="params">(手持设备)</span></span> <span class="function"><span class="title">print</span><span class="params">(文件打印)</span></span> <span class="function"><span class="title">screen</span><span class="params">(彩色电脑屏幕)</span></span> speech <span class="function"><span class="title">braille</span><span class="params">(盲文)</span></span> 
+<span class="function"><span class="title">embossed</span><span class="params">(盲文打印)</span></span>  <span class="function"><span class="title">tty</span><span class="params">(固定字母间距的网络媒体)</span></span>  tv  <span class="function"><span class="title">projection</span><span class="params">(项目演示)</span></span>
+</code></pre><h3 id="5-逻辑关键字">5.逻辑关键字</h3><pre><code>only  <span class="keyword">and</span>  <span class="keyword">not</span>  ,
+</code></pre><h3 id="6-可用设备名参数">6.可用设备名参数</h3><pre><code><span class="variable">width</span>/<span class="variable">height</span>         输出设备中页面可见区域宽高(px)
+device-<span class="variable">width</span>/<span class="variable">height</span>  输出设备的屏幕可见宽高(px)
+orientation          设备手持方向：portrait横向|landscape竖向
+aspect-radio         浏览器长宽比  <span class="variable">width</span>与<span class="variable">height</span>比率
+device-aspect-radio  设备屏幕长宽比  device-<span class="variable">width</span>与device-<span class="variable">height</span>比率
+<span class="built_in">color</span>                每一组输出设备的彩色原件数，若不是彩色设备，则为<span class="number">0</span>
+<span class="built_in">color</span>-index          输出设备的色彩查询表中的条目数，若没有采用彩色查询表，则为<span class="number">0</span>
+monochrome           一个单色框架缓冲区中每像素包含单色原件数，若非单色设备，则为<span class="number">0</span>
+resolution           定义设备的分辨率
+scan                 定义电视类设备的扫描工序，progressive逐行扫描，interlace隔行扫描
+grid                 查询输出设备是否使用栅格或点阵
+</code></pre><h3 id="7-为了更好的显示效果，需要格式化一些CSS属性初始值：">7.为了更好的显示效果，需要格式化一些CSS属性初始值：</h3><p>   (1) 禁用iPhone中Safari的字号自动调整</p>
+<pre><code><span class="tag">html</span><span class="rules">{
+  <span class="rule"><span class="attribute">-webkit-text-size-adjust</span>:<span class="value">none</span></span>;
+}</span>
+</code></pre><p>   (2) 设置HTML5元素为块</p>
+<pre><code><span class="tag">article</span>,<span class="tag">aside</span>,<span class="tag">details</span>,<span class="tag">figcaption</span>,<span class="tag">figure</span>,<span class="tag">footer</span>,<span class="tag">header</span>,<span class="tag">hgroup</span>,<span class="tag">menu</span>,<span class="tag">nav</span>,<span class="tag">section</span><span class="rules">{
+  <span class="rule"><span class="attribute">display</span>:<span class="value">block</span></span>;
+}</span>
+</code></pre><p>   (3) 设置图片视频自适应调整</p>
+<pre><code><span class="tag">img</span>{
+     <span class="attribute">max-width</span>:<span class="number">100%</span>;
+ <span class="attribute">height</span>:auto;
+ <span class="attribute">width</span>:auto\<span class="number">9</span>; <span class="comment">//IE8</span>
+}
+<span class="class">.video</span> <span class="tag">embed</span>,<span class="class">.video</span> <span class="tag">object</span>,<span class="class">.video</span> <span class="tag">iframe</span>{
+     <span class="attribute">width</span>:<span class="number">100%</span>;
+ <span class="attribute">height</span>:auto;
+}
+</code></pre><h3 id="8-页面头部内需加入：">8.页面头部<head>内需加入：</head></h3><pre><code>&lt;meta  <span class="variable">name=</span><span class="string">"viewport"</span> <span class="variable">content=</span><span class="string">"width=device-width;initial-scale=1.0"</span>&gt;
+</code></pre><p>   meta viewport 属性是在移动设备上设置原始大小显示和是否缩放的声明</p>
+<pre><code>参数设置：
+
+<span class="variable">width</span>/<span class="variable">height</span>       viewport的宽高
+initial            初始的缩放比例
+minimum-<span class="built_in">scale</span>      允许用户缩放到的最小比例
+maximum-<span class="built_in">scale</span>      允许用户放大到的最大比例
+use-scalable       用户是否可以手动缩放
+</code></pre><h3 id="9-_对于IE浏览器不支持media_query，需要在页面头部引入css3-mediaqueries-js">9. 对于IE浏览器不支持media query，需要在页面头部引入css3-mediaqueries.js</h3><pre><code><span class="comment">&lt;!--[if lt IE 9]&gt;
+   &lt;script src="http ://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"&gt;
+   &lt;/script&gt;
+&lt;![endif]--&gt;</span>
+</code></pre><p>  另一种： (Bootstrap中 兼容性注释)</p>
+<pre><code><span class="comment">&lt;!--[if lt IE 9]&gt;
+  &lt;script src="js/html5shiv.min.js"&gt;&lt;/script&gt;   IE支持HTML5
+  &lt;script src="js/respond.min.js"&gt;&lt;/script&gt;     IE支持CSS3（尤其是媒体查询）
+&lt;![endif]--&gt;</span>
+</code></pre><h3 id="10-_如何编写响应式网页">10. 如何编写响应式网页</h3><p>   (1) 声明viewport元标签</p>
+<pre><code>&lt;meta <span class="variable">name=</span><span class="string">"viewport"</span> <span class="variable">content=</span><span class="string">"width=device-width, user-scalable=no"</span>&gt;
+</code></pre><p>   (2) 不使用绝对尺寸，使用相对尺寸</p>
+<pre><code>宽度：不使用<span class="function_or_atom">px</span>，使用<span class="comment">%、auto</span>
+字体：不使用<span class="function_or_atom">px</span>，使用<span class="function_or_atom">em</span>、<span class="comment">%</span>
+</code></pre><p>   (3) 图片的宽度不使用px，使用%</p>
+<pre><code><span class="tag">img</span> <span class="rules">{
+   <span class="comment">/*width: 100%;*/</span>
+   <span class="rule"><span class="attribute">max-width</span>:<span class="value"> <span class="number">100%</span></span></span>;   <span class="comment">/*指定占父容器的百分比，且同时不能超过自身的原始大小——防止失真*/</span>
+}</span>
+</code></pre><p>   (4) 使用div布局，浮动布局</p>
+<p>   (5) 有选择性的执行某些CSS样式——CSS3 Media Query技术</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Bootstrap/">Bootstrap</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Bootstrap/">Bootstrap</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/27/14. 响应式布局/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/27/14. 响应式布局/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/08/25/瀑布流布局/" title="瀑布流布局" itemprop="url">瀑布流布局</a>
   </h1>
   <p class="article-author">By
@@ -1048,798 +2036,6 @@ IE6及以下(混杂模式)：<span class="attribute">text-align</span><span clas
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/19/hexo添加评论功能/" title="Hexo添加评论功能--多说" itemprop="url">Hexo添加评论功能--多说</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-19T14:12:51.000Z" itemprop="datePublished"> 發表於 2015-08-19</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="Hexo_使用多说添加评论">Hexo 使用多说添加评论</h1><p>Hexo是使用node.js技术开发的一个纯静态博客系统，Hexo默认使用的评论插件是Disqus。</p>
-<p>我们可以使用<a href="http://duoshuo.com/" target="_blank" rel="external">多说</a>来替换Disqus。多说还是不错的，很多朋友的博客都用的多说。</p>
-<h2 id="添加多说">添加多说</h2><h3 id="1-在_config-yml中添加多说的配置：">1.在_config.yml中添加多说的配置：</h3><pre><code><span class="attribute">duoshuo_shortname</span>: <span class="string">你站点的short_name</span>
-</code></pre><h3 id="2-修改themes\landscape(你当前的主题)\layout_partial\article-ejs模板把下面">2.修改themes\landscape(你当前的主题)\layout_partial\article.ejs模板把下面</h3><pre><code><span class="xml">   </span>&lt;%<span class="ruby"> <span class="keyword">if</span> (!index &amp;&amp; post.comments &amp;&amp; config.disqus_shortname){ </span>%&gt;<span class="xml">
-    <span class="tag">&lt;<span class="title">section</span> <span class="attribute">id</span>=<span class="value">"comments"</span>&gt;</span>
-     <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"disqus_thread"</span>&gt;</span>
-       <span class="tag">&lt;<span class="title">noscript</span>&gt;</span>Please enable JavaScript to view the <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"//disqus.com/?ref_noscript"</span>&gt;</span>comments powered by Disqus.<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">noscript</span>&gt;</span>
-     <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-    <span class="tag">&lt;/<span class="title">section</span>&gt;</span>
-   </span>&lt;%<span class="ruby"> } </span>%&gt;<span class="xml">
-（若没有此部分，放到模板内容下面即可，我用的就是别人的模板，没有这块代码，就粘到下面了，也是OK的）</span>
-</code></pre><p>  部分替换为：</p>
-<p>  （1）稳定版(久经考验，稳定运行，但功能更新较慢)</p>
-<pre><code>  <span class="comment">&lt;!-- 多说评论框 start --&gt;</span>
-    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"ds-thread"</span> <span class="attribute">data-thread-key</span>=<span class="value">"请将此处替换成文章在你的站点中的ID"</span> <span class="attribute">data-title</span>=<span class="value">"请替换成文章的标题"</span> <span class="attribute">data-url</span>=<span class="value">"请替换成文章的网址"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-<span class="comment">&lt;!-- 多说评论框 end --&gt;</span>
-<span class="comment">&lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;</span>
-<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript">
-<span class="keyword">var</span> duoshuoQuery = {short_name:<span class="string">"caesarwyf"</span>};
-    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
-        <span class="keyword">var</span> ds = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);
-        ds.type = <span class="string">'text/javascript'</span>;ds.async = <span class="literal">true</span>;
-        ds.src = (<span class="built_in">document</span>.location.protocol == <span class="string">'https:'</span> ? <span class="string">'https:'</span> : <span class="string">'http:'</span>) + <span class="string">'//static.duoshuo.com/embed.js'</span>;
-        ds.charset = <span class="string">'UTF-8'</span>;
-        (<span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>] 
-         || <span class="built_in">document</span>.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>]).appendChild(ds);
-    })();
-    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-<span class="comment">&lt;!-- 多说公共JS代码 end --&gt;</span>
-</code></pre><p>‘</p>
-<p>   （2）开发版(最新功能抢先体验，但偶尔可能会出现bug)</p>
-<pre><code>    <span class="comment">&lt;!-- 多说评论框 start --&gt;</span>
-    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"ds-thread"</span> <span class="attribute">data-thread-key</span>=<span class="value">"请将此处替换成文章在你的站点中的ID"</span> <span class="attribute">data-title</span>=<span class="value">"请替换成文章的标题"</span> <span class="attribute">data-url</span>=<span class="value">"请替换成文章的网址"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-<span class="comment">&lt;!-- 多说评论框 end --&gt;</span>
-<span class="comment">&lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;</span>
-<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript">
-<span class="keyword">var</span> duoshuoQuery = {short_name:<span class="string">"caesarwyf"</span>};
-    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
-        <span class="keyword">var</span> ds = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);
-        ds.type = <span class="string">'text/javascript'</span>;ds.async = <span class="literal">true</span>;
-        ds.src = (<span class="built_in">document</span>.location.protocol == <span class="string">'https:'</span> ? <span class="string">'https:'</span> : <span class="string">'http:'</span>) + <span class="string">'//static.duoshuo.com/embed.unstable.js'</span>;
-        ds.charset = <span class="string">'UTF-8'</span>;
-        (<span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>] 
-         || <span class="built_in">document</span>.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>]).appendChild(ds);
-    })();
-    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-<span class="comment">&lt;!-- 多说公共JS代码 end --&gt;</span>
-</code></pre><p>’</p>
-<p>  <strong>配置代码来自于<a href="http://dev.duoshuo.com/docs" target="_blank" rel="external">多说开发者文档</a></strong></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Hexo/">Hexo</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/19/hexo添加评论功能/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/19/hexo添加评论功能/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/18/SASS、LESS和Stylus/" title="SASS、LESS和Stylus（上）" itemprop="url">SASS、LESS和Stylus（上）</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-18T10:06:44.000Z" itemprop="datePublished"> 發表於 2015-08-18</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="CSS预处理器—SASS、LESS和Stylus（上）">CSS预处理器—SASS、LESS和Stylus（上）</h1><p> 这篇文章是W3Cplus上非常全的<a href="http://www.w3cplus.com/css/css-preprocessor-sass-vs-less-stylus-2.html" target="_blank" rel="external">CSS预处理器教程</a>，我把我需要的部分整理一下，以后就不用全都重看了。</p>
-<h2 id="一、什么是CSS预处器">一、什么是CSS预处器</h2><p>CSS预处理器定义了一种新的语言，基本思想是，用一种专门的编程语言，为CSS增加了一些编程的特性，将CSS作为目标生成文件，然后开发者就只要使用这种语言进行编码工作。</p>
-<p>通俗的说，CSS预处理器用一种专门的编程语言，进行Web页面样式设计，然后再编译成正常的CSS文件，以供项目使用。CSS预处理器为CSS增加一些编程的特性，无需考虑浏览器的兼容性问题，例如你可以在CSS中使用变量、简单的逻辑程序、函数等等在编程语言中的一些基本特性，可以让你的CSS更加简洁、适应性更强、可读性更佳，更易于代码的维护等诸多好处。</p>
-<p>CSS预处理器技术已经非常的成熟，而且也涌现出了很多种不同的CSS预处理器语言，比如说：Sass（SCSS）、LESS、Stylus、Turbine、Swithch CSS、CSS Cacheer、DT CSS等。如此之多的CSS预处理器，那么“我应该选择哪种CSS预处理器？”也相应成了最近网上的一大热门话题，在Linkedin、Twitter、CSS-Trick、知呼以及各大技术论坛上，很多人为此争论不休。相比过计我们对是否应该使用CSS预处理器的话题而言，这已经是很大的进步了。</p>
-<p>到目前为止，在众多优秀的CSS预处理器语言中就属Sass、LESS和Stylus最优秀，讨论的也多，对比的也多。<br>本文将分别从他们产生的背景、安装、使用语法、异同等几个对比之处向你介绍这三款CSS预处理器语言。相信前端开发工程师会做出自己的选择——我要选择哪款CSS预处理器。</p>
-<h2 id="二、Sass、LESS和Stylus背景介绍">二、Sass、LESS和Stylus背景介绍</h2><p> 1.Sass背景介绍</p>
-<p>Sass是对CSS（层叠样式表）的语法的一种扩充，诞生于2007年，最早也是最成熟的一款CSS预处理器语言，它可以使用变量、常量、嵌套、混入、函数等功能，可以更有效有弹性的写出CSS。Sass最后还是会编译出合法的CSS让浏览器使用，也就是说它本身的语法并不太容易让浏览器识别，因为它不是标准的CSS格式，在它的语法内部可以使用动态变量等，所以它更像一种极简单的动态语言。</p>
-<p>现在的Sass已经有了两套语法规则：<br>  （1）依旧是用缩进作为分隔符来区分代码块的；<br>  （2）规则和CSS一样采用了大括号（｛｝）作为分隔符。<br>  后一种语法规则又名SCSS，在Sass3之后的版本都支持这种语法规则。</p>
-<p>  <a href="http://sass-lang.com" target="_blank" rel="external">Sass官网地址</a></p>
-<p> 2.LESS的背景介绍</p>
-<p>2009年开源的一个项目，受Sass的影响较大，但又使用CSS的语法，让大部分开发者和设计师更容易上手。<br>LESS提供了多种方式能平滑的将写好的代码转化成标准的CSS代码，在很多流行的框架和工具中已经能经常<br>看到LESS的身影了（例如Twitter的<a href="http://www.bootcss.com/" target="_blank" rel="external">Bootstrap框架</a>就使用了LESS）。</p>
-<p>根据维基百科上的介绍，其实LESS是Alexis Sellier受Sass的影响创建的一个开源项目。当时SASS采用了<br>缩进作为分隔符来区分代码块，而不是CSS中广为使用的大括号（｛｝）。为了让CSS现有的用户使用起来<br>更佳方便，Alexis开发了LESS并提供了类似CSS的书写功能。</p>
-<p>  <a href="http://lesscss.org" target="_blank" rel="external">LESS的官网</a></p>
-<p>  3.Stylus背景介绍</p>
-<p>Stylus，2010年产生，来自于<a href="http://www.nodejs.net/" target="_blank" rel="external">Node.js社区</a>，主要用来给Node项目进行CSS预处理支持，在此社区之内<br>有一定支持者，在广泛的意义上人气还完全不如Sass和LESS。</p>
-<p>Stylus被称为是一种革命性的新语言，提供一个高效、动态、和使用表达方式来生成CSS，以供浏览器使用。<br>Stylus同时支持缩进和CSS常规样式书写规则。</p>
-<p>  <a href="http://learnboost.github.com/stylus" target="_blank" rel="external">Stylus官网</a></p>
-<h2 id="三、Sass、LESS和Stylus的安装">三、Sass、LESS和Stylus的安装</h2><p>   1.Sass的安装</p>
-<p>   （1）安装<a href="https://www.ruby-lang.org/en/" target="_blank" rel="external">Ruby</a>(建议安在C盘，安装选择Add Ruby executables to your PATH)</p>
-<p>   （2）Ruby命令控制面板中输入：gem install sass</p>
-<p>   2.LESS的安装</p>
-<p>  (1)客户端安装：</p>
-<p>   在官网载一个Javascript脚本文件“less.js”，然后在我们需要引入LESS源文件的HTML的<head>中加入：</head></p>
-<pre><code><span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet/less"</span> <span class="attribute">type</span>=<span class="value">"text/css"</span> <span class="attribute">href</span>=<span class="value">"文件路径/styles.less"</span>&gt;</span>
-<span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"文件路径/less.js"</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-</code></pre><p>   <strong>注意：</strong></p>
-<pre><code><span class="number">1</span>）在引入“.<span class="operator">less</span>”文件中，“link”的“rel”属性要设置为“stylesheet/<span class="operator">less</span>”。
-
-<span class="number">2</span>）<span class="operator">LESS</span>源文件一定要在“<span class="operator">less</span>.js”引入之前引入，这样才能保证<span class="operator">LESS</span>源文件正确编译解析。
-</code></pre><p>   （2）服务器端安装：</p>
-<p>   LESS在服务器端的使用主要是借助于LESS的编译器，将LESS源文件编译生成最终的CSS文件，目前常用的方式是利用node的包管理器（npm）安装LESS，安装成功后就可以在Node环境中对LESS文件进行编译。</p>
-<p>   如此一来，LESS在服务器的安装和Sass的安装有点相似，不同之处是他们需依赖的环境不一样，LESS需要的是Node JS环境，而Sass需要的是Ruby环境。<br>‘</p>
-<p>   1）安装<a href="http://nodejs.cn/" target="_blank" rel="external">Node JS</a>  </p>
-<p>   2）Node Js的Command控制面板直接输入：npm install less (NodeJS里安装使用npm命令，<a href="https://www.npmjs.com/" target="_blank" rel="external">npm社区</a>)</p>
-<pre><code>下载最新稳定版本的<span class="operator">LESS</span>，可以输入npm <span class="keyword">install</span> <span class="operator">less</span>@latest
-</code></pre><p>  3.Stylus的安装</p>
-<pre><code>同样依赖于Node <span class="keyword">JS</span>的环境，也要先安装Node <span class="keyword">Js</span>（同上）。在Node <span class="keyword">JS</span>的Command控制面板输入：
-
-npm install stylus
-</code></pre><h2 id="四、Sass、LESS和Stylus转译成CSS">四、Sass、LESS和Stylus转译成CSS</h2><p>   Sass、LESS和Stylus源文件（除了LESS源文件在客户端下运行之外）都不能直接被浏览器直接识别，<br>   这样一来，要正常的使用这些源文件，就需要将其源文件转译成浏览器可以识别的CSS样式文件，<br>   这也是使用CSS预处理器很关键的一步，如果这一步不知道如何操作，那么意味着写出来的代码不可用。</p>
-<p>   三者如何将其源文件转译成所需要的CSS样式文件?</p>
-<h3 id="1-Sass源文件转译成CSS文件">1.Sass源文件转译成CSS文件</h3><p>   “.sass”是Sass语言文件的扩展后缀名，而”.scss”是SCSS语言文件的扩展后缀名两者都是CSS预处理器语言，而且两者功能特性都一样，只是书写规则不同.</p>
-<p>   (1)创建一个Sass文件，可以命名为“style.scss”，并且将其放在对应的项目样式中，</p>
-<pre><code>如<span class="variable">D</span>盘的“www/workspace/<span class="variable">Sass</span>/css”目录下.
-</code></pre><p>   (2)启动Ruby的Command控制面板，找到需要转译的Sass文件，此例文件放置在D盘“www/workspace/Sass/css”</p>
-<p>   (3)如果仅针对于单文件的转译，需要将“style.scss”转译成“style.css”，只需要在对应的目录下输入：</p>
-<pre><code>$ sass style<span class="class">.scss</span> style<span class="class">.css</span>    
-目录下增加了一个“style.css”文件，这个CSS文件可以用来调用，他就是“style.scss”转译出来的样式文件。
-</code></pre><p>   (4)我们不可能每保存一次这个Sass文件就来执行一回这个转译命令，可以通过下面的监听命令实现。</p>
-<pre><code>$ sass --watch style<span class="class">.scss</span>:style<span class="class">.css</span>    
-</code></pre><p>   如果有多个Sass文件需要监听时，就很有必要的组织一下。默认情况之下，我喜欢把所有的Sass文件放在“/css/sass”目录中，而生成的CSS文件则直接放在“/css”目录下。</p>
-<p>   现在我们修改一下项目文件目录结构，在“/css”目录中再创建一个“sass”目录，并找刚才创建的“style.scss”文件移至“/css/sass”目录下。此时监听“css/sass”下的所有Sass文件时，可以在命令面板中输入：</p>
-<pre><code>$ sass --watch <span class="string">sassFileDirectory:</span>cssFileDirectory    
-冒号前面的“sassFileDirectory”是指“<span class="regexp">/css/</span>sass”下的“sass”目录，
-冒号后面的“cssFileDirectory”是指“css”目录，对应的命令就是：
-$ sass --watch css/<span class="string">sass:</span>css    
-</code></pre><p>   除了使用Ruby的Command控制面板转译Sass之外还可以考虑第三方工具，比如说有名的Compass.app和fire.app。</p>
-<h3 id="2-LESS文件的转译成CSS文件">2.LESS文件的转译成CSS文件</h3><p>   LESS文件和Sass文件转译可以说是大同小异，不同之处是LESS在安装的Node JS环境下通过其自己的命令来进行转译。</p>
-<pre><code>$ lessc style<span class="class">.less</span>    
-</code></pre><p>   上面的命令会将编译的CSS传递给stdout，你可以将它保存到一个文件中：</p>
-<pre><code>$ lessc style<span class="class">.less</span> &gt; style<span class="class">.css</span>    
-</code></pre><p>   除了上面的命令转译LESS源文件之外，现在还有很多第三方开发的工具，比较常见的有：SimpleLess、Less.app、LESS编译辅助脚本-LESS2CSS、WinLess和CodeKit.app等，我个人现在常用的是WinLess工具，简单易用，不过在IOS系统下LESS.app和CodeKit.app很好用。(我在慕客网LESS教程上使用的是Koala工具)</p>
-<h3 id="3-Stylus源文件转译成CSS文件">3.Stylus源文件转译成CSS文件</h3><p>   Stylus具有可执行性，因此Stylus能将自身转换成CSS。Stylus可以读取自“stdin”输出到“stdout”，<br>   因此Stylus可以像下面转译源文件：</p>
-<pre><code>$ stylus –compress  &lt;<span class="keyword">some</span>.styl&gt; <span class="keyword">some</span>.css    
-</code></pre><p>   Stylus也像Sass一样，同时接受单个文件和整个目录的转译。<br>   例如，一个目录名为“css”将在同一个目录编译并输出“.css”文件。</p>
-<pre><code><span class="variable">$ </span>stylus css    
-</code></pre><p>   下面的命令将输出到“./public/stylesheets”：</p>
-<pre><code>$ stylus css –<span class="keyword">out</span> <span class="keyword">public</span>/stylesheets
-</code></pre><p>   还可以同时转译多个文件：</p>
-<pre><code>$ stylus <span class="constant">one</span>.styl <span class="constant">two</span>.styl
-</code></pre><p>   如果你的浏览器安装了Firebug，那么可以使用FireStylus扩展。</p>
-<pre><code>$ stylus –firebug  <span class="tag">&lt;<span class="title">path</span>&gt;</span>
-</code></pre><h2 id="五、Sass、LESS和Stylus的语法">五、Sass、LESS和Stylus的语法</h2><h3 id="1-Sass语法">1.Sass语法</h3><p>  Sass3.0版本开始使用的是标准的CSS语法，和SCSS可以说是一样的。这样Sass代码转换成CSS代码变得更容易。</p>
-<p>  默认Sass使用“.scss”扩展名。Sass语法规则可以像CSS那样书写：</p>
-<pre><code><span class="tag">h1</span><span class="rules">{
-<span class="rule"><span class="attribute">color</span>:<span class="value"><span class="hexcolor">#936</span></span></span>;
-<span class="rule"><span class="attribute">background-color</span>:<span class="value"><span class="hexcolor">#333</span></span></span>;
-}</span>
-</code></pre><p>  Sass也同时支持老的语法，老的语法和常规的CSS语法略有不同，他需要严格的语法，任何的缩进和字符的错误都会造成样式的编译错误。Sass可以省略大括号（｛｝）和分号（；），完全依靠严格的缩进和格式化代码，而且文件使用“.sass”扩展名，他的语法类似于：</p>
-<pre><code><span class="tag">h1</span>
-  <span class="attribute">color</span>:<span class="hexcolor">#936</span>
-  <span class="attribute">background-color</span>: <span class="hexcolor">#333</span>
-</code></pre><h3 id="2-LESS语法">2.LESS语法</h3><p>   LESS是CSS的一种扩展形式，它并没有阉割CSS的功能，而是在现有的CSS语法上，添加了很多额外的功能。<br>   就语法规则而言，LESS和Sass一样，都是使用CSS的标准语法，只是LESS的源文件的扩展名是“.less”.</p>
-<pre><code><span class="tag">h1</span><span class="rules">{
-<span class="rule"><span class="attribute">color</span>:<span class="value"><span class="hexcolor">#936</span></span></span>;
-<span class="rule"><span class="attribute">background-color</span>:<span class="value"><span class="hexcolor">#333</span></span></span>;
-}</span>
-</code></pre><h3 id="3-Stylus语法">3.Stylus语法</h3><p>Stylus的语法花样多一些，它的文件扩展名是“.styl”，Stylus也接受标准的CSS语法，但是他也像Sass老的语法规则，使用缩进控制，同时Stylus也接受不带大括号（｛｝）和分号的语法.可以省略大括号（｛｝）</p>
-<pre><code><span class="tag">h1</span> 
-  <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#963</span></span></span>;
-  <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#333</span></span></span>;
-</code></pre><p>   也可以省略大括号（｛｝）和分号（;）</p>
-<pre><code><span class="tag">h1</span>
-  <span class="attribute">color</span>:<span class="hexcolor">#963</span>
-  <span class="attribute">background-color</span>:<span class="hexcolor">#333</span>
-</code></pre><p>   在Stylus样式中，你也可以在同一个样式文件中使用不同的语法规则，下面这样的写法也不会报错</p>
-<pre><code><span class="title">h1</span> {
-  <span class="title">color</span>  <span class="comment">#963</span>
-}
-
-h2 
-  font-size:<span class="number">1</span>.2em
-</code></pre><h2 id="六、Sass、LESS和Stylus特性">六、Sass、LESS和Stylus特性</h2><p>   这三款CSS预处理器语言具有一些相同的特性，例如：变量、混入、嵌套、函数等。</p>
-<h3 id="1-变量">1.变量</h3><p>   a)Sass的变量  $</p>
-<p>  Sass声明变量必须是“$”开头，后面紧跟变量名和变量值，而且变量名和变量值需要使用冒号（：）分隔开。就像CSS属性设置一样：</p>
-<pre><code><span class="comment">/*声明变量*/</span>
-<span class="variable">$mainColor</span>: <span class="variable">#963</span>;
-<span class="variable">$siteWidth</span>: <span class="number">1024</span>px;
-<span class="variable">$borderStyle</span>: dotted;
-
-<span class="comment">/*调用变量*/</span>                               <span class="comment">/*转译出来的CSS*/</span>
-
-body {                                   <span class="subst">|</span>  body {
-   color: <span class="variable">$mainColor</span>;                    <span class="subst">|</span>    color: <span class="variable">#963</span>;
-   border:<span class="number">1</span>px <span class="variable">$borderStyle</span> <span class="variable">$mainColor</span>;   <span class="subst">|</span>    border:<span class="number">1</span>px dotted <span class="variable">#963</span>;
-   <span class="keyword">max</span><span class="attribute">-width</span>: <span class="variable">$siteWidth</span>;                <span class="subst">|</span>    <span class="keyword">max</span><span class="attribute">-width</span>: <span class="number">1024</span>px;
-}                                        <span class="subst">|</span>  }    
-</code></pre><p>   b)LESS的变量 @</p>
-<p>   LESS样式中声明变量和调用变量和Sass一样，唯一的区别就是变量名前面使用的是“ @ ”字符</p>
-<p>   c)Stylus的变量</p>
-<p>   Stylus样式中声明变量没有任何限定，你可以使用“$”符号开始。结尾的分号（;）可有可无，但变量名和变量值之间的等号（=）是需要的。</p>
-<p>   注意：</p>
-<p>   (1)如果我们使用“ @ ”符号开头来声明（0.22.4）变量，Stylus会进行编译，但其对应的值并不会赋值给变量。</p>
-<p>   (2)在Stylus中不要使用“ @ ”符号开头声明变量。Stylus中调用变量的方法和LESS、Sass是完全相同的。</p>
-<p>   Stylus还有一个独特功能，不需要分配值给变量就可以定义引用属性：</p>
-<pre><code>    /<span class="keyword">*</span>水平垂直居中<span class="keyword">*</span>/                    /<span class="keyword">*</span>转译出来的CSS<span class="keyword">*</span>/
-------------------------------------+------------------------------------
-<span class="comment">#logo                               |   #logo {</span>
-  position  absolute                |<span class="string">     position:absolute;
-  top  50%                          </span>|<span class="string">     top:50%;
-  left  50%                         </span>|<span class="string">     left:50%;
-  width  w = 150px                  </span>|<span class="string">     width:150px;
-  height  h = 80px                  </span>|<span class="string">     height:80px;
-  margin-left  -(w / 2)             </span>|<span class="string">     margin-left:-75px;
-  margin-top  -(h / 2)              </span>|<span class="string">     margin-top:-40px;
-                    </span>|<span class="string">   } </span>
-</code></pre><p>   从上面的代码中我们可以看出，CSS预处理器语言中的变量是值级别的重复使用，可以将相同的值定义成变量统一管理起来.</p>
-<p>   CSS预处理器语言中变量的特性适用于定义主题（也就是我们常说的换肤），我们可以将背景颜色、字体颜色、边框属性等常规样式统一定义，这样不同的主题只需要定义不同的变量文件就可以。</p>
-<h3 id="2-作用域（Scope）">2.作用域（Scope）</h3><p>  CSS预处理器语言中的变量和其他程序语言一样，可以实现值的复用，同样它也存在生命周期，也就是Scope（变量范围，开发人员习惯称之为作用域）简单说，就是局部变量和全局变量的概念</p>
-<p>  查找变量的顺序是先在局部定义中找，如果找不到，则查找上级定义，直至全局。</p>
-<h4 id="a)Sass的作用域">a)Sass的作用域</h4><p>  Sass中作用域在这三款预处理器是最差的，可以说在Sass中是不存在什么全局变量。</p>
-<pre><code> <span class="variable">$color</span><span class="value">: black;</span>                           转义出来的样式：
-<span class="class">.scoped</span> {                            <span class="class">.scoped</span> {
-  <span class="variable">$bg</span><span class="value">: blue;</span>                            <span class="attribute">color</span><span class="value">:white;</span> <span class="comment">/*是白色*/</span>
-  <span class="variable">$color</span><span class="value">: white;</span>                         <span class="attribute">background-color</span><span class="value">:blue;</span>
-  <span class="attribute">color</span><span class="value">: <span class="variable">$color</span>;</span>                     }
-  <span class="attribute">background-color</span><span class="value">:<span class="variable">$bg</span>;</span>              <span class="class">.unscoped</span> {
-}                                         <span class="attribute">color</span><span class="value">:white;</span><span class="comment">/*白色（无全局变量概念）*/</span>
-<span class="class">.unscoped</span> {                         }
-  <span class="attribute">color</span><span class="value">:<span class="variable">$color</span>;</span>
-}    
-</code></pre><p>  <strong>注意:</strong> </p>
-<p>  在Sass样式中定义变量，调用变量是没有全局变量一个概念存在，因此在Sass中定义了相同变量名时，在调用之时千万要多加小心，不然会给你的样式带来错误。</p>
-<h4 id="b)LESS的作用域">b)LESS的作用域</h4><p>  LESS中的作用域和其他程序语言中的作用域非常的相同，他首先会查找局部定义的变量，<br>  如果没有找到，会像冒泡一样，一级一级往下查找，直到根为止，同样上面的例子，<br>  我们来看看他在LESS下所起的变化。</p>
-<pre><code><span class="variable">@color:</span> black;                               转译出来：
-<span class="class">.scoped</span> {                              <span class="class">.scoped</span> {
-  <span class="variable">@bg:</span> blue;                              <span class="attribute">color</span>:white;<span class="comment">/*白色（调用了局部变量）*/</span>
-  <span class="variable">@color:</span> white;                          <span class="attribute">background-color</span>:blue;
-  <span class="attribute">color</span>: <span class="variable">@color</span>;                       }
-  <span class="attribute">background-color</span>: <span class="variable">@bg</span>;               <span class="class">.unscoped</span> {
-}                                           <span class="attribute">color</span>:black;<span class="comment">/*黑色（调用了全局变量）*/</span>
-<span class="class">.unscoped</span> {                               }
-  <span class="attribute">color</span>: <span class="variable">@color</span>;
-}
-</code></pre><h4 id="c)Stylus的作用域">c)Stylus的作用域</h4><p>  Stylus虽然起步比较晚，但其作用域的特性和LESS一样，可以支持全局变量和局变量。会向上冒泡查找，直到根为止。</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/CSS/">CSS</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/CSS/">CSS</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/18/SASS、LESS和Stylus/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/18/SASS、LESS和Stylus/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/17/同步一个fork/" title="fork同步" itemprop="url">fork同步</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-17T12:22:57.000Z" itemprop="datePublished"> 發表於 2015-08-17</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="fork同步相关问题：">fork同步相关问题：</h1><p>Github现在越来越火了，这也说明了Github这个平台太有参与价值了，虽然我现在还只是个旁观者。<br>没事我会看看几个大神有没有更新什么新的作品或者小项目展示（嘿嘿，还可以偷偷的下载下来玩玩）。</p>
-<p>Git方面教程有很多好的博客，比如 <a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">廖雪峰的Git教程</a>非常好，本人很受益。</p>
-<p>之前，刚用Github的时候，最头疼的就是同步fork，推送自己的文件或者分支合并到别人的上游目录中。刚开始我也是似懂非懂，有时候OK，有时候就报错。报错就开始翻译报的什么错，有时候真的就直接看报错提示就知道了，不要以为是一堆没用的English。其实，最简单的找错办法就是看报错提示了。看不懂查一下不就得了，又不费事，还锻炼英语水平。</p>
-<p>废话不多说了，我们把我觉得有意思的部分整理一下，都是从网上前辈那里学的。</p>
-<h2 id="1-_fork别人项目后如何与源项目保持同步：">1. fork别人项目后如何与源项目保持同步：</h2><p>(ps: 最直接简单暴力的办法，直接删除重新fork)</p>
-<p>我们有时看到一些比较好的项目，我们都会fork一下，然后在本地操作，但是fork之后，项目是不会跟<br>源项目保持同步的，需要我们自己进行一些操作让其同步。</p>
-<p>  1） 打开git bash，进入要同步的仓库目录</p>
-<p>  2） 实现本地和远程同步，先将原项目pull到本地：</p>
-<pre><code>git remote add <span class="keyword">project</span> http:<span class="comment">//github.com/源项目文件目录      //给源项目添加个别名</span>
-git pull <span class="keyword">project</span> master      <span class="comment">//pull project 下面的master分支</span>
-</code></pre><p>  3)  将pull下来的更新 push到自己项目上面<br>       git push</p>
-<pre><code>第一次push会报错，添加一个publickey就可以了。设置一下<span class="constant">SSH就OK了</span>，很简单。
-
-<span class="constant">SSH设</span>置<span class="symbol">:</span>
-
-<span class="variable">$ </span>cd ~<span class="regexp">/.ssh/</span>
-<span class="variable">$ </span>ssh-keygen -t rsa -<span class="constant">C </span><span class="string">"email@example.com"</span>
-或者
-<span class="variable">$ </span>ssh-keygen 查看一下
-<span class="variable">$ </span>cd .ssh
-  修改id_rsa.pub(我用的是win8,linux直接vim修改就可以了 vim id_rsa.pub)
-  修改内容就是你 <span class="constant">Github </span>的 <span class="constant">Deloy Keys里Add </span>deloy key的内容
-  重新git push就ok了
-</code></pre><h2 id="2-同步fork：">2.同步fork：</h2><p> （1）给fork配置一个remote</p>
-<pre><code><span class="number">1</span>) git remote -v 查看远程状态
-
-  eg.
-   <span class="preprocessor"># origin  https:<span class="comment">//github.com/YOUR_USERNAME/YOUR_FORK.git (fetch)</span></span>
-   <span class="preprocessor"># origin  https:<span class="comment">//github.com/YOUR_USERNAME/YOUR_FORK.git (push)</span></span>
-</code></pre><p>   ‘</p>
-<pre><code><span class="number">2</span>) 添加一个将被同步给 fork 远程的上游仓库
-
-  git remote <span class="built_in">add</span> upstream http<span class="variable">s:</span>//github.<span class="keyword">com</span>/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git
-</code></pre><p>  ‘</p>
-<pre><code><span class="number">3</span>) 再次查看状态确认是否配置成功。
-
-git remote -v
-  <span class="preprocessor"># origin    https:<span class="comment">//github.com/YOUR_USERNAME/YOUR_FORK.git (fetch)</span></span>
-  <span class="preprocessor"># origin    https:<span class="comment">//github.com/YOUR_USERNAME/YOUR_FORK.git (push)</span></span>
-  <span class="preprocessor"># upstream  https:<span class="comment">//github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git (fetch)</span></span>
-  <span class="preprocessor"># upstream  https:<span class="comment">//github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git (push)</span></span>
-</code></pre><p>  (2) 从上游仓库 fetch 分支和提交点，传送到本地，并会被存储在一个本地分支 upstream/master</p>
-<pre><code>git fetch upstream
-  # <span class="string">remote:</span> Counting <span class="string">objects:</span> <span class="number">75</span>, done.
-  # <span class="string">remote:</span> Compressing <span class="string">objects:</span> <span class="number">100</span>% (<span class="number">53</span>/<span class="number">53</span>), done.
-  # <span class="string">remote:</span> Total <span class="number">62</span> (delta <span class="number">27</span>), reused <span class="number">44</span> (delta <span class="number">9</span>)
-  # Unpacking <span class="string">objects:</span> <span class="number">100</span>% (<span class="number">62</span>/<span class="number">62</span>), done.
-  # From <span class="string">https:</span><span class="comment">//github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY</span>
-  #  * [<span class="keyword">new</span> branch]      master     -&gt; upstream/master
-</code></pre><p>  (3)  切换到本地主分支(如果不在的话)</p>
-<pre><code><span class="label">git</span> checkout master
- # <span class="keyword">Switched </span>to <span class="keyword">branch </span><span class="string">'master'</span>
-</code></pre><p>  (4) 把 upstream/master 分支合并到本地 master 上，这样就完成了同步，并且不会丢掉本地修改的内容。</p>
-<pre><code>git <span class="operator"><span class="keyword">merge</span> upstream/<span class="keyword">master</span>
- # Updating a422352..<span class="number">5</span>fdff0f
- # <span class="keyword">Fast</span>-forward
- #  README                    |    <span class="number">9</span> <span class="comment">-------</span>
- #  README.md                 |    <span class="number">7</span> ++++++
- #  <span class="number">2</span> files <span class="keyword">changed</span>, <span class="number">7</span> insertions(+), <span class="number">9</span> deletions(-)
- #  <span class="keyword">delete</span> <span class="keyword">mode</span> <span class="number">100644</span> README
- #  <span class="keyword">create</span> <span class="keyword">mode</span> <span class="number">100644</span> README.md</span>
-</code></pre><p>  (5) 如果想更新到 GitHub 的 fork 上，直接 git push origin master 就OK了。</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Github/">Github</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Github/">Github</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/17/同步一个fork/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/17/同步一个fork/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/16/精通CSS（一）/" title="精通CSS（一）" itemprop="url">精通CSS（一）</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-16T12:01:23.000Z" itemprop="datePublished"> 發表於 2015-08-16</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="精通CSS整理（一）：">精通CSS整理（一）：</h1><p> 这本书看完挺长时间了，但是记住的好像很少，一开始感觉这本书都是基础的东西，看一遍就可以，但是前一阵做响应式<br> 布局的时候，发现有一些重要的东西在这本书中提到过。例如有关流式布局，弹性布局，弹性图片等，还有后面的一些<br> 兼容性相关的东西，都挺重要的，我把这本书简要的整理一下。就当是复习一下CSS了。</p>
-<h2 id="第一章_基础知识">第一章 基础知识</h2><p> 1.语义化命名约定  “它们是什么”来命名  微格式</p>
-<p>  2.有意义的标记  <strong>Web语义化</strong></p>
-<pre><code>1）有意义的页面更容易处理
-2）程序和其他设备也可以理解有意义的标签（也称语义标签）
-3) 可以简便的将元素调整为你所需的样式。
-</code></pre><p> 3.ID和类名选择器的差异和适用场合</p>
-<pre><code>类： 应用于概念上相似的元素
-<span class="label">ID:</span>  应用于不同的唯一的元素
-</code></pre><p> 4.CSS、HTML版本</p>
-<pre><code><span class="label">DTD</span>（文档类型定义）   严格<span class="keyword">strict </span>过渡transitional
-</code></pre><p> 5.浏览器对不同版本的解析差异</p>
-<pre><code>浏览器模式：标准模式和混杂模式(quirks <span class="built_in">mode</span>)
-</code></pre><h2 id="第二章_为样式找到应用目标">第二章 为样式找到应用目标</h2><h3 id="1-常用选择器">1.常用选择器</h3><p>   标签/元素   后代   ID   类   通用* </p>
-<p>   CSS3中： </p>
-<pre><code>子选择器   &gt;   
-相邻同胞<span class="comment">(兄弟)</span>选择器   +  
-通用兄弟选择器    ~   
- 属性选择器    []   
- 伪类/伪元素选择器
-</code></pre><p>   ’</p>
-<pre><code><span class="label">IE7</span>和更高版本支持子选择器  IE7中有个小<span class="keyword">bug，若父元素和子元素之间有HTML注释，会出问题
-</span><span class="label">IE6</span>和更低版本，可用通用选择器模拟
-</code></pre><p>   伪类：（当然伪类还有很多，CSS3中有很多好用的伪类，等以后专门整理，伪类真的能做很多事）</p>
-<pre><code>动态伪类：(理论上应用于所有元素)
-   <span class="symbol">:hover</span> 鼠标悬停               <span class="constant">IE6 </span>只注意active和hover，完全忽略focus
-   <span class="symbol">:active</span> 激活的                <span class="constant">IE7 </span>在任何元素支持hover，但忽略active和focus
-   <span class="symbol">:focus</span> 选中时
-链接伪类：(只用于锚元素)
-    <span class="symbol">:link</span> 未访问过
-    <span class="symbol">:visited</span> 访问过的
-</code></pre><h3 id="2-特殊性（优先级/权重）">2.特殊性（优先级/权重）</h3><pre><code>  行间  &gt;  ID  &gt;  类  &gt;  标签/元素   !important  
-  <span class="number">1000</span>     <span class="number">100</span>    <span class="number">10</span>        <span class="number">1</span>          <span class="number">10000</span>
-
-层叠：  简化CSS
-继承:   应用样式的元素后代会继承样式的某些属性，eg. <span class="attribute">color</span> <span class="attribute">font</span> 
-        减少代码中选择器的数量和复杂  
-</code></pre><h3 id="3-规划、组织、维护样式表">3.规划、组织、维护样式表</h3><pre><code>单一CSS文件
-注释
-样式表结构
-样式指南
-</code></pre><h2 id="第三章_可视化格式模型">第三章 可视化格式模型</h2><h3 id="1-_标准W3C盒模型：_内容、内边距、边框、外边距">1. 标准W3C盒模型：  内容、内边距、边框、外边距</h3><pre><code>使用全局<span class="keyword">reset</span>把内边距和外边距显式的设置为零可能更安全
-</code></pre><h3 id="2-_IE(混杂模式)盒模型：_width_=_内容_+_内边距_+边框">2. IE(混杂模式)盒模型： width = 内容 + 内边距 +边框</h3><pre><code><span class="label">IE</span>早期版本，包括IE6，在混杂模式中使用自己的非标准盒模型。
-
-<span class="label">CSS3</span>中，<span class="keyword">box-sizing </span>定义盒模型类型
-</code></pre><h3 id="3-_外边距叠加_垂直外边距取较大的">3. 外边距叠加  垂直外边距取较大的</h3><pre><code><span class="comment">(前提是普通文档流中的块元素的垂直外边距)</span> 
-
-行内元素、浮动元素或绝对定位元素之间不会叠加
-</code></pre><h3 id="4-_定位_三种基本定位机制：普通流、浮动、绝对定位">4. 定位   三种基本定位机制：普通流、浮动、绝对定位</h3><pre><code><span class="label">relative:</span> 相对于文档流中初始位置
-<span class="label">absolute:</span> 相对于最近已定位父元素               可用<span class="built_in">z</span>-index 控制叠放次序
-fixed：   相对于视口（固定定位是绝对定位的一种，IE6不支持，IE7部分支持有bug）
-<span class="label">static:</span>   默认
-<span class="label">inherit:</span>  从父元素继承
-</code></pre><h3 id="5-_浮动：_使元素脱离文档流">5. 浮动： 使元素脱离文档流</h3><pre><code>清理浮动： 实际上为之前浮动元素留出了垂直空间
-
-   (1) <span class="rule"><span class="attribute">clear</span>:<span class="value">both</span></span>;
-   (2) <span class="rule"><span class="attribute">overflow</span>:<span class="value">hidden或auto  （有可能影响元素表现，如产生滚动条或截断内容）
-
- **常用这种方式**： 
-
-   .clear:after{
-         content:<span class="string">"."</span></span></span>;
-           <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">0</span></span></span>;
-         <span class="rule"><span class="attribute">visibility</span>:<span class="value">hidden</span></span>;
-         <span class="rule"><span class="attribute">display</span>:<span class="value">block</span></span>;
-         <span class="rule"><span class="attribute">clear</span>:<span class="value">both</span></span>;
-    }
-</code></pre><h2 id="第四章_背景图像效果">第四章 背景图像效果</h2><p>   1.背景图片</p>
-<pre><code><span class="rule"><span class="attribute">background-position</span>:<span class="value">left center</span></span>; 左侧中间
-<span class="rule"><span class="attribute">background-position</span>:<span class="value"><span class="number">0</span> <span class="number">50%</span></span></span>; 垂直居中
-</code></pre><p>   2.圆角框</p>
-<pre><code><span class="comment">(1)</span>定宽圆角：  顶+底
-
-<span class="comment">(2)</span>灵活圆角：  四个角  滑动门技术<span class="comment">(需定义两个额外的无语义元素)</span>
-
-<span class="comment">(3)</span>山顶角：  多个背景图像，拼成圆角
-            border-radius<span class="comment">(-moz- -webkit)</span> 
-            border-image <span class="comment">(九分法缩放)</span>
-</code></pre><p>   3.投影</p>
-<pre><code>(1)简单的<span class="tag">CSS</span>投影(负外边距)
-
-(2)<span class="tag">Clagnut</span>投影(相对定位)   <span class="rule"><span class="attribute">left</span>:<span class="value">-<span class="number">5px</span></span></span>;<span class="rule"><span class="attribute">top</span>:<span class="value">-<span class="number">5px</span></span></span>;
-
-(3)<span class="tag">CSS3</span>: <span class="rule"><span class="attribute">Box-shadow</span>:<span class="value"> <span class="number">3px</span> <span class="number">3px</span> <span class="number">6px</span> <span class="hexcolor">#666</span></span></span>
-</code></pre><p>   4.不透明度</p>
-<pre><code><span class="params">(<span class="number">1</span>)</span>三种方式： opacity  RGBa   PNG透明度<span class="params">(IE6不直接支持PNG透明度，IE7/IE8支持)</span>
-
-<span class="params">(<span class="number">2</span>)</span>CSS视差效果: <span class="params">( background-color:transparent; )</span>
-</code></pre><p>   5  图像替换：   </p>
-<pre><code>FIR <span class="list">( <span class="keyword">display</span><span class="keyword">:none</span> )</span>
-Phark <span class="list">(  <span class="keyword">text-indent</span>: <span class="number">-5000</span>px<span class="comment">; )</span>
-sFIR <span class="list">(可伸缩Inman Flash替换)</span>   过时已久了，就不想多说了</span>
-</code></pre><h2 id="第五章_对链接应用样式">第五章 对链接应用样式</h2><p>  1.链接选择器（层叠顺序）</p>
-<pre><code>link , visited 将覆盖之前的 hover , active
-
-最好按照次序使用： <span class="tag">a</span><span class="pseudo">:link,</span><span class="tag">a</span><span class="pseudo">:visited,</span><span class="tag">a</span><span class="pseudo">:hover,</span><span class="tag">a</span><span class="pseudo">:focus,</span><span class="tag">a</span>:active
-</code></pre><p>  2.链接修饰：  主要使用background属性</p>
-<p>  3.链接目标设置样式： :target伪类(唯一可以不用JS使其他元素产生样式变化的方法)</p>
-<p>  4.突显不同链接(属性选择器)：  a[att^=val] 标识外部链接</p>
-<pre><code>eg:   <span class="tag">a</span>[href^=<span class="string">"http:"</span>]  <span class="string">"mailto:"</span> <span class="string">"aim:"</span>
-      <span class="tag">a</span>[href^=<span class="string">".pdf"</span>]   <span class="tag">a</span>[href$=<span class="string">".rss"</span>]RSS提要(feed)  <span class="string">".doc"</span>  <span class="string">".rdf"</span>
-
-IE6不支持属性选择器。
-</code></pre><p>  5.链接应只用于get请求，决不要用于post</p>
-<p>  6.图像翻转：  background-image  background-position</p>
-<pre><code>CSS精灵： 图标，按钮，图形，集中在一个地方  使用<span class="attribute">background-position</span>
-
-CSS3中： <span class="attribute">text-shadow</span>,<span class="attribute">box-shadow</span>,<span class="attribute">border-radius</span>
-
-渐变 <span class="function">-webkit-gradient</span>(linear,   <span class="attribute">left</span> <span class="attribute">top</span>,<span class="attribute">left</span> <span class="attribute">bottom</span>,  <span class="function">from</span>(<span class="id">#abe142</span>),<span class="function">to</span>(<span class="id">#67a400</span>));
-                      渐变类型        渐变方向              初始结束过渡颜色   
-倒影 -webkit-box-reflect<span class="value">: below <span class="number">2px</span> <span class="function">-wekit-gradient</span>(linear,left top,left bottom,
-     <span class="function">from</span>(transparent),<span class="function">color-stop</span>(<span class="number">0.52</span>,transparent),<span class="function">to</span>(white));</span>
-</code></pre>
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/CSS/">CSS</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/CSS/">CSS</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/16/精通CSS（一）/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/16/精通CSS（一）/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/15/SASS/" title="SASS与Compass（一）" itemprop="url">SASS与Compass（一）</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-15T11:11:24.000Z" itemprop="datePublished"> 發表於 2015-08-15</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="SASS与Compass基础">SASS与Compass基础</h1><p>  听一些大神都说，LESS和SASS很简单，根本不用看书，敲敲就明白了。我是不行啊，虽然东西不多，但是感觉不看点书，不踏实。</p>
-<h2 id="概述：">概述：</h2><p> CSS开发是基于渲染原理和W3C标准来设计规则的，无算法，无数据结构，没有逻辑控制。</p>
-<p> Sass在2007年，诞生于“工具控”的Ruby社区，开始服务的对象自然是Ruby工程师，是为了让他们能像写Ruby那样写CSS。</p>
-<p> 直到推出SCSS这种语法风格，Sass变得更像是CSS的扩展和增强，可以跟原生CSS混写。</p>
-<p> Sass不能让你写出更好的CSS，但是却可以让你更高效的写出高可维护性的CSS。</p>
-<p> QQ查找受益颇深的几点：</p>
-<pre><code> 1<span class="class">.Sass</span>对原生<span class="tag">CSS</span> <span class="at_rule">@<span class="keyword">import指令的扩展，让我可以在不同文件中的样式最后合并到一起。</span>
-<span class="number">2</span>.变量机制，使得标准的颜色值、行高、列宽再也不用“东一榔头西一棒槌”的分散各处，有了一个统一的地方归纳整理。
-<span class="number">3</span>.标准样式的抽离，向调用函数一样，轻松将统一的样式抽离出来，避免了复制，一旦交互变动，只需修改抽离出来的混合器一处。
- <span class="number">4</span>.样式继承的概念，使得我们对于查找中各种btn的修饰变得清晰，无论何种btn，统一从父级btn继承基础样式。
-<span class="number">5</span>.自动合图实在是太方便了，直接把切图扔到图片目录，对应的合图和CSS就全部自动生成了。</span>
-</code></pre><h2 id="第一章、_Sass和Compass让样式表重焕青春">第一章、 Sass和Compass让样式表重焕青春</h2><h3 id="1-_Sass支持两种语法。">1. Sass支持两种语法。</h3><p>   (1)最初的缩进式语法 使用.sass为文件扩展名，对空格敏感，属性通过换行来分割。 </p>
-<pre><code><span class="tag">h1</span>
-  <span class="attribute">color</span>:<span class="hexcolor">#000</span>
-  <span class="attribute">background</span>:<span class="hexcolor">#fff</span>
-</code></pre><p>   (2)SCSS即Sassy CSS在Sass3.0中被引入，它是CSS3的超集。SCSS文件使用.scss为扩展名，使用花括号和分号。</p>
-<pre><code><span class="tag">h1</span>{<span class="attribute">color</span>:<span class="hexcolor">#000</span>;<span class="attribute">background</span>:<span class="hexcolor">#fff</span>}
-注意：这两种语法可以在同一个项目中混合使用，只要不在同一个文件使用即可。
-</code></pre><p>   DRY(Don`t Repeat Yourself)</p>
-<h3 id="2-消除样式表的冗余">2.消除样式表的冗余</h3><p>   (1)通过变量来复用属性值</p>
-<pre><code><span class="variable">$company-blue</span><span class="value">: <span class="hexcolor">#1875e7</span>;</span>
-<span class="tag">h1</span><span class="id">#brand</span>{<span class="attribute">color</span><span class="value">:<span class="variable">$company-blue</span>;</span>}
-</code></pre><p>   (2)使用嵌套来快速写出多层级的选择器</p>
-<pre><code><span class="tag">ul</span><span class="class">.nav</span>{<span class="tag">float</span><span class="pseudo">:right</span>}
-<span class="tag">ul</span><span class="class">.nav</span> <span class="tag">li</span>{<span class="attribute">float</span>:left;}
-<span class="tag">ul</span><span class="class">.nav</span> <span class="tag">li</span> <span class="tag">a</span>{<span class="tag">color</span>:<span class="id">#111</span>}
-<span class="tag">ul</span><span class="class">.nav</span> <span class="tag">li</span><span class="class">.current</span>{<span class="attribute">font-weight</span>:bold;}
-
-<span class="tag">ul</span><span class="class">.nav</span>{
-  <span class="attribute">float</span>:right;
-  <span class="tag">li</span>{
-    <span class="attribute">float</span>:left;
-    <span class="tag">a</span>{
-      <span class="attribute">color</span>:<span class="hexcolor">#111</span>;
-    }
-    <span class="keyword">&amp;</span><span class="class">.current</span>{
-     <span class="attribute">font-weight</span>:bold;
-    }
-  }
-}
-</code></pre><p>   (3)使用混合器来复用一段样式</p>
-<pre><code> <span class="variable">@mixin</span> horizontal-list{
-  <span class="tag">li</span>{
-    <span class="attribute">float</span>:left;
-    <span class="attribute">margin-right</span>:<span class="number">10px</span>;
-   }
- }
-<span class="id">#header</span> <span class="tag">ul</span><span class="class">.nav</span>{
-  <span class="variable">@include</span> horizontal-list;
-  <span class="attribute">float</span>:right;
-}
-<span class="id">#footer</span> <span class="tag">ul</span><span class="class">.nav</span>{
-  <span class="variable">@include</span> horizontal-list;
-  <span class="attribute">margin-top</span>:<span class="number">1em</span>;
-}
-使用 <span class="variable">@mixin</span>命令，可以将水平列表的规则抽取出来放到一个合适的混合器中。
-然后调用 <span class="variable">@include</span>命令，将规则引入。因此，不再需要.horizontal-list类。
-</code></pre><p>混合器可以和变量结合，能够根据参数来决定使用的样式。</p>
-<pre><code><span class="variable">@mixin</span> <span class="function">horizontal-list</span>($<span class="attribute">spacing</span>:<span class="number">10px</span>){
-   <span class="tag">li</span>{<span class="attribute">float</span>:left;}
-}
-<span class="id">#footer</span> <span class="tag">ul</span><span class="class">.nav</span>{
-  <span class="variable">@include</span> <span class="function">horizontal-list</span>(<span class="number">20px</span>);
-  <span class="attribute">margin-top</span>:<span class="number">1em</span>;
-}
-</code></pre><p> (4) 使用选择器继承来避免重复属性</p>
-<p>   选择器继承的意思就是让一个选择器能够复用另一个选择器的所有样式，但又不重复输出这些样式属性。</p>
-<pre><code><span class="class">.error</span>{<span class="attribute">border</span>:<span class="number">1px</span> <span class="hexcolor">#f00</span>; <span class="attribute">background</span>:<span class="hexcolor">#fdd</span>;}
-<span class="class">.error</span> <span class="class">.intrusion</span>{<span class="attribute">font-size</span>:<span class="number">1.2em</span>; <span class="attribute">font-weight</span>:bold;}
-<span class="class">.badError</span>{ <span class="variable">@extend</span> .error; <span class="attribute">border-width</span>:<span class="number">3px</span>;}
-
-<span class="class">.badError</span>继承父类<span class="class">.error</span>，也就是复用父类的所有样式。
-
-编译后：
-<span class="class">.error</span>,<span class="class">.badError</span>{<span class="attribute">border</span>:<span class="number">1px</span> <span class="hexcolor">#f00</span>; <span class="attribute">background</span>:<span class="hexcolor">#fdd</span>;}
-<span class="class">.error</span> <span class="class">.intrusion</span>,<span class="class">.badError</span> <span class="class">.intrusion</span>{<span class="attribute">font-size</span>:<span class="number">1.2em</span>; <span class="attribute">font-weight</span>:bold;}
-<span class="class">.badError</span>{<span class="attribute">border-width</span>:<span class="number">3px</span>;}
-</code></pre><p>有时父类不需要在HTML中使用时，Sass3.2中引入占位选择器，它支持使用选择器继承的同时，不编译输出HTML中不使用的父类。</p>
-<pre><code>%<span class="tag">button-reset</span>{ ... }
-<span class="class">.save</span>{ <span class="variable">@extend</span> %button-reset;<span class="attribute">color</span>:white;...}
-<span class="class">.delete</span>{ <span class="variable">@extent</span> %button-reset;<span class="attribute">color</span>:white;...}
-</code></pre><h3 id="3-Compass">3.Compass</h3><p>  Compass是面向Sass的一个框架。</p>
-<pre><code>三个主要部分： 
-      <span class="number">1</span>）混合器
-      <span class="number">2</span>）实用工具的类库<span class="comment">(能够集成到应用开发环境中的开发系统)</span>
-      <span class="number">3</span>）一个用于构建框架和扩展的平台
-</code></pre><p>  使用Compass可以解决很多CSS问题<br>     1）重置样式<br>     2）不用计算创建布局<br>     3）添加更专业样式<br>     4）CSS3属性无需再写厂商前缀</p>
-<p>详细的语法我看完一起精简整理，哈哈。  </p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/CSS/">CSS</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/CSS/">CSS</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/15/SASS/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/15/SASS/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -1856,6 +2052,10 @@ CSS3中： <span class="attribute">text-shadow</span>,<span class="attribute">bo
 <div class="categorieslist">
 	<p class="asidetitle">分類</p>
 		<ul>
+		
+		  
+			<li><a href="/categories/Bootstrap/" title="Bootstrap">Bootstrap<sup>5</sup></a></li>
+		  
 		
 		  
 			<li><a href="/categories/CSS/" title="CSS">CSS<sup>5</sup></a></li>
@@ -1896,6 +2096,10 @@ CSS3中： <span class="attribute">text-shadow</span>,<span class="attribute">bo
 		
 			
 				<li><a href="/tags/CSS/" title="CSS">CSS<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Bootstrap/" title="Bootstrap">Bootstrap<sup>5</sup></a></li>
 			
 		
 			

@@ -1,0 +1,770 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Bootstrap知识点(二) | YunFeng`s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yunfeng">
+    
+
+    
+    <meta name="description" content="Bootstrap知识点（二）二、全局CSS样式————几百个class1.容器  (1)container
+.container {
+    width:   1170px  或者 970px 或者 750px; 
+    padding-left:  15px;
+    padding-right:  15px; 
+    margin-left: auto;
+    margin-right">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bootstrap知识点(二)">
+<meta property="og:url" content="http://yunfengwang.com.cn/2015/08/29/16. Bootstrap（二）/index.html">
+<meta property="og:site_name" content="YunFeng`s blog">
+<meta property="og:description" content="Bootstrap知识点（二）二、全局CSS样式————几百个class1.容器  (1)container
+.container {
+    width:   1170px  或者 970px 或者 750px; 
+    padding-left:  15px;
+    padding-right:  15px; 
+    margin-left: auto;
+    margin-right">
+<meta property="og:updated_time" content="2015-09-09T12:04:35.972Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Bootstrap知识点(二)">
+<meta name="twitter:description" content="Bootstrap知识点（二）二、全局CSS样式————几百个class1.容器  (1)container
+.container {
+    width:   1170px  或者 970px 或者 750px; 
+    padding-left:  15px;
+    padding-right:  15px; 
+    margin-left: auto;
+    margin-right">
+
+    
+    <link rel="alternative" href="/atom.xml" title="YunFeng`s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="YunFeng`s blog" title="YunFeng`s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="YunFeng`s blog">YunFeng`s blog</a></h1>
+				<h2 class="blog-motto">My Life! Dream is on the way</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yunfengwang.com.cn">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/08/29/16. Bootstrap（二）/" title="Bootstrap知识点(二)" itemprop="url">Bootstrap知识点(二)</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-28T16:00:00.000Z" itemprop="datePublished"> 發表於 2015-08-29</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Bootstrap知识点（二）"><span class="toc-number">1.</span> <span class="toc-text">Bootstrap知识点（二）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#二、全局CSS样式————几百个class"><span class="toc-number">1.1.</span> <span class="toc-text">二、全局CSS样式————几百个class</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-容器"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-图片相关"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.图片相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-文本相关class"><span class="toc-number">1.1.3.</span> <span class="toc-text">3.文本相关class</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-表格相关样式——小重点"><span class="toc-number">1.1.4.</span> <span class="toc-text">4.表格相关样式——小重点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-栅格布局系统——重点"><span class="toc-number">1.1.5.</span> <span class="toc-text">5.栅格布局系统——重点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-表单相关样式——小重点"><span class="toc-number">1.1.6.</span> <span class="toc-text">6.表单相关样式——小重点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7、_辅助类"><span class="toc-number">1.1.7.</span> <span class="toc-text">7、 辅助类</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="Bootstrap知识点（二）">Bootstrap知识点（二）</h1><h2 id="二、全局CSS样式————几百个class">二、全局CSS样式————几百个class</h2><h3 id="1-容器">1.容器</h3><p>  (1)container</p>
+<pre><code><span class="class">.container</span> <span class="rules">{
+    <span class="rule"><span class="attribute">width</span>:<span class="value">   <span class="number">1170px</span>  或者 <span class="number">970px</span> 或者 <span class="number">750px</span></span></span>; 
+    <span class="rule"><span class="attribute">padding-left</span>:<span class="value">  <span class="number">15px</span></span></span>;
+    <span class="rule"><span class="attribute">padding-right</span>:<span class="value">  <span class="number">15px</span></span></span>; 
+    <span class="rule"><span class="attribute">margin-left</span>:<span class="value"> auto</span></span>;
+    <span class="rule"><span class="attribute">margin-right</span>:<span class="value"> auto</span></span>;
+    <span class="rule"><span class="attribute">box-sizing</span>:<span class="value"> border-box</span></span>;
+}</span>
+
+<span class="rule"><span class="attribute">.container</span>:<span class="value">before {        <span class="comment">/*防止子元素的margin-top超出父元素边界*/</span>
+    content: <span class="string">" "</span></span></span>;
+    <span class="rule"><span class="attribute">display</span>:<span class="value"> table</span></span>;
+}
+
+<span class="rule"><span class="attribute">.container</span>:<span class="value">after {        <span class="comment">/*防止子元素浮动对后续元素造成影响*/</span>
+    content: <span class="string">" "</span></span></span>;
+    <span class="rule"><span class="attribute">display</span>:<span class="value"> table</span></span>;
+    <span class="rule"><span class="attribute">clear</span>:<span class="value"> both</span></span>;
+}
+</code></pre><p>  (2)container-fluid</p>
+<pre><code><span class="class">.container-fluid</span> {    流式容器
+    <span class="attribute">width</span>:  auto; 
+    <span class="attribute">padding-left</span>:  <span class="number">15px</span>;
+    <span class="attribute">padding-right</span>:  <span class="number">15px</span>; 
+    <span class="attribute">margin-left</span>: auto;
+    <span class="attribute">margin-right</span>: auto;
+    <span class="attribute">box-sizing</span>: border-box;
+    }
+    <span class="class">.container-fluid</span><span class="pseudo">:before</span> {
+    ....
+    }
+    <span class="class">.container-fluid</span><span class="pseudo">:after</span> {
+    ....
+}
+</code></pre><h3 id="2-图片相关">2.图片相关</h3><pre><code>(1)<span class="class">.img-responsive</span> <span class="rules">{
+        <span class="rule"><span class="attribute">max-width</span>:<span class="value"> <span class="number">100%</span></span></span>;
+    }</span>
+
+(2)<span class="class">.img-circle</span> <span class="rules">{
+      <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">50%</span></span></span>;
+    }</span>
+
+(3)<span class="class">.img-rounded</span><span class="rules">{
+      <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">6px</span></span></span>;
+    }</span>
+
+(4)<span class="class">.img-thumbnail</span><span class="rules">{
+      <span class="rule"><span class="attribute">max-width</span>:<span class="value"> <span class="number">100%</span></span></span>;
+      <span class="rule"><span class="attribute">border</span>:<span class="value"> ...</span></span>;
+      <span class="rule"><span class="attribute">padding</span>:<span class="value"> ...</span></span>;
+    }</span>
+</code></pre><h3 id="3-文本相关class">3.文本相关class</h3><pre><code><span class="class">.text-left</span>
+<span class="class">.text-center</span>
+<span class="class">.text-right</span>        文本右对齐
+<span class="class">.text-justify</span>    两端调整对齐
+<span class="class">.text-danger</span>
+<span class="class">.text-warning</span>
+<span class="class">.text-info</span>
+<span class="class">.text-success</span>
+<span class="class">.text-primary</span>
+&lt;<span class="tag">blockquote</span>  class=<span class="string">"blockquote-reverse"</span>&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;footer&gt;&lt;/footer&gt;
+&lt;/blockquote&gt;
+<span class="class">.list-unstyled</span>
+.list-inline
+</code></pre><h3 id="4-表格相关样式——小重点">4.表格相关样式——小重点</h3><pre><code><span class="class">.table</span>    设定表格的宽度和空白
+<span class="class">.table-bordered</span>   添加最外层的边框
+<span class="class">.table-responsive</span>    响应式表格，添加在&lt;table&gt;的父元素&lt;div&gt;上！
+<span class="class">.table-striped</span>    隔行变色
+<span class="class">.table-hover</span>  悬停变色
+<span class="class">.table-condensed</span>  紧凑些的表格
+还可以使用下述class用于tr和td，添加背景色：
+<span class="class">.active</span>
+<span class="class">.danger</span>
+<span class="class">.success</span>
+<span class="class">.info</span>
+.warning
+</code></pre><h3 id="5-栅格布局系统——重点">5.栅格布局系统——重点</h3><p> 页面布局的方式：</p>
+<pre><code><span class="comment">(1)</span> TABLE布局
+
+<span class="comment">(2)</span> DIV+CSS布局
+
+<span class="comment">(3)</span> Bootstrap提供的布局：<span class="comment">(1)</span>+<span class="comment">(2)</span>的优势！
+</code></pre><p> Bootstrap栅格布局系统：</p>
+<pre><code><span class="params">(<span class="number">1</span>)</span> 有行的概念：  .row        有列的概念：   .col
+
+<span class="params">(<span class="number">2</span>)</span> 行必须处于.container/.container-fluid中，一行平均分为<span class="number">12</span>列
+
+<span class="params">(<span class="number">3</span>)</span> 行中只能放置列，内容只能放在列中
+
+<span class="params">(<span class="number">4</span>)</span> 列中还可以继续嵌套行，嵌套的行又可以分为<span class="number">12</span>列
+</code></pre><p>相关class：</p>
+<pre><code> <span class="class">.row</span>        新换一行
+ <span class="class">.col-lg-1</span>  ~  <span class="class">.col-lg-12</span>      在大屏下(&gt;=<span class="number">1200</span>)有效
+ <span class="class">.col-md-1</span>  ~  <span class="class">.col-md-12</span>  在中屏/大屏下(&gt;=<span class="number">992</span>)有效
+ <span class="class">.col-sm-1</span>  ~  <span class="class">.col-sm-12</span>   在小屏/中屏/大屏下(&gt;=<span class="number">768</span>)有效
+ <span class="class">.col-xs-1</span>  ~  <span class="class">.col-xs-12</span>  在超小/小屏/中屏/大屏下有效
+ ------------------------------
+ <span class="class">.col-lg-offset-0</span>  ~  <span class="class">.col-lg-offset-12</span>     偏移n个单元格
+ <span class="class">.col-md-offset-1</span>  ~  <span class="class">.col-md-offset-12</span>
+ <span class="class">.col-sm-offset-1</span>  ~  <span class="class">.col-sm-offset-12</span>
+ <span class="class">.col-xs-offset-1</span>  ~  <span class="class">.col-xs-offset-12</span>  
+--------------------------------
+ <span class="class">.hidden-lg</span>        仅在大屏下隐藏     
+ <span class="class">.hidden-md</span>        仅在中屏下隐藏
+ <span class="class">.hidden-sm</span>        仅在小屏下隐藏
+ <span class="class">.hidden-xs</span>        仅在超小屏下隐藏
+</code></pre><h3 id="6-表单相关样式——小重点">6.表单相关样式——小重点</h3><p>  容器元素可以使用的class：</p>
+<pre><code><span class="title">.form-group    用于包裹label和输入框</span>
+<span class="title">.checkbox    用于包裹 label和复选框</span>
+<span class="title">.radio        用于包裹lable和单选框</span>
+<span class="code">---------------------------
+.form-control    指定输入框的样式(input)
+---------------------------</span>
+</code></pre><p>三种表单：</p>
+<pre><code>普通表单：      &lt;<span class="keyword">form</span>&gt;
+行内表单：    &lt;<span class="keyword">form</span> <span class="keyword">class</span>=<span class="string">"form-inline"</span>&gt;
+水平表单：    &lt;<span class="keyword">form</span> <span class="keyword">class</span>=<span class="string">"form-horizontal"</span>&gt;
+</code></pre><p>  注意：水平表单需要对label和input做单元格宽度分配！</p>
+<h3 id="7、_辅助类">7、 辅助类</h3><p>  文本颜色：</p>
+<pre><code><span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"text-muted"</span>&gt;</span>...<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"text-primary"</span>&gt;</span>...<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"text-success"</span>&gt;</span>...<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"text-info"</span>&gt;</span>...<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"text-warning"</span>&gt;</span>...<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"text-danger"</span>&gt;</span>...<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+</code></pre><p> 背景颜色：</p>
+<pre><code><span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"bg-primary"</span>&gt;</span>...<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"bg-success"</span>&gt;</span>...<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"bg-info"</span>&gt;</span>...<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"bg-warning"</span>&gt;</span>...<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"bg-danger"</span>&gt;</span>...<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+</code></pre><p> 关闭按钮：</p>
+<pre><code><span class="tag">&lt;<span class="title">button</span> <span class="attribute">type</span>=<span class="value">"button"</span> <span class="attribute">class</span>=<span class="value">"close"</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">aria-hidden</span>=<span class="value">"true"</span>&gt;</span>&amp;times;<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+</code></pre><p> 三角符号：</p>
+<pre><code><span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"caret"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+</code></pre><p> 快速浮动：</p>
+<pre><code>&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"pull-left"</span>&gt;...&lt;/<span class="keyword">div</span>&gt;
+&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"pull-right"</span>&gt;...&lt;/<span class="keyword">div</span>&gt;
+
+ .pull-left {
+   float: left !important;
+ }
+ .pull-right {
+   float: right !important;
+ }
+</code></pre><p> 内容居中：</p>
+<pre><code>  &lt;<span class="keyword">div</span> class=<span class="string">"center-block"</span>&gt;...&lt;/<span class="keyword">div</span>&gt;
+
+.center-<span class="keyword">block</span> {
+  display: <span class="keyword">block</span>;
+  margin-left: <span class="type">auto</span>;
+  margin-right: <span class="type">auto</span>;
+}
+</code></pre><p>显示与隐藏：</p>
+<pre><code> &lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"show"</span>&gt;...&lt;/<span class="keyword">div</span>&gt;
+ &lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"hidden"</span>&gt;...&lt;/<span class="keyword">div</span>&gt;
+
+
+.show {
+  display: block !important;
+}
+.hidden {
+  display: none !important;
+  visibility: hidden !important;
+}
+.invisible {
+  visibility: hidden;
+}
+</code></pre>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Bootstrap/">Bootstrap</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Bootstrap/">Bootstrap</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yunfengwang.com.cn/2015/08/29/16. Bootstrap（二）/" data-title="Bootstrap知识点(二) | YunFeng`s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/08/30/17. Bootstrap（三）/" title="Bootstrap知识点(三)">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Bootstrap知识点(三)</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/08/28/15. Bootstrap（一）/"  title="Bootstrap知识点(一)">
+ <strong>下一篇：</strong><br/> 
+ <span>Bootstrap知识点(一)
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/08/29/16. Bootstrap（二）/" data-title="Bootstrap知识点(二)" data-url="http://yunfengwang.com.cn/2015/08/29/16. Bootstrap（二）/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Bootstrap知识点（二）"><span class="toc-number">1.</span> <span class="toc-text">Bootstrap知识点（二）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#二、全局CSS样式————几百个class"><span class="toc-number">1.1.</span> <span class="toc-text">二、全局CSS样式————几百个class</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-容器"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-图片相关"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.图片相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-文本相关class"><span class="toc-number">1.1.3.</span> <span class="toc-text">3.文本相关class</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-表格相关样式——小重点"><span class="toc-number">1.1.4.</span> <span class="toc-text">4.表格相关样式——小重点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-栅格布局系统——重点"><span class="toc-number">1.1.5.</span> <span class="toc-text">5.栅格布局系统——重点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-表单相关样式——小重点"><span class="toc-number">1.1.6.</span> <span class="toc-text">6.表单相关样式——小重点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7、_辅助类"><span class="toc-number">1.1.7.</span> <span class="toc-text">7、 辅助类</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Bootstrap/" title="Bootstrap">Bootstrap<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CSS/" title="CSS">CSS<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Github/" title="Github">Github<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Javascript/" title="Javascript">Javascript<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Leaf/" title="Leaf">Leaf<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/WebApp/" title="WebApp">WebApp<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Bootstrap/" title="Bootstrap">Bootstrap<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WebApp/" title="WebApp">WebApp<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/new/" title="new">new<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Github/" title="Github">Github<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.w3.org/" target="_blank" title="W3C">W3C</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ecmascript.org/" target="_blank" title="ECMA">ECMA</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://developer.mozilla.org/zh-CN/" target="_blank" title="Mozilla">Mozilla</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://html5labs.interoperabilitybridges.com/" target="_blank" title="微软H5实验室">微软H5实验室</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.w3cfuns.com/portal.php" target="_blank" title="前端网">前端网</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://efe.baidu.com/" target="_blank" title="EFE">EFE</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ued.taobao.org/blog/" target="_blank" title="淘宝">淘宝</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://it-ebooks.info/" target="_blank" title="IT eBooks">IT eBooks</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wwsun.me/posts/creating-javascript-modules-loader.html" target="_blank" title="模块加速器">模块加速器</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+<div class="doubanshow">
+<p class="asidetitle">豆瓣秀</p>
+<div>
+<script type="text/javascript" src="http://www.douban.com/service/badge/CaesarFeng/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie" ></script>
+</div>
+</div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> One bboy, One Jser, YunFeng. <br/>
+			The beginning of my blog life</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/u/3181646571" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/wyfyyy818818" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/CaesarFeng" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/wang-yun-feng-52" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:384360465@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Yunfeng">Yunfeng</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"CaesarWyf"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

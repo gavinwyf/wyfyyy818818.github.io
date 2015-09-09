@@ -1,0 +1,692 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Bootstrap知识点(四) | YunFeng`s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yunfeng">
+    
+
+    
+    <meta name="description" content="Bootstrap知识点（四）四、Bootstrap提供的jQuery插件   这些插件基本上都可以有两种使用方法：
+(1)调用js函数：  $(...).yyy( );
+(2)声明扩展属性：    &amp;lt;button  data-xxx=&quot;yyy&quot;&amp;gt;
+1. 下拉列表1)data-toggle=&quot;dropdown&quot;
+2)$(....).dropdown( )
+2. 警告框1)data-di">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bootstrap知识点(四)">
+<meta property="og:url" content="http://yunfengwang.com.cn/2015/09/02/18. Bootstrap（四）/index.html">
+<meta property="og:site_name" content="YunFeng`s blog">
+<meta property="og:description" content="Bootstrap知识点（四）四、Bootstrap提供的jQuery插件   这些插件基本上都可以有两种使用方法：
+(1)调用js函数：  $(...).yyy( );
+(2)声明扩展属性：    &amp;lt;button  data-xxx=&quot;yyy&quot;&amp;gt;
+1. 下拉列表1)data-toggle=&quot;dropdown&quot;
+2)$(....).dropdown( )
+2. 警告框1)data-di">
+<meta property="og:updated_time" content="2015-09-09T12:45:25.032Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Bootstrap知识点(四)">
+<meta name="twitter:description" content="Bootstrap知识点（四）四、Bootstrap提供的jQuery插件   这些插件基本上都可以有两种使用方法：
+(1)调用js函数：  $(...).yyy( );
+(2)声明扩展属性：    &amp;lt;button  data-xxx=&quot;yyy&quot;&amp;gt;
+1. 下拉列表1)data-toggle=&quot;dropdown&quot;
+2)$(....).dropdown( )
+2. 警告框1)data-di">
+
+    
+    <link rel="alternative" href="/atom.xml" title="YunFeng`s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="YunFeng`s blog" title="YunFeng`s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="YunFeng`s blog">YunFeng`s blog</a></h1>
+				<h2 class="blog-motto">My Life! Dream is on the way</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yunfengwang.com.cn">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/02/18. Bootstrap（四）/" title="Bootstrap知识点(四)" itemprop="url">Bootstrap知识点(四)</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-01T16:00:00.000Z" itemprop="datePublished"> 發表於 2015-09-02</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Bootstrap知识点（四）"><span class="toc-number">1.</span> <span class="toc-text">Bootstrap知识点（四）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#四、Bootstrap提供的jQuery插件"><span class="toc-number">1.1.</span> <span class="toc-text">四、Bootstrap提供的jQuery插件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_下拉列表"><span class="toc-number">1.1.1.</span> <span class="toc-text">1. 下拉列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_警告框"><span class="toc-number">1.1.2.</span> <span class="toc-text">2. 警告框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-_工具提示框"><span class="toc-number">1.1.3.</span> <span class="toc-text">3. 工具提示框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-_弹出框"><span class="toc-number">1.1.4.</span> <span class="toc-text">4. 弹出框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-_模态对话框——小重点&小难点"><span class="toc-number">1.1.5.</span> <span class="toc-text">5. 模态对话框——小重点&小难点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-_标签页"><span class="toc-number">1.1.6.</span> <span class="toc-text">6. 标签页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-_Bootstrap提供的JS插件——折叠效果(_Collapse_)"><span class="toc-number">1.1.7.</span> <span class="toc-text">7. Bootstrap提供的JS插件——折叠效果( Collapse )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-_Bootstrap提供的JS插件——轮播广告(Carousel)"><span class="toc-number">1.1.8.</span> <span class="toc-text">8. Bootstrap提供的JS插件——轮播广告(Carousel)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-_附加导航(Affix)"><span class="toc-number">1.1.9.</span> <span class="toc-text">9. 附加导航(Affix)</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="Bootstrap知识点（四）">Bootstrap知识点（四）</h1><h2 id="四、Bootstrap提供的jQuery插件">四、Bootstrap提供的jQuery插件</h2><p>   这些插件基本上都可以有两种使用方法：</p>
+<pre><code><span class="params">(<span class="number">1</span>)</span>调用js函数：  $<span class="params">(...)</span>.yyy<span class="params">( )</span>;
+<span class="params">(<span class="number">2</span>)</span>声明扩展属性：    &lt;button  data-xxx=<span class="string">"yyy"</span>&gt;
+</code></pre><h3 id="1-_下拉列表">1. 下拉列表</h3><pre><code><span class="number">1</span>)data-toggle=<span class="string">"dropdown"</span>
+<span class="number">2</span>)$(....).<span class="function"><span class="title">dropdown</span><span class="params">( )</span></span>
+</code></pre><h3 id="2-_警告框">2. 警告框</h3><pre><code><span class="number">1</span>)<span class="preprocessor">data</span>-dismiss=<span class="string">"alert"</span>
+</code></pre><h3 id="3-_工具提示框">3. 工具提示框</h3><p>  使用工具提示框必需两步：</p>
+<pre><code><span class="number">1</span>)&lt;xx title=<span class="string">"工具提示的内容"</span> <span class="typedef"><span class="keyword">data</span>-toggle="tooltip"&gt;</span>
+<span class="number">2</span>)$('[<span class="typedef"><span class="keyword">data</span>-toggle=tooltip]').tooltip<span class="container">( )</span></span>
+</code></pre><h3 id="4-_弹出框">4. 弹出框</h3><p>  使用弹出框必需两步：</p>
+<pre><code><span class="number">1</span>)&lt;xx title=<span class="string">"标题"</span> data-<span class="attribute">content</span>=<span class="string">"内容"</span> data-toggle=<span class="string">"popover"</span>&gt;
+<span class="number">2</span>)$(<span class="string">'[data-toggle=popover]'</span>).<span class="function"><span class="title">popover</span><span class="params">( )</span></span>
+</code></pre><h3 id="5-_模态对话框——小重点&amp;小难点">5. 模态对话框——小重点&amp;小难点</h3><p>  模态：一个父窗口中打开了一个子窗口，若子窗口不关闭，则父窗口无法获得焦点，且父子窗口间可以传递数据——这样的子窗口称为模态（modal）窗口。</p>
+<p>  模态框必需满足如下的层级结构：</p>
+<pre><code><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"modal fade"</span>&gt;</span>    <span class="comment">&lt;!--全屏半透明遮罩层--&gt;</span>
+      <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"modal-dialog"</span>&gt;</span>    <span class="comment">&lt;!--定位、宽高设置的容器--&gt;</span>
+              <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"modal-content"</span>&gt;</span>    <span class="comment">&lt;!--对话框窗口的边框、背景、阴影、倒角--&gt;</span>
+
+                  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"modal-header"</span>&gt;</span>
+                      <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"close"</span> <span class="attribute">data-dismiss</span>=<span class="value">"modal"</span>&gt;</span>&amp;times;<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+                      <span class="tag">&lt;<span class="title">h3</span> <span class="attribute">class</span>=<span class="value">"modal-title"</span>&gt;</span>Modal title<span class="tag">&lt;/<span class="title">h3</span>&gt;</span>
+                  <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+
+                  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"modal-body"</span>&gt;</span>对话框的主体<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+
+                  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"modal-footer"</span>&gt;</span>对话框的尾部<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+
+              <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+      <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</code></pre><h3 id="6-_标签页">6. 标签页</h3><p>  必需的结构：</p>
+<pre><code><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"nav  nav-tabs"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">li</span> <span class="attribute">class</span>=<span class="value">"active"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">data-toggle</span>=<span class="value">"tab"</span> <span class="attribute">href</span>=<span class="value">"#id1"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> &gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> &gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
+<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"tab-content"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"id1"</span> <span class="attribute">class</span>=<span class="value">"tab-pane active"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">div</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">div</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</code></pre><h3 id="7-_Bootstrap提供的JS插件——折叠效果(_Collapse_)">7. Bootstrap提供的JS插件——折叠效果( Collapse )</h3><pre><code>触发元素：
+<span class="tag">&lt;<span class="title">a</span> <span class="attribute">data-toggle</span>=<span class="value">"collapse"</span> <span class="attribute">href</span>=<span class="value">"#id2"</span>&gt;</span>触发元素<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
+<span class="tag">&lt;<span class="title">button</span> <span class="attribute">data-toggle</span>=<span class="value">"collapse"</span> <span class="attribute">data-target</span>=<span class="value">"#id2"</span>&gt;</span>触发元素<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+
+目标元素：
+<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"id2"</span> <span class="attribute">class</span>=<span class="value">"collapse in"</span>&gt;</span>目标元素<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+  ------------------------------------------------------------
+</code></pre><p>  应用：      </p>
+<p>(1)使用Collapse插件实现Accordion(手风琴)组件</p>
+<p>(2)使用Collapse插件实现可以折叠收起的响应式导航栏——重点！</p>
+<h3 id="8-_Bootstrap提供的JS插件——轮播广告(Carousel)">8. Bootstrap提供的JS插件——轮播广告(Carousel)</h3><p>  最基本的轮播广告：</p>
+<pre><code>&lt;<span class="tag">div</span> id=<span class="string">"id-XX"</span> class=<span class="string">"carousel"</span>  data-ride=<span class="string">"carousel"</span>&gt;
+
+    &lt;<span class="tag">ol</span> class=<span class="string">"carousel-indicators"</span>&gt;   滚动小圆圈
+        &lt;<span class="tag">li</span> data-target=<span class="string">"#id-XX"</span> data-slide-to=<span class="string">"0"</span> class=<span class="string">"active"</span>&gt;&lt;/li&gt;
+        &lt;<span class="tag">li</span> data-target=<span class="string">"#id-XX"</span> data-slide-to=<span class="string">"1"</span>&gt;&lt;/li&gt;
+        &lt;<span class="tag">li</span> data-target=<span class="string">"#id-XX"</span> data-slide-to=<span class="string">"2"</span>&gt;&lt;/li&gt;
+     &lt;/ol&gt;
+
+    &lt;<span class="tag">div</span> class=<span class="string">"carousel-inner"</span>&gt;   内容
+
+        &lt;<span class="tag">div</span> class=<span class="string">"item active"</span>&gt;
+               &lt;<span class="tag">img</span> src=<span class="string">""</span>&gt;  
+               &lt;<span class="tag">div</span> class=<span class="string">"carousel-caption"</span>&gt;  图片描述信息
+                ...
+               &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;<span class="tag">div</span> class=<span class="string">"item"</span>&gt;
+               &lt;<span class="tag">img</span> src=<span class="string">""</span>&gt;  
+               &lt;<span class="tag">div</span> class=<span class="string">"carousel-caption"</span>&gt;  图片描述信息
+                ...
+               &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+  前翻按钮
+  &lt;<span class="tag">a</span> class=<span class="string">"left carousel-control"</span> href=<span class="string">"#id-XX"</span> data-slide=<span class="string">"prev"</span>&gt;
+    &lt;<span class="tag">span</span> class=<span class="string">"glyphicon glyphicon-chevron-left"</span>&gt;&lt;/span&gt;
+  &lt;/a&gt;
+
+  后翻按钮
+  &lt;<span class="tag">a</span> class=<span class="string">"right carousel-control"</span> href=<span class="string">"#id-XX"</span> data-slide=<span class="string">"next"</span>&gt;
+    &lt;<span class="tag">span</span> class=<span class="string">"glyphicon glyphicon-chevron-right"</span>&gt;&lt;/span&gt;
+  &lt;/a&gt;
+
+&lt;/div&gt;
+</code></pre><p>  参数：  interval  pause  wrap  keyboard</p>
+<p>   设置轮播时间 data-interval=”2000” (默认为5000)</p>
+<h3 id="9-_附加导航(Affix)">9. 附加导航(Affix)</h3><pre><code>&lt;<span class="keyword">div</span> data-spy=<span class="string">"affix"</span> data-<span class="command">offset</span>-top=<span class="string">"60"</span> data-<span class="command">offset</span>-bottom=<span class="string">"200"</span>&gt;
+  ...
+&lt;/<span class="keyword">div</span>&gt;
+</code></pre><p>  JS: </p>
+<pre><code>$(<span class="string">'#myAffix'</span>).affix({
+  offset: {
+    top: <span class="number">100</span>,
+    bottom: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>{
+      <span class="keyword">return</span> (<span class="keyword">this</span>.bottom = $(<span class="string">'.footer'</span>).outerHeight(<span class="literal">true</span>))
+    }
+  }
+})
+</code></pre>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Bootstrap/">Bootstrap</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Bootstrap/">Bootstrap</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yunfengwang.com.cn/2015/09/02/18. Bootstrap（四）/" data-title="Bootstrap知识点(四) | YunFeng`s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/08/30/17. Bootstrap（三）/"  title="Bootstrap知识点(三)">
+ <strong>下一篇：</strong><br/> 
+ <span>Bootstrap知识点(三)
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/09/02/18. Bootstrap（四）/" data-title="Bootstrap知识点(四)" data-url="http://yunfengwang.com.cn/2015/09/02/18. Bootstrap（四）/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Bootstrap知识点（四）"><span class="toc-number">1.</span> <span class="toc-text">Bootstrap知识点（四）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#四、Bootstrap提供的jQuery插件"><span class="toc-number">1.1.</span> <span class="toc-text">四、Bootstrap提供的jQuery插件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_下拉列表"><span class="toc-number">1.1.1.</span> <span class="toc-text">1. 下拉列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_警告框"><span class="toc-number">1.1.2.</span> <span class="toc-text">2. 警告框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-_工具提示框"><span class="toc-number">1.1.3.</span> <span class="toc-text">3. 工具提示框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-_弹出框"><span class="toc-number">1.1.4.</span> <span class="toc-text">4. 弹出框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-_模态对话框——小重点&小难点"><span class="toc-number">1.1.5.</span> <span class="toc-text">5. 模态对话框——小重点&小难点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-_标签页"><span class="toc-number">1.1.6.</span> <span class="toc-text">6. 标签页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-_Bootstrap提供的JS插件——折叠效果(_Collapse_)"><span class="toc-number">1.1.7.</span> <span class="toc-text">7. Bootstrap提供的JS插件——折叠效果( Collapse )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-_Bootstrap提供的JS插件——轮播广告(Carousel)"><span class="toc-number">1.1.8.</span> <span class="toc-text">8. Bootstrap提供的JS插件——轮播广告(Carousel)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-_附加导航(Affix)"><span class="toc-number">1.1.9.</span> <span class="toc-text">9. 附加导航(Affix)</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Bootstrap/" title="Bootstrap">Bootstrap<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CSS/" title="CSS">CSS<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Github/" title="Github">Github<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Javascript/" title="Javascript">Javascript<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Leaf/" title="Leaf">Leaf<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/WebApp/" title="WebApp">WebApp<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Bootstrap/" title="Bootstrap">Bootstrap<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WebApp/" title="WebApp">WebApp<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/new/" title="new">new<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Github/" title="Github">Github<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.w3.org/" target="_blank" title="W3C">W3C</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ecmascript.org/" target="_blank" title="ECMA">ECMA</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://developer.mozilla.org/zh-CN/" target="_blank" title="Mozilla">Mozilla</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://html5labs.interoperabilitybridges.com/" target="_blank" title="微软H5实验室">微软H5实验室</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.w3cfuns.com/portal.php" target="_blank" title="前端网">前端网</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://efe.baidu.com/" target="_blank" title="EFE">EFE</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ued.taobao.org/blog/" target="_blank" title="淘宝">淘宝</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://it-ebooks.info/" target="_blank" title="IT eBooks">IT eBooks</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wwsun.me/posts/creating-javascript-modules-loader.html" target="_blank" title="模块加速器">模块加速器</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+<div class="doubanshow">
+<p class="asidetitle">豆瓣秀</p>
+<div>
+<script type="text/javascript" src="http://www.douban.com/service/badge/CaesarFeng/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie" ></script>
+</div>
+</div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> One bboy, One Jser, YunFeng. <br/>
+			The beginning of my blog life</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/u/3181646571" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/wyfyyy818818" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/CaesarFeng" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/wang-yun-feng-52" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:384360465@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Yunfeng">Yunfeng</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"CaesarWyf"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
