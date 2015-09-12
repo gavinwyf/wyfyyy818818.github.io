@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yunfengwang.com.cn/2015/09/06/20. JS中异步编程/index.html">
 <meta property="og:site_name" content="YunFeng`s blog">
 <meta property="og:description" content="Javascript中的异步编程： 最近一段时间在慕课网上学习了好多的知识，还有好多前端的东西没有接触到，最近把七夕言情主题的小东西做了一下，很好玩，H5、CSS3很强大啊，也学习到了别的方面一些知识，就比如这篇关于异步编程的东西了。我对于异步编程接触还是比较少，之前只是在Ajax和H5中接触过，现在理解的还是不够深入，不能从编程底层的层面理解异步与同步，只是知道这么用可以，这么用更好，具体底层怎">
-<meta property="og:updated_time" content="2015-09-12T13:45:34.747Z">
+<meta property="og:updated_time" content="2015-09-12T13:53:35.144Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS中异步编程">
 <meta name="twitter:description" content="Javascript中的异步编程： 最近一段时间在慕课网上学习了好多的知识，还有好多前端的东西没有接触到，最近把七夕言情主题的小东西做了一下，很好玩，H5、CSS3很强大啊，也学习到了别的方面一些知识，就比如这篇关于异步编程的东西了。我对于异步编程接触还是比较少，之前只是在Ajax和H5中接触过，现在理解的还是不够深入，不能从编程底层的层面理解异步与同步，只是知道这么用可以，这么用更好，具体底层怎">
@@ -121,7 +121,7 @@
 
 <span class="number">2</span>：让支离破碎的代码结构，继续保存线性的代码逻辑，也就是异步代码转为同步
 
-<span class="number">3</span>: 从抽线的角度，提供了一个抽象的非阻塞的解决方案（如 Ajax 请求的响应），它创建一个 “<span class="keyword">promise</span>” 对象，其目的是在未来某个时间点返回一个响应。
+<span class="number">3</span>: 从抽象的角度，提供了一个抽象的非阻塞的解决方案（如 Ajax 请求的响应），它创建一个 “<span class="keyword">promise</span>” 对象，其目的是在未来某个时间点返回一个响应。
 </code></pre><blockquote>
 <p>deferred 可以理解为表示需要长时间才能完成的耗时操作的一种方式，相比于阻塞式函数它们是异步的，而不是阻塞应用程序等待其完成然后返回结果。deferred对象会立即返回，然后你可以把回调函数绑定到deferred对象上，它们会在异步处理完成后被调用。</p>
 </blockquote>

@@ -115,7 +115,7 @@
 
 <span class="number">2</span>：让支离破碎的代码结构，继续保存线性的代码逻辑，也就是异步代码转为同步
 
-<span class="number">3</span>: 从抽线的角度，提供了一个抽象的非阻塞的解决方案（如 Ajax 请求的响应），它创建一个 “<span class="keyword">promise</span>” 对象，其目的是在未来某个时间点返回一个响应。
+<span class="number">3</span>: 从抽象的角度，提供了一个抽象的非阻塞的解决方案（如 Ajax 请求的响应），它创建一个 “<span class="keyword">promise</span>” 对象，其目的是在未来某个时间点返回一个响应。
 </code></pre><blockquote>
 <p>deferred 可以理解为表示需要长时间才能完成的耗时操作的一种方式，相比于阻塞式函数它们是异步的，而不是阻塞应用程序等待其完成然后返回结果。deferred对象会立即返回，然后你可以把回调函数绑定到deferred对象上，它们会在异步处理完成后被调用。</p>
 </blockquote>
