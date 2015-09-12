@@ -81,6 +81,415 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/08/21/闭包原理笔记二/" title="闭包原理（二）" itemprop="url">闭包原理（二）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-21T05:31:54.000Z" itemprop="datePublished"> 發表於 2015-08-21</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="闭包原理（二）：">闭包原理（二）：</h1><p>  纯个人观点：（如有错误欢迎扔砖头）</p>
+<p>   W3C中说，闭包，指的是词法表示包括不被计算的变量的函数。也就是说，函数可以使用函数之外定义的变量。咋一看，完全蒙掉的赶脚。红宝书里讲的相对有点太少。犀牛书里，还凑合。我不是说不好，是感觉不够通俗易懂，可能这是我理解能力问题。</p>
+<p>   我一直在想犀牛书中闭包例子如何画出作用域链图，自己画了一些感觉有些乱，不知道什么时候作用域链对象和活动对象里新增或删除引用对象，如果多个函数对象共享共享同一个作用域链时，内嵌函数的作用域链对象和活动对象应该如何指。还有就是有些特殊的函数，如事件处理的回调函数产生的闭包现象好像跟正常不太一样，还有就是返回的内嵌函数是一个自调函数或函数调用表达式，调用时也是有些特殊的。闭包的情况还有很多。我先整理一下书里的一些说法。再把我的个人看法和赶脚挥发一下。哈哈。</p>
+<p>  犀牛书：</p>
+<h2 id="1-JS采用词法作用域">1.JS采用词法作用域</h2><p>   回顾一下词法作用域(本书作用域链部分中提到的):</p>
+<ul>
+<li><p>通过阅读包含变量的数行源码就能知道变量的作用域。</p>
+</li>
+<li><p>全局变量在程序中始终都是有定义的。</p>
+</li>
+<li><p>局部变量在声明它的函数体内以及其所有嵌套的函数内始终是有定义的。</p>
+<p>函数的执行依赖于变量作用域，此作用域是在函数定义是决定的，而不是调用时。<br>因此，JS函数对象的内部状态不仅包含函数的代码逻辑，还必须引用当前的作用域链。</p>
+</li>
+</ul>
+<h2 id="2-闭包">2.闭包</h2><blockquote>
+<p>函数对象可通过作用域链相互关联，函数体内部的变量都可保存在函数作用域内，此特性在计算机科学文献中称为：</p>
+<p>“闭包”(指函数变量可以被隐藏在作用域链内，因此看起来是函数将变量包裹起来)</p>
+</blockquote>
+<h2 id="3-首先，了解嵌套函数的词法作用域规则。">3.首先，了解嵌套函数的词法作用域规则。</h2><pre><code><span class="keyword">var</span> scope = <span class="string">"global scope"</span>;
+<span class="function"><span class="keyword">function</span> <span class="title">checkscope</span><span class="params">()</span></span>{
+  <span class="keyword">var</span> scope = <span class="string">"local scope"</span>;
+  <span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">()</span></span>{<span class="keyword">return</span> scope;}
+  <span class="keyword">return</span> f();
+}
+checkscope(); <span class="comment">//local scope</span>
+
+改动后：
+<span class="keyword">var</span> scope = <span class="string">"global scope"</span>;
+<span class="function"><span class="keyword">function</span> <span class="title">checkscope</span><span class="params">()</span></span>{
+  <span class="keyword">var</span> scope = <span class="string">"local scope"</span>;
+  <span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">()</span></span>{<span class="keyword">return</span> scope;}
+  <span class="keyword">return</span> f;
+}
+checkscope()(); <span class="comment">//local scope</span>
+</code></pre><p>  词法作用域的基本规则：JS函数的执行用到了作用域链，此作用域链是定义的时候创建的。</p>
+<p>  嵌套的函数f()定义在此作用域里，scope一定是局部变量，不管何时何地执行f()，绑定在执行f()时依然有效。</p>
+<p>  捕捉到局部变量(和参数)，并一直保存下来，看起来像这些变量绑定到了其中定义它们的外部函数。</p>
+<h2 id="4-_实现闭包">4. 实现闭包</h2><p>  类C语言： </p>
+<blockquote>
+<p>了解基于栈的CPU框架:</p>
+<p>如果一个函数的局部变量定义在CPU的栈中，那么函数返回时它们的确就不存在了。 </p>
+</blockquote>
+<p>  JS： 作用域链为一个对象列表，不是绑定的栈</p>
+<ul>
+<li><p>正常调用函数时，创建一个新对象保存局部变量，把这个对象添加至作用域链中。函数返回时，就从作用域链中将这个绑定变量的对象删除。</p>
+</li>
+<li><p>若不存在函数嵌套，没有其他引用指向这个绑定对象，它就会当作垃圾回收掉。</p>
+</li>
+<li><p>若存在函数嵌套，每个嵌套函数都各自对应一个作用域链，这个作用域链指向一个变量绑定对象。</p>
+</li>
+<li><p>若这些嵌套的函数对象在外部函数中保存下来，则它们也会和所指向的变量绑定对象一样当作垃圾回收。</p>
+<p><strong>若此函数：</strong></p>
+<p>(1)定义了嵌套函数</p>
+<p>(2)并将它作为返回值返回或存储在某处的属性里</p>
+<p>这时会有一个外部引用指向这个嵌套函数。无法当作垃圾回收，且它所指向的变量绑定对象也不会被当作垃圾回收。</p>
+<p><strong>注意：</strong></p>
+<p>如果使用不慎，闭包很容易造成”循环引用”，DOM对象和JS对象之间存在循环引用时需要格外注意，某些浏览器下会造成内存泄漏。</p>
+<p>(DOM对象的回收机制是通过计数器控制的，循环引用计数器始终不为0，则一直不会回收，造成内存泄漏。这里我想到这种回收机制和COM组件的回收机制是相似的，同样采用计数器控制)</p>
+</li>
+</ul>
+<h2 id="5-_立即调用函数">5. 立即调用函数</h2><pre><code><span class="keyword">var</span> uniqueInteger = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>))</span>{
+     <span class="keyword">var</span> counter = <span class="number">0</span>;
+     <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{<span class="keyword">return</span> counter++};
+  }());
+</code></pre><ul>
+<li>立即调用的函数，将返回值给变量。    </li>
+<li>函数体内，此函数返回另外一个函数，这是个嵌套函数，我们将它赋值给变量，</li>
+<li>嵌套的函数可访问作用域内的变量，也可以访问外部函数中定义的counter变量。</li>
+<li>当外部函数返回后，其他任何代码都无法访问counter变量，只有内部的函数才能访问。</li>
+</ul>
+<h2 id="6-_多个嵌套函数">6. 多个嵌套函数</h2><p>   同一个外部函数内定义多个嵌套函数也可以访问像counter一样的私有变量，多个嵌套函数共享一个作用域链</p>
+<pre><code>例如：
+<span class="function"><span class="keyword">function</span> <span class="title">counter</span><span class="params">()</span>{</span>                       var c = counter<span class="params">()</span>,d = counter<span class="params">()</span>;
+   var n=<span class="number">0</span>;                               c.count<span class="params">()</span>   <span class="comment">//0</span>
+   return {                               d.count<span class="params">()</span>   <span class="comment">//0  互不干扰</span>
+    count:<span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>return n++;}         c.reset<span class="params">()</span>   <span class="comment">//reset()和count()共享状态</span>
+    reset:<span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>n=<span class="number">0</span>;}                c.count<span class="params">()</span>   <span class="comment">//0 重置了c</span>
+   }                                      d.count<span class="params">()</span>   <span class="comment">//1 </span>
+}
+</code></pre><ul>
+<li><p>两个方法都可以访问私有变量n。</p>
+</li>
+<li><p>每次调用counter()都会创建一个新的作用域链和一个新的私有变量。</p>
+</li>
+<li><p>因此，调用counter()两次，会得到两个计数器对象，而且彼此包含不同的私有变量。则调用一个计数器的两个方法不会影响到另外一个对象。</p>
+</li>
+</ul>
+<h2 id="7-_下面counter例子，私有状态的实现是利用了闭包，而不是利用普通的对象属性实现。">7. 下面counter例子，私有状态的实现是利用了闭包，而不是利用普通的对象属性实现。</h2><pre><code>function counter(<span class="keyword">n</span>){          <span class="comment">//n为局部变量，使用参数n来保存私有状态，属性存取器方法(内嵌函数)可以访问n。</span>
+  <span class="keyword">return</span> {
+      get <span class="keyword">count</span>{<span class="keyword">return</span> <span class="keyword">n</span>++;}
+      <span class="keyword">set</span> <span class="keyword">count</span>(<span class="keyword">m</span>){
+         <span class="keyword">if</span>(<span class="keyword">m</span>&gt;=<span class="keyword">n</span>)<span class="keyword">n</span>=<span class="keyword">m</span>;
+         <span class="keyword">else</span> throw <span class="keyword">Error</span>(<span class="string">"count can only be set to a larger value"</span>);
+      }
+  };
+}
+<span class="keyword">var</span> c = counter(1000);
+c.<span class="keyword">count</span>    <span class="comment">//1000</span>
+c.<span class="keyword">count</span>    <span class="comment">//1001</span>
+c.<span class="keyword">count</span> = 2000 
+c.<span class="keyword">count</span>         <span class="comment">//2000</span>
+c.<span class="keyword">count</span> = 2000  <span class="comment">//error</span>
+</code></pre><h2 id="8-_下面例子使用闭包技术来共享的私有状态的通用做法">8. 下面例子使用闭包技术来共享的私有状态的通用做法</h2><p>  例8-4：利用闭包实现的私有属性存取器方法</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">addPrivateProperty</span>(<span class="params">o,name,predicate</span>)</span>{
+   <span class="keyword">var</span> value;
+   o[<span class="string">'get'</span>+name] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{<span class="keyword">return</span> value;};
+   o[<span class="string">'set'</span>+name] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
+      <span class="keyword">if</span>(gredicate &amp;&amp; !predicate(v))
+         <span class="keyword">throw</span> <span class="built_in">Error</span>(<span class="string">"set"</span> + name +<span class="string">":invalid value"</span> + v);
+      <span class="keyword">else</span>
+        value = v;
+   };
+}
+
+   <span class="keyword">var</span> o = {};
+   addPrivateProperty(o,<span class="string">"Name"</span>,fucntion(x){<span class="keyword">return</span> <span class="keyword">typeof</span> x == <span class="string">"string"</span>;});
+
+   o.setName(<span class="string">"Frank"</span>);
+   <span class="built_in">console</span>.log(o.getName());
+   o.setName(<span class="number">0</span>);
+</code></pre><ul>
+<li><p>在同一个作用域链中定义两个闭包，两个闭包共享同样的私有变量或变量。</p>
+</li>
+<li><p>这是一种非常重要的技术，但是要特别小心那些不希望共享的变量往往不经意间共享给了其他的闭包，了解这一点很重要。</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">constfunc</span><span class="params">(v)</span></span>{<span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{<span class="keyword">return</span> v;};}
+<span class="keyword">var</span> funcs = [];
+<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;<span class="number">10</span>;i++){funcs[i] = constfunc(i);}
+funcs[<span class="number">5</span>];   <span class="comment">//5</span>
+</code></pre><p><strong>这段代码循环创建多个闭包，类似这种代码往往会犯一种错误，就是： 试图将循环代码移入定义这个闭包的函数之内。</strong>(笔试题总考察这个知识点或者变型)</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">constfunc</span><span class="params">(v)</span></span>{
+  <span class="keyword">var</span> funcs = [];
+  <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;<span class="number">10</span>;i++){
+      funcs[i] = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{<span class="keyword">return</span> i};
+      <span class="keyword">return</span> funcs;
+     }
+}
+<span class="keyword">var</span> funcs = constfunc();
+funcs[<span class="number">5</span>]();  <span class="comment">//返回10</span>
+</code></pre></li>
+<li><p>创建10个闭包，并将它们存到一个数组中。这些闭包都是在同一个函数调用中定义的，因此它们共享变量i。</p>
+</li>
+<li><p>变量i的值都是10，所有闭包都共享这一个值。不是我们想要的结果。</p>
+</li>
+<li><p>关联到闭包的作用域链都是“活动的”,这一点很重要。嵌套的函数不会将作用域内的私有成员复制一份，也不会对所绑定的变量生成静态快照。</p>
+</li>
+</ul>
+<h2 id="9-_闭包中this和arguments：">9. 闭包中this和arguments：</h2><ul>
+<li><p>this是关键字，不是变量。如果闭包在外部函数里是无法访问this的。除非外部函数将this转存为一个变量。</p>
+<p>(严格讲，可以使用，但此this和当初定义函数是的this不是同一个，即便是同一个，this的值是随着调用栈的变化而变化，闭包里取到的this的值不确定)</p>
+<pre><code><span class="keyword">var</span> self = <span class="keyword">this</span>;  <span class="comment">// 将this转存到一个变量中，以便嵌套的函数能够访问它</span>
+</code></pre></li>
+<li><p>arguments不是关键字，但在调用每个函数是都会自动声明它，由于闭包具有自己所绑定的arguments，因此闭包内无法直接访问函数的参数数组，除非外部函数将参数数组保存到另外一个变量中。</p>
+</li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Javascript/">Javascript</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/21/闭包原理笔记二/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/21/闭包原理笔记二/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/08/20/精通CSS（二）/" title="精通CSS（二）" itemprop="url">精通CSS（二）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-20T14:21:02.000Z" itemprop="datePublished"> 發表於 2015-08-20</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="精通CSS_整理（二）">精通CSS 整理（二）</h1><h2 id="第六章_对列表应用样式和创建导航条">第六章 对列表应用样式和创建导航条</h2><ol>
+<li><p>垂直导航条</p>
+<p>水平导航条  :before :after content属性</p>
+</li>
+<li><p>图形化导航条</p>
+</li>
+<li><p>“滑动门”标签页式导航</p>
+<p>  （1）用em单位来撑起</p>
+<p>  （2）元素框</p>
+</li>
+<li><p>Suckerfish下拉菜单</p>
+<p>纯CSS下拉菜单  </p>
+<p>绝对定位   left:-999em;隐藏菜单</p>
+<pre><code><span class="rule"><span class="attribute">left</span>:<span class="value">auto</span></span>; 出现
+</code></pre></li>
+<li><p>CSS图像映射</p>
+<p> （1）text-indent:-1000em; 隐藏框</p>
+<p> （2）flicker风格图像映射</p>
+<p> （3）远距离翻转：不同元素放在同一个a标签中，分别定位将</p>
+</li>
+<li><p>处理浮动</p>
+<p>（1）添加一个进行清理的元素</p>
+<p>（2）让父元素浮动，使某元素对它清理</p>
+<p>（3）overflow：hidden（通常）</p>
+</li>
+<li><p>定义列表  （组成“定义”）</p>
+<pre><code><span class="tag">&lt;dl&gt;</span>
+  <span class="tag">&lt;dt&gt;</span><span class="tag">&lt;/dt&gt;</span>
+  <span class="tag">&lt;dd&gt;</span><span class="tag">&lt;/dd&gt;</span>
+  <span class="tag">&lt;dt&gt;</span><span class="tag">&lt;/dt&gt;</span>
+  <span class="tag">&lt;dd&gt;</span><span class="tag">&lt;/dd&gt;</span> 
+<span class="tag">&lt;/dl&gt;</span>
+</code></pre></li>
+</ol>
+<h2 id="第七章_对表单和数据表格应用样式">第七章 对表单和数据表格应用样式</h2><p> 1.表格持有元素：</p>
+<p>   （1）summary和caption</p>
+<p>   （2）thead,tbody,tfoot</p>
+<p>   （3）col,colgroup(支持的浏览器不多)</p>
+<p> 2.两个表格边盒模型：单独的、叠加的</p>
+<p>   border-collapsed：seperate/collapse;</p>
+<p>   在非锚元素使用hover，IE6是无效的。若需要IE6中使用，需要在连接中添加边框。</p>
+<p> 3.简单表单布局：  <fieldset> <legend></legend></fieldset></p>
+<p> 4.复杂表单布局： </p>
+<ul>
+<li><p>多列复选框</p>
+</li>
+<li><p>提交按钮</p>
+</li>
+<li><p>表单反馈</p>
+<p>5.标签关联：</p>
+<p>隐式：’</p>
+<pre><code><span class="tag">&lt;<span class="title">label</span>&gt;</span>email <span class="tag">&lt;<span class="title">input</span> <span class="attribute">...</span>/&gt;</span> <span class="tag">&lt;/<span class="title">label</span>&gt;</span>
+</code></pre><p>显式：’</p>
+<pre><code>&lt;<span class="tag">label</span> <span class="keyword">for</span>=<span class="string">"email"</span>&gt; email &lt;/label&gt;   &lt;<span class="tag">input</span> name=<span class="string">"email"</span> id=<span class="string">"email"</span> ...&gt;
+</code></pre></li>
+</ul>
+<h2 id="第八章_布局">第八章 布局</h2><p>   所有CSS布局技术的根本都是3个概念：定位、浮动、外边框操纵</p>
+<p>  1.计划布局：</p>
+<pre><code>（1） 检查设计、寻找<span class="keyword">*</span><span class="keyword">*</span>重复模式<span class="keyword">*</span><span class="keyword">*</span>（包括结构中的模式或站点中反复出现的方式）
+
+（2） 把页面划分为大的结构性区域 eg.容器、页眉、内容区域和页脚
+
+（3） 内容区域本身，开始建立网格结构
+
+（4） 在各内容区域中寻找不同的布局结构 （分为几列，开始详细设计结构和尺寸）
+
+（5） 关注不同类型的内容 (是新闻稿、文章还是公告，每块内容起一个有意义的名字)
+
+（6） 查看每个内容块的结构，看不同类型中是否有相同模式（应尽量采用一般的类名，然后根据上下文应用样式）
+
+（7） 找出模式并确定命名约定后，定义将使用的元素
+</code></pre><p>  2.水平居中： </p>
+<pre><code><span class="attribute">margin</span>： 0 <span class="attribute">auto</span>;  
+
+IE6及以下(混杂模式)：<span class="attribute">text-align</span><span class="value">:center;</span> 误解为让所有东西居中，而不只是文本
+这种方式使用<span class="attribute">text-align</span>属性为一种hack，但是无害的。
+</code></pre><p>  3.浮动布局  （相对于绝对定位，浮动最容易使用，也是最可靠的）</p>
+<pre><code><span class="comment">* 两列浮动  （两列都向左浮动，或者一左一右浮动（可建立视觉隔离带）） </span>
+
+     浮动元素中添加<span class="keyword">display</span>：inline,防止IE中双边距浮动bug
+
+<span class="comment">* 三列浮动  （与双列布局类似，可在右列中再嵌入双列布局）      </span>
+</code></pre><p>  4.<strong>布局</strong></p>
+<pre><code>* 固定宽度布局： px     (<span class="built_in">max</span>-<span class="variable">width</span> <span class="built_in">min</span>-<span class="variable">width</span> 控制宽度，避免失真或影响布局)
+
+* 流失布局： 百分数
+
+* 弹性布局： em（字号）
+</code></pre><p>  5.流式和弹性图像</p>
+<p>  6.faux列 （伪列用于背景）</p>
+<p>  7.等高列</p>
+<p>  8.CSS3列：</p>
+<pre><code>column-count、column-width、column-gap、column-<span class="keyword">rule</span>
+</code></pre><p>  9.CSS框架CSS系统</p>
+<pre><code>框架：是为了在特定的站点上使用而创建，而不是作为适合任何设计的灵活的布局系统从头设计的。
+
+系统：实际上是一个工具箱，其中包含可重用的样式和标记模式，可以用他们开发站点专用的框架。
+</code></pre><h3 id="第九章_bug和修复bug">第九章 bug和修复bug</h3><p> 1.常见的CSS问题：</p>
+<p>  （1）打字、语法错误<br>  （2）优先级<br>  （3）外边距叠加</p>
+<p> 2.捕捉bug基本知识</p>
+<p>  （1）一开始注意避免<br>  （2）隔离问题: 外加边框<br>  （3）创建测试案例：去掉变量、部分代码或注释删掉</p>
+<p>3.<strong>拥有布局</strong></p>
+<p>  布局元素</p>
+<p>  布局问题</p>
+<p>4.解决方法：</p>
+<ul>
+<li><p>IE注释(条件) </p>
+<!--[ if IE 6]>
+<link rel="" type="" href="" ...>
+<![endif]-->
+</li>
+<li><p>hack和过滤器</p>
+<p> 星号HTML hack : *html</p>
+<p> 自选择器 hack : HTML&gt;</p>
+</li>
+</ul>
+<p>5.常见bug及修复方法</p>
+<ul>
+<li><p>双边距浮动bug</p>
+</li>
+<li><p>3像素文本偏移bug</p>
+</li>
+<li><p>IE6的重复字符bug</p>
+</li>
+<li><p>IE6的“藏猫猫”bug</p>
+</li>
+<li><p>相对容器中的绝对定位</p>
+</li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/CSS/">CSS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/CSS/">CSS</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/20/精通CSS（二）/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/20/精通CSS（二）/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/08/19/hexo添加评论功能/" title="Hexo添加评论功能--多说" itemprop="url">Hexo添加评论功能--多说</a>
   </h1>
   <p class="article-author">By
@@ -1305,135 +1714,9 @@ Dropbox现在不提供对新用户的一些服务，<span class="preprocessor">p
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/02/hello-world/" title="Hello World" itemprop="url">Hello World</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-02T06:15:11.706Z" itemprop="datePublished"> 發表於 2015-08-02</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/02/hello-world/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/02/hello-world/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/07/18/新的开始/" title="新的开始" itemprop="url">新的开始</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
-		
-  <p class="article-time">
-    <time datetime="2015-07-18T09:06:14.000Z" itemprop="datePublished"> 發表於 2015-07-18</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>这是我新的开始，我用hexo创建了第一篇文章</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Leaf/">Leaf</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/new/">new</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/07/18/新的开始/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/07/18/新的开始/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
-    <a class="extend prev" rel="prev" href="/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next<span></span></a>
   </nav>
 
 </div>
@@ -1465,7 +1748,7 @@ Dropbox现在不提供对新用户的一些服务，<span class="preprocessor">p
 		  
 		
 		  
-			<li><a href="/categories/Javascript/" title="Javascript">Javascript<sup>5</sup></a></li>
+			<li><a href="/categories/Javascript/" title="Javascript">Javascript<sup>7</sup></a></li>
 		  
 		
 		  
@@ -1486,7 +1769,7 @@ Dropbox现在不提供对新用户的一些服务，<span class="preprocessor">p
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>5</sup></a></li>
+				<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>7</sup></a></li>
 			
 		
 			

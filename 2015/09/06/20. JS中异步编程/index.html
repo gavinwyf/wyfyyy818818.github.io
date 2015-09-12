@@ -1,0 +1,792 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>JS中异步编程 | YunFeng`s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yunfeng">
+    
+
+    
+    <meta name="description" content="Javascript中的异步编程： 最近一段时间在慕课网上学习了好多的知识，还有好多前端的东西没有接触到，最近把七夕言情主题的小东西做了一下，很好玩，H5、CSS3很强大啊，也学习到了别的方面一些知识，就比如这篇关于异步编程的东西了。我对于异步编程接触还是比较少，之前只是在Ajax和H5中接触过，现在理解的还是不够深入，不能从编程底层的层面理解异步与同步，只是知道这么用可以，这么用更好，具体底层怎">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS中异步编程">
+<meta property="og:url" content="http://yunfengwang.com.cn/2015/09/06/20. JS中异步编程/index.html">
+<meta property="og:site_name" content="YunFeng`s blog">
+<meta property="og:description" content="Javascript中的异步编程： 最近一段时间在慕课网上学习了好多的知识，还有好多前端的东西没有接触到，最近把七夕言情主题的小东西做了一下，很好玩，H5、CSS3很强大啊，也学习到了别的方面一些知识，就比如这篇关于异步编程的东西了。我对于异步编程接触还是比较少，之前只是在Ajax和H5中接触过，现在理解的还是不够深入，不能从编程底层的层面理解异步与同步，只是知道这么用可以，这么用更好，具体底层怎">
+<meta property="og:updated_time" content="2015-09-12T13:45:34.747Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS中异步编程">
+<meta name="twitter:description" content="Javascript中的异步编程： 最近一段时间在慕课网上学习了好多的知识，还有好多前端的东西没有接触到，最近把七夕言情主题的小东西做了一下，很好玩，H5、CSS3很强大啊，也学习到了别的方面一些知识，就比如这篇关于异步编程的东西了。我对于异步编程接触还是比较少，之前只是在Ajax和H5中接触过，现在理解的还是不够深入，不能从编程底层的层面理解异步与同步，只是知道这么用可以，这么用更好，具体底层怎">
+
+    
+    <link rel="alternative" href="/atom.xml" title="YunFeng`s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="YunFeng`s blog" title="YunFeng`s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="YunFeng`s blog">YunFeng`s blog</a></h1>
+				<h2 class="blog-motto">My Life! Dream is on the way</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yunfengwang.com.cn">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/06/20. JS中异步编程/" title="JS中异步编程" itemprop="url">JS中异步编程</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-05T16:00:00.000Z" itemprop="datePublished"> 發表於 2015-09-06</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Javascript中的异步编程："><span class="toc-number">1.</span> <span class="toc-text">Javascript中的异步编程：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-_JavaScript的执行流程分为”同步”与”异步”"><span class="toc-number">1.1.</span> <span class="toc-text">1. JavaScript的执行流程分为”同步”与”异步”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-_嵌套式回调"><span class="toc-number">1.2.</span> <span class="toc-text">3. 嵌套式回调</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-_Deferred(Promise)"><span class="toc-number">1.3.</span> <span class="toc-text">4. Deferred(Promise)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-拿HTML5_Web_Database为例："><span class="toc-number">1.4.</span> <span class="toc-text">5.拿HTML5 Web Database为例：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-_更简单的例子"><span class="toc-number">1.5.</span> <span class="toc-text">6. 更简单的例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-_Promises"><span class="toc-number">1.6.</span> <span class="toc-text">7. Promises</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-_Promises_动画实例"><span class="toc-number">1.7.</span> <span class="toc-text">8. Promises 动画实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-_延迟对象相关API："><span class="toc-number">1.8.</span> <span class="toc-text">9. 延迟对象相关API：</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="Javascript中的异步编程：">Javascript中的异步编程：</h1><p> 最近一段时间在<a href="http://www.imooc.com/" target="_blank" rel="external">慕课网</a>上学习了好多的知识，还有好多前端的东西没有接触到，最近把七夕言情主题的小东西做了一下，很好玩，H5、CSS3很强大啊，也学习到了别的方面一些知识，就比如这篇关于异步编程的东西了。我对于异步编程接触还是比较少，之前只是在Ajax和H5中接触过，现在理解的还是不够深入，不能从编程底层的层面理解异步与同步，只是知道这么用可以，这么用更好，具体底层怎么实现的还是不清楚。希望以后再多多积淀吧。学习的路还很长啊，还有不到一年就大学毕业了。</p>
+<p> 这篇文章，大部分都是借鉴了课程中的实例和大神的博文(<a href="http://www.cnblogs.com/aaronjs/p/3348569.html" target="_blank" rel="external">Aaron</a>)</p>
+<h2 id="1-_JavaScript的执行流程分为”同步”与”异步”">1. JavaScript的执行流程分为”同步”与”异步”</h2><ol>
+<li><p>JavaScript编程几乎总是伴随着异步操作，传统的异步操作会在操作完成之后，使用回调函数传回结果，而回调函数中则包含了后续的工作。</p>
+</li>
+<li><p>这也是造成异步编程困难的主要原因：我们一直习惯于“线性”地编写代码逻辑，但是大量异步操作所带来的回调函数，会把我们的算法分解地支离破碎。</p>
+</li>
+<li><p>此时我们不能用if来实现逻辑分支，也不能用while/for/do来实现循环，更不用提异步操作之间的组合、错误处理以及取消操作了。因此也诞生了如jQuery Deferred这样的辅助类库</p>
+</li>
+<li><p>Deferred对象</p>
+</li>
+</ol>
+<blockquote>
+<p>传统的代码逻辑，通过嵌套回调函数，等待异步发送成功的通知后，在执行下一步操作，如果有大量的嵌套回调，耦合度，维护性，扩展性?</p>
+</blockquote>
+<p>那么Deferred对象存在的意义在哪里?</p>
+<p> 对于开发者：</p>
+<pre><code><span class="number">1</span>：代码可读性，扁平化结构
+
+<span class="number">2</span>：让支离破碎的代码结构，继续保存线性的代码逻辑，也就是异步代码转为同步
+
+<span class="number">3</span>: 从抽线的角度，提供了一个抽象的非阻塞的解决方案（如 Ajax 请求的响应），它创建一个 “<span class="keyword">promise</span>” 对象，其目的是在未来某个时间点返回一个响应。
+</code></pre><blockquote>
+<p>deferred 可以理解为表示需要长时间才能完成的耗时操作的一种方式，相比于阻塞式函数它们是异步的，而不是阻塞应用程序等待其完成然后返回结果。deferred对象会立即返回，然后你可以把回调函数绑定到deferred对象上，它们会在异步处理完成后被调用。</p>
+</blockquote>
+<p>所以，总的来讲Deferred通过一组 API 来规范化异步操作，这样也能够让异步操作的流程控制更加容易</p>
+<p>5.phonegap项目，所以涉及到的异步处理就别特多：</p>
+<pre><code><span class="bullet">1. </span>常见的setTimeout
+
+<span class="bullet">2. </span>与底层代码通信，调用插件cordova.exec
+
+<span class="bullet">3. </span>postmessage与iframe通信
+
+<span class="bullet">4. </span>CSS3 动画
+
+<span class="bullet">5. </span>Ajax
+
+<span class="bullet">6. </span>HTML5的本地数据
+
+ 等等…
+</code></pre><h2 id="3-_嵌套式回调">3. 嵌套式回调</h2><p>动画为例，下一个动画要等上一个执行完毕才可以继续，流程就会写到回调里面</p>
+<pre><code><span class="comment">//执行多个动画</span>
+$(<span class="string">'ele1'</span>).animate({
+    opacity: <span class="string">'.5'</span>
+}, <span class="number">4000</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
+    $(<span class="string">'ele2'</span>).animate({
+        width: <span class="string">'100px'</span>
+    }, <span class="number">2000</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
+        $(<span class="string">'ele3'</span>).animate({
+            height: <span class="string">'0'</span>
+        }, <span class="number">2000</span>);
+    });
+});
+</code></pre><p>上面的代码编程逻辑也是正确的，但是针对这样的异步嵌套的回调逻辑，当我们的嵌套越多，代码结构层级会变得越来越深。</p>
+<p>首先是阅读上会变得困难，其次是强耦合，接口变得不好扩展。我们需要一种模式来解决这种问题，这就是Promises所要做的事情。</p>
+<h2 id="4-_Deferred(Promise)">4. Deferred(Promise)</h2><p> 为了让前端们从回调的地狱中回到天堂， jQuery 也引入了 Promise 的概念。 Promise 是一种令代码异步行为更加优雅的抽象，有了它，我们就可以像写同步代码一样去写异步代码。这个东东看起来很复杂，实际上我们只要抓住核心的使用就可以了</p>
+<p> <strong>通过$.Deferred处理过的代码，很明显没有了回调的嵌套，虽然代码量看起来多了点，但是实际上，每一个代码执行部分都被封装了起来，只留了Deferred的接口处理了，等于是我们把执行的流程控制交给了Deferred，这样的好处就是我们在写嵌套函数的时候，可以用deferred提供的管道风格编写同步代码了</strong></p>
+<pre><code><span class="transposed_variable">dtd.</span><span class="keyword">then</span>(<span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+   <span class="comment">//操作1</span>
+}).<span class="keyword">then</span>(<span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+   <span class="comment">//操作2</span>
+}).<span class="keyword">then</span>(<span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+  <span class="comment">//操作3</span>
+})
+这里要了解<span class="number">3</span>个步骤
+var dtd = $.Deferred();  <span class="comment">//创建</span>
+<span class="transposed_variable">dtd.</span>resolve();          <span class="comment">//成功</span>
+<span class="transposed_variable">dtd.</span><span class="keyword">then</span>()              <span class="comment">//执行回调</span>
+</code></pre><p>实例：（七夕言情主题）</p>
+<p>（1）回调处理方式</p>
+<pre><code>$(<span class="string">'button:first'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
+    $(<span class="string">"#block1"</span>).animate({
+        width: <span class="string">"50%"</span>
+    }, <span class="number">2000</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{  <span class="comment">// 嵌套回调</span>
+        $(<span class="string">"#block2"</span>).animate({
+            width: <span class="string">"50%"</span>
+        }, <span class="number">2000</span>);
+    });
+});
+</code></pre><p>（2）jQuery的Deferred处理</p>
+<pre><code> $(<span class="string">'button:last'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
+
+    <span class="function"><span class="keyword">function</span> <span class="title">animate1</span>(<span class="params"></span>) </span>{
+        <span class="keyword">var</span> dtd = $.Deferred(); <span class="comment">// 生成Deferred对象</span>
+        $(<span class="string">"#block3"</span>).animate({
+            width: <span class="string">"50%"</span>
+        }, <span class="number">2000</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
+            dtd.resolve(); <span class="comment">// 改变Deferred对象的执行状态</span>
+        });
+        <span class="keyword">return</span> dtd;
+    }
+
+    <span class="function"><span class="keyword">function</span> <span class="title">animate2</span>(<span class="params"></span>) </span>{
+        <span class="keyword">var</span> dtd = $.Deferred(); <span class="comment">// 生成Deferred对象</span>
+        $(<span class="string">"#block4"</span>).animate({
+            width: <span class="string">"50%"</span>
+        }, <span class="number">2000</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
+            dtd.resolve(); <span class="comment">// 改变Deferred对象的执行状态</span>
+        });
+        <span class="keyword">return</span> dtd;
+    }
+
+    <span class="keyword">var</span> anim = animate1();
+
+    anim.then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
+        $(<span class="string">"#block3"</span>).text(<span class="string">'block3动画动画直接结束'</span>);
+        <span class="keyword">return</span> animate2();
+    }).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
+        $(<span class="string">"#block4"</span>).text(<span class="string">'block4动画动画直接结束'</span>);
+    });
+
+});
+</code></pre><hr>
+<h2 id="5-拿HTML5_Web_Database为例：">5.拿HTML5 Web Database为例：</h2><p>  //数据库链接对象<br>        config.db = window.openDatabase(config.dbName, “1.0”, “Xxtebook Database”, config.dbSize);</p>
+<pre><code>config.db.transaction(function(tx) {
+        tx.executeSql(
+        '<span class="type">SELECT</span> * <span class="type">FROM</span> <span class="type">Novel</span>'
+        , [], function(tx, results) {
+                    <span class="literal">result</span> = results.rows;    
+                    console.log('<span class="literal">result</span>',<span class="literal">result</span>) //
+        });
+}, function(){}, function(){});
+</code></pre><p>  就这段代码其实本身是没问题的，但是这里至少要涉及到异步方面的考虑：</p>
+<blockquote>
+<p>javaScript要求在与服务器进行交互时要用异步通信，如同AJAX一样，因为是异步模型，所以在调用transaction游览器提供的本地数据接口时候类似AJAX（这里我是假设），浏览器自己有内部的XHR方法异步处理，但是此时的JS代码还是会同步往下执行，其实就是无阻塞的代码</p>
+</blockquote>
+<p>问题：</p>
+<p> 因为是无阻塞，代码在发送AJAX这个请求后会继续执行，那么后续的操作如果依赖这个数据就会出错了，所以这里就需要等待AJAX返回，才能执行后续操作  </p>
+<h2 id="6-_更简单的例子">6. 更简单的例子</h2><pre><code>alert<span class="list">(<span class="number">1</span>)</span>
+setTimeout<span class="list">(<span class="keyword">function</span><span class="list">()</span>{
+    alert<span class="list">(<span class="number">2</span>)</span>
+},<span class="number">0</span>)</span>
+alert<span class="list">(<span class="number">3</span>)</span>
+//alert<span class="list">(<span class="number">1</span>)</span> 
+//alert<span class="list">(<span class="number">3</span>)</span>
+//alert<span class="list">(<span class="number">2</span>)</span>
+</code></pre><p>代码都能看懂，因为异步而导致流程不正确或者说我们的应用在某个程度上依赖第三方api的数据，那么就会面临一个共同的问题：</p>
+<p>我们无法获悉一个API响应的延迟时间，应用程序的其他部分可能会被阻塞，直到它返回 结果。Deferreds 对这个问题提供了一个更好的解决方案，它是非阻塞的，并且与代码完全解耦 。</p>
+<p>当然异步操作也可以提供一个类似成功回调，失败回调的通知接口</p>
+<p><strong>JS是单线程语言，就简单性而言，把每一件事情（包括GUI事件和渲染）都放在一个线程里来处理是一个很好的程序模型，因为这样就无需再考虑线程同步这些复杂问题。</strong></p>
+<p><strong>另一方面，他也暴露了应用开发中的一个严重问题，单线程环境看起来对用户请求响应迅速，但是当线程忙于处理其它事情时，就不能对用户的鼠标点击和键盘操作做出响应。</strong></p>
+<h2 id="7-_Promises">7. Promises</h2><p>大多情况下，promise作为一个模型，提供了一个在软件工程中描述延时（或将来）概念的解决方案。</p>
+<p>它背后的思想我们已经介绍过：不是执行一个方法然后阻塞应用程序等待结果返回，而是返回一个promise对象来满足未来值。</p>
+<p><strong>Promise/A提议</strong> 定义了一个<strong>’then‘</strong>方法来注册回调，当处理函数返回结果时回调会执行。它返回一个promise的伪代码看起来是这样的：</p>
+<pre><code>promise = function create(
+    //数据库链接对象
+    config.db = window.openDatabase(config.dbName, <span class="string">"1.0"</span>, <span class="string">"Xxtebook Database"</span>, config.dbSize);
+
+    config.db.transaction(function(tx) {
+            tx.executeSql('<span class="type">SELECT</span> * <span class="type">FROM</span> <span class="type">Novel</span>', [], function(tx, results) {
+                <span class="literal">result</span> = results.rows;
+                console.log('<span class="literal">result</span>',<span class="literal">result</span>) //
+            });
+    }, function(){}, function(){});
+);
+
+promise.then(function( futureValue ) {
+
+});
+promise.then(function( futureValue ) {
+
+});
+</code></pre><p>promise回调会在处于以下两种不同的状态下执行：</p>
+<pre><code>resolved：在这种情况下，数据是可用
+rejected：在这种情况下，出现了错误，没有可用的值
+</code></pre><h2 id="8-_Promises_动画实例">8. Promises 动画实例</h2><p>如果同时执行多个动画的时候，我们就需要对每一个动画执行完毕后的处理下一个动作，意味着我们就要监听所有动画的执行完毕后的回调</p>
+<p><strong>使用promise和‘when’方式却可以很直截了当的表示： 一旦动画执行完成，就可以执行下一步任务。最终的结果是我们可以可以简单的用一个回调来解决多个动画执行结果的等待问题</strong></p>
+<pre><code>when( <span class="function"><span class="keyword">function</span><span class="params">()</span>{   </span>
+   <span class="comment">//执行动画1</span>
+   <span class="keyword">return</span> promise 
+}, <span class="function"><span class="keyword">function</span><span class="params">()</span>{  </span>
+  <span class="comment">//执行动画2</span>
+  <span class="keyword">return</span> promise <span class="number">2</span> 
+} ).<span class="keyword">then</span>(<span class="function"><span class="keyword">function</span><span class="params">()</span>{  </span>
+   <span class="comment">//当2个动画完成后，我们在自行后续的代码   </span>
+});
+</code></pre><p>基本上可以用非阻塞的逻辑方式编写代码并异步执行。 而不是直接将回调传递给函数，这可能会导致紧耦合的接口，通过promise模式可以很容易区分同步和异步的概念。    </p>
+<p>这样看来，Promise/A只是一种规范，Deferred可以看作这种规范的具体实现</p>
+<h2 id="9-_延迟对象相关API：">9. 延迟对象相关API：</h2><p>延迟对象，在jQuery的1.5引入，是通过调用jQuery.Deferred()方法创建一个可链式调用的工具对象。 </p>
+<p>它可以注册多个回调到回调队列， 调用回调队列，准备代替任何同步或异步函数的成功或失败状态。</p>
+<p><strong>延迟对象是可链式调用的，类似于jQuery对象是可链接的方式，  但它有其自己的方法。 创建一个Deferred（延迟）对象后，你可以通过使用下面任何方法 直接从对象创建或者链式调用 或 保存对象的一个变量，调用该变量的一个或多个方法。</strong></p>
+<p><strong>deferred.always()</strong></p>
+<p>当Deferred（延迟）对象解决或拒绝时，调用添加处理程序。</p>
+<p><strong>deferred.done()</strong></p>
+<p>当Deferred（延迟）对象解决时，调用添加处理程序。</p>
+<p><strong>deferred.fail()</strong></p>
+<p>当Deferred（延迟）对象拒绝时，调用添加处理程序。</p>
+<p><strong>deferred.isRejected()</strong></p>
+<p>确定一个Deferred（延迟）对象是否已被拒绝。</p>
+<p><strong>deferred.isResolved()</strong></p>
+<p>确定一个Deferred（延迟）对象是否已被解决。</p>
+<p><strong>deferred.notify()</strong></p>
+<p>根据给定的 args参数 调用Deferred（延迟）对象上进行中的回调 （progressCallbacks）。</p>
+<p><strong>deferred.notifyWith()</strong></p>
+<p>根据给定的上下文（context）和args递延调用Deferred（延迟）对象上进行中的回调（progressCallbacks ）。</p>
+<p><strong>deferred.pipe()</strong></p>
+<p>实用的方法来过滤 and/or 链Deferreds。</p>
+<p><strong>deferred.progress()</strong></p>
+<p>当Deferred（延迟）对象生成进度通知时，调用添加处理程序。</p>
+<p><strong>deferred.promise()</strong></p>
+<p>返回Deferred(延迟)的Promise（承诺）对象。</p>
+<p><strong>deferred.reject()</strong></p>
+<p>拒绝Deferred（延迟）对象，并根据给定的args参数调用任何失败回调函数（failCallbacks）。</p>
+<p><strong>deferred.rejectWith()</strong></p>
+<p>拒绝Deferred（延迟）对象，并根据给定的 context和args参数调用任何失败回调函数（failCallbacks）。</p>
+<p><strong>deferred.resolve()</strong></p>
+<p>解决Deferred（延迟）对象，并根据给定的args参数调用任何完成回调函数（doneCallbacks）。</p>
+<p><strong>deferred.resolveWith()</strong></p>
+<p>解决Deferred（延迟）对象，并根据给定的 context和args参数调用任何完成回调函数（doneCallbacks）。</p>
+<p><strong>deferred.state()</strong></p>
+<p>确定一个Deferred（延迟）对象的当前状态。</p>
+<p><strong>deferred.then()</strong></p>
+<p>当Deferred（延迟）对象解决，拒绝或仍在进行中时，调用添加处理程序。</p>
+<p><strong>jQuery.Deferred()</strong></p>
+<p>一个构造函数，返回一个链式实用对象方法来注册多个回调，回调队列，调用回调队列，并转达任何同步或异步函数的成功或失败状态。</p>
+<p><strong>jQuery.when()</strong></p>
+<p>提供一种方法来执行一个或多个对象的回调函数， Deferred(延迟)对象通常表示异步事件。</p>
+<p><strong>.promise()</strong></p>
+<p>返回一个 Promise 对象用来观察当某种类型的所有行动绑定到集合，排队与否还是已经完成。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Javascript/">Javascript</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yunfengwang.com.cn/2015/09/06/20. JS中异步编程/" data-title="JS中异步编程 | YunFeng`s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/09/04/19. HTML DOM整理/"  title="HTML DOM整理">
+ <strong>下一篇：</strong><br/> 
+ <span>HTML DOM整理
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/09/06/20. JS中异步编程/" data-title="JS中异步编程" data-url="http://yunfengwang.com.cn/2015/09/06/20. JS中异步编程/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Javascript中的异步编程："><span class="toc-number">1.</span> <span class="toc-text">Javascript中的异步编程：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-_JavaScript的执行流程分为”同步”与”异步”"><span class="toc-number">1.1.</span> <span class="toc-text">1. JavaScript的执行流程分为”同步”与”异步”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-_嵌套式回调"><span class="toc-number">1.2.</span> <span class="toc-text">3. 嵌套式回调</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-_Deferred(Promise)"><span class="toc-number">1.3.</span> <span class="toc-text">4. Deferred(Promise)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-拿HTML5_Web_Database为例："><span class="toc-number">1.4.</span> <span class="toc-text">5.拿HTML5 Web Database为例：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-_更简单的例子"><span class="toc-number">1.5.</span> <span class="toc-text">6. 更简单的例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-_Promises"><span class="toc-number">1.6.</span> <span class="toc-text">7. Promises</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-_Promises_动画实例"><span class="toc-number">1.7.</span> <span class="toc-text">8. Promises 动画实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-_延迟对象相关API："><span class="toc-number">1.8.</span> <span class="toc-text">9. 延迟对象相关API：</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Bootstrap/" title="Bootstrap">Bootstrap<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CSS/" title="CSS">CSS<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Github/" title="Github">Github<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Javascript/" title="Javascript">Javascript<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Leaf/" title="Leaf">Leaf<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/WebApp/" title="WebApp">WebApp<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Bootstrap/" title="Bootstrap">Bootstrap<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WebApp/" title="WebApp">WebApp<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/new/" title="new">new<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Github/" title="Github">Github<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.w3.org/" target="_blank" title="W3C">W3C</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ecmascript.org/" target="_blank" title="ECMA">ECMA</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://developer.mozilla.org/zh-CN/" target="_blank" title="Mozilla">Mozilla</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://html5labs.interoperabilitybridges.com/" target="_blank" title="微软H5实验室">微软H5实验室</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.w3cfuns.com/portal.php" target="_blank" title="前端网">前端网</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://efe.baidu.com/" target="_blank" title="EFE">EFE</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ued.taobao.org/blog/" target="_blank" title="淘宝">淘宝</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://it-ebooks.info/" target="_blank" title="IT eBooks">IT eBooks</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wwsun.me/posts/creating-javascript-modules-loader.html" target="_blank" title="模块加速器">模块加速器</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+<div class="doubanshow">
+<p class="asidetitle">豆瓣秀</p>
+<div>
+<script type="text/javascript" src="http://www.douban.com/service/badge/CaesarFeng/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie" ></script>
+</div>
+</div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> One bboy, One Jser, YunFeng. <br/>
+			The beginning of my blog life</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/u/3181646571" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/wyfyyy818818" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/CaesarFeng" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/wang-yun-feng-52" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:384360465@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Yunfeng">Yunfeng</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"CaesarWyf"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
