@@ -81,6 +81,72 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/09/07/21. Bootstrap Demo/" title="Intel Page Demo" itemprop="url">Intel Page Demo</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-06T16:00:00.000Z" itemprop="datePublished"> 發表於 2015-09-07</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>  前一段时间，学习了Bootstrap，这个上手容易方便使用的HTML/CSS/JS框架，其精华感觉还是在于CSS部分，尤其是栅格布局，非常方便布局，而且很适合扁平化页面设计，如果内容负责的话结构会有些复杂，组件和插件用起来冗余类会有点多。</p>
+<p>  之前，已经把Bootstrap的帮助文档看了一遍，整理了一下，记住的有限啊，不用就容易忘。最近天天笔试，知识都没有时间沉淀，学习新的东西，旧的渐渐就遗忘了，抽空做了个Intel官网的主页。很多细节没有完善，有空再修改吧。</p>
+<p>  Demo地址： <a href="http://7xlup6.com1.z0.glb.clouddn.com/index.html" target="_blank" rel="external">My little Intel Page</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Bootstrap/">Bootstrap</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Bootstrap/">Bootstrap</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/09/07/21. Bootstrap Demo/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/09/07/21. Bootstrap Demo/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/09/06/20. JS中异步编程/" title="JS中异步编程" itemprop="url">JS中异步编程</a>
   </h1>
   <p class="article-author">By
@@ -1915,165 +1981,6 @@ returnValue : 是否阻止事件默认行为
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/22/DOM整理/" title="DOM基础整理" itemprop="url">DOM基础整理</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-22T04:45:12.000Z" itemprop="datePublished"> 發表於 2015-08-22</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="DOM基础">DOM基础</h1><p>DOM的知识非常重要，长时间用框架或库很容易忘掉DOM的经典但又复杂的操作，有时间还是回顾一下经典的DOM操作吧。我简单的整理了常用的基础DOM操作。不用就容易忘啊。</p>
-<h2 id="[增]：">[增]：</h2><p>创建元素添加元素：</p>
-<p>  Step1：创建节点：</p>
-<pre><code><span class="keyword">var</span> newNode=<span class="built_in">document</span>.createElement(<span class="string">"标签名"</span>); <span class="comment">//创建元素节点</span>
-<span class="keyword">var</span> msg=<span class="built_in">document</span>.createTextNode(<span class="string">"text"</span>);  <span class="comment">//创建文本节点</span>
-比如：<span class="keyword">var</span> newa=<span class="built_in">document</span>.createElement(<span class="string">"a"</span>);  <span class="comment">//&lt;a&gt;&lt;/a&gt;</span>
-</code></pre><p>  Step2：设置节点的关键属性：</p>
-<pre><code>newNode.属性名=<span class="string">"值"</span>            //比如：newa.<span class="variable">href=</span><span class="string">"http ://tmooc.cn"</span>;
-//newNode.setAttribute(<span class="string">"属性名"</span>,<span class="string">"值"</span>);                
-newa.<span class="variable">innerHTML=</span><span class="string">"go to tmooc"</span>;  //&lt;a <span class="variable">href=</span><span class="string">"http ://tmooc.cn"</span>&gt;go to tmooc<span class="string">"&lt;/a&gt;</span>
-</code></pre><p>  Step3：将新节点，挂载到指定父元素下：2种：</p>
-<pre><code>1. 追加：<span class="tag">parent</span><span class="class">.appendChild</span>(<span class="tag">newNode</span>);
-2. 之前插入：<span class="tag">parent</span><span class="class">.insertBefore</span>(<span class="tag">newNode</span>,<span class="tag">oldNode</span>);    
-</code></pre><p>文档片段：</p>
-<pre><code><span class="number">1</span>. var frag=document.createDocumentFragment<span class="params">()</span>; <span class="comment">//创建文档片段</span>
-<span class="number">2</span>. frag.appendChild<span class="params">(新节点)</span>;
-<span class="number">3</span>. parent.appendChild<span class="params">(frag)</span>; <span class="comment">//frag不会显示在页面中，用完立刻销毁</span>
-</code></pre><h2 id="[删]：">[删]：</h2><p>删除元素：</p>
-<pre><code><span class="number">1.</span> <span class="variable"><span class="keyword">var</span> deleted</span>=parent.removeChild(childNode); --删除
-   或childNode.parentNode.removeChild(childNode);
-<span class="number">2.</span> <span class="variable"><span class="keyword">var</span> deleted</span>=parent.replaceChild(newChild,oldChild); --替换
-</code></pre><p>删除属性：</p>
-<pre><code><span class="number">1.</span> 核心DOM： elem.removeAttribute(<span class="string">"属性名"</span>);
-            <span class="variable"><span class="keyword">var</span> delnode</span> = element.removeAttributeNode(attrNode); <span class="comment">//返回被删除属性节点</span>
-<span class="number">2.</span> HTML DOM：elem.属性名=<span class="string">""</span>;
-</code></pre><h2 id="[查]：">[查]：</h2><p><strong>查元素：</strong></p>
-<pre><code><span class="number">1.</span><span class="keyword">var</span> elem=<span class="built_in">document</span>.getElementById(<span class="string">"id值"</span>)；
-<span class="number">2.</span><span class="keyword">var</span> elems=node.getElementsByTagName(<span class="string">"tagName"</span>);
-<span class="number">3.</span><span class="keyword">var</span> elems=node.getElementsByClassName(<span class="string">"类名"</span>);   IE8，不支持（IE9+,FF3+,Safari3.1+,Chrome）
-<span class="number">4.</span><span class="keyword">var</span> elems=<span class="built_in">document</span>.getElementsByName(<span class="string">"name属性的值"</span>);只能用<span class="built_in">document</span>找,专门于查找表单中的数据采集类元素
-
-<span class="number">5.</span><span class="keyword">var</span> elem=node.<span class="built_in">querySelector</span>(<span class="string">"任意选择器"</span>); IE9+.. 没有兼容性问题,原生浏览器API，执行效率高??
-<span class="number">6.</span><span class="keyword">var</span> elems=node.<span class="built_in">querySelectorAll</span>(<span class="string">"任意选择器"</span>);   个别较新的选择器无法使用 eg. not
-<span class="number">7.</span>&lt;body&gt;--&gt;<span class="built_in">document</span>.body——常用
-</code></pre><p><strong>查节点：</strong></p>
-<pre><code><span class="bullet">1. </span>parentNode  查找父节点
-<span class="bullet">2. </span>childNodes  查找所有子节点（含空格）
-<span class="bullet">3. </span>nodeName 节点名称 只读 （标签名，属性名，#text，#comment，#document）
-<span class="bullet">4. </span>nodeType 节点类型 元素1 属性2 文本3  只读
-<span class="bullet">5. </span>nodeValue 节点值 仅对文本节点有效 只读 （元素节点 undefined/null）
-</code></pre><p><strong>查属性：</strong></p>
-<pre><code><span class="number">1</span>.遍历元素的属性： elem.attributes：返回属性数组
-<span class="number">2</span>.访问单一属性：  elem.attributes[下标]或[<span class="string">"属性名"</span>]
-                 elem.getAttribute(<span class="string">'属性名'</span>)
-<span class="number">3</span>.访问属性值：   elem.attributes[下标].<span class="keyword">value</span>
-                elem.getAttributeNode(<span class="string">'属性名'</span>).<span class="keyword">value</span>
-<span class="number">4</span>.判断元素是否设置了某个属性：elem.hasAttribute(<span class="string">"属性名"</span>); <span class="comment">//true或false</span>
-                             elem.hasAttribute();  <span class="comment">//是否拥有属性  IE8以下不支持</span>
-</code></pre><p><strong>查CSS属性(可修改)：</strong></p>
-<pre><code>(<span class="number">1</span>)  <span class="variable"><span class="keyword">var</span> str</span>=elem.style.css属性; <span class="comment">//局限：仅能访问内联样式已定义的样式                 </span>
-(<span class="number">2</span>)  <span class="variable"><span class="keyword">var</span> cssStyle</span>=<span class="literal">null</span>;
-     <span class="keyword">if</span>(elem.currentStyle){   <span class="comment">//IE  </span>
-     cssStyle=elem.currentStyle;
-     }<span class="keyword">else</span>{                  <span class="comment">//其它浏览器</span>
-            cssStyle=getComputedStyle(elem,<span class="literal">null</span>);
-     }                       <span class="comment">//cssStyle中包含了所有最终应用到elem元素上的css属性</span>
-     <span class="variable"><span class="keyword">var</span> str</span>=cssStyle.css属性;  <span class="comment">//可以获取外部样式  CSS属性(驼峰命名)</span>
-</code></pre><p><strong>DOM树中的节点关系：</strong></p>
-<p>   父子关系： </p>
-<pre><code><span class="keyword">node</span>.parentNode:访问<span class="keyword">node</span>的父节点对象（不可能是文本,不受影响）                  
-<span class="keyword">node</span>.childNodes:访问<span class="keyword">node</span>下的所有直接子节点
-<span class="keyword">node</span>.firstChild:访问<span class="keyword">node</span>下的第一个子节点对象
-<span class="keyword">node</span>.lastChild: 访问<span class="keyword">node</span>下最后一个子节点对象
-</code></pre><p>   兄弟关系：</p>
-<pre><code><span class="keyword">node</span>.previousSibling:访问<span class="keyword">node</span>前一个相邻的兄弟节点
-<span class="keyword">node</span>.nextSibling:访问<span class="keyword">node</span>后一个相邻的兄弟节点
-</code></pre><p>   节点树的问题：(除了parentNode都有空字符问题)</p>
-<pre><code>               节点树                    元素树
-      父     parentNode         parentElementNode
-      子     childNodes         <span class="built_in">children</span>
- 第一个子    firstChild          firstElementChild
- 最后一个    lastChild           lastElementChild
-前一个兄弟   previousSibling      previousElementSibling
-后一个兄弟   nextSibling          nextElementSibling
-</code></pre><h2 id="[改]：">[改]：</h2><p><strong>修改元素：</strong></p>
-<pre><code><span class="number">1.</span>elem.<span class="string">innerHTML:</span> 读取或设置元素节点中HTML内容
-   开始标签和结束标签之间的html文本    elem.innerHTML=<span class="string">""</span>;
-
-<span class="number">2.</span>elem.<span class="string">textContent:</span> 开始标签和结束标签之间的纯文本内容
-
-<span class="number">3.</span>elem.<span class="string">innerText:</span>  IE8支持(之前的不支持)，火狐不支持
-
-    解决浏览器兼容性问题：
-         <span class="keyword">if</span>(elem.textContent){
-            <span class="comment">//使用elem.textContent</span>
-         }<span class="keyword">else</span>{
-            <span class="comment">//使用elem.innerText</span>
-         }
-</code></pre><p><strong>修改属性：</strong></p>
-<p>1.核心DOM:</p>
-<pre><code>读取： var value=elem.getAttribute<span class="params">(<span class="string">"属性名"</span>)</span>;
-设置： elem.setAttribute<span class="params">(<span class="string">"属性名"</span>,<span class="string">"属性值"</span>)</span>;  IE8以下不支持
-       elem.setAttributeNode<span class="params">(attrNode)</span>;
-</code></pre><p>2.HTML DOM:</p>
-<pre><code>读取： <span class="variable"><span class="keyword">var</span> str</span>=elem.属性名
-设置： elem.属性名=<span class="string">"值"</span>;
-</code></pre>
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Javascript/">Javascript</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/22/DOM整理/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/22/DOM整理/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -2092,7 +1999,7 @@ newa.<span class="variable">innerHTML=</span><span class="string">"go to tmooc"<
 		<ul>
 		
 		  
-			<li><a href="/categories/Bootstrap/" title="Bootstrap">Bootstrap<sup>5</sup></a></li>
+			<li><a href="/categories/Bootstrap/" title="Bootstrap">Bootstrap<sup>6</sup></a></li>
 		  
 		
 		  
@@ -2133,11 +2040,11 @@ newa.<span class="variable">innerHTML=</span><span class="string">"go to tmooc"<
 			
 		
 			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>5</sup></a></li>
+				<li><a href="/tags/Bootstrap/" title="Bootstrap">Bootstrap<sup>6</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Bootstrap/" title="Bootstrap">Bootstrap<sup>5</sup></a></li>
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>5</sup></a></li>
 			
 		
 			

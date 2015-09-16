@@ -81,6 +81,165 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/08/22/DOM整理/" title="DOM基础整理" itemprop="url">DOM基础整理</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-22T04:45:12.000Z" itemprop="datePublished"> 發表於 2015-08-22</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="DOM基础">DOM基础</h1><p>DOM的知识非常重要，长时间用框架或库很容易忘掉DOM的经典但又复杂的操作，有时间还是回顾一下经典的DOM操作吧。我简单的整理了常用的基础DOM操作。不用就容易忘啊。</p>
+<h2 id="[增]：">[增]：</h2><p>创建元素添加元素：</p>
+<p>  Step1：创建节点：</p>
+<pre><code><span class="keyword">var</span> newNode=<span class="built_in">document</span>.createElement(<span class="string">"标签名"</span>); <span class="comment">//创建元素节点</span>
+<span class="keyword">var</span> msg=<span class="built_in">document</span>.createTextNode(<span class="string">"text"</span>);  <span class="comment">//创建文本节点</span>
+比如：<span class="keyword">var</span> newa=<span class="built_in">document</span>.createElement(<span class="string">"a"</span>);  <span class="comment">//&lt;a&gt;&lt;/a&gt;</span>
+</code></pre><p>  Step2：设置节点的关键属性：</p>
+<pre><code>newNode.属性名=<span class="string">"值"</span>            //比如：newa.<span class="variable">href=</span><span class="string">"http ://tmooc.cn"</span>;
+//newNode.setAttribute(<span class="string">"属性名"</span>,<span class="string">"值"</span>);                
+newa.<span class="variable">innerHTML=</span><span class="string">"go to tmooc"</span>;  //&lt;a <span class="variable">href=</span><span class="string">"http ://tmooc.cn"</span>&gt;go to tmooc<span class="string">"&lt;/a&gt;</span>
+</code></pre><p>  Step3：将新节点，挂载到指定父元素下：2种：</p>
+<pre><code>1. 追加：<span class="tag">parent</span><span class="class">.appendChild</span>(<span class="tag">newNode</span>);
+2. 之前插入：<span class="tag">parent</span><span class="class">.insertBefore</span>(<span class="tag">newNode</span>,<span class="tag">oldNode</span>);    
+</code></pre><p>文档片段：</p>
+<pre><code><span class="number">1</span>. var frag=document.createDocumentFragment<span class="params">()</span>; <span class="comment">//创建文档片段</span>
+<span class="number">2</span>. frag.appendChild<span class="params">(新节点)</span>;
+<span class="number">3</span>. parent.appendChild<span class="params">(frag)</span>; <span class="comment">//frag不会显示在页面中，用完立刻销毁</span>
+</code></pre><h2 id="[删]：">[删]：</h2><p>删除元素：</p>
+<pre><code><span class="number">1.</span> <span class="variable"><span class="keyword">var</span> deleted</span>=parent.removeChild(childNode); --删除
+   或childNode.parentNode.removeChild(childNode);
+<span class="number">2.</span> <span class="variable"><span class="keyword">var</span> deleted</span>=parent.replaceChild(newChild,oldChild); --替换
+</code></pre><p>删除属性：</p>
+<pre><code><span class="number">1.</span> 核心DOM： elem.removeAttribute(<span class="string">"属性名"</span>);
+            <span class="variable"><span class="keyword">var</span> delnode</span> = element.removeAttributeNode(attrNode); <span class="comment">//返回被删除属性节点</span>
+<span class="number">2.</span> HTML DOM：elem.属性名=<span class="string">""</span>;
+</code></pre><h2 id="[查]：">[查]：</h2><p><strong>查元素：</strong></p>
+<pre><code><span class="number">1.</span><span class="keyword">var</span> elem=<span class="built_in">document</span>.getElementById(<span class="string">"id值"</span>)；
+<span class="number">2.</span><span class="keyword">var</span> elems=node.getElementsByTagName(<span class="string">"tagName"</span>);
+<span class="number">3.</span><span class="keyword">var</span> elems=node.getElementsByClassName(<span class="string">"类名"</span>);   IE8，不支持（IE9+,FF3+,Safari3.1+,Chrome）
+<span class="number">4.</span><span class="keyword">var</span> elems=<span class="built_in">document</span>.getElementsByName(<span class="string">"name属性的值"</span>);只能用<span class="built_in">document</span>找,专门于查找表单中的数据采集类元素
+
+<span class="number">5.</span><span class="keyword">var</span> elem=node.<span class="built_in">querySelector</span>(<span class="string">"任意选择器"</span>); IE9+.. 没有兼容性问题,原生浏览器API，执行效率高??
+<span class="number">6.</span><span class="keyword">var</span> elems=node.<span class="built_in">querySelectorAll</span>(<span class="string">"任意选择器"</span>);   个别较新的选择器无法使用 eg. not
+<span class="number">7.</span>&lt;body&gt;--&gt;<span class="built_in">document</span>.body——常用
+</code></pre><p><strong>查节点：</strong></p>
+<pre><code><span class="bullet">1. </span>parentNode  查找父节点
+<span class="bullet">2. </span>childNodes  查找所有子节点（含空格）
+<span class="bullet">3. </span>nodeName 节点名称 只读 （标签名，属性名，#text，#comment，#document）
+<span class="bullet">4. </span>nodeType 节点类型 元素1 属性2 文本3  只读
+<span class="bullet">5. </span>nodeValue 节点值 仅对文本节点有效 只读 （元素节点 undefined/null）
+</code></pre><p><strong>查属性：</strong></p>
+<pre><code><span class="number">1</span>.遍历元素的属性： elem.attributes：返回属性数组
+<span class="number">2</span>.访问单一属性：  elem.attributes[下标]或[<span class="string">"属性名"</span>]
+                 elem.getAttribute(<span class="string">'属性名'</span>)
+<span class="number">3</span>.访问属性值：   elem.attributes[下标].<span class="keyword">value</span>
+                elem.getAttributeNode(<span class="string">'属性名'</span>).<span class="keyword">value</span>
+<span class="number">4</span>.判断元素是否设置了某个属性：elem.hasAttribute(<span class="string">"属性名"</span>); <span class="comment">//true或false</span>
+                             elem.hasAttribute();  <span class="comment">//是否拥有属性  IE8以下不支持</span>
+</code></pre><p><strong>查CSS属性(可修改)：</strong></p>
+<pre><code>(<span class="number">1</span>)  <span class="variable"><span class="keyword">var</span> str</span>=elem.style.css属性; <span class="comment">//局限：仅能访问内联样式已定义的样式                 </span>
+(<span class="number">2</span>)  <span class="variable"><span class="keyword">var</span> cssStyle</span>=<span class="literal">null</span>;
+     <span class="keyword">if</span>(elem.currentStyle){   <span class="comment">//IE  </span>
+     cssStyle=elem.currentStyle;
+     }<span class="keyword">else</span>{                  <span class="comment">//其它浏览器</span>
+            cssStyle=getComputedStyle(elem,<span class="literal">null</span>);
+     }                       <span class="comment">//cssStyle中包含了所有最终应用到elem元素上的css属性</span>
+     <span class="variable"><span class="keyword">var</span> str</span>=cssStyle.css属性;  <span class="comment">//可以获取外部样式  CSS属性(驼峰命名)</span>
+</code></pre><p><strong>DOM树中的节点关系：</strong></p>
+<p>   父子关系： </p>
+<pre><code><span class="keyword">node</span>.parentNode:访问<span class="keyword">node</span>的父节点对象（不可能是文本,不受影响）                  
+<span class="keyword">node</span>.childNodes:访问<span class="keyword">node</span>下的所有直接子节点
+<span class="keyword">node</span>.firstChild:访问<span class="keyword">node</span>下的第一个子节点对象
+<span class="keyword">node</span>.lastChild: 访问<span class="keyword">node</span>下最后一个子节点对象
+</code></pre><p>   兄弟关系：</p>
+<pre><code><span class="keyword">node</span>.previousSibling:访问<span class="keyword">node</span>前一个相邻的兄弟节点
+<span class="keyword">node</span>.nextSibling:访问<span class="keyword">node</span>后一个相邻的兄弟节点
+</code></pre><p>   节点树的问题：(除了parentNode都有空字符问题)</p>
+<pre><code>               节点树                    元素树
+      父     parentNode         parentElementNode
+      子     childNodes         <span class="built_in">children</span>
+ 第一个子    firstChild          firstElementChild
+ 最后一个    lastChild           lastElementChild
+前一个兄弟   previousSibling      previousElementSibling
+后一个兄弟   nextSibling          nextElementSibling
+</code></pre><h2 id="[改]：">[改]：</h2><p><strong>修改元素：</strong></p>
+<pre><code><span class="number">1.</span>elem.<span class="string">innerHTML:</span> 读取或设置元素节点中HTML内容
+   开始标签和结束标签之间的html文本    elem.innerHTML=<span class="string">""</span>;
+
+<span class="number">2.</span>elem.<span class="string">textContent:</span> 开始标签和结束标签之间的纯文本内容
+
+<span class="number">3.</span>elem.<span class="string">innerText:</span>  IE8支持(之前的不支持)，火狐不支持
+
+    解决浏览器兼容性问题：
+         <span class="keyword">if</span>(elem.textContent){
+            <span class="comment">//使用elem.textContent</span>
+         }<span class="keyword">else</span>{
+            <span class="comment">//使用elem.innerText</span>
+         }
+</code></pre><p><strong>修改属性：</strong></p>
+<p>1.核心DOM:</p>
+<pre><code>读取： var value=elem.getAttribute<span class="params">(<span class="string">"属性名"</span>)</span>;
+设置： elem.setAttribute<span class="params">(<span class="string">"属性名"</span>,<span class="string">"属性值"</span>)</span>;  IE8以下不支持
+       elem.setAttributeNode<span class="params">(attrNode)</span>;
+</code></pre><p>2.HTML DOM:</p>
+<pre><code>读取： <span class="variable"><span class="keyword">var</span> str</span>=elem.属性名
+设置： elem.属性名=<span class="string">"值"</span>;
+</code></pre>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Javascript/">Javascript</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/22/DOM整理/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/22/DOM整理/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/08/21/闭包原理笔记二/" title="闭包原理（二）" itemprop="url">闭包原理（二）</a>
   </h1>
   <p class="article-author">By
@@ -1573,147 +1732,6 @@ function <span class="function"><span class="title">fun</span><span class="param
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/10/移动版2048/" title="移动版2048" itemprop="url">移动版2048</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-10T12:42:48.000Z" itemprop="datePublished"> 發表於 2015-08-10</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="移动版2048">移动版2048</h1><p>私人订制第一版：<a href="http://7xl0ox.com1.z0.glb.clouddn.com/index.html" title="wyf_2048" target="_blank" rel="external">wyf_2048</a></p>
-<h1 id="2048移动化并发布过程：">2048移动化并发布过程：</h1><h2 id="一、将2048放在移动端设备：">一、将2048放在移动端设备：</h2><h3 id="1-自适应">1.自适应</h3><p>Viewport 元信息<br>在<head>里  描述的是我们的应用程序与真正运行的应用程序的屏幕尺寸他们二者之间的关系:</head></p>
-<pre><code>&lt;meta  name =<span class="string">"viewport"</span> 
- content=<span class="string">" </span>
-   width=[pixel_value<span class="string">|device-width],  具体像素|应用程序宽度 </span>
-   height=[pixel_value<span class="string">|device-height],</span>
-   initial-scale=float_value,   应用程序启动时缩放尺度
-   minimum-scale=float_value,   用户可缩放最小的尺度值
-   maximum-scale=float_value,   用户可放大最大的尺度值
-   user-scalable=[yes<span class="string">|no]       用户是否可以通过手势来缩放整个应用程序</span>
-<span class="string">"/&gt; </span>
-</code></pre><p>`</p>
-<pre><code>documentWidth = window.screen.availWidth<span class="comment">;</span>
-gridContainerWidth = 0.92 * documentWidth<span class="comment">;</span>
-cellSideLength = 0.18 * documentWidth<span class="comment">;</span>
-cellSpace = 0.04 * documentWidth<span class="comment">;</span>
-</code></pre><p>获取屏幕大小，利用百分比流动布局（也可以使用弹性布局em）</p>
-<p>宽度都相对于屏幕大小定位</p>
-<h3 id="2-触控方式">2.触控方式</h3><p>JS里恰恰存在有两个事件，分别是touchstart和touchend，用来获取触摸的起始位置和结束位置</p>
-<p>当捕捉到touch事件的时候，会执行一个回调函数，默认传了event的参数，event里有相关坐标的数据。</p>
-<p>首先，触摸开始时，touchstart事件中，event里有一个数组event.touches，之所以是数组是因为在多点触控时，数组中会存储多个手指触控的信息。(2048中单点触控就够了，只需要touches[0]的信息)</p>
-<pre><code>starx=<span class="keyword">event</span>.touches[<span class="number">0</span>].pageX;
-stary=<span class="keyword">event</span>.touches[<span class="number">0</span>].pageY;
-</code></pre><p>event.changeTouches 获取当触摸的状态发生改变时的信息，这里指手指离开手机表面时，也就是触摸结束时的信息</p>
-<pre><code>endx=<span class="keyword">event</span>.changedTouches[<span class="number">0</span>].pageX;
-endy=<span class="keyword">event</span>.changedTouches[<span class="number">0</span>].pageY;    
-</code></pre><p> 向量(endx-startx , endy-starty)或者取为(deltax,deltay) </p>
-<p>判断在哪个方向上的分量大一些，就可以判断为滑动方向了</p>
-<pre><code>Math.<span class="function"><span class="title">abs</span><span class="params">(deltax)</span></span>&gt;=Math.<span class="function"><span class="title">abs</span><span class="params">(deltay)</span></span>为x轴
-且 deltax &gt;<span class="number">0</span>为右滑  &lt;<span class="number">0</span>为左滑
-Math.<span class="function"><span class="title">abs</span><span class="params">(deltax)</span></span>&lt;Math.<span class="function"><span class="title">abs</span><span class="params">(deltay)</span></span>为y轴
-且 deltay &gt;<span class="number">0</span>为下滑  &lt;<span class="number">0</span>为上滑
-</code></pre><p>注意：屏幕中y轴的方向是向下的</p>
-<h3 id="3-有些细节需要注意：">3.有些细节需要注意：</h3><p>1.当我们点击或轻触时就会触发移动效果，我们可以设置一下移动的范围来防止：</p>
-<pre><code>if<span class="list">(<span class="keyword">Math</span>.abs<span class="list">(<span class="keyword">deltax</span>)</span>&lt;0.<span class="number">3</span><span class="variable">*documentWidth &amp;&amp; Math.abs(deltay)&lt;0.3*</span>documentWidth)</span>
-        return<span class="comment">;</span>
-</code></pre><p>2.当屏幕分辨率低的时候会出现滚动条，可以使用：</p>
-<pre><code><span class="keyword">event</span>.preventDefault();可以用来阻挡原本的键盘按下的默认效果
-</code></pre><p>3.处理preventDefault()产生的bug,导致触摸不发生移动，可以加入如下事件：</p>
-<pre><code><span class="built_in">document</span>.addEventListener(<span class="string">'touchmove'</span><span class="function"><span class="keyword">function</span>(<span class="params">event</span>))</span>{
-    event.preventDefault();
-}
-</code></pre><hr>
-<h2 id="二、将Web_apps发布在服务器上">二、将Web apps发布在服务器上</h2><h3 id="1-Web_APP：">1.Web APP：</h3><pre><code>（<span class="number">1</span>）运行在服务器上
-
-（<span class="number">2</span>）通过浏览器执行
-
-（<span class="number">3</span>）使用前端技术：HTML、CSS、<span class="keyword">JS</span>
-</code></pre><h3 id="2-Native_APP：">2.Native APP：</h3><pre><code>（<span class="number">1</span>）通过APP Store下载
-（<span class="number">2</span>）直接运行在移动设备上
-（<span class="number">3</span>）使用技术：
-   <span class="function"><span class="title">Object-C</span><span class="params">(IOS)</span></span>
-   <span class="function"><span class="title">Java</span><span class="params">(Android)</span></span>
-</code></pre><h3 id="3-Hybird_APP:">3.Hybird APP:</h3><pre><code>相比介于前两者之间，优缺点并存的混合模式移动应用，兼具Native <span class="keyword">App</span>良好用户交互体验的优势和Web <span class="keyword">App</span>跨平台开发的优势。
-</code></pre><h3 id="4-使用Dropbox发布自己的Web_Apps">4.使用Dropbox发布自己的Web Apps</h3><p>限制：</p>
-<pre><code>  <span class="number">1</span>.静态网站：所谓静态网站就是指，没有数据库的支持，也没有像PHP、Java、ASP这样的服务器端的程序来支持的网站。这样的网站主要由HTML、CSS、<span class="keyword">JS</span>构成。
-
-  <span class="number">2</span>.速度稍慢 （主服务器在国外）
-
-   <span class="number">3</span>.域名不宜记忆 （自动生成的域名）
-
-Dropbox现在不提供对新用户的一些服务，<span class="preprocessor">public</span>文件不能使用
-可以使用DropPages服务,它是基于Dropbox实现静态网页架设的服务 
-完全免费，域名可以使用二级域名
-坑爹的是国内好像用不了。。。
-</code></pre><h3 id="5-使用七牛云发布自己的Web_Apps">5.使用七牛云发布自己的Web Apps</h3><h4 id="5-1首先介绍一下七牛云存储：">5.1首先介绍一下七牛云存储：</h4><pre><code>七牛云存储主要托管企业的静态资源，为企业提供一站式在线数据托管、上传下载全网加速、以及数据云端处理服务。主要做静态文件，包括富媒体一体化解决方案，解决富媒体存储、上传下载加速、数据处理，包括图片处理、音视频处理，比如说做缩略图，打水印。
-此外，七牛还提供了镜像存储、客户端直传以及断点续上传等功能，方便开发者的使用。
-</code></pre><h4 id="5-2具体步骤：">5.2具体步骤：</h4><blockquote>
-<p>.</p>
-<p>1）首先注册一个七牛账号</p>
-<p>2）注册后如果绑定了手机有10G的空间和10G的流量，未绑定有1G的空间，如果流量超支则按需计算（PS：如果没有托管大型网站的数据一般不会超支，所以可以放开了使用）</p>
-<p>3）注册成功后，进入管理页面&gt;&gt;新建一个空间&gt;&gt;设置空间名字（访问控制设为公开空间）</p>
-<p>4）创建好之后配置空间，接下来我们就需要用到七牛的<a href="http://developer.qiniu.com/docs/v6/tools/qrsbox.html" title="上传工具qrsbox" target="_blank" rel="external">上传工具qrsbox</a></p>
-<p>5）下载之后，双击启动QRSBox.exe进行相关配置，配置可以查看<a href="http://developer.qiniu.com/docs/v6/tools/qrsbox.html" title="官方文档" target="_blank" rel="external">官方文档</a></p>
-<p>6）等待上传完毕后会显示 Sync done，打开空间内容管理获取地址,直接点击你的首页文件，就可以获取首页链接地址了。直接可以在浏览器上打开试试。</p>
-<p>7）哈哈，是不是很容易啊！</p>
-<p>.</p>
-</blockquote>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/WebApp/">WebApp</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/WebApp/">WebApp</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/10/移动版2048/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/10/移动版2048/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <a class="extend prev" rel="prev" href="/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next<span></span></a>
@@ -1732,7 +1750,7 @@ Dropbox现在不提供对新用户的一些服务，<span class="preprocessor">p
 		<ul>
 		
 		  
-			<li><a href="/categories/Bootstrap/" title="Bootstrap">Bootstrap<sup>5</sup></a></li>
+			<li><a href="/categories/Bootstrap/" title="Bootstrap">Bootstrap<sup>6</sup></a></li>
 		  
 		
 		  
@@ -1773,11 +1791,11 @@ Dropbox现在不提供对新用户的一些服务，<span class="preprocessor">p
 			
 		
 			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>5</sup></a></li>
+				<li><a href="/tags/Bootstrap/" title="Bootstrap">Bootstrap<sup>6</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Bootstrap/" title="Bootstrap">Bootstrap<sup>5</sup></a></li>
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>5</sup></a></li>
 			
 		
 			
