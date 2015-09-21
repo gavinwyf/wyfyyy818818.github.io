@@ -81,6 +81,149 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/09/20/24. 个人面经/" title="个人面经" itemprop="url">个人面经</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-19T16:00:00.000Z" itemprop="datePublished"> 發表於 2015-09-20</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="我的面经">我的面经</h1><h2 id="百度面试：(9月20号_哈尔滨国际饭店)">百度面试：(9月20号 哈尔滨国际饭店)</h2><p>百度的面试面的不是很好，我的能力还不够啊。问的节奏有些快，没有什么想的时间，面试官直接在纸上出题，会的当然答得很快，不会的没有考虑的时间，直接被面试官跳过了。</p>
+<ol>
+<li>正则表达式   例如：  百度（ssh:312）东东  </li>
+<li>0-100取十个数排序<br> 取整问题  Math.random()<br> 排序问题  冒泡 快排(阮一峰用JS实现的快排挺好的)<br> arr.sort(function(){<pre><code><span class="keyword">return</span> <span class="literal">a</span>-b<span class="comment">; 从小到大  b-a 从大到小</span>
+</code></pre> })</li>
+<li>锚点   </li>
+<li><pre><code><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#first"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span>     <span class="tag">&lt;<span class="title">XX</span> <span class="attribute">id</span>=<span class="value">"first"</span>&gt;</span><span class="tag">&lt;/<span class="title">XX</span>&gt;</span>
+</code></pre></li>
+<li>原型 prototype</li>
+<li>数组去重  可以使用Hash表(就是对象)来实现 还可以用indexof来做</li>
+<li>CSS文字溢出 显示省略号 </li>
+<li><pre><code>   <span class="comment">/* IE下的样式 */</span> 
+<span class="tag">p</span> <span class="tag">span</span><span class="rules">{
+<span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;
+<span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">200px</span></span></span>;<span class="comment">/*对宽度的定义,根据情况修改*/</span>
+<span class="rule"><span class="attribute">overflow</span>:<span class="value"> hidden</span></span>;
+<span class="rule"><span class="attribute">white-space</span>:<span class="value"> nowrap</span></span>;
+<span class="rule"><span class="attribute">text-overflow</span>:<span class="value"> ellipsis</span></span>;
+}</span>
+</code></pre><p>text-overflow属性仅是注解，当文本溢出时是否显示省略标记。并不具备其它的样式属性定义。我们想要实现溢出时产生省略号的效果。还必须定义：强制文本在一行内显示（white-space:nowrap）及溢出内容为隐藏（overflow:hidden）。只有这样才能实现溢出文本显示省略号的效果。</p>
+<pre><code><span class="comment">/* FF 下的样式 */</span> 
+<span class="tag">p</span>{<span class="attribute">clear</span>:both;}
+<span class="tag">p</span> <span class="tag">span</span>{
+<span class="attribute">float</span>:left;
+<span class="attribute">max-width</span>:<span class="number">175px</span>; 将省略号空间留出 <span class="comment">/*IE不能解释该属性，而FF可以*/</span>
+}
+<span class="tag">p</span><span class="pseudo">:after</span>{
+<span class="attribute">content</span>:<span class="string">"..."</span>;  
+}
+</code></pre><p>关于p span 的宽度用了”max-width”这个属性，IE不能解释该属性，而FF可以,这样就避开了IE对SPAN宽度的重新应用。</p>
+</li>
+</ol>
+<ol>
+<li>标签栏 面包屑  box-shadow<br>选中一个其余样式改变，底边消失</li>
+<li><p>数据类型： </p>
+<pre><code><span class="keyword">typeof</span> <span class="literal">null</span> <span class="comment">//Object  </span>
+<span class="keyword">typeof</span> <span class="literal">undefined</span> <span class="comment">//undefined</span>
+</code></pre></li>
+</ol>
+<h2 id="去哪网面试：(9月17号_班夫酒店)">去哪网面试：(9月17号 班夫酒店)</h2><h3 id="数据结构：">数据结构：</h3><p>1.栈中取最大数和索引 时间复杂度为 O(1)  push pop  只能直接进行比较 可设置个哨兵作为参照</p>
+<p>2.二叉树： 哈夫曼编码  哈夫曼树 最优二叉树(带权路径长度WPL最小的二叉树)<br>           每次找权值最小的两个作为合并节点，取权值和为一个新父节点，加入表中，再进行上述操作。。。<br>           直到构造成哈夫曼树，左取0，右取1，进行编码。</p>
+<h3 id="JS:">JS:</h3><p>1.数据类型  </p>
+<pre><code><span class="keyword">typeof</span> <span class="literal">null</span>/<span class="literal">undefined</span>
+<span class="keyword">typeof</span> <span class="number">123</span>   <span class="comment">//"number"</span>
+<span class="keyword">typeof</span> <span class="string">"123"</span>   <span class="comment">//"string"</span>
+<span class="keyword">typeof</span> <span class="literal">NaN</span>  <span class="comment">//"number"</span>
+<span class="literal">null</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span> <span class="comment">//false</span>
+<span class="number">123</span> <span class="keyword">instanceof</span> <span class="built_in">Number</span>  <span class="comment">//false</span>
+<span class="keyword">var</span> str = <span class="keyword">new</span> <span class="built_in">String</span>();
+str <span class="keyword">instanceof</span> <span class="built_in">String</span>;  <span class="comment">//true</span>
+</code></pre><p>2.对象  </p>
+<pre><code><span class="keyword">var</span> obj = <span class="comment">{}</span>;  
+<span class="keyword">var</span> obj = <span class="keyword">new</span> Object; 
+上面两种创建对象完全一样
+还有一种： <span class="keyword">var</span> obj = <span class="keyword">create</span>(parent);  parent为obj.prototype
+
+<span class="function"><span class="keyword">function</span> <span class="title">point</span><span class="params">()</span><span class="comment">{...}</span>
+<span class="title">var</span> <span class="title">p</span> = <span class="title">new</span> <span class="title">point</span><span class="params">()</span>;</span>
+p.__proto__ == point.prototype  <span class="comment">//true   隐藏属性__proto__为对象构造器的原型</span>
+
+自定义的对象:
+先有的构造器，才有的对象，才能给对象添加原型 ??我个人理解
+<span class="keyword">var</span> obj = <span class="comment">{}</span>;
+obj.prototype  <span class="comment">//undefined</span>
+obj.<span class="keyword">constructor</span>  <span class="comment">// function Object(){ [native code] }</span>
+obj.__proto__   <span class="comment">// Object{}  </span>
+obj.<span class="keyword">constructor</span>.prototype  <span class="comment">//Object{}</span>
+obj.<span class="keyword">constructor</span>.prototype == obj.__proto__  <span class="comment">//true</span>
+</code></pre><ol>
+<li><p>闭包，局部作用域 相关题</p>
+<p>例如： 多次循环进行事件处理函数绑定</p>
+</li>
+<li><p>div &gt; ul &gt; 五个li  div的ID为“mydiv”  将五个li倒过来显示</p>
+<pre><code><span class="keyword">var</span> <span class="keyword">lis</span> = document.querySelectorAll(<span class="string">"#mydiv &gt; ul &gt; li"</span>);
+获取的<span class="keyword">lis</span>是类数组对象，不可以直接调用数组的内置函数
+Array.reverse.call(<span class="keyword">lis</span>);  
+<span class="comment">//我当时写的是Array.reverse.apply(null,lis);  </span>
+  等价于  <span class="keyword">window</span>.<span class="literal">reverse</span>(<span class="keyword">lis</span>); 所以答错了。。。
+</code></pre></li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/面经/">面经</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/面经/">面经</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/09/20/24. 个人面经/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/09/20/24. 个人面经/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/09/07/21. Bootstrap Demo/" title="Intel Page Demo" itemprop="url">Intel Page Demo</a>
   </h1>
   <p class="article-author">By
@@ -1746,241 +1889,6 @@ column-gap : 5px; 设置列之间的间距(不一定会按照数值设置，会�
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/22/BOM整理/" title="BOM基础整理" itemprop="url">BOM基础整理</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Yunfeng" target="_blank" itemprop="author">Yunfeng</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-22T10:56:33.000Z" itemprop="datePublished"> 發表於 2015-08-22</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="BOM基础知识整理">BOM基础知识整理</h1><p> BOM里面我觉得最重要的还是计时器和事件处理这两个部分。简单整理一下，有许多平时不太常用。 我就整理一下我想复习的东西。</p>
-<blockquote>
-<p>BOM：浏览器对象模型 专门访问浏览器窗口的对象模型</p>
-<p> BOM提供了一些访问窗口对象的一些方法，我们可以用它来移动窗口位置，改变窗口大小，打开新窗口和关闭窗口，弹出对话框，进行导航以及获取客户的一些信息如：浏览器品牌版本，屏幕分辨率。</p>
-</blockquote>
-<p>DHTML对象模型(7种)：</p>
-<pre><code><span class="label">Window:</span> 代表当前打开的浏览器窗口
-history：当前窗口本次打开后的历史记录
-<span class="label">navigator:</span> 封装浏览器软件的版本和信息
-document对象：当前浏览器窗口正在加载的网页文件（网页一加载，就会自动创建）
-<span class="label">location:</span> 封装了当前窗口正在打开的url地址
-<span class="label">screen:</span> 封装了当前窗口所在屏幕的信息
-event：当事件发生时，用来封装事件的信息
-</code></pre><ol>
-<li><p><strong>打开/关闭窗口</strong></p>
-<p> (1) 打开窗口：3种：</p>
-<pre><code><span class="number">1</span>. 替换当前窗口：
-      HTML： &lt;<span class="tag">a</span> href=<span class="string">""</span> target=<span class="string">"_self"</span>&gt;&lt;/a&gt;
-      BOM：  window.<span class="function"><span class="title">open</span><span class="params">(<span class="string">"url"</span>,<span class="string">"_self"</span>)</span></span>
-<span class="number">2</span>. 在新窗口打开，可重复打开
-      HTML：&lt;<span class="tag">a</span> href=<span class="string">""</span> target=<span class="string">"_blank"</span>&gt;&lt;/a&gt;
-      BOM: window.<span class="function"><span class="title">open</span><span class="params">(<span class="string">"url"</span>)</span></span>     <span class="comment">//默认_blank</span>
-<span class="number">3</span>. 在新窗口打开，不可重复打开
-      HTML： &lt;<span class="tag">a</span> href=<span class="string">""</span> target=<span class="string">"新窗口名"</span>&gt;&lt;/a&gt;
-      BOM: window.<span class="function"><span class="title">open</span><span class="params">(<span class="string">"url"</span>,<span class="string">"窗口名"</span>)</span></span>
-*浏览器规定相同名称的窗口，只能打开一个*
-</code></pre><p> (2) 程序自动关闭窗口：window.close()  关闭当前窗口</p>
-</li>
-<li><p><strong>对话框：</strong></p>
-<pre><code><span class="number">1.</span> 警告框：alert(<span class="string">"提示信息"</span>);   ——只有确定按钮
-
-<span class="number">2.</span> 输入框：<span class="variable"><span class="keyword">var</span> str</span>=prompt(<span class="string">"提示信息"</span>);
-
-<span class="number">3.</span> 确认框：<span class="variable"><span class="keyword">var</span> bool</span>=confirm(<span class="string">"提示信息"</span>);——确定和取消  <span class="literal">true</span>   <span class="literal">false</span>
-</code></pre></li>
-<li><p><strong>定时器</strong>：不用用户触发，也能自动执行的效果</p>
-<ol>
-<li><p>周期性定时器setInterval：按固定时间间隔，反复执行相同操作</p>
-<pre><code>step1. 使用一个全局变量保存定时器唯一编号   var <span class="built_in">timer</span>=<span class="literal">null</span>;
-       停止定时器，只能使用定时器的编号  
-
-step2. 任务：一个函数：每次“循环”要执行的任务(任务结尾可设置结束条件)
-
-step3. 何时启动、停止定时器：
-        启动：<span class="built_in">timer</span>=setInterval(任务函数 , 间隔毫秒数);
-        停止：clearInterval(<span class="built_in">timer</span>);  <span class="built_in">timer</span>=<span class="literal">null</span>;
-</code></pre></li>
-<li><p>一次性定时器setTimeout：先等待一段时间，再执行一次任务，自动停止</p>
-</li>
-</ol>
-</li>
-</ol>
-<pre><code>step1. 全局  var <span class="variable">timer=</span><span class="constant">null</span>;
-
-step2. 任务：只执行一次     //好的习惯：任务结尾，<span class="variable">timer=</span><span class="constant">null</span>;
-
-step3. 何时启动/停止:
-        启动：<span class="variable">timer=</span>setTimeout(任务 , 等待毫秒数);
-        停止：clearTimeout(timer); <span class="variable">timer=</span><span class="constant">null</span>;
-</code></pre><hr>
-<h2 id="1-window:_代表当前打开的浏览器窗口">1.window: 代表当前打开的浏览器窗口</h2><p>   window对象是BOM的根对象</p>
-<pre><code>window 对象属性：innerwidth,innerheight,pageXOffset,pageYOffset
-       对象方法：<span class="function"><span class="title">alert</span><span class="params">()</span></span>,<span class="function"><span class="title">confirm</span><span class="params">()</span></span>,<span class="function"><span class="title">prompt</span><span class="params">()</span></span> 三种对话框
-                <span class="function"><span class="title">open</span><span class="params">()</span></span>,<span class="function"><span class="title">close</span><span class="params">()</span></span>，<span class="function"><span class="title">print</span><span class="params">()</span></span>   <span class="function"><span class="title">blur</span><span class="params">()</span></span>,<span class="function"><span class="title">focus</span><span class="params">()</span></span> 失去、获取焦点
-                <span class="function"><span class="title">setInterval</span><span class="params">()</span></span>,<span class="function"><span class="title">setTimeout</span><span class="params">()</span></span>  
-                <span class="function"><span class="title">clearInterval</span><span class="params">()</span></span>,<span class="function"><span class="title">clearTimeout</span><span class="params">()</span></span>
-</code></pre><h2 id="2-navigator:_封装客户端浏览器和操作系统的信息">2.navigator: 封装客户端浏览器和操作系统的信息</h2><pre><code><span class="label">cookieEnabled:</span> 判断当前浏览器是否启用了cookie
-cookie：客户端存储个人信息的文件
-<span class="label">userAgent:</span> 客户端浏览器的名称和版本,判断浏览器的名称和版本
-<span class="label">appName:</span> 浏览器名称     
-<span class="label">appVersion:</span> 浏览器平台和版本信息
-</code></pre><h2 id="3-_location:_封装了当前浏览器窗口正在打开的url">3. location: 封装了当前浏览器窗口正在打开的url</h2><pre><code>修改location.href属性，可替换当前窗口，打开新页面
-
-属性：host,hostname,herf,pathname,port，protocol
-
-方法：<span class="function"><span class="title">assign</span><span class="params">()</span></span>加载新的  <span class="function"><span class="title">reload</span><span class="params">()</span></span>重新加载  <span class="function"><span class="title">replace</span><span class="params">()</span></span>替换当前文档
-</code></pre><h2 id="4-_history:_当前窗口本次打开后的历史记录栈">4. history: 当前窗口本次打开后的历史记录栈</h2><pre><code>前进：<span class="keyword">history</span>.<span class="keyword">go</span>(<span class="number">1</span>) 等效于 <span class="keyword">history</span>.forward()
-刷新：<span class="keyword">history</span>.<span class="keyword">go</span>(<span class="number">0</span>) 
-后退：<span class="keyword">history</span>.<span class="keyword">go</span>(-<span class="number">1</span>) 等效于 <span class="keyword">history</span>.back()
-     <span class="keyword">history</span>的内容，禁止读写。
-禁用后退：location.replace(<span class="string">"新url"</span>);
-      在<span class="keyword">history</span>中，用新url，代替原url的位置。
-      不会增加<span class="keyword">history</span>中的历史记录数。
-</code></pre><h2 id="5-_screen：封装了当前窗口所在屏幕的属性">5. screen：封装了当前窗口所在屏幕的属性</h2><pre><code>width,height： 屏幕的实际分辨率
-availWidth,<span class="string">availHeight:</span>  去掉任务栏后的屏幕分辨率
-window.innerHeight/<span class="string">Width:</span>  浏览器窗口中文档显示区域的宽高
-</code></pre><h2 id="6-_event对象：当事件发生时，自动创建的，封装事件属性的对象">6. event对象：当事件发生时，自动创建的，封装事件属性的对象</h2><p>  <strong>(1) 获得event对象：</strong></p>
-<pre><code><span class="number">1</span>.html: on事件名=<span class="string">"事件处理函数(event)"</span>;       &lt;<span class="keyword">div</span> onclick=<span class="string">"func(event);"</span>&gt;<span class="keyword">div</span>&lt;/<span class="keyword">div</span>&gt;  
-    缺： 内容和脚本混合   优： 所有浏览器通用    
-
-<span class="number">2</span>.js:  <span class="keyword">var</span> e=window.event||arguments[<span class="number">0</span>];    
-   <span class="type">IE</span>: window.event 可直接使用event  无需传入参入
-   <span class="type">FF</span>: 使用event关键字将事件对象作为参数传入  function func(e)<span class="decorator">{...}</span>
-   其他：arguments[<span class="number">0</span>]
-</code></pre><p>  <strong>(2) event对象属性：</strong></p>
-<pre><code> 1.获得目标对象： <span class="keyword">var</span> src=<span class="keyword">e</span>.srcElement(IE)||<span class="keyword">e</span>.target(FF);   
-
-         解决兼容性：function func(<span class="keyword">e</span>){
-              <span class="keyword">var</span> obj = <span class="keyword">e</span>.srcElement||<span class="keyword">e</span>.target;
-              alert(obj.nodeName);
-             }
-
- 2.事件发生时的鼠标位置：
-    相对于浏览器显示区： <span class="keyword">e</span>.x||<span class="keyword">e</span>.clientX; <span class="keyword">e</span>.y||<span class="keyword">e</span>.clientY;
-    相对于页面原点坐标： <span class="keyword">e</span>.pageX;  <span class="keyword">e</span>.pageY;
-    相对于显示屏原点坐标：<span class="keyword">e</span>.screenX; <span class="keyword">e</span>.screenY;
-    相对于事件源对象原点的坐标：<span class="keyword">e</span>.offsetX; <span class="keyword">e</span>.offsetY;
-
- 3. keyCode/<span class="keyword">which</span>/charCode : 键盘事件中按下的按键
-    eventPhase :事件所处的传播阶段
-    button : 鼠标哪个键被按下了
-    cancelBubble : 是否取消事件冒泡
-returnValue : 是否阻止事件默认行为
-</code></pre><p>  <strong>(3) 事件：</strong></p>
-<pre><code>鼠标： <span class="attribute">onmouseover</span>: 仅在跨入边界时触发一次
-      <span class="attribute">onmousemove</span>: 在范围内移动鼠标时，反复触发
-      <span class="attribute">onmouseout</span>: 仅在跨出边界时触发一次      
-      <span class="attribute">onmouseup</span>: 鼠标按下
-      <span class="attribute">onmousedown</span>: 鼠标抬起
-      <span class="attribute">onclick</span>: 鼠标点击后
-
-键盘： onkeydown onkeyup onkeypress
-
-状态： onload onunload
-      onfocus onblur onchange          
-      onsumbit onreset
-      onresize onerror
-</code></pre><p>  <strong>(4) 定义事件：3种</strong></p>
-<pre><code><span class="number">1.</span> 在元素开始标签中使用on事件名=<span class="string">"事件处理函数"</span>  &lt;button onclick=<span class="string">"calc()"</span>&gt;&lt;/button&gt; 
-
-<span class="number">2.</span> js中，对象.on事件名=事件处理函数对象  btn.onclick=calc;       btn.onclick=<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{}
-   (一个事件定义只能绑定一个处理函数对象)
-
-<span class="number">3.</span> btnObj.attachEvent(<span class="string">'onclick'</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{});   <span class="comment">//IE</span>
-   btnObj.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{});  <span class="comment">//DOM</span>
-
-      处理兼容性：
-          <span class="keyword">if</span>(elem.attachEvent){
-           IE:elem.attachEvent(<span class="string">"on事件名"</span>,处理函数对象);
-      }<span class="keyword">else</span>{
-          DOM: elem.addEventListener(<span class="string">"事件名"</span>，处理函数对象,是否在捕获阶段触发);
-      }
-</code></pre><p>  <strong>(5) 事件周期：事件从发生到触发的全过程</strong></p>
-<pre><code>IE事件周期：   <span class="number">2</span>个阶段:目标触发<span class="comment">--&gt;冒泡</span>
-其它事件周期:   <span class="number">3</span>个阶段：捕获<span class="comment">--&gt;目标触发--&gt;冒泡  </span>
-
-        (<span class="number">1</span>)捕获：最外层元素，向内，仅到目标元素，记录每个元素是否定义该事件     
-              html 没有  body 没有                       
-                    <span class="keyword">div</span> d1 onclick=<span class="string">"show()"</span>
-                <span class="keyword">div</span> d2 onclick=<span class="string">"show()"</span>
-            <span class="keyword">div</span> d3 onclick=<span class="string">"show()"</span>
-        (<span class="number">2</span>)目标触发：触发d3的onclick，执行show方法
-        (<span class="number">3</span>)冒泡：由内向外，依次触发记录的事件
-                执行<span class="keyword">div</span> d2 onclick=<span class="string">"show()"</span>
-                 执行<span class="keyword">div</span> d1 onclick=<span class="string">"show()"</span>;
-</code></pre><p>  <strong>(6) 取消冒泡：</strong></p>
-<pre><code><span class="literal">e</span>.cancelButtle=<span class="literal">true</span>;  //在事件处理函数末尾加，只执行一次，不冒泡
-备用： <span class="literal">e</span>.stopPropegation();
-
-利用冒泡：*如果多个子元素定义了相同的事件，只需要将相同的事件定义在父元素一次即可*
-</code></pre><p>  <strong>(7) 取消事件：2种</strong></p>
-<pre><code><span class="number">1</span>.html： on事件名=<span class="string">"return 处理函数()"</span>
-        <span class="function"><span class="keyword">function</span> 处理函数<span class="params">()</span>{</span>...return <span class="literal">true</span>/<span class="literal">false</span>;}
-          <span class="comment">//*2个return必不可少 自己控制*      </span>
-
-<span class="number">2</span>.js:  elem.on事件名=处理函数对象；  <span class="comment">//处理函数的结尾，增加：e.returnValue=false;</span>
-
-          <span class="keyword">if</span><span class="params">(e.preventDefault)</span>{ 
-            e.preventDefault<span class="params">()</span>; 
-          }<span class="keyword">else</span>{
-            e.returnValue=<span class="literal">false</span>; 
-          }
-</code></pre>
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Javascript/">Javascript</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/22/BOM整理/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/22/BOM整理/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -2026,6 +1934,10 @@ returnValue : 是否阻止事件默认行为
 			<li><a href="/categories/WebApp/" title="WebApp">WebApp<sup>1</sup></a></li>
 		  
 		
+		  
+			<li><a href="/categories/面经/" title="面经">面经<sup>1</sup></a></li>
+		  
+		
 		</ul>
 </div>
 
@@ -2061,6 +1973,10 @@ returnValue : 是否阻止事件默认行为
 		
 			
 				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面经/" title="面经">面经<sup>1</sup></a></li>
 			
 		
 		</ul>
